@@ -16,7 +16,7 @@ function App() {
   const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
   
   /*
-  const admin = false
+  const admin = falsee
   if(JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser !== null){
     const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
   }
