@@ -3,6 +3,26 @@
     "homepage": "Kotisivu",
     "signIn": "Kirjaudu",
     "color": "Väri",
-    "contact": "Yhteystiedot"
+    "contact": "Yhteystiedot",
+    "login": "KIRJAUDU",
+    "logOut": "KIRJAUDU ULOS",
+    "username": "Käyttäjätunnus",
+    "password": "Salasana",
+    "somethingWentWrong": "Jotain meni pieleen...",
+    "createAnAccount": "LUO TILI",
+    "firstname": "Etunimi",
+    "lastname": "Sukunimi",
+    "email": "Sähköposti",
+    "confirmPassword": "Salasana uudelleen",
+    "create": "Luo",
+    "registerFirstNameError": "Etunimessä tulee olla 3-16 merkkiä, eikä se saa sisältää mitään erikoismerkkejä!",
+    "registerLastNameError": "Sukunimessä tulee olla 3-16 merkkiä, eikä se saa sisältää mitään erikoismerkkejä!",
+    "registerMailError": "Sen tulee olla kelvollinen sähköpostiosoite!",
+    "registerPasswordError": "Salasanan tulee olla 8-20 merkkiä pitkä ja sisältää vähintään 1 kirjaimen, 1 numeron ja 1 erikoismerkin!",
+    "registerPasswordConfirmationError": "Salasanat eivät täsmää!",
+    "privacyPolicyText": "Luomalla tilin hyväksyn henkilötietojeni käsittelyn ehtojen mukaisesti",
+    "privacyPolicy": "Tietosuojakäytäntö",
+    "forgotPassText" : "ETTE MUISTA SALASANA?",
+    "createAccountText" : "LUO UUSI TILI"
 }
 

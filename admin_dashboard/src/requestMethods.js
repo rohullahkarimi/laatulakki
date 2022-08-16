@@ -2,12 +2,15 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:5000/api/";
 
-var TOKEN = [];
-if(localStorage.getItem("persist:root") !== null){
-    if(JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser !== null){
-        TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.accessToken;
-    }
-}
+const TOKEN = () => {
+    if (
+      JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user)
+        .currentUser.accessToken
+    ) {
+      return JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user)
+        .currentUser.accessToken;
+    } else { return '' }
+};
 //console.log(TOKEN);
 
 

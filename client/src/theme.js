@@ -21,6 +21,10 @@ export const elementBackgroundColor = () => {
   return 'e2fefe'; // Jade dust too light
 };
 
+export const labelColor = () => {
+  return '362c2c'; // Dark gray
+};
+
 
 
 

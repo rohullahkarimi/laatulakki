@@ -6,11 +6,17 @@ import styled from 'styled-components'
 import {mobile} from '../responsive'
 import {useSelector} from "react-redux"
 import { Link } from "react-router-dom"
+import {
+    useNavigate
+} from "react-router-dom";
 
 // multi language
 import '../i18n';
 import i18n from "i18next";
 import { useTranslation } from "react-i18next";
+
+// theme
+import { brandColor } from '../theme';
 
 const Container = styled.div`
     height: 60px;
@@ -32,11 +38,12 @@ const Left = styled.div`
 `;
 
 const Language = styled.select`
-    font-size: 22px;
+    font-size: 18px;
     cursor: pointer;
     border: none;
     outline: none;
     appearance: none;
+    border-bottom: 2px solid #${brandColor};
     ${mobile({fontSize: "18px", marginLeft: "10px"})}
 `
 
@@ -69,30 +76,60 @@ const MenuItem = styled.div`
     ${mobile({fontSize: "12px"})}
 `;
 
+const LangDiv = styled.div`
+    display: flex;
+`;
+
+
+
 const Navbar = () => {
   const { t } = useTranslation();
+  const user = useSelector((state)=> state.user.currentUser);
   const onChange = (event) => {
       i18n.changeLanguage(event.target.value);
   };
   const quantity = useSelector(state=>state.cart.quantity)
+  const navigate = useNavigate();
   //console.log(quantity)
 
+  const navigateLogin = () => {
+    navigate('/login');
+  };
+  const navigateLoginOut = () => {
+    navigate('/login');
+  };
+
+  const languages = [
+        { lang: "fi", country: "fi" },
+        { lang: "se", country: "se" },
+        { lang: "en", country: "us" },
+    ]
+    
   return (
     <Container>
         <Wrapper>
             <Left>
-                <Language name="language" onChange={onChange}>
-                    <LanguageOption value="fi">{getUnicodeFlagIcon('FI')} FI</LanguageOption>
-                    <LanguageOption value="en">{getUnicodeFlagIcon('US')} EN</LanguageOption>
-                    <LanguageOption value="sv">{getUnicodeFlagIcon('SE')} SV</LanguageOption>
-                </Language>
+                <LangDiv>
+                    <Language name="language" onChange={onChange}>
+                        {languages.map(({lang, country})=>{
+                            const countryName = country.toUpperCase()
+                            const langName = lang.toUpperCase()
+                            const selectedLang = i18n.language
+                            
+                            return (
+                                <LanguageOption key={lang} value={lang} selected={selectedLang === lang ? "selected" : ""}>{getUnicodeFlagIcon(countryName)} {langName} </LanguageOption>
+                            )
+                        })}
+                    </Language>
+                </LangDiv>
             </Left>
             <Center><Logo>LaatuLakki.fi</Logo></Center>
             <Right>
-                <Link to="/login">
-                    <MenuItem>Login</MenuItem>
-                </Link>
-                <MenuItem>{t('contact')}</MenuItem>
+                {user ? (
+                    <MenuItem onClick={navigateLogin}>{t('logOut')}</MenuItem>
+                ) : (
+                    <MenuItem onClick={navigateLoginOut}>{t('login')}</MenuItem>
+                )}
                 <Link to="/cart">
                     <MenuItem>
                     <Badge badgeContent={quantity} color="primary">
