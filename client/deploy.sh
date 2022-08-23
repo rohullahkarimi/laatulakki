@@ -2,10 +2,10 @@ echo "Switching to branch master"
 git checkout master
 
 echo "Building app..."
-npm run build
+sudo npm run build
 
 echo "Deploying files to server"
-scp -r build/* ec2-user@172.31.87.47:/var/www/laatulakki/client/
+sudo scp -r build/* ec2-user@23.23.248.65:/var/www/laatulakki/client/
 
 
 echo "Done"
