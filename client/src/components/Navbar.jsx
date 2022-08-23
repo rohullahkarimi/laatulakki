@@ -123,7 +123,7 @@ const Navbar = () => {
                     </Language>
                 </LangDiv>
             </Left>
-            <Center><Logo>LaatuLakki.fi</Logo></Center>
+            <Center><Logo>LaatuLakki.fi1</Logo></Center>
             <Right>
                 {user ? (
                     <MenuItem onClick={navigateLogin}>{t('logOut')}</MenuItem>
