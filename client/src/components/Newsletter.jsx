@@ -1,7 +1,9 @@
 import { Send } from "@mui/icons-material"
+import { useRef } from "react"
 import styled from "styled-components"
 import { mobile } from "../responsive"
 import { buttonColor } from "../theme"
+import emailjs from '@emailjs/browser';
 
 const Container = styled.div`
     height: 60vh;
@@ -27,7 +29,6 @@ const Desc = styled.div`
 
 const InputContainer = styled.div`
     width: 50%;
-    height: 40px;
     background-color: white;
     display: flex;
     justify-content: space-between;
@@ -40,7 +41,8 @@ const InputContainer = styled.div`
 const Input = styled.input`
     border: none;
     flex: 8;
-    padding-left: 20px;
+    padding: 10px 0px;
+    margin: 10px;
 `
 
 const TextAreaContainer = styled.div`
@@ -58,7 +60,7 @@ const TextAreaContainer = styled.div`
 const TextArea = styled.textarea`
     border: none;
     flex: 8;
-    padding-left: 20px;
+    margin: 10px;
 `
 
 const Button = styled.button`
@@ -70,29 +72,45 @@ const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px 0px;
 `
 
 
 const Newsletter = () => {
-  return (
+    const form = useRef();
+
+    const sendEmail = (e) =>{
+        e.preventDefault();
+
+        emailjs.sendForm('service_srv6qgs', 'template_r0ct2ft', form.current, '4Nkqb0xXpHyb_vl_z82dEQ')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+    }
+
+   return (
     <Container>
-        <Title>Yhteystiedot</Title>
-        <Desc>Asiakaspalvelumme tavoitat parhaiten älä lomakkeen alta tai osoitteesta laatulakki@gmail.com.</Desc>
-        <InputContainer>
-            <Input placeholder="Nimi"/>
-        </InputContainer>
-        <InputContainer>
-            <Input placeholder="Sähköposti"/>
-        </InputContainer>
-        <TextAreaContainer>
-            <TextArea placeholder="Kirjoita tähän viestisi..."/>
-        </TextAreaContainer>
-        <InputContainer>
-            <Button>
-                Lähetä 
-                <Send style={{marginLeft: "5px"}}/>
-            </Button>
-        </InputContainer>
+        <form ref={form} onSubmit={sendEmail}>
+            <Title>Yhteystiedot</Title>
+            <Desc>Asiakaspalvelumme tavoitat parhaiten älä lomakkeen alta tai osoitteesta laatulakki@gmail.com.</Desc>
+            <InputContainer>
+                <Input name="name" placeholder="Nimi" onChange={(e) => setName(e.target.value)}/>
+            </InputContainer>
+            <InputContainer>
+                <Input name="email" placeholder="Sähköposti" onChange={(e) => setEmail(e.target.value)} />
+            </InputContainer>
+            <TextAreaContainer>
+                <TextArea name="text" placeholder="Kirjoita tähän viestisi..." onChange={(e) => setText(e.target.value)}/>
+            </TextAreaContainer>
+            <InputContainer>
+                <Button onClick={sendEmail}>
+                    Lähetä 
+                    <Send style={{marginLeft: "5px"}}/>
+                </Button>
+            </InputContainer>
+        </form>
     </Container>
   )
 }

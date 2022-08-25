@@ -24,8 +24,8 @@ const Products = ({cat, filters, sort}) => {
       try{
         const res = await axiosInstance.get(
           cat 
-            ? `http://tester.laatulakki.fi/api/products?category=${cat}` 
-            : "http://tester.laatulakki.fi/api/products"
+            ? `https://tester.laatulakki.fi/api/products?category=${cat}` 
+            : "https://tester.laatulakki.fi/api/products"
         );
         setProducts(res.data);
       }catch(err){
