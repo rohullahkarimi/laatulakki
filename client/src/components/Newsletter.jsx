@@ -82,7 +82,7 @@ const Newsletter = () => {
     const sendEmail = (e) =>{
         e.preventDefault();
 
-        emailjs.sendForm('service_srv6qgs', 'template_r0ct2ft', form.current, '4Nkqb0xXpHyb_vl_z82dEQ')
+        emailjs.sendForm('service_srv6qgs', 'template_r0ct2ft', form.current, 'VnT_mr5Nf9cp7Dhc7')
         .then((result) => {
             console.log(result.text);
         }, (error) => {
