@@ -82,7 +82,7 @@ const Newsletter = () => {
     const sendEmail = (e) =>{
         e.preventDefault();
 
-        emailjs.sendForm('service_srv6qgs', 'template_r0ct2ft', form.current, 'VnT_mr5Nf9cp7Dhc7')
+        emailjs.sendForm('service_srv6qgs', 'laatulakki_feedback', form.current, 'VnT_mr5Nf9cp7Dhc7')
         .then((result) => {
             console.log(result.text);
         }, (error) => {
@@ -96,16 +96,16 @@ const Newsletter = () => {
             <Title>Yhteystiedot</Title>
             <Desc>Asiakaspalvelumme tavoitat parhaiten älä lomakkeen alta tai osoitteesta laatulakki@gmail.com.</Desc>
             <InputContainer>
-                <Input name="name" placeholder="Nimi" />
+                <Input name="user_name" placeholder="Nimi" />
             </InputContainer>
             <InputContainer>
-                <Input name="email" placeholder="Sähköposti"  />
+                <Input name="user_email" placeholder="Sähköposti"  />
             </InputContainer>
             <TextAreaContainer>
-                <TextArea name="text" placeholder="Kirjoita tähän viestisi..."/>
+                <TextArea name="message" placeholder="Kirjoita tähän viestisi..."/>
             </TextAreaContainer>
             <InputContainer>
-                <Button onClick={sendEmail}>
+                <Button type="submit">
                     Lähetä 
                     <Send style={{marginLeft: "5px"}}/>
                 </Button>
