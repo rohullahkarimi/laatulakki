@@ -96,13 +96,13 @@ const Newsletter = () => {
             <Title>Yhteystiedot</Title>
             <Desc>Asiakaspalvelumme tavoitat parhaiten älä lomakkeen alta tai osoitteesta laatulakki@gmail.com.</Desc>
             <InputContainer>
-                <Input name="name" placeholder="Nimi" onChange={(e) => setName(e.target.value)}/>
+                <Input name="name" placeholder="Nimi" />
             </InputContainer>
             <InputContainer>
-                <Input name="email" placeholder="Sähköposti" onChange={(e) => setEmail(e.target.value)} />
+                <Input name="email" placeholder="Sähköposti"  />
             </InputContainer>
             <TextAreaContainer>
-                <TextArea name="text" placeholder="Kirjoita tähän viestisi..." onChange={(e) => setText(e.target.value)}/>
+                <TextArea name="text" placeholder="Kirjoita tähän viestisi..."/>
             </TextAreaContainer>
             <InputContainer>
                 <Button onClick={sendEmail}>
