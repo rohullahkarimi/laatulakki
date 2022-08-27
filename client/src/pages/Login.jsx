@@ -6,6 +6,7 @@ import { login } from "../redux/apiCalls";
 // multi language
 import '../i18n';
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
 // theme
 import { brandColor, buttonColor, elementBackgroundColor } from '../theme';
@@ -84,6 +85,7 @@ const Error = styled.span`
 
 const Login = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -93,6 +95,10 @@ const Login = () => {
     e.preventDefault();
     login(dispatch, { email, password });
   };
+
+  const handleNavigate = () =>{
+    navigate('../register');
+  }
 
 
   
@@ -119,7 +125,7 @@ const Login = () => {
           </Button>
           {error && <Error>{t('somethingWentWrong')}</Error>}
           <Link>{t('forgotPassText')}</Link>
-          <Link to="./register">{t('createAccountText')}</Link>
+          <Link onClick={handleNavigate}>{t('createAccountText')}</Link>
         </Form>
       </Wrapper>
     </Container>

@@ -23,5 +23,15 @@
     "privacyPolicyText": "By creating an account, I consent to the processing of my personal data in accordance with the",
     "privacyPolicy": "privacy Policy",
     "forgotPassText" : "DO NOT YOU REMEMBER THE PASSWORD?",
-    "createAccountText" : "CREATE A NEW ACCOUNT"
+    "createAccountText" : "CREATE A NEW ACCOUNT",
+    "emailRequired": "Email Address is required",
+    "enterEmail": "Please enter a valid email",
+    "feedback_desc": "The best way to reach our customer service is not under the form or from the address lautulakki@gmail.com.",
+    "contact_header": "Contact information",
+    "feedback_name": "Name",
+    "feedback_email": "Email",
+    "feedback_message": "Write here your message...",
+    "send_button": "Send",
+    "announcement_text": "Delivery time 2-4 business days! 📦",
+    "payment_options": "Payment methods"
 }

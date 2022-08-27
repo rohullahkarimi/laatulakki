@@ -1,0 +1,15 @@
+
+.formErrors{
+    font-size: 12px;
+    padding: 3px;
+    color: red;
+    display: block;
+}
+.formErrors:empty{
+    display: none;
+}
+
+input:invalid[focused="true"]{
+    border: 1px solid red;
+}
+

@@ -1,23 +1,23 @@
 export const sliderItems = [
     {
         id: 1,
-        img: "https://www.salon.fi/pictures/thumbs500/1846062790e358faec.jpg",
-        title: "SUMMER SALE",
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+        img: "https://image.shutterstock.com/image-photo/finnish-student-cap-rose-books-600w-281521223.jpg",
+        title: "TOIVE",
+        desc: "Tulevaisuus toiveita täynnä",
         bg: "f5fafd",
     },
     {
         id: 2,
-        img: "https://www.salon.fi/pictures/thumbs500/26450616d6e4e0b7e2.jpg",
-        title: "AUTUMN COLLECTION",
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+        img: "https://image.shutterstock.com/image-photo/finnish-doughnut-munkki-graduation-cap-600w-2151317275.jpg",
+        title: "OIVA",
+        desc: "Oivallinen vaihtoehto jokaiselle",
         bg: "fcf1ed",
     },
     {
         id: 3,
-        img: "https://www.salon.fi/pictures/thumbs500/1846062790e358faec.jpg",
-        title: "LOUNGEWEAR LOVE",
-        desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+        img: "https://image.shutterstock.com/image-photo/finnish-student-cap-apple-books-600w-281521220.jpg",
+        title: "VEGAANILAKKI",
+        desc: "Vegaanin valinta",
         bg: "fbf0f4",
     },
 ];

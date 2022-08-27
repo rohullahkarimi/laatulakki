@@ -1,66 +1,75 @@
 import { Send } from "@mui/icons-material"
-import { useRef } from "react"
 import styled from "styled-components"
-import { mobile } from "../responsive"
+import { mobile, tablet } from "../responsive"
 import { buttonColor } from "../theme"
 import emailjs from '@emailjs/browser';
+import { useForm } from 'react-hook-form';
+import '../common/css/style.css';
+import { useTranslation } from "react-i18next";
+
 
 const Container = styled.div`
-    height: 60vh;
+    height: auto;
     background-color: #fcf5f5;
+    padding: 20px 0px;
+`
+
+const Form = styled.form`
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 20px 10px;
+    width: 534px;
+    margin: auto;
+    background: #ffffff;
+    ${tablet({width: "400px"})}
+    ${mobile({width: "80%"})}
 `
 
+
 const Title = styled.h1`
-    font-size: 70px;
+    font-size: 26px;
     margin-bottom: 2px;
     ${mobile({fontSize: "30px"})}
 `
 
 const Desc = styled.div`
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 300;
     margin-bottom: 20px;
+    width: 80%;
     ${mobile({fontSize: "16px", textAlign: "center", padding: "0px 10px"})}
 `
 
 const InputContainer = styled.div`
-    width: 50%;
-    background-color: white;
     display: flex;
-    justify-content: space-between;
-    border: 1px solid lightgray;
     flex-direction: column;
-    margin-bottom: 5px;
+    width: 80%;
     ${mobile({width: "80%"})}
 `
 
 const Input = styled.input`
-    border: none;
-    flex: 8;
-    padding: 10px 0px;
-    margin: 10px;
+    padding: 15px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    width: auto;
 `
 
 const TextAreaContainer = styled.div`
-    width: 50%;
+    width: 80%;
     height: 100px;
-    background-color: white;
     display: flex;
-    justify-content: space-between;
-    border: 1px solid lightgray;
     flex-direction: column;
-    margin-bottom: 5px;
     ${mobile({width: "80%"})}
 `
 
 const TextArea = styled.textarea`
-    border: none;
-    flex: 8;
-    margin: 10px;
+    padding: 15px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: 1px solid gray;
 `
 
 const Button = styled.button`
@@ -75,42 +84,60 @@ const Button = styled.button`
     padding: 10px 0px;
 `
 
+const Newsletter = () => { 
+    const { t } = useTranslation();
+  
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
-const Newsletter = () => {
-    const form = useRef();
-
-    const sendEmail = (e) =>{
-        e.preventDefault();
-
-        emailjs.sendForm('service_srv6qgs', 'laatulakki_feedback', form.current, 'VnT_mr5Nf9cp7Dhc7')
+    const onSubmit = (data) => {
+        //console.log(data);
+        emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, data, process.env.REACT_APP_EMAILJS_API_KEY)
         .then((result) => {
             console.log(result.text);
+            alert("Lähetetty, kiitos!");
         }, (error) => {
             console.log(error.text);
         });
     }
+    
+   
 
    return (
     <Container>
-        <form ref={form} onSubmit={sendEmail}>
-            <Title>Yhteystiedot</Title>
-            <Desc>Asiakaspalvelumme tavoitat parhaiten älä lomakkeen alta tai osoitteesta laatulakki@gmail.com.</Desc>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+            <Title>{t('contact_header')}</Title>
+            <Desc>{t('feedback_desc')}</Desc>
             <InputContainer>
-                <Input name="user_name" placeholder="Nimi" />
+                <Input placeholder={t('feedback_name')+" *" } {...register('user_name', { required: true })} />
+                <span className="formErrors">{errors.user_name?.message}</span>
             </InputContainer>
             <InputContainer>
-                <Input name="user_email" placeholder="Sähköposti"  />
+                <Input  className="formInput" type="email" placeholder={t('feedback_email')+" *" } {
+                    ...register("user_email", { 
+                    required: t('emailRequired') + "*", 
+                    pattern: {
+                        value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                        message: t('enterEmail'),
+                    },
+                })} />
+                <span className="formErrors">{errors.user_email?.message}</span>
             </InputContainer>
             <TextAreaContainer>
-                <TextArea name="message" placeholder="Kirjoita tähän viestisi..."/>
+                <TextArea placeholder={t('feedback_message')+" *" } {...register('user_message', { required: true })}/>
+                <span className="formErrors">{errors.user_message?.message}</span>
             </TextAreaContainer>
+
             <InputContainer>
-                <Button type="submit">
-                    Lähetä 
+                <Button type="submit" >
+                    {t("send_button")} 
                     <Send style={{marginLeft: "5px"}}/>
                 </Button>
             </InputContainer>
-        </form>
+        </Form>
     </Container>
   )
 }

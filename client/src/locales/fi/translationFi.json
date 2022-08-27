@@ -23,6 +23,16 @@
     "privacyPolicyText": "Luomalla tilin hyväksyn henkilötietojeni käsittelyn ehtojen mukaisesti",
     "privacyPolicy": "Tietosuojakäytäntö",
     "forgotPassText" : "ETTE MUISTA SALASANA?",
-    "createAccountText" : "LUO UUSI TILI"
+    "createAccountText" : "LUO UUSI TILI",
+    "emailRequired": "Sähköpostiosoite vaaditaan",
+    "enterEmail": "Anna kelvollinen sähköpostiosoite",
+    "feedback_desc": "Asiakaspalvelumme tavoitat parhaiten älä lomakkeen alta tai osoitteesta laatulakki@gmail.com.",
+    "contact_header": "Yhteystiedot",
+    "feedback_name": "Nimi",
+    "feedback_email": "Sähköposti",
+    "feedback_message": "Kirjoita tähän viestisi...",
+    "send_button": "Lähetä",
+    "announcement_text": "Toimitusaika 2-4 arkipäivää! 📦",
+    "payment_options": "Maksutavat"
 }
 

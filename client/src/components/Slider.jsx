@@ -3,7 +3,7 @@ import { ArrowRightOutlined } from '@mui/icons-material'
 import { useState } from 'react'
 import styled from 'styled-components'
 import { sliderItems } from '../data'
-import { mobile } from '../responsive'
+import { mobile, smartPhone, tablet } from '../responsive'
 
 
 const Container = styled.div`
@@ -13,6 +13,8 @@ const Container = styled.div`
     /*background-color: coral;*/
     position: relative;
     overflow: hidden;
+    ${tablet({display: "none"})}
+    ${smartPhone({display: "none"})}
     ${mobile({display: "none"})}
 `
 
@@ -31,7 +33,7 @@ const Arrow = styled.div`
     right: ${props => props.direction === "right" && "10px"};
     margin: auto;
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 2.5;
     z-index: 2;
 `
 
@@ -51,17 +53,19 @@ const Slide = styled.div`
 `
 const ImgContainer = styled.div`
     height: 100%;
-    flex: 1;
+    flex: 1.5;
 `
 
 const Image = styled.img`
-    height: 80%;
+    height: 100%;
     flex: 1;
+    width: 100%;
+    object-fit: cover;
 `
 
 const InfoContainer = styled.div`
     padding: 50px;
-    flex: 1;
+    flex: 0.5;
 `
 
 const Title = styled.h1`

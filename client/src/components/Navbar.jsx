@@ -3,7 +3,7 @@ import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { Badge } from '@mui/material';
 import React from 'react'
 import styled from 'styled-components'
-import {mobile} from '../responsive'
+import { mobile, smartPhone, tablet, laptop } from "../responsive"
 import {useSelector} from "react-redux"
 import { Link } from "react-router-dom"
 import {
@@ -20,6 +20,10 @@ import { brandColor } from '../theme';
 
 const Container = styled.div`
     height: 60px;
+    padding: 0 20%;
+    ${tablet({padding: "0px"})}
+    ${laptop({padding: "0px 5%"})}
+    ${smartPhone({flexDirection: "column", padding: "0px"})}
     ${mobile({height: "50px"})}
 `
 
@@ -102,7 +106,7 @@ const Navbar = () => {
   const languages = [
         { lang: "fi", country: "fi" },
         { lang: "se", country: "se" },
-        { lang: "en", country: "us" },
+        { lang: "en", country: "gb" },
     ]
     
   return (

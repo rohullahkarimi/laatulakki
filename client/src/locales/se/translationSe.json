@@ -23,5 +23,15 @@
     "privacyPolicyText": "Genom att skapa ett konto samtycker jag till behandlingen av mina personuppgifter i enlighet med",
     "privacyPolicy": "integritetspolicy",
     "forgotPassText" : "KOMMER DU INTE IMMENS LÖSENORDET?",
-    "createAccountText" : "SKAPA ETT NYTT KONTO"
+    "createAccountText" : "SKAPA ETT NYTT KONTO",
+    "emailRequired": "E-postadress krävs",
+    "enterEmail": "Vänligen ange en giltig e-postadress",
+    "feedback_desc": "Det bästa sättet att nå vår kundtjänst är inte under formuläret eller från adressen lautulakki@gmail.com.",
+    "contact_header": "Kontaktinformation",
+    "feedback_name": "Namn",
+    "feedback_email": "E-post",
+    "feedback_message": "Skriv ditt meddelande här...",
+    "send_button": "skicka",
+    "announcement_text": "Leveranstid 2-4 arbetsdagar! 📦",
+    "payment_options": "Betalningsmetoder"
 }

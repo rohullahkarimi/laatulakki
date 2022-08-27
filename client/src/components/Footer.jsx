@@ -1,13 +1,18 @@
 import { Facebook, Instagram, MailOutlined, Phone, Room, YouTube } from "@mui/icons-material"
 import styled from "styled-components"
-import { mobile } from "../responsive"
+import { mobile, smartPhone, tablet, laptop } from "../responsive"
 import { elementBackgroundColor } from "../theme"
+import { useTranslation } from "react-i18next"
 
 
 const Container = styled.div`
     display: flex;
     background-color: #${elementBackgroundColor};
-    ${mobile({flexDirection: "column"})}
+    padding: 0px 20%;
+    ${tablet({padding: "0px"})}
+    ${laptop({padding: "0px 5%"})}
+    ${smartPhone({flexDirection: "column", padding: "0px"})}
+    ${mobile({flexDirection: "column", padding: "0px"})}
 `
 
 const Left = styled.div`
@@ -76,6 +81,7 @@ const Payment = styled.img`
 `
 
 const Footer = () => {
+  const {t} = useTranslation()
   return (
     <Container>
         <Left>
@@ -104,7 +110,7 @@ const Footer = () => {
             </List>
         </Center>
         <Right>
-            <Title>Maksutavat</Title>
+            <Title>{t('payment_options')}</Title>
             <Payment src="https://img.paytrail.com/?id=28740&type=vertical&cols=6;text=1&auth=09ae03d734ced6a7"/>
         </Right>
     </Container>

@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { notificationBar } from "../theme"
+import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
     height: 30px;
@@ -13,9 +14,10 @@ const Container = styled.div`
 `
 
 const Announcement = () => {
+  const { t } = useTranslation();
   return (
     <Container>
-        Toimitusaika 2-4 arkipäivää!
+        {t('announcement_text')}
     </Container>
   )
 }
