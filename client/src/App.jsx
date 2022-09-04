@@ -6,6 +6,7 @@ import Cart from "./pages/Cart";
 import Success from "./pages/Success";
 import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
+import Paytrail from "./pages/paytrail-example";
 import {
   BrowserRouter as Router,
   Routes,
@@ -34,9 +35,14 @@ const App = () => {
         <Route path="/register" element={
           user ? <Navigate to="/" />: <Register/>
         }/>
+
+        <Route path="/paytrail" element={<Paytrail />} />
+        
       </Routes>
     </Router>
   );
 };
+
+// <Route path="/paytail" element={<Paytrail />} />
 
 export default App;

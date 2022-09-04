@@ -173,7 +173,11 @@ const Product = () => {
                 <Image src={product.img}/>
             </ImageContainer>
             <InfoContainer>
-                <Title>{product.title}</Title>
+                {product.title?.split("<br>").map((productName, j) => {
+                return (
+                    <Title key={j}>{productName}</Title>
+                );
+                })}
                 <Desc>{product.desc}</Desc>
                 <Price>{product.price} €</Price>
                 <FilterContainer>

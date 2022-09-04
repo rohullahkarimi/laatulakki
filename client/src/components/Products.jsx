@@ -33,7 +33,7 @@ const Products = ({cat, filters, sort}) => {
       }
     };
     getProducts()
-  },[cat]);
+  },[cat, axiosInstance]);
 
   useEffect(()=>{
     cat && 

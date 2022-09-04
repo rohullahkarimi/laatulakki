@@ -94,6 +94,7 @@ const Navbar = () => {
   };
   const quantity = useSelector(state=>state.cart.quantity)
   const navigate = useNavigate();
+  const selectedLang = i18n.language
   //console.log(quantity)
 
   const navigateLogin = () => {
@@ -114,14 +115,14 @@ const Navbar = () => {
         <Wrapper>
             <Left>
                 <LangDiv>
-                    <Language name="language" onChange={onChange}>
+                    <Language name="language" onChange={onChange} defaultValue={selectedLang}>
                         {languages.map(({lang, country})=>{
                             const countryName = country.toUpperCase()
                             const langName = lang.toUpperCase()
-                            const selectedLang = i18n.language
+                            
                             
                             return (
-                                <LanguageOption key={lang} value={lang} selected={selectedLang === lang ? "selected" : ""}>{getUnicodeFlagIcon(countryName)} {langName} </LanguageOption>
+                                <LanguageOption key={lang} value={lang}>{getUnicodeFlagIcon(countryName)} {langName} </LanguageOption>
                             )
                         })}
                     </Language>
