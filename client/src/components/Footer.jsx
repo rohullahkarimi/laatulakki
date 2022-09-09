@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { mobile, smartPhone, tablet, laptop } from "../responsive"
 import { elementBackgroundColor } from "../theme"
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router";
 
 
 const Container = styled.div`
@@ -61,7 +62,7 @@ const List = styled.ul`
 `
 
 const ListItem = styled.div`
-    width: 50%;
+    width: 100%;
     margin-bottom: 10px;
 `
 
@@ -82,6 +83,18 @@ const Payment = styled.img`
 
 const Footer = () => {
   const {t} = useTranslation()
+  const navigate = useNavigate()
+
+  const goToTermsPage = () =>{
+    navigate('/terms_and_condition');
+  } 
+  const goToRegistrationStatement = () =>{
+    navigate('/registration_statement');
+  } 
+  const goToChange_and_refund = () =>{
+    navigate('/change_and_refund');
+  } 
+
   return (
     <Container>
         <Left>
@@ -102,11 +115,11 @@ const Footer = () => {
             </SocialContainer>
         </Left>
         <Center>
-            <Title>Some links in here</Title>
+            <Title>Verkkokauppa</Title>
             <List>
-                <ListItem>Home</ListItem>
-                <ListItem>Contact</ListItem>
-                <ListItem>About</ListItem>
+                <ListItem onClick={goToTermsPage}>Käyttöehdot</ListItem>
+                <ListItem onClick={goToRegistrationStatement}>Rekisteriseloste</ListItem>
+                <ListItem onClick={goToChange_and_refund}>Vaihto ja palautus</ListItem>
             </List>
         </Center>
         <Right>

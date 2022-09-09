@@ -61,6 +61,7 @@ const Center = styled.div`
 
 const Logo = styled.h1`
     font-weight: bold;
+    cursor: pointer;
     font-size: 32px;
     ${mobile({fontSize: "18px"})}
 `
@@ -103,6 +104,10 @@ const Navbar = () => {
   const navigateLoginOut = () => {
     navigate('/login');
   };
+  const goToHomePage = () => {
+    navigate('/');
+  };
+  
 
   const languages = [
         { lang: "fi", country: "fi" },
@@ -128,7 +133,7 @@ const Navbar = () => {
                     </Language>
                 </LangDiv>
             </Left>
-            <Center><Logo>LaatuLakki.fi</Logo></Center>
+            <Center><Logo onClick={goToHomePage}>LaatuLakki.fi</Logo></Center>
             <Right>
                 {user ? (
                     <MenuItem onClick={navigateLogin}>{t('logOut')}</MenuItem>

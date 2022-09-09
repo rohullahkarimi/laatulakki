@@ -7,6 +7,9 @@ import Success from "./pages/Success";
 import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
 import Paytrail from "./pages/paytrail-example";
+import Terms from "./pages/Terms_and_condition";
+import RegistrationStatement from "./pages/Registration_statement";
+import ChangeAndRefund from "./pages/Change_and_refund";
 import {
   BrowserRouter as Router,
   Routes,
@@ -37,6 +40,9 @@ const App = () => {
         }/>
 
         <Route path="/paytrail" element={<Paytrail />} />
+        <Route path="/terms_and_condition" element={<Terms />} />
+        <Route path="/registration_statement" element={<RegistrationStatement />} />
+        <Route path="/change_and_refund" element={<ChangeAndRefund />} />
         
       </Routes>
     </Router>

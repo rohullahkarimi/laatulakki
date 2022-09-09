@@ -12,6 +12,25 @@ import { publicRequest } from "../requestMethods"
 import { addProduct } from "../redux/cartRedux"
 import { useDispatch } from "react-redux"
 import { bodyColor } from "../theme"
+import '../../node_modules/react-image-gallery/styles/css/image-gallery.css';
+import ImageGallery from 'react-image-gallery';
+
+
+const images = [
+    {
+        original: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/oiva-600x400.jpg',
+        thumbnail: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/oiva-600x400.jpg',
+    },
+    {
+      original: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/sinivalkoinen_tekstaus_kauno-2-600x400.jpg',
+      thumbnail: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/sinivalkoinen_tekstaus_kauno-2-600x400.jpg',
+    },
+    {
+      original: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/sinivalkoinen-2-scaled-600x400.jpg',
+      thumbnail: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/sinivalkoinen-2-scaled-600x400.jpg',
+    }
+  ];
+
 
 const Container = styled.div`
     
@@ -27,10 +46,11 @@ const Wrapper = styled.div`
 const ImageContainer = styled.div`
     flex: 1;
 `
-
+/*
 const Image = styled.img`
     width: 100%;
 `
+*/
 
 const InfoContainer = styled.div`
     flex: 1;
@@ -81,6 +101,9 @@ const FilterColor = styled.div`
 const FilterSize = styled.select`
     margin-left: 10px;
     padding: 10px;
+    width: 120px;
+    border: 2px solid teal;
+    cursor: pointer;
 `
 
 const FilterSizeOption = styled.option``
@@ -162,15 +185,15 @@ const Product = () => {
     )
   }
 
-  console.log(product);
-
+  //console.log(product);
+  // <Image src={product.img}/>
   return (
     <Container>
         <Navbar/>
         <Announcement/>
         <Wrapper>
             <ImageContainer>
-                <Image src={product.img}/>
+                <ImageGallery items={images}  showFullscreenButton={false} showPlayButton={false} showBullets={true}/>
             </ImageContainer>
             <InfoContainer>
                 {product.title?.split("<br>").map((productName, j) => {

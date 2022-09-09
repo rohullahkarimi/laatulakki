@@ -144,13 +144,6 @@ const Register = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const sendToLogin = () => {
-    setTimeout(() => {
-      console.log("We take you to login page in 3 seconds...");
-      history("/login");
-    }, 3000);
-  };
-
   const saveData = async (e) => {
     try {
       await axiosInstance.post("/auth/register",  values);
@@ -161,9 +154,12 @@ const Register = () => {
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-         sendToLogin();
+      setTimeout(() => {
+        console.log("We take you to login page in 3 seconds...");
+        history("/login");
+      }, 3000);
     }
-  }, [isSubmitSuccessful]) 
+  }, [isSubmitSuccessful, history]) 
   
   const TheForm = (
       <Form className="formInput" onSubmit={handleSubmit(saveData)}>
