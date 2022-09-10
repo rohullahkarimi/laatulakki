@@ -1,5 +1,13 @@
 import {css} from "styled-components"
 
+export const largeLaptop = (props) => {
+  return css`
+    @media only screen and (max-width: 1800px) {
+      ${props}
+    }
+  `;
+};
+
 export const laptop = (props) => {
   return css`
     @media only screen and (max-width: 1200px) {

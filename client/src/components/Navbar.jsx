@@ -3,7 +3,7 @@ import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { Badge } from '@mui/material';
 import React from 'react'
 import styled from 'styled-components'
-import { mobile, smartPhone, tablet, laptop } from "../responsive"
+import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 import {useSelector} from "react-redux"
 import { Link } from "react-router-dom"
 import {
@@ -20,9 +20,11 @@ import { brandColor } from '../theme';
 
 const Container = styled.div`
     height: 60px;
-    padding: 0 20%;
-    ${tablet({padding: "0px"})}
+    padding: 0 15%;
+    border-bottom: 1px solid #e9e8e8;
+    ${largeLaptop({padding: "0px 10%"})}
     ${laptop({padding: "0px 5%"})}
+    ${tablet({padding: "0px"})}
     ${smartPhone({flexDirection: "column", padding: "0px"})}
     ${mobile({height: "50px"})}
 `

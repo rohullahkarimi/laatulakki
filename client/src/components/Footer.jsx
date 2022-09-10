@@ -1,6 +1,6 @@
 import { Facebook, Instagram, MailOutlined, Phone, Room, YouTube } from "@mui/icons-material"
 import styled from "styled-components"
-import { mobile, smartPhone, tablet, laptop } from "../responsive"
+import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 import { elementBackgroundColor } from "../theme"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router";
@@ -9,9 +9,10 @@ import { useNavigate } from "react-router";
 const Container = styled.div`
     display: flex;
     background-color: #${elementBackgroundColor};
-    padding: 0px 20%;
-    ${tablet({padding: "0px"})}
+    padding: 0 15%;
+    ${largeLaptop({padding: "0px 10%"})}
     ${laptop({padding: "0px 5%"})}
+    ${tablet({padding: "0px"})}
     ${smartPhone({flexDirection: "column", padding: "0px"})}
     ${mobile({flexDirection: "column", padding: "0px"})}
 `
@@ -26,10 +27,12 @@ const Left = styled.div`
 
 const Logo = styled.h1`
     margin-bottom: 30px;
+    cursor: pointer;
 `
 
 const SocialContainer = styled.div`
     display: flex;
+    cursor: pointer;
 `
 const SocialIcon = styled.div`
     width: 40px;
@@ -59,6 +62,7 @@ const List = styled.ul`
      list-style: none;
      display: flex;
      flex-wrap: wrap;
+     cursor: pointer;
 `
 
 const ListItem = styled.div`
@@ -86,7 +90,7 @@ const Footer = () => {
   const navigate = useNavigate()
 
   const goToTermsPage = () =>{
-    navigate('/terms_and_condition');
+    navigate('/terms_and_condition#starter');
   } 
   const goToRegistrationStatement = () =>{
     navigate('/registration_statement');
@@ -94,11 +98,14 @@ const Footer = () => {
   const goToChange_and_refund = () =>{
     navigate('/change_and_refund');
   } 
+  const goToHomePage = () =>{
+    navigate('/');
+  } 
 
   return (
     <Container>
         <Left>
-            <Logo>LaatuLakki.fi</Logo>
+            <Logo onClick={goToHomePage}>LaatuLakki.fi</Logo>
             <ContactItem><Room style={{marginRight:"10px"}}/> Hyvinkää 05880</ContactItem>
             <ContactItem><Phone style={{marginRight:"10px"}}/> +380400269034</ContactItem>
             <ContactItem><MailOutlined style={{marginRight:"10px"}}/> laatulakki@gmail.com</ContactItem>
