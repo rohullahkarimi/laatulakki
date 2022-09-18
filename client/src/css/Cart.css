@@ -1,0 +1,58 @@
+.bc {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+  width: 100%;
+  max-width: 100%;
+  height: 120px;
+  counter-reset: breadcrumb;
+  position: relative;
+}
+
+.bc:before {
+  position: absolute;
+  top: 23px;
+  left: 12.5%;
+  content: "";
+  width: 75%;
+  height: 1px;
+  background: black;
+}
+
+.bc .bc_item {
+  float: left;
+  padding-top: 60px;
+  width: 25%;
+  text-align: center;
+  position: relative;
+}
+
+.bc .bc_item:after {
+  counter-increment: breadcrumb;
+  content: counter(breadcrumb);
+  position: absolute;
+  top: 0px;
+  left: calc(50% - 23px);
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border: 3px solid black;
+  border-radius: 50%;
+  line-height: 35px;
+  background: white;
+}
+
+.bc .bc_complete:after {
+  background: black;
+  color: white;
+}
+
+.form_lable{
+  display: block ;
+}
+
+@media only screen and (max-width: 600px) {
+    .bc .bc_item {
+        font-size: 14px;
+    }
+}

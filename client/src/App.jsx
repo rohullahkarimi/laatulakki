@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import Success from "./pages/Success";
 import Product from "./pages/Product";
+//import Contact from "./pages/CartProduct";
 import ProductList from "./pages/ProductList";
 import Paytrail from "./pages/paytrail-example";
 import Terms from "./pages/Terms_and_condition";
@@ -41,7 +42,7 @@ const App = () => {
           user ? <Navigate to="/" />: <Register/>
         }/>
 
-        <Route path="/paytrail" element={<Paytrail />} />
+        <Route path="/pay" element={<Paytrail />} />
         <Route path="/terms_and_condition" element={<Terms />} />
         <Route path="/registration_statement" element={<RegistrationStatement />} />
         <Route path="/change_and_refund" element={<ChangeAndRefund />} />
