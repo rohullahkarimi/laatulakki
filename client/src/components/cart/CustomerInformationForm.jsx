@@ -37,7 +37,7 @@ const BillingAddressForm = () => {
     defaultValues.deliveryAddress_lastName = cart.deliveryAddress.lastname;
     
     reset({ ...defaultValues });
-  }, [cart]);
+  }, [cart, reset]);
 
   const checkboxHandler = (e) => {
     console.log(e)
