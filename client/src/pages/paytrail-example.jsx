@@ -32,12 +32,12 @@ const payment =
     "email": "erja.esimerkki@example.org"
   },
   "redirectUrls": {
-    "success": "https://ecom.example.org/success",
-    "cancel": "https://ecom.example.org/cancel"
+    "success": "https://localhost:3000/success",
+    "cancel": "https://localhost:3000/cancel"
   },
   "callbackUrls": {
-    "success": "https://ecom.example.org/success",
-    "cancel": "https://ecom.example.org/cancel"
+    "success": "https://localhost:3000/success",
+    "cancel": "https://localhost:3000/cancel"
   }
 }
 

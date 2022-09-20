@@ -13,9 +13,9 @@ const Address = (data) => (
 );
 
 
-const ReviewForm = ({ navigation }) => {
+const ReviewForm = () => {
   const cart = useSelector((state) => state.cart);
-  const { go } = navigation;
+  //const { go } = navigation;
 
   console.log(cart)
 
@@ -36,7 +36,7 @@ const ReviewForm = ({ navigation }) => {
       <button
         type="button"
         className="w3-button w3-small w3-padding-small w3-border w3-white"
-        onClick={() => go("cart_customer_information")}
+        onClick={() => console.log("no need")}
       >edit</button>
     </div>
   );

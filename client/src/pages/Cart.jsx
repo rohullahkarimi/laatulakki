@@ -1,4 +1,4 @@
-import {  RemoveShoppingCart } from "@mui/icons-material";
+import {  Preview, RemoveShoppingCart } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 import "../css/Cart.css"
 import { mobile, smartPhone, tablet } from "../responsive";
 import {  emptyCart } from '../redux/cartRedux';
-import { useForm, useStep } from 'react-hooks-helper';
+import { useStep } from '@flywire/react-hooks';
 import CustomerInformationForm from '../components/cart/CustomerInformationForm';
 import ReviewCart from '../components/cart/ReviewCart';
 import ConfirmationCart from '../components/cart/ConfirmationCart';
@@ -143,17 +143,9 @@ const Cart = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [cartItems, setCartItems] = useState(cart.quantity);
- 
-
-
-  const [formData, setForm] = useForm();
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { Component } = step;
-  const props = { formData, setForm, navigation };
-
-  const { previous, next, go} = navigation;
   console.log(step.id)
-  console.log(props)
 
   
   const handleEmptyCart = (() => {
@@ -171,11 +163,11 @@ const Cart = () => {
     if(step.id === 'cart_product'){
       navigate('/')
     }else if(step.id === 'cart_customer_information'){
-      previous()
+      navigation.prev()
     }else if(step.id === 'cart_review'){
-      previous()
+      navigation.prev()
     }else if(step.id === 'cart_confirmation'){
-      previous()
+      navigation.prev()
     }else{
       console.log("Error in previous navigation")
     }
@@ -184,11 +176,11 @@ const Cart = () => {
   const CartNextPageNavigator =  () => {
     console.log(step.id)
     if(step.id === 'cart_product'){
-      next()
+      navigation.next()
     }else if(step.id === 'cart_customer_information'){
       validateForm()
     }else if(step.id === 'cart_review'){
-      next()
+      navigation.next()
     }else if(step.id === 'cart_confirmation'){
       alert("pay time")
     }else{
@@ -209,7 +201,7 @@ const Cart = () => {
       alert("Ole hyvä, täyttää kaikki lomakkeen tiedot ja muista tallenna.");
       return false;
     }
-    next()
+    navigation.next()
   }
 
 
@@ -232,7 +224,7 @@ const Cart = () => {
             <Info>
                 <div className="app w3-card-4">
                   
-                    <Component {...props} />
+                    <Component />
                   
 
                   <footer className="w3-container w3-blue" />
