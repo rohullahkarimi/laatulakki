@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Add, DeleteOutline, Remove } from "@mui/icons-material";
-import '../../css/styles.css';
+import '../../common/css/style.css';
 import styled from "styled-components";
 import { mobile, tablet } from "../../responsive";
 import { useCallback } from "react";

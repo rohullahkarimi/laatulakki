@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/styles.css';
+import '../../common/css/style.css';
 import { useSelector } from "react-redux";
 
 

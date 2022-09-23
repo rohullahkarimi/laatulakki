@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/styles.css';
+import '../../common/css/style.css';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import {  saveCustomerInformation } from '../../redux/cartRedux';
@@ -55,70 +55,78 @@ const BillingAddressForm = () => {
   }
   return (
     <div className='container'>
-      <div className="form">
-        <form namee="customerInformation" onSubmit={handleSubmit(handleCustomerInformationSubmit)}>
-          <h3>Billing Address</h3>
+      <div className="customer_information_form">
+        <form name="customerInformation" onSubmit={handleSubmit(handleCustomerInformationSubmit)}>
+          
+          <header className="header">
+            <h2 className="heading">Tilaajan tiedot</h2>
+            <p>Täyttää tilaajan tiedot. Voit jätä vastaannottajan tiedot täyttämättä jos tiaalaja on sama kuin vastaannottaja.</p>
+          </header>
 
-       
-          <div>
-            <span>Etunimi</span>
-            <input type="text" name="firstName"  id="firstName" className={customerInfoErrors.firstName ? 'invalid' : ''}   {...register("firstName",{ required: true })}/>
-            <div id="customerInformation_etunimi" className='formErrors'>
+
+          <div className="inputwrapper required">
+            <label className="label" for="firstname" data-optional="(Optional)">Etunimi</label>
+            <input type="text" name="firstName"  id="firstname" className={customerInfoErrors.firstName ? 'invalid form_input' : 'form_input'}   {...register("firstName",{ required: true })}/>
+            <span id="customerInformation_firstname" className='input-info invalid' role="alert">
             {customerInfoErrors.firstName && customerInfoErrors.firstName?.type === "required" && (
               "Etunimi on pakollinen kenttä"
             )}
-            </div>
+            </span>
           </div>
 
-          <div>
-            <span>Lastname</span>
-            <input type="text" name="lastName"  id="lastName" className={customerInfoErrors.lastName ? 'invalid' : ''}  {...register("lastName",{ required: true })}/>
-            <div id="customerInformation_etunimi" className='formErrors'>
+          <div classname="inputwrapper required">
+            <label className="label" for="lastName" data-optional="(Optional)">Sukunimi</label>
+            <input type="text" name="lastName"  id="lastName" className={customerInfoErrors.lastName ? 'invalid form_input' : 'form_input'}  {...register("lastName",{ required: true })}/>
+            <span id="customerInformation_lastname" className='input-info invalid' role="alert">
             {customerInfoErrors.lastName && customerInfoErrors.lastName?.type === "required" && (
               "Sukunimi on pakollinen kenttä"
             )}
-            </div>
+            </span>
           </div>
 
-          <div>
-            <span>deliverySameAsBilling</span>
-            <input type="checkbox" defaultChecked={deliverySameAsBillingCheckbox} name="deliverySameAsBilling"  id="deliverySameAsBilling" className={customerInfoErrors.lastName ? 'invalid' : ''}   
+
+          <div className="inputwrapper">
+            <input type="checkbox" defaultChecked={deliverySameAsBillingCheckbox} className="checkbox-input" id="deliverySameAsBilling" name="deliverySameAsBilling" 
             {...register("deliverySameAsBilling",{ 
               required: false,
               onChange: checkboxHandler,
-            })}/>
-            <div id="customerInformation_deliverySameAsBilling" className='formErrors'>
-            {customerInfoErrors.deliverySameAsBilling && customerInfoErrors.deliverySameAsBilling?.type === "required" && (
-              "Checkbox on pakollinen kenttä"
-            )}
-            </div>
-          </div>
+            })}
+            />
+            <label for="deliverySameAsBilling" className="checkbox-label">
+              Yes, email me my member rewards, special invites, trend alerts and more.
+            </label>
+	        </div>
+
+            
+          <header className="header mt5">
+            <h2 className="heading">Vastaannottajan tiedot</h2>
+            <p>Jotain.</p>
+          </header>
 
           <fieldset disabled={deliveryAddressFormEnable}>
-            <div>
-              <span>Etunimi</span>
-              <input type="text" name="deliveryAddress_firstName"  id="deliveryAddress_firstName" className={customerInfoErrors.deliveryAddress_firstName ? 'invalid' : ''}   {...register("deliveryAddress_firstName",{ required: true })}/>
-              <div id="customerInformation_deliveryAddress_firstName" className='formErrors'>
+
+            <div className="inputwrapper required">
+              <label className="label" for="deliveryAddress_firstName" data-optional="(Optional)">Etunimi</label>
+              <input type="text" name="deliveryAddress_firstName"  id="deliveryAddress_firstName" className={customerInfoErrors.deliveryAddress_firstName ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_firstName",{ required: true })}/>
+              <span id="customerInformation_lastname" className='input-info invalid' role="alert">
               {customerInfoErrors.deliveryAddress_firstName && customerInfoErrors.deliveryAddress_firstName?.type === "required" && (
-                "delivery_firstName on pakollinen kenttä"
+                "Etunimi on pakollinen kenttä"
               )}
-              </div>
+              </span>
             </div>
-
-            <div>
-              <span>Sukunimi</span>
-              <input type="text" name="deliveryAddress_lastName"  id="deliveryAddress_lastName" className={customerInfoErrors.deliveryAddress_lastName ? 'invalid' : ''}   {...register("deliveryAddress_lastName",{ required: true })}/>
-              <div id="customerInformation_deliveryAddress_lastName" className='formErrors'>
+              
+            <div className="inputwrapper required">
+              <label className="label" for="deliveryAddress_lastName" data-optional="(Optional)">Sukunimi</label>
+              <input type="text" name="deliveryAddress_lastName"  id="deliveryAddress_lastName" className={customerInfoErrors.deliveryAddress_lastName ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_lastName",{ required: true })}/>
+              <span id="customerInformation_deliveryAddress_lastName" className='input-info invalid' role="alert">
               {customerInfoErrors.deliveryAddress_lastName && customerInfoErrors.deliveryAddress_lastName?.type === "required" && (
-                "delivery_lastName on pakollinen kenttä"
+                "Sukunimi on pakollinen kenttä"
               )}
-              </div>
+              </span>
             </div>
+
           </fieldset>
-
-          
-
-          <button type="submit">Tallenna</button>
+          <button className="form_button" type="submit">Tallenna</button>
         </form>
       </div>
 

@@ -28,7 +28,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     background-color: #f5fbfd;
-    padding: 5% 0%;
+    padding: 2% 0%;
 
     &:hover ${Info}{
         opacity: 1;
@@ -49,22 +49,21 @@ const Name = styled.div`
 
 const NameContainer = styled.div`
     width: 100%;
-    height: 15%;
-    background: #f5fbfd;
+    height: auto;
+    background: #ffffff;
     position: absolute;
-    bottom: 5%;
-    text-align: center;
-    font-size: 20px;
+    bottom: 6%;
+    text-align: left;
+    font-size: 14px;
 `
 const Price = styled.div`
     width: 100%;
-    height: 5%;
-    background: #f5fbfd;
+    height: auto;
+    background: #ffffff;
     position: absolute;
     bottom: 0;
-    text-align: center;
-    font-size: 20px;
-    padding-bottom: 10px;
+    text-align: left;
+    font-size: 15px;
 `
 
 
@@ -111,15 +110,11 @@ const Product = ({item}) => {
         </Info>
         
         <NameContainer> 
-        {item.title.split("<br>").map((line, j) => {
-          return (
-            <Name key={j}>{line}</Name>
-          );
-        })}
+            <Name>{item.title}</Name>
         </NameContainer> 
         
        
-        <Price>{item.price} €</Price>
+        <Price>{item.price.toFixed(2)} €</Price>
     </Container>
   )
 }

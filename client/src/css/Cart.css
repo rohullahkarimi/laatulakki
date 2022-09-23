@@ -51,6 +51,22 @@
   display: block ;
 }
 
+
+
+.customer_information_form .header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.customer_information_form .heading {
+  font-size: 20px;
+  line-height: 24px;
+  background-position: top center;
+  background-size: 90px;
+  margin: 0 0 12px;
+  text-align: center;
+}
+
+
 @media only screen and (max-width: 600px) {
     .bc .bc_item {
         font-size: 14px;

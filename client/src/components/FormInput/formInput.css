@@ -9,7 +9,7 @@
 input{
     padding: 15px;
     margin: 10px 0px;
-    border-radius: 5px;
+    border-radius: 0;
     border: 1px solid gray;
 }
 
@@ -21,7 +21,7 @@ label{
 
 span{
     font-size: 12px;
-    padding: 3px;
+    /*padding: 3px;*/
     color: red;
     display: none;
 }
