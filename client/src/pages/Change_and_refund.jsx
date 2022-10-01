@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-//import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { mobile } from "../responsive"
 
 import {
@@ -43,7 +43,7 @@ const Strong = styled.strong`
 
 
 const Product = () => {
-  //const { t } = useTranslation();
+  const { t } = useTranslation();
   //const location = useLocation();
   
 
@@ -54,33 +54,30 @@ const Product = () => {
                 <Row>
                 <Col md={12}>
                     <InfoContainer>
-                        <Title>VAIHTO JA PALAUTUS</Title>
+                        <Title>{t("changeAndRefund.header")}</Title>
                         
-                        <H3>Yleistä verkkokaupasta</H3>
+                        <H3>{t("changeAndRefund.1")}</H3>
                         <Desc>
-                        Tilaamillasi tuotteilla on 14 päivän palautus ja vaihto-oikeus Suomeen toimitettaviin tilauksiin. Tänä aikana voit palauttaa vastaanottamasi tuotteet tai vaihtaa ne muihin tuotteisiin. Palauttaminen on sinulle maksutonta.
+                        {t("changeAndRefund.2")}
                         </Desc>
                      
 
-                        <H3>Tuotteen palauttaminen</H3>
-                        <Desc>Meille on hyvin tärkeää, että olet tyytyväinen tilaukseesi. Sinulla on 14 päivää aikaa tutustua tuotteisiin ja tehdä ostopäätös (kuluttajan suojalain tarkoittama peruuttamisoikeus). Ilmoitus palautuksesta eli peruuttamisoikeuden käyttämisestä on tehtävä Palvelun tarjoajalle 14 päivä kuluessa tuotteiden vastaanottamisesta.</Desc>
-                        <Strong>Noudata seuraavia ohjeita, kun palautat tuotteita:</Strong>
+                        <H3>{t("changeAndRefund.3")}</H3>
+                        <Desc>{t("changeAndRefund.4")}</Desc>
+                        <Strong>{t("changeAndRefund.5")}</Strong>
                         <List>
-                            <ListItem>Palautettavan tuotteen tulee olla käyttämätön ja alkuperäispakkauksessa.</ListItem>
-                            <ListItem>Älä tee palaute- tai osoitemerkintöjä myyntipakkaukseen.</ListItem>
-                            <ListItem>Tuote pakkauksineen tulee postittaa aina erillisessä paketissa tai pussissa.</ListItem>
-                            <ListItem>Täytä lähetyksessä oleva palautusilmoitus ja laita se palautettavan tuotteen mukana pakettiin.</ListItem>
-                            <ListItem>Liimaa palautusilmoituksesta löytyvä valmis osoitetarra paketin päälle.</ListItem>
-                            <ListItem>Palauta paketti postiin. Palauttaminen on ilmaista vain postitoimipaikasta.</ListItem>
+                            <ListItem>{t("changeAndRefund.6")}</ListItem>
+                            <ListItem>{t("changeAndRefund.7")}</ListItem>
+                            <ListItem>{t("changeAndRefund.8")}</ListItem>
+                            <ListItem>{t("changeAndRefund.9")}</ListItem>
+                            <ListItem>{t("changeAndRefund.10")}</ListItem>
+                            <ListItem>{t("changeAndRefund.11")}</ListItem>
                         </List>
                         
                         <Desc>
-                        Huomioithan, että toimituskulumme ovat aina samansuuruiset tuotteiden lukumäärästä riippumatta. Tästä syystä toimituskuluja ei makseta takaisin, vaikka palautus koskisi vain osaa tuotteita.
-                        <Br/>
-                        Viallisen tuotteen tilalle pyrimme toimittamaan uuden vastaavan tuotteen. Mikäli emme pysty tarjoamaan vaihtotuotetta, saat takaisin palauttamasi tuotteen vastaavan hinnan postikuluineen.
+                        {t("changeAndRefund.12")}
                         <Br/><Br/>
-                        Suosittelemme, että pyydät tositteen palautuslähetyksestäsi.
-                        Rahat palautetaan Paytrailin kautta samalla maksutavalla, jolla tuote on ostettu.
+                        {t("changeAndRefund.13")}
                         </Desc>
                     
 

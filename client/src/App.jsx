@@ -11,6 +11,8 @@ import Paytrail from "./pages/paytrail-example";
 import Terms from "./pages/Terms_and_condition";
 import RegistrationStatement from "./pages/Registration_statement";
 import ChangeAndRefund from "./pages/Change_and_refund";
+import TermsOfDelivery from "./pages/Terms_of_delivery";
+import PaymentPage from "./pages/Payment_response";
 import {
   BrowserRouter as Router,
   Routes,
@@ -46,6 +48,10 @@ const App = () => {
         <Route path="/terms_and_condition" element={<Terms />} />
         <Route path="/registration_statement" element={<RegistrationStatement />} />
         <Route path="/change_and_refund" element={<ChangeAndRefund />} />
+        <Route path="/cart/success" element={<PaymentPage/>} />
+        <Route path="/cart/cancel" element={<PaymentPage/>} />
+        <Route path="/terms_of_delivery" element={<TermsOfDelivery/>} />
+        
         
       </Routes>
     </Router>

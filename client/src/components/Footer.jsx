@@ -70,8 +70,9 @@ const ListItem = styled.div`
 `
 
 const Right = styled.div`
-     flex: 1;
+     flex: 2;
      padding: 20px;
+     ${smartPhone({flex: "1"})}
 `
 
 const ContactItem = styled.div`
@@ -80,8 +81,16 @@ const ContactItem = styled.div`
     align-items: center;
 `
 
+const ImgContainer = styled.div`
+    width: auto;
+    height: 200px;
+    background-size: contain;
+    background-image: url("https://www.paytrail.com/hs-fs/hubfs/Logot-Kayttoonotto/Paytrail-banneri-kaikki-maksutavat.png?width=800&name=Paytrail-banneri-kaikki-maksutavat.png");
+    background-repeat: no-repeat;
+    ${smartPhone({backgroundRepeat: "no-repeat", boxSizing: "border-box", width: "100%", height: "700px !important", backgroundImage: "url('https://www.paytrail.com/hs-fs/hubfs/Logot-Kayttoonotto/Paytrail-banneri-pysty-kaikki-maksutavat.png?width=161&name=Paytrail-banneri-pysty-kaikki-maksutavat.png')"})}
+`
 const Payment = styled.img`
-
+ 
 `
 
 const Footer = () => {
@@ -130,7 +139,10 @@ const Footer = () => {
         </Center>
         <Right>
             <Title>{t('payment_options')}</Title>
-            <Payment src="https://img.paytrail.com/?id=28740&type=vertical&cols=6;text=1&auth=09ae03d734ced6a7"/>
+            <ImgContainer>
+                <Payment />
+            </ImgContainer>
+            
         </Right>
     </Container>
   )

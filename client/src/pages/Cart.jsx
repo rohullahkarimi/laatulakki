@@ -1,4 +1,4 @@
-import {  Preview, RemoveShoppingCart } from "@mui/icons-material";
+import {  RemoveShoppingCart } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
@@ -10,21 +10,19 @@ import {  emptyCart } from '../redux/cartRedux';
 import { useStep } from '@flywire/react-hooks';
 import CustomerInformationForm from '../components/cart/CustomerInformationForm';
 import ReviewCart from '../components/cart/ReviewCart';
-import ConfirmationCart from '../components/cart/ConfirmationCart';
+import DeliveryMethod from '../components/cart/DeliveryMethod';
 import CartProduct from '../components/cart/CartProduct';
 import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
+//import $ from 'jquery';
 import {
-  Container, Row, Col
+  Container
 } from 'react-bootstrap';
+import { useTranslation } from "react-i18next";
 
 
-const steps = [
-  { id: 'cart_product', nextButtonName: "JATKA", backButtonName: "JATKA OSTOSTA", Component: CartProduct },
-  { id: 'cart_customer_information', nextButtonName: "JATKA ", backButtonName: "EDELLINEN", Component: CustomerInformationForm },
-  { id: 'cart_review', nextButtonName: "JATKA", backButtonName: "EDELLINEN", Component: ReviewCart },
-  { id: 'cart_confirmation', nextButtonName: "MAKSA", backButtonName: "EDELLINEN", Component: ConfirmationCart },
-];
+
 
 
 
@@ -44,7 +42,7 @@ const Top = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 0;
 `;
 
 const TopButton = styled.button`
@@ -57,27 +55,25 @@ const TopButton = styled.button`
   color: ${(props) => props.type === "filled" && "white"};
 `;
 
-const TopButtonRemove = styled.button`
-  padding: 8px;
+
+const TopButtonNext = styled.button`
+  padding: 10px;
   font-weight: 600;
   cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
-  background-color: ${(props) =>
-    props.type === "filled" ? "black" : "#ffe6e2"};
-  color: ${(props) => props.type === "filled" && "white"};
-  ${mobile({ display: "none" })}
+  border: none;
+  background-color: black;
+  color: white;
 `;
-
+/*
 const TopText = styled.span`
   cursor: pointer;
-  /*margin: 0px 10px;*/
   color: #000;
   font-size: 16px;
   display: inline;
   vertical-align: middle;
   ${smartPhone({ display: "none" })}
-  
 `;
+*/
 
 const Bottom = styled.div`
   display: flex;
@@ -139,15 +135,23 @@ const Li = styled.li`
 
 
 const Cart = () => {
+  const { t } = useTranslation();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [cartItems, setCartItems] = useState(cart.quantity);
+  const steps = [
+    { id: 'cart_product', nextButtonName: t("continue"), backButtonName: t("continue_shopping"), Component: CartProduct },
+    { id: 'cart_customer_information', nextButtonName: t("continue"), backButtonName: t("pervious"), Component: CustomerInformationForm },
+    { id: 'deliveryMethod', nextButtonName: t("continue"), backButtonName: t("pervious"), Component: DeliveryMethod },
+    { id: 'cart_review', nextButtonName: t("pay"), backButtonName: t("pervious"), Component: ReviewCart },
+  ];
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { Component } = step;
   console.log(step.id)
 
-  
+  const props = { navigation };
+
   const handleEmptyCart = (() => {
     console.log("iam here")
     setCartItems(cartItems - 1);
@@ -164,9 +168,9 @@ const Cart = () => {
       navigate('/')
     }else if(step.id === 'cart_customer_information'){
       navigation.prev()
-    }else if(step.id === 'cart_review'){
+    }else if(step.id === 'deliveryMethod'){
       navigation.prev()
-    }else if(step.id === 'cart_confirmation'){
+    }else if(step.id === 'cart_review'){
       navigation.prev()
     }else{
       console.log("Error in previous navigation")
@@ -177,11 +181,7 @@ const Cart = () => {
     console.log(step.id)
     if(step.id === 'cart_product'){
       navigation.next()
-    }else if(step.id === 'cart_customer_information'){
-      validateForm()
     }else if(step.id === 'cart_review'){
-      navigation.next()
-    }else if(step.id === 'cart_confirmation'){
       alert("pay time")
     }else{
       console.log("Error in navigation")
@@ -189,73 +189,75 @@ const Cart = () => {
   }
 
   
-  function validateForm() {
-    // billing address
-    var b_firstname = cart.billingAddress.firstname; 
-    var b_lastname = cart.billingAddress.lastname; 
+ 
 
-    // delivery address
-    var d_firstname = cart.deliveryAddress.firstname; 
-    var d_lastname = cart.deliveryAddress.lastname; 
-    if (!b_firstname || !b_lastname || !d_firstname || !d_lastname) {
-      alert("Ole hyvä, täyttää kaikki lomakkeen tiedot ja muista tallenna.");
-      return false;
+ 
+    let nextButton;
+    if(step.id === "cart_customer_information"){
+      nextButton = <TopButtonNext form="customerInformation" type="submit"> {step.nextButtonName}</TopButtonNext>
+    }else if(step.id === "deliveryMethod"){
+      nextButton = <TopButtonNext form="paymentMethodForm" type="submit"> {step.nextButtonName}</TopButtonNext>
+    }else if(step.id === "cart_review"){
+      nextButton = <TopButtonNext form="handlePaymentForm" type="submit"> {step.nextButtonName}</TopButtonNext>
+    }else{
+      nextButton =  <TopButton type="filled" onClick={CartNextPageNavigator}> {step.nextButtonName}</TopButton>
     }
-    navigation.next()
-  }
 
 
+    const deliveryPrice = parseInt(cart.deliveryPrice)
+    var cartSubtotal = cart.total
+    var cartTotal = cart.total
+    if(cart.deliveryPrice > 0){
+      cartTotal += cart.deliveryPrice
+    }
 
+    return (
+      <div>
+        <Navbar />
+        <Announcement />
+        <Container>
+          <Wrapper>
+            <Title>{t("cart")} <RemoveShoppingCart onClick={(handleEmptyCart)} style={{verticalAlign:"middle", height: "20px", "width": "20px"}}/></Title>
+            <Ul className="bc">
+              <Li className={step.id === "cart_product" ? "bc_item bc_complete" : "bc_item"}>{t("products")}</Li>
+              <Li className={step.id === "cart_customer_information" ? " bc_item bc_complete" : "bc_item"}>{t("own_information")}</Li>
+              <Li className={step.id === "deliveryMethod" ? "bc_item bc_complete" : "bc_item"}>{t("deliveryMethod")}</Li>
+              <Li className={step.id === "cart_review" ? "bc_item bc_complete" : "bc_item"}>{t("summary")}</Li>
+            </Ul>
+            <Bottom>
+              <Info>
+                  <div className="app w3-card-4">
+                    <Component {...props} />
+                    <footer className="w3-container w3-blue" />
+                  </div>
+                <Hr />
+              </Info>
+              <Summary>
+                <SummaryTitle>{t("summary")}</SummaryTitle>
+                <SummaryItem>
+                  <SummaryItemText>{t("subtotal")}</SummaryItemText>
+                  <SummaryItemPrice>{cartSubtotal.toFixed(2)} €</SummaryItemPrice>
+                </SummaryItem>
+                
+                {cart.deliveryPrice !== 0 && <SummaryItem><SummaryItemText>Toimitusmaksu</SummaryItemText><SummaryItemPrice>{deliveryPrice.toFixed(2)} €</SummaryItemPrice></SummaryItem>}
+                  
+                <SummaryItem type="total">
+                  <SummaryItemText>{t("total")}</SummaryItemText>
+                  <SummaryItemPrice> {cartTotal.toFixed(2)} €</SummaryItemPrice>
+                </SummaryItem>
+              </Summary>
+            </Bottom>
+            <Top>
+            
+              <TopButton onClick={CartBackPageNavigator}> {step.backButtonName}</TopButton>
+              {nextButton}
+            </Top>
+          </Wrapper>
+        </Container>
+        <Footer />
+      </div>
+    );
   
-  return (
-    <div>
-      <Navbar />
-      <Announcement />
-      <Container>
-        <Wrapper>
-          <Title>Ostoskori</Title>
-          <Ul className="bc">
-            <Li className={step.id === "cart_product" ? "bc_item bc_complete" : "bc_item"}>Cart</Li>
-            <Li className={step.id === "cart_customer_information" ? " bc_item bc_complete" : "bc_item"}>Customer Information</Li>
-            <Li className={step.id === "cart_review" ? "bc_item bc_complete" : "bc_item"}>Review</Li>
-            <Li className={step.id === "cart_confirmation" ? "bc_item bc_complete" : "bc_item"}>Payment Method</Li>
-          </Ul>
-          <Bottom>
-            <Info>
-                <div className="app w3-card-4">
-                  
-                    <Component />
-                  
-
-                  <footer className="w3-container w3-blue" />
-                </div>
-              <Hr />
-            </Info>
-            <Summary>
-              <SummaryTitle>ORDER SUMMARY1</SummaryTitle>
-              <SummaryItem>
-                <SummaryItemText>Subtotal</SummaryItemText>
-                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
-              </SummaryItem>
-              <SummaryItem type="total">
-                <SummaryItemText>Total</SummaryItemText>
-                <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
-              </SummaryItem>
-            </Summary>
-          </Bottom>
-          <Top>
-           
-            <TopButton onClick={CartBackPageNavigator}> {step.backButtonName}</TopButton>
-            <TopButtonRemove  onClick={(handleEmptyCart)}><RemoveShoppingCart style={{verticalAlign:"middle", height: "20px", "width": "20px"}}/> <TopText>EMPTY CART</TopText></TopButtonRemove>
-            <TopButton onClick={CartNextPageNavigator} type="filled"> {step.nextButtonName}</TopButton>
-
-         
-          </Top>
-        </Wrapper>
-      </Container>
-      <Footer />
-    </div>
-  );
 };
 
 export default Cart;

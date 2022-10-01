@@ -1,21 +1,21 @@
 export const sliderItems = [
     {
         id: 1,
-        img: "https://image.shutterstock.com/image-photo/finnish-student-cap-rose-books-600w-281521223.jpg",
+        img: "https://images.squarespace-cdn.com/content/v1/5ded2afaf87cb8636cacc659/0954be2b-4467-4253-89a1-348b06f750aa/_11B9027.jpg",
         title: "TOIVE",
         desc: "Tulevaisuus toiveita täynnä",
         bg: "f5fafd",
     },
     {
         id: 2,
-        img: "https://image.shutterstock.com/image-photo/finnish-doughnut-munkki-graduation-cap-600w-2151317275.jpg",
+        img: "https://www.vastavalo.net/albums/userpics/10728/normal_yo-3767.jpg",
         title: "OIVA",
         desc: "Oivallinen vaihtoehto jokaiselle",
         bg: "fcf1ed",
     },
     {
         id: 3,
-        img: "https://image.shutterstock.com/image-photo/finnish-student-cap-apple-books-600w-281521220.jpg",
+        img: "https://www.kemi.fi/wp-content/uploads/2022/05/Ylioppilaslakki-rotated-e1653637283799.jpg",
         title: "VEGAANILAKKI",
         desc: "Vegaanin valinta",
         bg: "fbf0f4",
@@ -25,21 +25,21 @@ export const sliderItems = [
 export const categories = [
     {
         id: 1,
-        img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        title: "SHIRT STYLE!",
-        cat: "teacher",
+        img: "https://www.fredrikson.fi/wp-content/uploads/2021/03/ylioppilaslakit.jpg",
+        title: "YLIOPPILASLAKKI",
+        cat: "lakki",
     },
     {
         id: 2,
-        img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-        title: "LOUNGEWEAR LOVE",
-        cat: "doctor",
+        img: "https://www.fredrikson.fi/wp-content/uploads/2021/03/ammattilakki-lr.jpg",
+        title: "INSINÖÖRILAKKI",
+        cat: "lakki",
     },
     {
         id: 3,
-        img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-        title: "LIGHT JACKETS",
-        cat: "engineer",
+        img: "https://www.fredrikson.fi/wp-content/uploads/2021/03/valmistujaislakit.jpg",
+        title: "VALMISTUJAISLAKIT",
+        cat: "lakki",
     },
 ];
 

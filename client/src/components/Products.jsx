@@ -24,8 +24,8 @@ const Products = ({cat, filters, sort}) => {
       try{
         const res = await axiosInstance.get(
           cat 
-            ? `https://tester.laatulakki.fi/api/products?category=${cat}` 
-            : "https://tester.laatulakki.fi/api/products"
+            ? process.env.REACT_APP_API_URL+`/products?category=${cat}` 
+            : process.env.REACT_APP_API_URL+`/products`
         );
         setProducts(res.data);
       }catch(err){
@@ -33,7 +33,7 @@ const Products = ({cat, filters, sort}) => {
       }
     };
     getProducts()
-  },[cat, axiosInstance]);
+  },[cat]);
 
   useEffect(()=>{
     cat && 

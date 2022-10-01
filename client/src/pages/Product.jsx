@@ -4,32 +4,19 @@ import Announcement from "../components/Announcement"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
+import CartModal from "../components/CartModal"
 import { useTranslation } from "react-i18next";
 import { mobile } from "../responsive"
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
 import { addProduct } from "../redux/cartRedux"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { bodyColor } from "../theme"
 import '../../node_modules/react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
-
-
-const images = [
-    {
-        original: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/oiva-600x400.jpg',
-        thumbnail: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/oiva-600x400.jpg',
-    },
-    {
-      original: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/sinivalkoinen_tekstaus_kauno-2-600x400.jpg',
-      thumbnail: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/sinivalkoinen_tekstaus_kauno-2-600x400.jpg',
-    },
-    {
-      original: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/sinivalkoinen-2-scaled-600x400.jpg',
-      thumbnail: 'https://www.fredrikson.fi/wp-content/uploads/2021/03/sinivalkoinen-2-scaled-600x400.jpg',
-    }
-  ];
+import $ from "jquery"
+import Products from "../components/Products"
 
 
 const Container = styled.div`
@@ -74,6 +61,7 @@ const Price = styled.span`
 const FilterContainer = styled.div`
     width: 50%;
     margin: 30px 0px;
+    flex-direction: column;
     display: flex;
     justify-content: space-between;
     ${mobile({width: "100%"})}
@@ -87,30 +75,32 @@ const Filter = styled.div`
 const FilterTitle = styled.span`
     font-size: 20px;
     font-weight: 200;
-`
-
-const FilterColor = styled.div`
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: ${props=> props.color};
-    margin: 0px 5px;
-    cursor: pointer;
+    width: 20%;
 `
 
 const FilterSize = styled.select`
-    margin-left: 10px;
+    margin: 10px;
     padding: 10px;
-    width: 120px;
+    width: 140px;
     border: 2px solid teal;
     cursor: pointer;
 `
 
 const FilterSizeOption = styled.option``
 
+const FilterColorSelect = styled.select`
+    margin: 10px;
+    padding: 10px;
+    width: 140px;
+    border: 2px solid teal;
+    cursor: pointer;
+`
+
+const FilterColorOption = styled.option``
+
 const AddContainer = styled.div`
     display: flex;
-    width: 50%;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     ${mobile({width: "100%"})}
@@ -123,14 +113,19 @@ const AmountContainer = styled.div`
 `
 
 const Amount = styled.span`
-    width: 30px;
-    height: 30px;
-    border-radius: 10px;
+    width: 50px;
+    height: 40px;
+    border-radius: 0px;
     border: 1px solid teal;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0px 5px;
+`
+
+const GeneralError = styled.div`
+    color: tomato;
+    font-size: 18px;
 `
 
 const Button = styled.button`
@@ -146,8 +141,19 @@ const Button = styled.button`
     }
 `
 
+const YouMightLike = styled.div`
+    height: 35px;
+    background-color: #f5fbfd;
+    color: #101010;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+`
 
 const Product = () => {
+  const cart = useSelector((state) => state.cart);
   const { t } = useTranslation();
   const location = useLocation();
   const id = location.pathname.split("/")[2]
@@ -156,6 +162,7 @@ const Product = () => {
   const [color, setColor] = useState("")
   const [size, setSize] = useState("")
   const dispatch = useDispatch()
+  const [modalShow, setModalShow] = useState(false);
 
 
   useEffect(() =>{
@@ -178,22 +185,44 @@ const Product = () => {
     }
   }
 
+  console.log(size, color)
+
   const handleClick = () =>{
+    if(!color){
+        $(".generalError").text("Valitse väri");
+        return false
+    }
+    if(!size){
+        $(".generalError").text("Valitse koko");
+        return false
+    }
+    let productId = product._id
     // update cart
     dispatch(
-        addProduct({ ...product, quantity, color, size})
+        addProduct({ ...product, quantity, color, size, productId})
     )
+    setModalShow(true)
   }
 
-  //console.log(product);
-  // <Image src={product.img}/>
-  return (
+    console.log(product)
+
+    let errorElement
+    if(!size){
+        errorElement = <GeneralError className="generalError"></GeneralError>
+    }else if (!color){
+        errorElement = <GeneralError className="generalError"></GeneralError>
+    }else{
+        errorElement = ""
+    }
+
+    console.log(cart)
+   return (
     <Container>
         <Navbar/>
         <Announcement/>
         <Wrapper>
             <ImageContainer>
-                <ImageGallery items={images}  showFullscreenButton={false} showPlayButton={false} showBullets={true}/>
+                {product?.img && <ImageGallery items={product?.img}  showFullscreenButton={false} showPlayButton={false} showBullets={true}/>}
             </ImageContainer>
             <InfoContainer>
                 {product.title?.split("<br>").map((productName, j) => {
@@ -202,21 +231,24 @@ const Product = () => {
                 );
                 })}
                 <Desc>{product.desc}</Desc>
-                <Price>{product.price} €</Price>
+                {product.price && <Price>{product?.price.toFixed(2)} €</Price>}
                 <FilterContainer>
                     <Filter>
                         <FilterTitle>{t("color")}</FilterTitle>
-                        {product.color?.map((c)=>(
-                            <FilterColor color={c} key={c} onClick={()=>setColor(c)}/>
-                        ))}
-                        
-                        
+                        <FilterColorSelect onChange={(e)=> setColor(e.target.value)} required>
+                            <FilterColorOption value="" key="">Valitse</FilterColorOption>
+                            {product.color?.map((s)=>(
+                                <FilterColorOption key={s}>{s}</FilterColorOption>
+                            ))}
+                        </FilterColorSelect>
                     </Filter>
                     <Filter>
-                        <FilterTitle>Size</FilterTitle>
-                        <FilterSize onChange={(e)=>setSize(e.target.value)}>
+                        <FilterTitle>{t("size")}</FilterTitle>
+                        
+                        <FilterSize onChange={(e)=>setSize(e.target.value)} required>
+                            <FilterSizeOption value="" key="">Valitse</FilterSizeOption>
                             {product.size?.map((s)=>(
-                                <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                                <FilterSizeOption key={s}>{s} cm</FilterSizeOption>
                             ))}
                         </FilterSize>
                     </Filter>
@@ -227,13 +259,19 @@ const Product = () => {
                         <Amount>{quantity}</Amount>
                         <Add onClick={()=>handleQuantity("increase")}/>
                     </AmountContainer>
-                    <Button onClick={handleClick}>Osta</Button>
+                    <Button onClick={handleClick}>{t("buy")}</Button>
                 </AddContainer>
+                {errorElement}
+               
             </InfoContainer>
             
         </Wrapper>
+
+        <YouMightLike>{t("youMightLike")}</YouMightLike>
+        <Products/>
         <Newsletter/>
         <Footer/>
+        <CartModal show={modalShow} onHide={() => setModalShow(false)} />
     </Container>
   )
 }

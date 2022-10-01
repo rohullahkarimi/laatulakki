@@ -1,8 +1,9 @@
 import styled from 'styled-components'
-import { mobile } from '../responsive'
+import { mobile, smartPhone } from '../responsive'
 import {
     Link
   } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
     flex: 1;
@@ -31,8 +32,9 @@ const Info = styled.div`
 `
 
 const Title = styled.h1`
-    color: white;
-    margin-bottom: 20px;
+    color: #009291;
+    margin-bottom: 80%;
+    ${smartPhone({marginBottom: "10%"})}
 `
 
 const Button = styled.button`
@@ -44,17 +46,40 @@ const Button = styled.button`
     font-weight: 600;
 `
 
-const CategoryItem = ({item}) => {
+const CategoryItem = () => {
+  const { t } = useTranslation();
   return (
+    <>
     <Container>
-        <Link to={`/products/${item.cat}`}>
-            <Image src={item.img}/>
+        <Link to={`/products/lakki`}>
+            <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/ylioppilaslakit.jpg"/>
             <Info>
-                <Title>{item.title}</Title>
-                <Button>Shop Now</Button>
+                <Title>{t("highSchoolCap").toUpperCase()}</Title>
+                <Button>{t("buy_now").toUpperCase()}</Button>
             </Info>
         </Link>
     </Container>
+
+    <Container>
+        <Link to={`/products/lakki`}>
+            <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/ammattilakki-lr.jpg"/>
+            <Info>
+                <Title>{t("engineerCap").toUpperCase()}</Title>
+                <Button>{t("buy_now").toUpperCase()}</Button>
+            </Info>
+        </Link>
+    </Container>
+
+    <Container>
+        <Link to={`/products/lakki`}>
+            <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/valmistujaislakit.jpg"/>
+            <Info>
+                <Title>{t("graduationCap").toUpperCase()}</Title>
+                <Button>{t("buy_now").toUpperCase()}</Button>
+            </Info>
+        </Link>
+    </Container>
+    </>
   )
 }
 

@@ -4,11 +4,12 @@ const ProductSchema = new mongoose.Schema(
     {
         title:{ type: String, required:true, unique:true},
         desc:{ type: String, required:true, unique:true},
-        img:{ type: String, required: true},
+        img:{ type: Array, required: true},
         categories:{ type: Array},
         size:{ type: Array},
         color:{ type: Array},
         price:{ type: Number, required: true},
+        vatPercentage: {type: Number, default: 24, required: true},
         inStock: {type: Boolean, default: true},
     },
     { timestamps: true}

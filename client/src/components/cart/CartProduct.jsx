@@ -7,6 +7,7 @@ import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increaseProduct, decreaseProduct, deleteProduct } from '../../redux/cartRedux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Product = styled.div`
   display: flex;
@@ -107,6 +108,7 @@ const CartProduct = () => {
   const dispatch = useDispatch()
   const [cartItems, setCartItems] = useState(cart.quantity);
   const navigate = useNavigate()
+  const { t } = useTranslation();
 
   const handleDelete = useCallback((product) => {
     setCartItems(cartItems - 1);
@@ -151,20 +153,20 @@ const CartProduct = () => {
       {cart.products.map((product) => (
       <Product key={product._id}>
         <ProductDetail>
-          <Image src={product.img} />
+          <Image src={product.img[0].thumbnail} />
           <Details>
             <ProductName>
-              <b>Product:</b> {product.title?.replace("<br>"," / ")}
+              <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
             </ProductName>
             <ProductId>
               <b>ID:</b> {product._id}
             </ProductId>
-            <ProductColor><b>Color:</b> {product.color}</ProductColor>
+            {product.color && <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>}
             <ProductSize>
-              <b>Size:</b> {product.size}
+              <b>{t("size")}:</b> {product.size}
             </ProductSize>
             <ProductPriceText>
-              <b>Price:</b> {product.price}
+              <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
             </ProductPriceText>
           </Details>
         </ProductDetail>
@@ -175,7 +177,7 @@ const CartProduct = () => {
             <Remove onClick={()=>handleQuantityDecrease(product)}/>
           </ProductAmountContainer>
           <ProductPrice>
-            $ {product.price * product.quantity}
+            {(product.price * product.quantity).toFixed(2)} €
           </ProductPrice>
         </PriceDetail>
         <RemoveProduct>

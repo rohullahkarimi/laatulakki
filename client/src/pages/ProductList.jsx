@@ -7,6 +7,7 @@ import Newsletter from "../components/Newsletter"
 import Products from "../components/Products"
 import { mobile } from "../responsive"
 import { useLocation } from "react-router";
+import { useTranslation } from "react-i18next"
 
 const Container = styled.div`
     
@@ -43,10 +44,11 @@ const Option = styled.option``
 
 
 const ProductList = () => {
+    const { t } = useTranslation();
     const location = useLocation();
     const cat = location.pathname.split("/")[2]
     const [filters, setFilters] = useState({})
-    const [sort, setSort] = useState("newest")
+    const [sort, setSort] = useState("")
 
     const handleFilters = (e) =>{
         const value = e.target.value;
@@ -66,43 +68,38 @@ const ProductList = () => {
         <Title>{cat}</Title>
         <FilterContainer>
             <Filter>
-                <FilterText>Filter Products:</FilterText>
+                <FilterText>{t("filter_product")}:</FilterText>
                 <Select name="color" onChange={handleFilters}>
                     <Option valuee="color" disabled>
-                    Color
+                    {t("color")}
                     </Option>
-                    <Option value="White">White</Option>
-                    <Option value="Black">Black</Option>
-                    <Option value="Red">Red</Option>
-                    <Option value="Blue">Blue</Option>
-                    <Option value="Yellow">Yellow</Option>
-                    <Option value="Green">Green</Option>
+                    <Option value="sinivalkoinen">Sinivalkoinen</Option>
+                    <Option value="musta">Musta</Option>
                 </Select>
                 <Select name="size" onChange={handleFilters}>
                     <Option valuee="size" disabled>
-                    Size
+                    {t("size")}
                     </Option>
-                    <Option value="XS">XS</Option>
-                    <Option value="S">S</Option>
-                    <Option value="M">M</Option>
-                    <Option value="L">L</Option>
-                    <Option value="XL">XL</Option>
+                    <Option value="57">57</Option>
+                    <Option value="58">58</Option>
+                    <Option value="59">59</Option>
                 </Select>
             </Filter>
             <Filter>
-                <FilterText>Sort Products:</FilterText>
+                <FilterText> {t("arrange_product")}:</FilterText>
                 <Select onChange={e=>setSort(e.target.value)}>
-                    <Option value="newest">Newest</Option>
-                    <Option value="asc">Price (asc)</Option>
-                    <Option value="desc">Price (desc)</Option>
+                    <Option value="newest">Uutuudet</Option>
+                    <Option value="asc">A-Z</Option>
+                    <Option value="desc">Z-A hinta</Option>
                 </Select>
             </Filter>
         </FilterContainer>
-        <Products cat={cat} filters={filters} sort={sort}/>
+        <Products cat={cat} filters={filters} sort={sort} />
         <Newsletter/>
         <Footer/>
     </Container>
   )
 }
+// cat={cat} filters={filters} sort={sort}
 
 export default ProductList

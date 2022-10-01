@@ -90,6 +90,7 @@ const Newsletter = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
 
@@ -98,7 +99,8 @@ const Newsletter = () => {
         emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE_ID, data, process.env.REACT_APP_EMAILJS_API_KEY)
         .then((result) => {
             console.log(result.text);
-            alert("Lähetetty, kiitos!");
+            alert(t("sentThanks"));
+            reset()
         }, (error) => {
             console.log(error.text);
         });

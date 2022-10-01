@@ -1,18 +1,151 @@
 const Order = require("../models/Order");
 const { verifyTokenAndAdmin, verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
 const router = require("express").Router();
+const axios = require('axios');
 
-// CREATE
-router.post("/", verifyToken, async (req, res)=>{
-    const newOrder = new Order(req.body)
+const {CheckoutClient} = require('checkout-finland/lib/Checkout');
+const CHECKOUT_MERCHANT_ID = '375917'
+const CHECKOUT_SECRET = 'SAIPPUAKAUPPIAS'
+const client = new CheckoutClient(CHECKOUT_MERCHANT_ID, CHECKOUT_SECRET)
 
-    try{
-        const savedOrder = await newOrder.save();
-        res.status(200).json(savedOrder);
-    }catch(err){
+// UPDATE Checkout order transaction ID
+router.put("/checkoutOrder/:id", async (req, res) => {
+    try {
+        const updatedOrder = await Order.findByIdAndUpdate(
+            req.params.id, {
+            $set: req.body
+        },
+            { new: true }
+        );
+        res.status(200).json(updatedOrder);
+    } catch (err) {
+        res.status(500).json(err)
+    }
+});
+
+// GET Order Transaction ID
+router.get("/find/transactionId/:orderId", async (req, res) => {
+    try {
+        const order = await Order.findById(req.params.orderId);
+        const { transactionId } = order._doc;
+        res.status(200).send(transactionId);
+    } catch (err) {
         res.status(500).json(err);
     }
 });
+
+// CREATE
+router.post("/", async (req, res)=>{
+    // Cors
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT');
+
+    console.log(req.body.cart)
+    // new order Data
+    const newOrder = new Order(req.body.cart);
+
+    // test
+    //console.log(newOrder)
+
+    try{
+        const savedOrder = await newOrder.save();
+        var savedOrderId = savedOrder._id.valueOf()
+        
+        // save transaction ID
+        saveTransactionId(savedOrderId, savedOrder)
+        //console.log(savedOrderId, savedOrder)
+        res.status(200).send(savedOrder);
+        
+    }catch(err){
+        res.status(500).json(err);
+    }
+  
+});
+
+// save transaction ID
+const saveTransactionId = async (getSavedOrderId, savedOrder) => {
+    
+    const orderId = getSavedOrderId
+    const paytrailProduct = []
+
+    savedOrder.products?.map((key, index) =>{
+    var productPrice = parseFloat(key.price).toFixed(2);
+    console.log(productPrice)
+    const paytrailItem = {
+        unitPrice: parseInt((productPrice * 100).toFixed(0)), // number
+        units: key.quantity,     // number
+        vatPercentage: key.vatPercentage, // number
+        productCode: key.productId, // string 
+    }
+    paytrailProduct.push(paytrailItem)
+    });
+
+    var totalPriceIncludeDelivery = savedOrder.total;
+    // for delivery 
+    if(savedOrder.deliveryPrice !== 0){
+        totalPriceIncludeDelivery += savedOrder.deliveryPrice;
+        const paytrailItem = {
+            unitPrice: parseInt((savedOrder.deliveryPrice * 100).toFixed(0)), // number
+            units: 1,     // number
+            vatPercentage: 24, // number
+            productCode: "123456789", // string 
+        }
+        paytrailProduct.push(paytrailItem)
+    }
+
+    // Payment Data
+    const payment = {
+        stamp: new Date().toISOString(),
+        reference: orderId,
+        amount: parseInt((totalPriceIncludeDelivery * 100).toFixed(0)), 
+        currency: 'EUR',
+        language: 'FI',
+        items: paytrailProduct,
+        customer: {
+            firstName: savedOrder.billingAddress.firstname,
+            lastName: savedOrder.billingAddress.lastname,
+            phone: savedOrder.billingAddress.phonenumber,
+            email: savedOrder.billingAddress.email
+        },
+        deliveryAddress: {
+            streetAddress: savedOrder.deliveryAddress.streetAddress,
+            postalCode: savedOrder.deliveryAddress.postalCode,
+            city: savedOrder.deliveryAddress.city,
+            country: savedOrder.billingAddress.country
+        },
+        redirectUrls: {
+            success: process.env.MAIN_CLIENT_URL+'/cart/success',
+            cancel: process.env.MAIN_CLIENT_URL+'/cart/cancel'
+        }
+    };
+
+
+    // TEST 1
+    console.log(payment)
+    //console.log(savedOrder)
+
+
+
+    // Get transaction ID
+    try {
+        const {transactionId} = await client.createPayment(payment);
+        const transactionIdData ={
+            "transactionId": transactionId
+        }
+        console.log(transactionIdData)
+
+        // Save transaction ID
+        try {
+          await axios.put(process.env.MAIN_API_URL+"/orders/checkoutOrder/"+orderId,  transactionIdData);
+        } catch(error) {
+          res.status(500).json(error);
+        }
+    }catch(err){
+        console.log(err)
+        return err
+    }
+};
+
 
 
 // UPDATE

@@ -1,19 +1,17 @@
 import { ShoppingCartOutlined } from '@mui/icons-material';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { Badge } from '@mui/material';
-import React from 'react'
+//import React from 'react'
 import styled from 'styled-components'
 import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 import {useSelector} from "react-redux"
-import { Link } from "react-router-dom"
-import {
-    useNavigate
-} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"
+
 
 // multi language
 import '../i18n';
 import i18n from "i18next";
-import { useTranslation } from "react-i18next";
+//import { useTranslation } from "react-i18next";
 
 // theme
 import { brandColor } from '../theme';
@@ -90,8 +88,8 @@ const LangDiv = styled.div`
 
 
 const Navbar = () => {
-  const { t } = useTranslation();
-  const user = useSelector((state)=> state.user.currentUser);
+  //const { t } = useTranslation();
+  //const user = useSelector((state)=> state.user.currentUser);
   const onChange = (event) => {
       i18n.changeLanguage(event.target.value);
   };
@@ -100,12 +98,14 @@ const Navbar = () => {
   const selectedLang = i18n.language
   //console.log(quantity)
 
+  /*
   const navigateLogin = () => {
     navigate('/login');
   };
   const navigateLoginOut = () => {
     navigate('/login');
   };
+  */
   const goToHomePage = () => {
     navigate('/');
   };
@@ -116,7 +116,14 @@ const Navbar = () => {
         { lang: "se", country: "se" },
         { lang: "en", country: "gb" },
     ]
-    
+
+    /*
+    {user ? (
+        <MenuItem onClick={navigateLogin}>{t('logOut')}</MenuItem>
+    ) : (
+        <MenuItem onClick={navigateLoginOut}>{t('login')}</MenuItem>
+    )}
+    */
   return (
     <Container>
         <Wrapper>
@@ -137,11 +144,6 @@ const Navbar = () => {
             </Left>
             <Center><Logo onClick={goToHomePage}>LaatuLakki.fi</Logo></Center>
             <Right>
-                {user ? (
-                    <MenuItem onClick={navigateLogin}>{t('logOut')}</MenuItem>
-                ) : (
-                    <MenuItem onClick={navigateLoginOut}>{t('login')}</MenuItem>
-                )}
                 <Link to="/cart">
                     <MenuItem>
                     <Badge badgeContent={quantity} color="primary">

@@ -63,8 +63,17 @@ input[type="checkbox"][required] + .checkbox-label::after {
   display: block;
   letter-spacing: normal;
   margin: 5px 0 0;
+  color: #d6001c;
 }
 
+.checkbox-larger{
+  height: 22px;
+  width: 22px;
+}
+.checkbox-label-larger{
+  font-size: 18px !important;
+  padding-left: 26px !important;
+}
 /*
 input:invalid[focused="true"] {
   border: 1px solid red;
@@ -83,6 +92,7 @@ input.invalid {
     line-height: 1.6em;
     margin-left: 4px;
     padding-left: 18px;
+    text-align: left;
 }
 .inputwrapper .checkbox-input {
     margin-top: 3px;

@@ -98,9 +98,11 @@ const Product = ({item}) => {
   const navigateToProductPage = () =>{
     navigate(`/product/${item._id}`)
   }
+
+  console.log(item)
   return (
     <Container onClick={navigateToProductPage}>
-        <Image src={item.img}/>
+        <Image src={item.img[0].thumbnail}/>
         <Info>
             <Icon>
                 <Link to={`/product/${item._id}`}>

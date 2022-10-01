@@ -19,12 +19,14 @@ label{
     color: #362c2c;
 }
 
+/*
 span{
     font-size: 12px;
-    /*padding: 3px;*/
+    padding: 3px;
     color: red;
     display: none;
 }
+*/
 
 input:invalid[focused="true"]{
     border: 1px solid red;

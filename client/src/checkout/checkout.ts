@@ -3,7 +3,7 @@ import axios from 'axios'
 import { v4 as uuid } from 'uuid'
 import { SignLanguage } from '@mui/icons-material'
 
-const CHECKOUT_ENDPOINT = '' //'https://services.paytrail.com' //'https://api.checkout.fi'
+const CHECKOUT_ENDPOINT = 'https://services.paytrail.com' //'https://api.checkout.fi'
 
 type Dictionary<T> = { [key: string]: T }
 

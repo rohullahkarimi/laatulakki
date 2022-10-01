@@ -1,9 +1,11 @@
 import { ArrowLeftOutlined } from '@mui/icons-material'
 import { ArrowRightOutlined } from '@mui/icons-material'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { sliderItems } from '../data'
+//import { sliderItems } from '../data'
 import { mobile, smartPhone, tablet } from '../responsive'
+import { useTranslation } from "react-i18next";
 
 
 const Container = styled.div`
@@ -85,7 +87,9 @@ const Button = styled.button`
 `
 
 const Slider = () => {
+    const { t } = useTranslation();
     const [slideIndex, setSlideIndex] = useState(0);
+    const navigate = useNavigate()
     const handleClick = (direction) => {
         if(direction === "left"){
             setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2)
@@ -100,18 +104,38 @@ const Slider = () => {
                 <ArrowLeftOutlined/>
             </Arrow>
             <Wrapper slideIndex={slideIndex}>
-                {sliderItems.map(item=>(
-                    <Slide key={item.id} bg={item.bg}>
-                        <ImgContainer>
-                            <Image src={item.img}/>
-                        </ImgContainer>
-                        <InfoContainer>
-                            <Title>{item.title}</Title>
-                            <Description>{item.desc}</Description>
-                            <Button>Osta nyt</Button>
-                        </InfoContainer>
-                    </Slide>
-                ))};
+                <Slide key="1" bg="f5fafd">
+                    <ImgContainer>
+                        <Image src="https://images.squarespace-cdn.com/content/v1/5ded2afaf87cb8636cacc659/0954be2b-4467-4253-89a1-348b06f750aa/_11B9027.jpg"/>
+                    </ImgContainer>
+                    <InfoContainer>
+                        <Title>{t("hope")}</Title>
+                        <Description>{t("hope_desc")}</Description>
+                        <Button onClick={()=>navigate("/products/lakki")}>{t("buy_now")}</Button>
+                    </InfoContainer>
+                </Slide>
+
+                <Slide key="2" bg="fcf1ed">
+                    <ImgContainer>
+                        <Image src="https://www.vastavalo.net/albums/userpics/10728/normal_yo-3767.jpg"/>
+                    </ImgContainer>
+                    <InfoContainer>
+                        <Title>{t("oiva")}</Title>
+                        <Description>{t("oiva_desc")}</Description>
+                        <Button onClick={()=>navigate("/products/lakki")}>{t("buy_now")}</Button>
+                    </InfoContainer>
+                </Slide>
+
+                <Slide key="3" bg="fbf0f4">
+                    <ImgContainer>
+                        <Image src="https://www.kemi.fi/wp-content/uploads/2022/05/Ylioppilaslakki-rotated-e1653637283799.jpg"/>
+                    </ImgContainer>
+                    <InfoContainer>
+                        <Title>{t("vegani")}</Title>
+                        <Description>{t("vegani_desc")}</Description>
+                        <Button onClick={()=>navigate("/products/lakki")}>{t("buy_now")}</Button>
+                    </InfoContainer>
+                </Slide>
             </Wrapper>
             <Arrow direction="right" onClick={()=>handleClick("right")}>
                 <ArrowRightOutlined/>
