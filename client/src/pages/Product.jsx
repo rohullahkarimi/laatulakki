@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
 import CartModal from "../components/CartModal"
 import { useTranslation } from "react-i18next";
-import { mobile } from "../responsive"
+import { mobile, smartPhone } from "../responsive"
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
@@ -28,6 +28,7 @@ const Wrapper = styled.div`
     display: flex; 
     //background-color: #${bodyColor};
     ${mobile({padding: "10px", flexDirection: "column"})}
+    ${smartPhone({padding: "10px", flexDirection: "column"})}
 `
 
 const ImageContainer = styled.div`
