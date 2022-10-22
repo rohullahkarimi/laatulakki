@@ -8,6 +8,18 @@ const OrderSchema = new mongoose.Schema(
                 productId: {
                     type: String,
                 },
+                title: {
+                    type: String,
+                },
+                img: {
+                    type: String,
+                },
+                color: {
+                    type: String,
+                },
+                size: {
+                    type: String,
+                },
                 quantity: {
                     type: Number,
                     default: 1,
@@ -40,7 +52,7 @@ const OrderSchema = new mongoose.Schema(
                 country: {
                     type: String,
                 },
-                phone: {
+                phonenumber: {
                     type: String,
                 },
                 email: {
@@ -69,7 +81,7 @@ const OrderSchema = new mongoose.Schema(
                 country: {
                     type: String,
                 },
-                phone: {
+                phonenumber: {
                     type: String,
                 },
                 email: {
@@ -82,11 +94,11 @@ const OrderSchema = new mongoose.Schema(
         deliveryMethod: { type: String, default: "delivery"},
         deliveryPrice: { type: Number},
         paid: { type: Boolean, required: true, default: false},
+        emailSent: { type: Boolean, required: true, default: false},
         transactionId: { type: String, default: ""},
         total: { type: Number, required: true},
         message: { type: String},
         status: { type: String, default: "pending"},
-
     },
     { timestamps: true}
 )

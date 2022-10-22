@@ -12,6 +12,9 @@ import Terms from "./pages/Terms_and_condition";
 import RegistrationStatement from "./pages/Registration_statement";
 import ChangeAndRefund from "./pages/Change_and_refund";
 import TermsOfDelivery from "./pages/Terms_of_delivery";
+import CapChoice from "./pages/Cap_choice";
+import CapUsage from "./pages/Cap_usage";
+import Receipt from "./pages/Receipt";
 import PaymentPage from "./pages/Payment_response";
 import {
   BrowserRouter as Router,
@@ -51,8 +54,9 @@ const App = () => {
         <Route path="/cart/success" element={<PaymentPage/>} />
         <Route path="/cart/cancel" element={<PaymentPage/>} />
         <Route path="/terms_of_delivery" element={<TermsOfDelivery/>} />
-        
-        
+        <Route path="/cap_choice" element={<CapChoice/>} />
+        <Route path="/cap_usage" element={<CapUsage/>} />
+        <Route path="/receipt" element={<Receipt/>} />
       </Routes>
     </Router>
   );

@@ -111,7 +111,7 @@ const Newsletter = () => {
    return (
     <Container>
         <Form onSubmit={handleSubmit(onSubmit)}>
-            <Title>{t('contact_header')}</Title>
+            <Title>{t('contact_form')}</Title>
             <Desc>{t('feedback_desc')}</Desc>
             <InputContainer>
                 <Input placeholder={t('feedback_name')+" *" } {...register('user_name', { required: true })} />

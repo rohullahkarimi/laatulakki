@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../../common/css/style.css';
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -151,6 +151,10 @@ const ReviewForm = () => {
   const { register, handleSubmit, formState: { errors: handlePaymentErrors } } = useForm();
 
   console.log(handlePaymentErrors)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleTermsOfDelivery = () => {
     goTo("/terms_of_delivery")
@@ -310,8 +314,8 @@ const ReviewForm = () => {
       <CommentContainer>
         <Comment>
           <DetailsInfo>
-            {cart.billingAddress.comment && <Key>Tilauksen lisätiedot</Key>}
-            {cart.billingAddress.comment && <Value>{cart.billingAddress.comment}</Value>}
+            {cart.message && <Key>Tilauksen lisätiedot</Key>}
+            {cart.message && <Value>{cart.message}</Value>}
           </DetailsInfo>
         </Comment>
       </CommentContainer>

@@ -110,6 +110,11 @@ const CartProduct = () => {
   const navigate = useNavigate()
   const { t } = useTranslation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  
   const handleDelete = useCallback((product) => {
     setCartItems(cartItems - 1);
     dispatch(
@@ -142,9 +147,9 @@ const CartProduct = () => {
   }, [dispatch]);
 
 
-  console.log(cart)
+  //console.log(cart)
   useEffect(() => {
-    console.log(cartItems)
+    //console.log(cartItems)
     cartItems === 0 && navigate("/") 
   }, [cartItems, navigate]);
  
@@ -172,9 +177,9 @@ const CartProduct = () => {
         </ProductDetail>
         <PriceDetail>
           <ProductAmountContainer>
-            <Add onClick={()=>handleQuantityIncrease(product)}/>
-            <ProductAmount>{product.quantity}</ProductAmount>
             <Remove onClick={()=>handleQuantityDecrease(product)}/>
+            <ProductAmount>{product.quantity}</ProductAmount>
+            <Add onClick={()=>handleQuantityIncrease(product)}/>
           </ProductAmountContainer>
           <ProductPrice>
             {(product.price * product.quantity).toFixed(2)} €

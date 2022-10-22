@@ -3,7 +3,6 @@ import styled from "styled-components"
 import Announcement from "../components/Announcement"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
-import Newsletter from "../components/Newsletter"
 import CartModal from "../components/CartModal"
 import { useTranslation } from "react-i18next";
 import { mobile, smartPhone } from "../responsive"
@@ -11,7 +10,7 @@ import { useLocation } from "react-router";
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
 import { addProduct } from "../redux/cartRedux"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { bodyColor } from "../theme"
 import '../../node_modules/react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
@@ -153,8 +152,14 @@ const YouMightLike = styled.div`
     font-weight: 500;
 `
 
+const InstructionContainer = styled.div`
+    margin-bottom: 10px;
+`
+const InstructionItem = styled.a`
+    display: block;
+`
+
 const Product = () => {
-  const cart = useSelector((state) => state.cart);
   const { t } = useTranslation();
   const location = useLocation();
   const id = location.pathname.split("/")[2]
@@ -186,7 +191,7 @@ const Product = () => {
     }
   }
 
-  console.log(size, color)
+  //console.log(size, color)
 
   const handleClick = () =>{
     if(!color){
@@ -198,14 +203,16 @@ const Product = () => {
         return false
     }
     let productId = product._id
+    let title = product.title
+    let img = product.img[0].thumbnail
     // update cart
     dispatch(
-        addProduct({ ...product, quantity, color, size, productId})
+        addProduct({ ...product, title, img, quantity, color, size, productId})
     )
     setModalShow(true)
   }
 
-    console.log(product)
+    //console.log(product)
 
     let errorElement
     if(!size){
@@ -216,8 +223,15 @@ const Product = () => {
         errorElement = ""
     }
 
-    console.log(cart)
-   return (
+    let instructionElements;
+    let sizeUnit;
+    if (product.categories?.includes('lakki')) {
+        instructionElements = <InstructionContainer><InstructionItem href="/cap_choice">Ohjeet mittaukseen</InstructionItem><InstructionItem href="/cap_usage">Lakin käyttö- ja hoito ohje</InstructionItem></InstructionContainer>
+        sizeUnit = "cm"
+    }else if(product.categories?.includes('lyyra')){
+        sizeUnit = "mm"
+    }
+    return (
     <Container>
         <Navbar/>
         <Announcement/>
@@ -232,6 +246,9 @@ const Product = () => {
                 );
                 })}
                 <Desc>{product.desc}</Desc>
+
+                {instructionElements}
+                
                 {product.price && <Price>{product?.price.toFixed(2)} €</Price>}
                 <FilterContainer>
                     <Filter>
@@ -249,7 +266,7 @@ const Product = () => {
                         <FilterSize onChange={(e)=>setSize(e.target.value)} required>
                             <FilterSizeOption value="" key="">Valitse</FilterSizeOption>
                             {product.size?.map((s)=>(
-                                <FilterSizeOption key={s}>{s} cm</FilterSizeOption>
+                                <FilterSizeOption key={s}>{s} {sizeUnit}</FilterSizeOption>
                             ))}
                         </FilterSize>
                     </Filter>
@@ -270,7 +287,6 @@ const Product = () => {
 
         <YouMightLike>{t("youMightLike")}</YouMightLike>
         <Products/>
-        <Newsletter/>
         <Footer/>
         <CartModal show={modalShow} onHide={() => setModalShow(false)} />
     </Container>

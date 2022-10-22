@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 const Container = styled.div`
     flex: 1;
-    margin: 3px;
+    margin: 5px;
     height: 70vh; 
     position: relative;
 `
@@ -16,7 +16,7 @@ const Image = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    ${mobile({height: "20vh"})}
+    /*${mobile({height: "20vh"})}*/
 `
 
 const Info = styled.div`
@@ -31,11 +31,16 @@ const Info = styled.div`
     flex-direction: column;
 `
 
+
 const Title = styled.h1`
     color: #009291;
     margin-bottom: 80%;
-    ${smartPhone({marginBottom: "10%"})}
+    font-size: 22px;
+    backdrop-filter: blur(6px);
+    ${smartPhone({marginBottom: "50%"})}
+    ${mobile({marginBottom: "60%"})}
 `
+
 
 const Button = styled.button`
     border: none;
@@ -51,7 +56,7 @@ const CategoryItem = () => {
   return (
     <>
     <Container>
-        <Link to={`/products/lakki`}>
+        <Link to={`/products/ylioppilaslakki`}>
             <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/ylioppilaslakit.jpg"/>
             <Info>
                 <Title>{t("highSchoolCap").toUpperCase()}</Title>
@@ -61,7 +66,7 @@ const CategoryItem = () => {
     </Container>
 
     <Container>
-        <Link to={`/products/lakki`}>
+        <Link to={`/products/ylioppilaslakki`}>
             <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/ammattilakki-lr.jpg"/>
             <Info>
                 <Title>{t("engineerCap").toUpperCase()}</Title>
@@ -71,7 +76,7 @@ const CategoryItem = () => {
     </Container>
 
     <Container>
-        <Link to={`/products/lakki`}>
+        <Link to={`/products/ylioppilaslakki`}>
             <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/valmistujaislakit.jpg"/>
             <Info>
                 <Title>{t("graduationCap").toUpperCase()}</Title>

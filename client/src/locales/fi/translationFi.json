@@ -4,6 +4,7 @@
     "signIn": "Kirjaudu",
     "color": "Väri",
     "contact": "Yhteystiedot",
+    "contact_form": "Yhteydenottolomake",
     "login": "KIRJAUDU",
     "logOut": "KIRJAUDU ULOS",
     "username": "Käyttäjätunnus",
@@ -59,6 +60,7 @@
     "own_information": "Omat tiedot",
     "deliveryMethod": "Toimitustapa",
     "pricePerPiece": "Hinta per kpl",
+    "quantity": "Kpl",
     "pay": "Maksa",
     "pervious": "EDELLINEN",
     "youMightLike" : "Voisit tykätä myös näistä tuotteista",
@@ -82,7 +84,8 @@
     "youCanDownloadReceipt": "Voit lataa kuittisi ala olevan painikkeesta.",
     "receipt": "Kuitti",
     "orderCancelled": "Maksu epäonnistui!",
-    "sorryMessage": "Olemme tallentanut korisi tuotteet, edelleen pystyt suorittamaan maksua ala olevasta painkikkeesta.",
+    "sorryMessage": "Olemme tallentaneet korisi tuotteet. Voit edelleen suorittaa maksun alla olevasta painkikkeesta.",
+    "yourCartIsEmpty": "Ostoskorisi on tyhjä.",
 
     
 
@@ -187,6 +190,23 @@
     "termsAndCondition.55": "Paytrail Oyj (2122839-7) toimii maksunvälityspalvelun toteuttajana ja maksupalveluntarjoajana yhteistyössä suomalaisten pankkien ja luottolaitosten kanssa. Paytrail Oyj näkyy maksun saajana tiliotteella tai korttilaskulla. Paytrail Oyj välittää maksun kauppiaalle. Paytrail Oyj:llä on maksulaitoksen toimilupa. Reklamaatiotapauksissa pyydämme olemaan ensisijaisesti yhteydessä tuotteen toimittajaan.",
     "termsAndCondition.56": "Tekijänoikeudet",
     "termsAndCondition.57": "Sivuston sisältö on suojattu tekijänoikeuslain mukaisesti. Palveluntarjoaja pidättää itsellään kaikki oikeudet sivuihin ja niiden sisältöön, ellei sivuilla tai näissä käyttöehdoissa toisin mainita. Sivuston sisällön tai sen osan jakelu, tallentaminen tai kopiointi on kiellettyä ilman Palveluntarjoajan etukäteistä kirjallista suostumusta, lukuun ottamatta erikseen mainittuja poikkeuksia.",
-    "termsAndCondition.58": "Tekstiä, logoja tai kuvia ei saa käyttää kaupallisiin tai hyvien tapojen vastaisiin tarkoituksiin. Sivustoa saa selata ja katsella sekä tulostaa käyttäjän omaa, henkilökohtaista käyttöä varten. Ilman Palveluntarjoajan erillistä kirjallista suostumusta, sivuston sisällön osittainenkin jakeleminen on kiellettyä."
+    "termsAndCondition.58": "Tekstiä, logoja tai kuvia ei saa käyttää kaupallisiin tai hyvien tapojen vastaisiin tarkoituksiin. Sivustoa saa selata ja katsella sekä tulostaa käyttäjän omaa, henkilökohtaista käyttöä varten. Ilman Palveluntarjoajan erillistä kirjallista suostumusta, sivuston sisällön osittainenkin jakeleminen on kiellettyä.",
+    "capChoice0": "Oikean lakin valinta",
+    "capChoice1": "Ylioppilas- ja valmistujaislakin hankkiminen on tärkeä päätös ja onneksi sen valinta helppoa. Tarvittavia mittoja on ainoastaan yksi – päänympärys. Päänympärys mitataan senttimetreissä otsalta, korvien yläpuolelta takaraivolle. Verkkokaupan koot vastaavat päänympäryksen sentimetrejä. Iän karttuessa pää kasvaa hieman, minkä takia on hyvä pyöristää mitattua lukemaa ylöspäin. Esimerkiksi pääympäryksen ollessa 56,4 cm, verkkokaupan lakin koko -kohdasta on fiksua valita koko 57.",
+    "capChoice2": "Mittaa päänympärys otsalta, korvien yläpuolelta takaraivolle",
+    "capChoice3": "Valitse lakkimalli",
+    "capChoice4": "Valitse lakin koko (päänympärys cm = lakin koko)",
+    "capChoice5": "Tilaa ja juhlista!",
+    "capUsage0": "YLIOPPILASLAKIN KÄYTTÖ- JA HOITO-OHJEET",
+    "capUsage1": "Käyttö",
+    "capUsage2": "Ylioppilaslakkia käyttävät ylioppilastutkinnon suorittaneet ylioppilasjuhlassa ja myöhemmin erityisesti vappuna.",
+    "capUsage3": "Hoito",
+    "capUsage4": "Kulumat ja kellastuminen kuuluvat yo-lakin elinkaareen, mutta halutessasi voit puhdistaa lakin kevyesti samettiharjalla, vaahtomuovin palalla tai tahranpoistoainetta käyttäen. Lakki ei kestä vesi pesua tai liotusta.",
+    "footer1": "Käyttöehdot",
+    "footer2": "Rekisteriseloste",
+    "footer3": "Vaihto ja palautus",
+    "onlineStore": "Verkkokauppa"
+
+
 }
 

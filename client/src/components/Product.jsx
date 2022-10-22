@@ -1,5 +1,5 @@
-import {  SearchOutlined} from "@mui/icons-material"
-import { Link, useNavigate } from "react-router-dom"
+//import {  SearchOutlined} from "@mui/icons-material"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 
 const Info = styled.div`
@@ -67,7 +67,7 @@ const Price = styled.div`
 `
 
 
-
+/*
 const Icon = styled.div`
     height: 40px;
     width: 40px;
@@ -84,13 +84,7 @@ const Icon = styled.div`
         transform: scale(1.1);
     }
 `
-
-/*
-
-        <NameContainer>
-            
-        </NameContainer>
-        */
+*/
 
 const Product = ({item}) => {
   const navigate = useNavigate();
@@ -99,16 +93,11 @@ const Product = ({item}) => {
     navigate(`/product/${item._id}`)
   }
 
-  console.log(item)
+  //console.log(item)
   return (
     <Container onClick={navigateToProductPage}>
         <Image src={item.img[0].thumbnail}/>
         <Info>
-            <Icon>
-                <Link to={`/product/${item._id}`}>
-                    <SearchOutlined/>
-                </Link>
-            </Icon>
         </Info>
         
         <NameContainer> 

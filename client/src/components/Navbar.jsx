@@ -5,7 +5,8 @@ import { Badge } from '@mui/material';
 import styled from 'styled-components'
 import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 import {useSelector} from "react-redux"
-import { Link, useNavigate } from "react-router-dom"
+import {  useNavigate } from "react-router-dom"
+import CartModal from "../components/CartModal"
 
 
 // multi language
@@ -15,6 +16,7 @@ import i18n from "i18next";
 
 // theme
 import { brandColor } from '../theme';
+import { useState } from 'react';
 
 const Container = styled.div`
     height: 60px;
@@ -63,7 +65,8 @@ const Logo = styled.h1`
     font-weight: bold;
     cursor: pointer;
     font-size: 32px;
-    ${mobile({fontSize: "18px"})}
+    ${mobile({fontSize: "18px", paddingTop: "8px"})}
+    ${smartPhone({fontSize: "20px", paddingTop: "8px"})}
 `
 
 const Right = styled.div`
@@ -71,7 +74,7 @@ const Right = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    ${mobile({justifyContent: "center", flex: 2})}
+    ${mobile({justifyContent: "center"})}
 `;
 
 const MenuItem = styled.div`
@@ -90,12 +93,15 @@ const LangDiv = styled.div`
 const Navbar = () => {
   //const { t } = useTranslation();
   //const user = useSelector((state)=> state.user.currentUser);
+  const cart = useSelector((state) => state.cart);
   const onChange = (event) => {
       i18n.changeLanguage(event.target.value);
   };
   const quantity = useSelector(state=>state.cart.quantity)
   const navigate = useNavigate();
   const selectedLang = i18n.language
+  const [modalShow, setModalShow] = useState(false);
+  //console.log(selectedLang)
   //console.log(quantity)
 
   /*
@@ -109,6 +115,14 @@ const Navbar = () => {
   const goToHomePage = () => {
     navigate('/');
   };
+
+  const handleEmptyCart = (() => {
+    if(cart.quantity === 0){
+        setModalShow(true)
+    }else{
+        navigate("/cart")
+    }
+  });
   
 
   const languages = [
@@ -144,15 +158,14 @@ const Navbar = () => {
             </Left>
             <Center><Logo onClick={goToHomePage}>LaatuLakki.fi</Logo></Center>
             <Right>
-                <Link to="/cart">
-                    <MenuItem>
+                <MenuItem onClick={handleEmptyCart}>
                     <Badge badgeContent={quantity} color="primary">
                         <ShoppingCartOutlined style={{marginLeft: "10px"}}/>
                     </Badge>
-                    </MenuItem>
-                </Link>
+                </MenuItem>
             </Right>
         </Wrapper>
+        <CartModal show={modalShow} onHide={() => setModalShow(false)} />
     </Container>
   )
 }

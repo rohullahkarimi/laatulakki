@@ -9,11 +9,11 @@ import { useTranslation } from 'react-i18next';
 
 const BillingAddressForm = ({navigation}) => {
   const { t } = useTranslation();
-  console.log(navigation)
+  //console.log(navigation)
   const [deliveryAddressFormEnable, setDeliveryAddressFormEnable ] = useState(false)
  
   const cart = useSelector((state) => state.cart);
-  const [deliverySameAsBillingCheckbox, setDeliverySameAsBillingCheckbox ] = useState(cart.deliverySameAsBilling)
+  const [deliverySameAsBillingCheckbox ] = useState(cart.deliverySameAsBilling)
   const dispatch = useDispatch()
   const { register, handleSubmit, reset, setValue, getValues, formState: { errors: customerInfoErrors } } = useForm();
   
@@ -31,15 +31,20 @@ const BillingAddressForm = ({navigation}) => {
       return false;
     }
   }
+  
   */
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const handleCustomerInformationSubmit = (data) => {
     console.log(data)
     dispatch(saveCustomerInformation(data));
     navigation.next()
   }
-  console.log(customerInfoErrors)
-  console.log(cart)
+  //console.log(customerInfoErrors)
+  //console.log(cart)
 
   useEffect(() => {
     let defaultValues = {};
@@ -51,7 +56,7 @@ const BillingAddressForm = ({navigation}) => {
     defaultValues.city = cart.billingAddress.city;
     defaultValues.phonenumber = cart.billingAddress.phonenumber;
     defaultValues.email = cart.billingAddress.email;
-    defaultValues.comment = cart.billingAddress.comment;
+    defaultValues.comment = cart.message;
 
     // deliverySameAsBilling
     //setDeliverySameAsBillingCheckbox(cart.deliverySameAsBilling)
@@ -62,6 +67,7 @@ const BillingAddressForm = ({navigation}) => {
     defaultValues.deliveryAddress_streetAddress = cart.deliveryAddress.streetAddress;
     defaultValues.deliveryAddress_postalCode = cart.deliveryAddress.postalCode;
     defaultValues.deliveryAddress_city = cart.deliveryAddress.city;
+    defaultValues.deliveryAddress_country = cart.deliveryAddress.country;
     defaultValues.deliveryAddress_phonenumber = cart.deliveryAddress.phonenumber;
     defaultValues.deliveryAddress_email = cart.deliveryAddress.email;
 
@@ -276,12 +282,12 @@ const BillingAddressForm = ({navigation}) => {
 
             <div className="inputwrapper required">
             <label className="label" htmlFor="country" data-optional="(Optional)">{t("country")}</label>
-              <select name="delivery_country" defaultValue="FI" id="delivery_country" className={customerInfoErrors.country ? 'invalid form_input' : 'form_input'}  {...register("delivery_country",{ required: true })}>
+              <select name="deliveryAddress_country" defaultValue="FI" id="deliveryAddress_country" className={customerInfoErrors.country ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_country",{ required: true })}>
                 <option value="">Valitse</option>
                 <option value="FI">Suomi / Finland</option>
               </select>
-              <span id="customerInformation_delivery_country" className='input-info invalid' role="alert">
-                {customerInfoErrors.delivery_country && customerInfoErrors.delivery_country?.type === "required" && (
+              <span id="customerInformation_deliveryAddress_country" className='input-info invalid' role="alert">
+                {customerInfoErrors.deliveryAddress_country && customerInfoErrors.deliveryAddress_country?.type === "required" && (
                   "Maa on pakollinen kenttä"
                 )}
                 </span>

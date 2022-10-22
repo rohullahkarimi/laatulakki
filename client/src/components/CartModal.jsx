@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { mobile, tablet} from "../responsive";
 import { useTranslation } from "react-i18next";
+import { useState } from 'react';
 
 
 const PlatformButton = styled.button`
@@ -78,6 +79,10 @@ const ProductQuantity = styled.span`
   font-size: 16px;
 `;
 
+const EmptyCartText = styled.div`
+  text-align: center;
+  font-size: 20px;
+`;
 
 const PriceDetail = styled.div`
   flex: 1;
@@ -106,7 +111,60 @@ const CartModal = (props) => {
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate()
   const { t } = useTranslation();
+  const [modalShow, setModalShow] = useState(false);
+ 
 
+  
+ 
+  function CartNotEmpty() {
+    return (
+      <>
+      {cart.products.map((product) => (
+        <Product key={product._id}>
+          <ProductDetail>
+            <Image src={product.img[0].thumbnail} />
+            <Details>
+              <ProductName>
+                <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
+              </ProductName>
+              <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>
+              <ProductSize>
+                <b>{t("size")}:</b> {product.size}
+              </ProductSize>
+              <ProductQuantity>
+                <b>{t("quantity")}:</b> {product.quantity}
+              </ProductQuantity>
+              <ProductPriceText>
+                <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
+              </ProductPriceText>
+            </Details>
+          </ProductDetail>
+          <PriceDetail>
+            <ProductPrice>
+              {(product.price * product.quantity).toFixed(2)} €
+            </ProductPrice>
+          </PriceDetail>
+          <Hr/>
+        </Product>
+        ))}
+        </>
+    )
+  }
+  
+  function CartEmpty() {
+    return <EmptyCartText>{t("yourCartIsEmpty")}</EmptyCartText>;
+  }
+
+  function HandleCartEmpty() {
+    if(cart.quantity === 0){
+      //setModalShow(false)
+      return <CartEmpty />;
+    }else{
+      setModalShow(true)
+      return <CartNotEmpty />;
+    }
+  }
+  
   return (
     <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -118,35 +176,8 @@ const CartModal = (props) => {
         <Container>
           <Row>
             <Col xs={12} md={12}>
-            <div >
-              {cart.products.map((product) => (
-              <Product key={product._id}>
-                <ProductDetail>
-                  <Image src={product.img[0].thumbnail} />
-                  <Details>
-                    <ProductName>
-                      <b>Product:</b> {product.title?.replace("<br>"," / ")}
-                    </ProductName>
-                    <ProductColor><b>Color:</b> {product.color}</ProductColor>
-                    <ProductSize>
-                      <b>Size:</b> {product.size}
-                    </ProductSize>
-                    <ProductQuantity>
-                      <b>Kpl:</b> {product.quantity}
-                    </ProductQuantity>
-                    <ProductPriceText>
-                      <b>Price per piece:</b> {product.price.toFixed(2)} €
-                    </ProductPriceText>
-                  </Details>
-                </ProductDetail>
-                <PriceDetail>
-                  <ProductPrice>
-                    {(product.price * product.quantity).toFixed(2)} €
-                  </ProductPrice>
-                </PriceDetail>
-                <Hr/>
-              </Product>
-              ))}
+            <div>
+              <HandleCartEmpty setModalShow={modalShow}/>
             </div>
             </Col>
           </Row>
@@ -154,7 +185,7 @@ const CartModal = (props) => {
       </Modal.Body>
       <Modal.Footer>
         <PlatformButton onClick={props.onHide}>{t("continue_shopping")}</PlatformButton>
-        <PlatformButton type="filled" onClick={()=>navigate("/cart")}>{t("checkout")}</PlatformButton>
+        { modalShow && <PlatformButton type="filled" onClick={()=>navigate("/cart")}>{t("checkout")}</PlatformButton>}
       </Modal.Footer>
     </Modal>
   );

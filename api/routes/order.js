@@ -2,11 +2,23 @@ const Order = require("../models/Order");
 const { verifyTokenAndAdmin, verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
 const router = require("express").Router();
 const axios = require('axios');
-
+require('dotenv').config()
+const mongoose = require("mongoose");
 const {CheckoutClient} = require('checkout-finland/lib/Checkout');
-const CHECKOUT_MERCHANT_ID = '375917'
-const CHECKOUT_SECRET = 'SAIPPUAKAUPPIAS'
+const CHECKOUT_MERCHANT_ID = process.env.PAYTRAIL_MERCHANT_ID
+const CHECKOUT_SECRET = process.env.PAYTRAIL_SECRET
 const client = new CheckoutClient(CHECKOUT_MERCHANT_ID, CHECKOUT_SECRET)
+
+
+// GET ORDER Full data
+router.get("/getOrder/find/:id", async (req, res) => {
+    try {
+        const order = await Order.findById(req.params.id);
+        res.status(200).json(order);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 // UPDATE Checkout order transaction ID
 router.put("/checkoutOrder/:id", async (req, res) => {
@@ -40,7 +52,7 @@ router.post("/", async (req, res)=>{
     res.set('Access-Control-Allow-Origin', '*');
     res.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT');
 
-    console.log(req.body.cart)
+    //console.log(req.body.cart)
     // new order Data
     const newOrder = new Order(req.body.cart);
 
@@ -70,7 +82,7 @@ const saveTransactionId = async (getSavedOrderId, savedOrder) => {
 
     savedOrder.products?.map((key, index) =>{
     var productPrice = parseFloat(key.price).toFixed(2);
-    console.log(productPrice)
+    //console.log(productPrice)
     const paytrailItem = {
         unitPrice: parseInt((productPrice * 100).toFixed(0)), // number
         units: key.quantity,     // number
@@ -80,10 +92,10 @@ const saveTransactionId = async (getSavedOrderId, savedOrder) => {
     paytrailProduct.push(paytrailItem)
     });
 
-    var totalPriceIncludeDelivery = savedOrder.total;
+    var totalPriceIncludeDelivery = (savedOrder.deliveryPrice + savedOrder.total).toFixed(2);
+
     // for delivery 
     if(savedOrder.deliveryPrice !== 0){
-        totalPriceIncludeDelivery += savedOrder.deliveryPrice;
         const paytrailItem = {
             unitPrice: parseInt((savedOrder.deliveryPrice * 100).toFixed(0)), // number
             units: 1,     // number
@@ -120,19 +132,27 @@ const saveTransactionId = async (getSavedOrderId, savedOrder) => {
     };
 
 
-    // TEST 1
-    console.log(payment)
+    // TEST: 1
+    //console.log(payment)
     //console.log(savedOrder)
 
 
 
     // Get transaction ID
     try {
-        const {transactionId} = await client.createPayment(payment);
+        const createPayment = await client.createPayment(payment);
+        //console.log(createPayment);
+        
+        const {transactionId} = createPayment;
         const transactionIdData ={
             "transactionId": transactionId
         }
-        console.log(transactionIdData)
+
+        // TEST: 2
+        //console.log(transactionIdData)
+
+        // update order total, that include delivery price
+        saveDeliveryPrice(orderId, totalPriceIncludeDelivery)
 
         // Save transaction ID
         try {
@@ -141,8 +161,7 @@ const saveTransactionId = async (getSavedOrderId, savedOrder) => {
           res.status(500).json(error);
         }
     }catch(err){
-        console.log(err)
-        return err
+        return err.message;
     }
 };
 
@@ -183,6 +202,25 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+
+async function saveDeliveryPrice(orderId, totalPriceIncludeDelivery){
+    mongoose
+    .connect(process.env.MONGO_URL)
+    .then(()=>{
+      const Order = require("../models/Order");
+      const filter = { _id: orderId };
+      Order.findByIdAndUpdate(filter,{"total": totalPriceIncludeDelivery}, function(err, result){
+        if(err){
+          console.log(err)
+        }
+      })
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+}
+
 
 // GET ALL
 router.get("/", verifyTokenAndAdmin, async (req, res) => {

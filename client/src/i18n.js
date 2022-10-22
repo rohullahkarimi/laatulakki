@@ -22,8 +22,8 @@ i18n
       fi: {translation: translationFI},
       se: {translation: translationSE}
     },
-    //lng: "fi", 
     fallbackLng: "fi",
+    lng: "fi", 
     detection: DETECTION_OPTIONS,
     interpolation: { escapeValue: false }
   });

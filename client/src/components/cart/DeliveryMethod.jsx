@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from 'react-hook-form';
 import {  saveDeliveryMethod } from '../../redux/cartRedux';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 
 
@@ -12,7 +13,9 @@ const DeliveryMethod = ({navigation}) => {
   const { register, handleSubmit, formState: { errors: customerPaymentMethodError } } = useForm();
   const dispatch = useDispatch()
   
-
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   
   const handlePaymentMethod = (data) => {
     const deliveryMethodConst = {
@@ -23,8 +26,8 @@ const DeliveryMethod = ({navigation}) => {
     dispatch(saveDeliveryMethod(deliveryMethodConst));
     navigation.next()
   }
-  console.log(customerPaymentMethodError)
-  console.log(cart)
+  //console.log(customerPaymentMethodError)
+  //console.log(cart)
 
   //  {JSON.stringify(cart, null, 2)}
   return (

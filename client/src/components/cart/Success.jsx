@@ -6,6 +6,7 @@ import emailjs from '@emailjs/browser';
 import {  emptyCart } from '../../redux/cartRedux';
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 
 
@@ -48,32 +49,37 @@ const Success = () => {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const checkoutStatus = searchParams.get("checkout-status")
+  const orderId = searchParams.get("checkout-reference")
   const dispatch = useDispatch()
+  const axiosInstance = axios.create({
+    baseURL: process.env.REACT_APP_API_URL //process.env.REACT_APP_API_URL,
+  });
+
+  const sendMail = async (orderId) => {
+    if(!orderId){
+      alert("Order id is not defined yet.")
+      return 
+    }
+    try {
+      await axiosInstance.get("/sendMail/"+orderId)
+      .then((res) => {
+        if(res.data.status !== "ok"){
+          // redirect user to cancel page
+          
+        }else if(res.data.status !== "ok"){
+          console.log("order paid and email send")
+        }
+      });
+    } catch(error) {
+      console.log('Error', error.message);
+    }
+  }
 
   if(checkoutStatus === "ok"){
-    // send user an email
-    console.log("ok")
-      //console.log(data);
-      const data = {
-        from_name: "LaatuLakki",
-        to_email: cart.billingAddress.email
-      }
-      if(cart.billingAddress.email){
-        emailjs.send(process.env.REACT_APP_EMAILJS_SERVICE_ID, "template_23z3qgm", data, process.env.REACT_APP_EMAILJS_API_KEY)
-        .then((result) => {
-            console.log(result.text);
-            dispatch(emptyCart());
-        }, (error) => {
-            console.log(error.text);
-        });
-      }else{
-        console.log("there is not email in cart")
-      }
-    // change order paid to true
-    console.log("paid false")
-
+    // call to send mail function 
+    sendMail(orderId)
   }
- 
+  
   return (
     <InfoContainer>
       <IconHolder>

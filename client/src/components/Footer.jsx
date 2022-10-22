@@ -130,11 +130,11 @@ const Footer = () => {
             </SocialContainer>
         </Left>
         <Center>
-            <Title>Verkkokauppa</Title>
+            <Title>{t("onlineStore")}</Title>
             <List>
-                <ListItem onClick={goToTermsPage}>Käyttöehdot</ListItem>
-                <ListItem onClick={goToRegistrationStatement}>Rekisteriseloste</ListItem>
-                <ListItem onClick={goToChange_and_refund}>Vaihto ja palautus</ListItem>
+                <ListItem onClick={goToTermsPage}>{t("footer1")}</ListItem>
+                <ListItem onClick={goToRegistrationStatement}>{t("footer2")}</ListItem>
+                <ListItem onClick={goToChange_and_refund}>{t("footer3")}</ListItem>
             </List>
         </Center>
         <Right>

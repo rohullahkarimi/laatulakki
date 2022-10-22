@@ -13,7 +13,6 @@ const cartSlice = createSlice({
           country: "",
           phonenumber:"",
           email:"",
-          comment: ""
         },
         deliveryAddress:{
           firstname:"",
@@ -30,6 +29,7 @@ const cartSlice = createSlice({
         deliverySameAsBilling: false,
         quantity:0,
         total:0,
+        message: ""
     },
     reducers:{
         saveCustomerInformation: (state, action)=>{
@@ -42,7 +42,7 @@ const cartSlice = createSlice({
             state.billingAddress['country'] = action.payload.country;
             state.billingAddress['phonenumber'] = action.payload.phonenumber;
             state.billingAddress['email'] = action.payload.email;
-            state.billingAddress['comment'] = action.payload.comment;
+            state.message = action.payload.comment;
 
             // save deliverySameAsBilling
             state.deliverySameAsBilling = action.payload.deliverySameAsBilling;
@@ -61,7 +61,7 @@ const cartSlice = createSlice({
           // save payment method
           state.deliveryMethod = action.payload.deliveryMethod;
           state.deliveryPrice = action.payload.deliveryPrice;
-          //state.total += 8.00; //action.payload.deliveryPrice;
+          //state.total += action.payload.deliveryPrice;
         },
         addProduct: (state, action)=>{
             const itemInCart = state.products.find((item) => item._id === action.payload._id);
@@ -115,7 +115,6 @@ const cartSlice = createSlice({
             country: "",
             phonenumber:"",
             email:"",
-            comment: ""
           };
           state.deliveryAddress = {
             firstname:"",
@@ -132,6 +131,7 @@ const cartSlice = createSlice({
           state.deliverySameAsBilling = false;
           state.quantity = 0;
           state.total = 0;
+          state.message = "";
         },
     },
 });

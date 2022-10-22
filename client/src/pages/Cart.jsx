@@ -148,7 +148,7 @@ const Cart = () => {
   ];
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { Component } = step;
-  console.log(step.id)
+  //console.log(step.id)
 
   const props = { navigation };
 
@@ -163,7 +163,7 @@ const Cart = () => {
 
 
   const CartBackPageNavigator =  () => {
-    console.log(step.id)
+    //console.log(step.id)
     if(step.id === 'cart_product'){
       navigate('/')
     }else if(step.id === 'cart_customer_information'){
@@ -178,7 +178,7 @@ const Cart = () => {
   }
 
   const CartNextPageNavigator =  () => {
-    console.log(step.id)
+    //console.log(step.id)
     if(step.id === 'cart_product'){
       navigation.next()
     }else if(step.id === 'cart_review'){
@@ -209,8 +209,10 @@ const Cart = () => {
     var cartTotal = cart.total
     if(cart.deliveryPrice > 0){
       cartTotal += cart.deliveryPrice
+      
     }
 
+    console.log(cart)
     return (
       <div>
         <Navbar />
