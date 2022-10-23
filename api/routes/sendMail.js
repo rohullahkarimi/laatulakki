@@ -94,6 +94,8 @@ function sendOrderEmail(orderId){
     var totalPriceIncludeDelivery_taxLess = (totalPriceIncludeDelivery / 1.24).toFixed(2);
     var totalPriceIncludeDelivery_tax = (totalPriceIncludeDelivery - totalPriceIncludeDelivery_taxLess).toFixed(2);
 
+    var receiptLink = "https://tester.laatulakki.fi/receipt?orderId="+orderId;
+
   
     // data for email
     const replacements = {
@@ -101,6 +103,8 @@ function sendOrderEmail(orderId){
       deliveryAddress: response.deliveryAddress, 
       products: productsArray,
 
+      receiptLink: receiptLink,
+      
       delivery_tax: delivery_tax,
       delivery_taxLess: delivery_taxLess,
       deliveryPrice: response.deliveryPrice.toFixed(2),

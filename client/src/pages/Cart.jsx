@@ -153,11 +153,9 @@ const Cart = () => {
   const props = { navigation };
 
   const handleEmptyCart = (() => {
-    console.log("iam here")
     setCartItems(cartItems - 1);
     dispatch(emptyCart());
     cartItems === 0 && navigate("/") 
-    console.log(cartItems)
   });
 
 

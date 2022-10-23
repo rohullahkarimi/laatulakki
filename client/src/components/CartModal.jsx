@@ -111,7 +111,6 @@ const CartModal = (props) => {
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate()
   const { t } = useTranslation();
-  const [modalShow, setModalShow] = useState(false);
  
 
   
@@ -119,54 +118,7 @@ const CartModal = (props) => {
   function CartNotEmpty() {
     return (
       <>
-      {cart.products.map((product) => (
-        <Product key={product._id}>
-          <ProductDetail>
-            <Image src={product.img[0].thumbnail} />
-            <Details>
-              <ProductName>
-                <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
-              </ProductName>
-              <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>
-              <ProductSize>
-                <b>{t("size")}:</b> {product.size}
-              </ProductSize>
-              <ProductQuantity>
-                <b>{t("quantity")}:</b> {product.quantity}
-              </ProductQuantity>
-              <ProductPriceText>
-                <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
-              </ProductPriceText>
-            </Details>
-          </ProductDetail>
-          <PriceDetail>
-            <ProductPrice>
-              {(product.price * product.quantity).toFixed(2)} €
-            </ProductPrice>
-          </PriceDetail>
-          <Hr/>
-        </Product>
-        ))}
-        </>
-    )
-  }
-  
-  function CartEmpty() {
-    return <EmptyCartText>{t("yourCartIsEmpty")}</EmptyCartText>;
-  }
-
-  function HandleCartEmpty() {
-    if(cart.quantity === 0){
-      //setModalShow(false)
-      return <CartEmpty />;
-    }else{
-      setModalShow(true)
-      return <CartNotEmpty />;
-    }
-  }
-  
-  return (
-    <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+      <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
         {t("cart")}
@@ -177,17 +129,83 @@ const CartModal = (props) => {
           <Row>
             <Col xs={12} md={12}>
             <div>
-              <HandleCartEmpty setModalShow={modalShow}/>
-            </div>
+            {cart.products.map((product) => (
+              <Product key={product._id}>
+                <ProductDetail>
+                  <Image src={product.img} />
+                  <Details>
+                    <ProductName>
+                      <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
+                    </ProductName>
+                    <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>
+                    <ProductSize>
+                      <b>{t("size")}:</b> {product.size}
+                    </ProductSize>
+                    <ProductQuantity>
+                      <b>{t("quantity")}:</b> {product.quantity}
+                    </ProductQuantity>
+                    <ProductPriceText>
+                      <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
+                    </ProductPriceText>
+                  </Details>
+                </ProductDetail>
+                <PriceDetail>
+                  <ProductPrice>
+                    {(product.price * product.quantity).toFixed(2)} €
+                  </ProductPrice>
+                </PriceDetail>
+                <Hr/>
+              </Product>
+              ))}
+              </div>
             </Col>
           </Row>
         </Container>
       </Modal.Body>
       <Modal.Footer>
         <PlatformButton onClick={props.onHide}>{t("continue_shopping")}</PlatformButton>
-        { modalShow && <PlatformButton type="filled" onClick={()=>navigate("/cart")}>{t("checkout")}</PlatformButton>}
+        <PlatformButton type="filled" onClick={()=>navigate("/cart")}>{t("checkout")}</PlatformButton>
       </Modal.Footer>
     </Modal>
+    </>
+    )
+  }
+  
+  function CartEmpty() {
+    return (
+      <>
+        <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+          {t("cart")}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="show-grid">
+          <Container>
+            <Row>
+              <Col xs={12} md={12}>
+              <div>
+              <EmptyCartText>{t("yourCartIsEmpty")}</EmptyCartText>
+              </div>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>
+        <Modal.Footer>
+          <PlatformButton onClick={props.onHide}>{t("continue_shopping")}</PlatformButton>
+        </Modal.Footer>
+        </Modal>
+      </>
+    )
+  }
+  
+  return (
+    <>
+    {cart.quantity === 0 
+      ? <CartEmpty/>
+      : <CartNotEmpty/>
+    }
+    </>
   );
 }
 

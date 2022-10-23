@@ -84,6 +84,11 @@
     "orderCancelled": "Pay misslyckades!",
     "sorryMessage": "Vi har sparat produkterna i din varukorg. Du kan fortfarande göra betalningen med knappen nedan.",
     "yourCartIsEmpty": "Din varukorg är tom.",
+    "order_extra_info": "Beställ extra info",
+    "vat": "Moms",
+    "tax": "Skatt",
+    "tax_less": "Skatt mindre",
+    "vatZero": "Skattefritt belopp moms 0%",
 
     "changeAndRefund.header": "ÄNDRA OCH ÅTERBETALNING",
     "changeAndRefund.1": "Från den allmänna onlinebutiken",

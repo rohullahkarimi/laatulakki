@@ -80,6 +80,10 @@ const Success = () => {
     sendMail(orderId)
   }
   
+  const navigateToReceipt = () =>{
+    window.location.href= "https://tester.laatulakki.fi/receipt?orderId="+orderId;
+  }
+
   return (
     <InfoContainer>
       <IconHolder>
@@ -91,7 +95,7 @@ const Success = () => {
       
       <Title>{t("thanksForYourOrder")}</Title>
       <Desc>{t("youCanDownloadReceipt")}</Desc>
-      <Button onClick={()=> alert("Tämä ominaisuus on tulossa...")} type="filled">{t("receipt")}</Button>
+      <Button onClick={navigateToReceipt} type="filled">{t("receipt")}</Button>
     </InfoContainer>
   );
 };

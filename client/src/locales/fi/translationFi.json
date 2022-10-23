@@ -86,6 +86,11 @@
     "orderCancelled": "Maksu epäonnistui!",
     "sorryMessage": "Olemme tallentaneet korisi tuotteet. Voit edelleen suorittaa maksun alla olevasta painkikkeesta.",
     "yourCartIsEmpty": "Ostoskorisi on tyhjä.",
+    "order_extra_info": "Tilauksen lisätiedot",
+    "vat": "ALV",
+    "tax": "Vero",
+    "tax_less": "Veroton",
+    "vatZero": "Veroton summa ALV 0%",
 
     
 

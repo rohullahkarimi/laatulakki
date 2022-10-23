@@ -158,7 +158,7 @@ const CartProduct = () => {
       {cart.products.map((product) => (
       <Product key={product._id}>
         <ProductDetail>
-          <Image src={product.img[0].thumbnail} />
+          <Image src={product.img} />
           <Details>
             <ProductName>
               <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}

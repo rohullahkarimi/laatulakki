@@ -84,6 +84,11 @@
     "orderCancelled": "Pay failed!",
     "sorryMessage": "We have saved the products in your basket. You can still make the payment using the button below.",
     "yourCartIsEmpty": "Your cart is empty.",
+    "order_extra_info": "Order extra info",
+    "vat": "VAT",
+    "tax": "Tax",
+    "tax_less": "Tax less",
+    "vatZero": "Tax-free amount VAT 0%",
 
     "changeAndRefund.header": "CHANGE AND REFUND",
     "changeAndRefund.1": "From the general online store",

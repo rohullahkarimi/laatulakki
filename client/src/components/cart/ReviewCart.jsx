@@ -314,7 +314,7 @@ const ReviewForm = () => {
       <CommentContainer>
         <Comment>
           <DetailsInfo>
-            {cart.message && <Key>Tilauksen lisätiedot</Key>}
+            {cart.message && <Key>{t("order_extra_info")}</Key>}
             {cart.message && <Value>{cart.message}</Value>}
           </DetailsInfo>
         </Comment>
@@ -325,7 +325,7 @@ const ReviewForm = () => {
         {cart.products.map((product) => (
         <Product key={product._id}>
           <ProductDetail>
-            <Image src={product.img[0].thumbnail} />
+            <Image src={product.img} />
             <Details>
               <ProductName>
                 <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
