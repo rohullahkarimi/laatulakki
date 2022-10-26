@@ -202,7 +202,7 @@ const Cart = () => {
     }
 
 
-    const deliveryPrice = parseInt(cart.deliveryPrice)
+    const deliveryPrice = cart.deliveryPrice
     var cartSubtotal = cart.total
     var cartTotal = cart.total
     if(cart.deliveryPrice > 0){

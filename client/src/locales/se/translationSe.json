@@ -1,4 +1,5 @@
 {
+    "mandatory": "är ett obligatoriskt fält",
     "buy": "Köpa",
     "homepage": "Hemsida",
     "signIn": "Logga in",
@@ -74,6 +75,7 @@
     "pickup": "Pickup",
     "notInUse": "Används inte",
     "ordererInfo": "Prenumerantinformation",
+    "orderer_desc": "Fyll i beställarens uppgifter. Du kan lämna mottagarens information tom om beställaren är samma som mottagaren.",
     "receiverInfo": "Detaljer om Vatanoin",
     "ihaveRead": "Jag är bekant med och accepterar",
     "deliveryterms": "Leveransvillkor",

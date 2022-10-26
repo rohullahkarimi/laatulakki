@@ -16,6 +16,9 @@ import '../../node_modules/react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 import $ from "jquery"
 import Products from "../components/Products"
+import { hotjar } from 'react-hotjar';
+
+
 
 
 const Container = styled.div`
@@ -52,6 +55,15 @@ const Title = styled.h1`
 const Desc = styled.p`
     margin: 20px 0px;
 `
+
+const DetailsPartContainer = styled.div`
+    margin-bottom: 10px;
+`
+
+const DetailsPart = styled.p`
+    margin: 0px 0px;
+`
+
 
 const Price = styled.span`
     font-weight: 100;
@@ -170,6 +182,9 @@ const Product = () => {
   const dispatch = useDispatch()
   const [modalShow, setModalShow] = useState(false);
 
+  useEffect(() => {
+    hotjar.initialize(3220042, 6)
+  }, [])
 
   useEffect(() =>{
       const getProduct = async ()=> {
@@ -231,6 +246,7 @@ const Product = () => {
     }else if(product.categories?.includes('lyyra')){
         sizeUnit = "mm"
     }
+
     return (
     <Container>
         <Navbar/>
@@ -247,7 +263,17 @@ const Product = () => {
                 })}
                 <Desc>{product.desc}</Desc>
 
+                <DetailsPartContainer>
+                    {product.details?.length > 0 && <h4>Yksityiskohdat</h4>}
+                    {product.details?.map((detailsName, j) => {
+                        return(<DetailsPart key={j}><b>{detailsName.name}</b>: {detailsName.desc}</DetailsPart>)
+                    })}
+                </DetailsPartContainer>
+               
+
                 {instructionElements}
+
+              
                 
                 {product.price && <Price>{product?.price.toFixed(2)} €</Price>}
                 <FilterContainer>
@@ -286,7 +312,7 @@ const Product = () => {
         </Wrapper>
 
         <YouMightLike>{t("youMightLike")}</YouMightLike>
-        <Products/>
+        <Products selectedProduct={id}/>
         <Footer/>
         <CartModal show={modalShow} onHide={() => setModalShow(false)} />
     </Container>

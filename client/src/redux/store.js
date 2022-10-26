@@ -12,11 +12,19 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import createMigrate from "redux-persist/es/createMigrate";
+
+const migrations = {
+  1: ({_persist}) => {
+    return {_persist}; // reset all state, except version
+  }
+}
 
 const persistConfig = {
   key: "root",
-  version: 1,
+  version: 2,
   storage,
+  migrate: createMigrate(migrations),
 };
 
 const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });

@@ -8,7 +8,7 @@ const {CheckoutClient} = require('checkout-finland/lib/Checkout');
 const CHECKOUT_MERCHANT_ID = process.env.PAYTRAIL_MERCHANT_ID
 const CHECKOUT_SECRET = process.env.PAYTRAIL_SECRET
 const client = new CheckoutClient(CHECKOUT_MERCHANT_ID, CHECKOUT_SECRET)
-
+require("../components/emailSender.js")();
 
 // GET ORDER Full data
 router.get("/getOrder/find/:id", async (req, res) => {
@@ -158,9 +158,11 @@ const saveTransactionId = async (getSavedOrderId, savedOrder) => {
         try {
           await axios.put(process.env.MAIN_API_URL+"/orders/checkoutOrder/"+orderId,  transactionIdData);
         } catch(error) {
+          sendErrorToAdmin(error)
           res.status(500).json(error);
         }
     }catch(err){
+        sendErrorToAdmin(err.message)
         return err.message;
     }
 };

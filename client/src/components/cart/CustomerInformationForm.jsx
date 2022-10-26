@@ -108,8 +108,8 @@ const BillingAddressForm = ({navigation}) => {
         <form id="customerInformation" name="customerInformation" onSubmit={handleSubmit(handleCustomerInformationSubmit)}>
           
           <header className="header">
-            <h2 className="heading">Tilaajan tiedot</h2>
-            <p>Täyttää tilaajan tiedot. Voit jätä vastaannottajan tiedot täyttämättä jos tiaalaja on sama kuin vastaan dottaja.</p>
+            <h2 className="heading">{t('ordererInfo')}</h2>
+            <p>{t('orderer_desc')}</p>
           </header>
 
 
@@ -118,7 +118,7 @@ const BillingAddressForm = ({navigation}) => {
             <input type="text" name="firstName"  id="firstname" className={customerInfoErrors.firstName ? 'invalid form_input' : 'form_input'}   {...register("firstName",{ required: true })}/>
             <span id="customerInformation_firstname" className='input-info invalid' role="alert">
             {customerInfoErrors.firstName && customerInfoErrors.firstName?.type === "required" && (
-              "Etunimi on pakollinen kenttä"
+              t('firstname')+' '+t('mandatory')
             )}
             </span>
           </div>
@@ -128,7 +128,7 @@ const BillingAddressForm = ({navigation}) => {
             <input type="text" name="lastName"  id="lastName" className={customerInfoErrors.lastName ? 'invalid form_input' : 'form_input'}  {...register("lastName",{ required: true })}/>
             <span id="customerInformation_lastname" className='input-info invalid' role="alert">
             {customerInfoErrors.lastName && customerInfoErrors.lastName?.type === "required" && (
-              "Sukunimi on pakollinen kenttä"
+              t('lastname')+' '+t("mandatory")
             )}
             </span>
           </div>
@@ -139,7 +139,7 @@ const BillingAddressForm = ({navigation}) => {
             <input type="text" name="streetAddress"  id="streetAddress" className={customerInfoErrors.streetAddress ? 'invalid form_input' : 'form_input'}  {...register("streetAddress",{ required: true })}/>
             <span id="customerInformation_streetAddress" className='input-info invalid' role="alert">
             {customerInfoErrors.streetAddress && customerInfoErrors.streetAddress?.type === "required" && (
-              "Katuosoite on pakollinen kenttä"
+              t('streetAddress')+' '+t("mandatory")
             )}
             </span>
           </div>
@@ -149,7 +149,7 @@ const BillingAddressForm = ({navigation}) => {
             <input type="text" name="postalCode"  id="postalCode" className={customerInfoErrors.postalCode ? 'invalid form_input' : 'form_input'}  {...register("postalCode",{ required: true })}/>
             <span id="customerInformation_postalCode" className='input-info invalid' role="alert">
             {customerInfoErrors.postalCode && customerInfoErrors.postalCode?.type === "required" && (
-              "Postinumero on pakollinen kenttä"
+              t('postalCode')+' '+t("mandatory")
             )}
             </span>
           </div>
@@ -159,7 +159,7 @@ const BillingAddressForm = ({navigation}) => {
             <input type="text" name="city"  id="city" className={customerInfoErrors.city ? 'invalid form_input' : 'form_input'}  {...register("city",{ required: true })}/>
             <span id="customerInformation_city" className='input-info invalid' role="alert">
             {customerInfoErrors.city && customerInfoErrors.city?.type === "required" && (
-              "Postitoimipaikka on pakollinen kenttä"
+              t('city')+' '+t("mandatory")
             )}
             </span>
           </div>
@@ -172,7 +172,7 @@ const BillingAddressForm = ({navigation}) => {
             </select>
             <span id="customerInformation_country" className='input-info invalid' role="alert">
               {customerInfoErrors.country && customerInfoErrors.country?.type === "required" && (
-                "Maa on pakollinen kenttä"
+                t('country')+' '+t("mandatory")
               )}
             </span>
           </div>
@@ -182,7 +182,7 @@ const BillingAddressForm = ({navigation}) => {
             <input type="text" name="phonenumber"  id="phonenumber" className={customerInfoErrors.phonenumber ? 'invalid form_input' : 'form_input'}  {...register("phonenumber",{ required: true })}/>
             <span id="customerInformation_phonenumber" className='input-info invalid' role="alert">
             {customerInfoErrors.phonenumber && customerInfoErrors.phonenumber?.type === "required" && (
-              "Puhelinnumero on pakollinen kenttä"
+              t('phonenumber')+' '+t("mandatory")
             )}
             </span>
           </div>
@@ -192,7 +192,7 @@ const BillingAddressForm = ({navigation}) => {
             <input type="email" name="email"  id="email" className={customerInfoErrors.email ? 'invalid form_input' : 'form_input'}  {...register("email",{ required: true })}/>
             <span id="customerInformation_email" className='input-info invalid' role="alert">
             {customerInfoErrors.email && customerInfoErrors.email?.type === "required" && (
-              "Sähköpostiosoite on pakollinen kenttä"
+              t('email')+' '+t("mandatory")
             )}
             </span>
           </div>
@@ -203,7 +203,7 @@ const BillingAddressForm = ({navigation}) => {
             <textarea type="text" name="comment"  id="comment" className={customerInfoErrors.comment ? 'invalid form_input' : 'form_input'}  {...register("comment",{ required: false })}/>
             <span id="customerInformation_comment" className='input-info invalid' role="alert">
             {customerInfoErrors.comment && customerInfoErrors.comment?.type === "required" && (
-              "Komentit on pakollinen kenttä"
+              t('order_extra_info')+' '+t("mandatory")
             )}
             </span>
           </div>
@@ -235,7 +235,7 @@ const BillingAddressForm = ({navigation}) => {
               <input type="text" name="deliveryAddress_firstName"  id="deliveryAddress_firstName" className={customerInfoErrors.deliveryAddress_firstName ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_firstName",{ required: true })}/>
               <span id="customerInformation_lastname" className='input-info invalid' role="alert">
               {customerInfoErrors.deliveryAddress_firstName && customerInfoErrors.deliveryAddress_firstName?.type === "required" && (
-                "Etunimi on pakollinen kenttä"
+                t('firstname')+' '+t('mandatory')
               )}
               </span>
             </div>
@@ -245,7 +245,7 @@ const BillingAddressForm = ({navigation}) => {
               <input type="text" name="deliveryAddress_lastName"  id="deliveryAddress_lastName" className={customerInfoErrors.deliveryAddress_lastName ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_lastName",{ required: true })}/>
               <span id="customerInformation_deliveryAddress_lastName" className='input-info invalid' role="alert">
               {customerInfoErrors.deliveryAddress_lastName && customerInfoErrors.deliveryAddress_lastName?.type === "required" && (
-                "Sukunimi on pakollinen kenttä"
+                t('lastname')+' '+t('mandatory')
               )}
               </span>
             </div>
@@ -255,7 +255,7 @@ const BillingAddressForm = ({navigation}) => {
               <input type="text" name="deliveryAddress_streetAddress"  id="deliveryAddress_streetAddress" className={customerInfoErrors.deliveryAddress_streetAddress ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_streetAddress",{ required: true })}/>
               <span id="customerInformation_deliveryAddress_streetAddress" className='input-info invalid' role="alert">
               {customerInfoErrors.deliveryAddress_streetAddress && customerInfoErrors.deliveryAddress_streetAddress?.type === "required" && (
-                "Katuosoite on pakollinen kenttä"
+                t('streetAddress')+' '+t('mandatory')
               )}
               </span>
             </div>
@@ -265,7 +265,7 @@ const BillingAddressForm = ({navigation}) => {
               <input type="text" name="deliveryAddress_postalCode"  id="deliveryAddress_postalCode" className={customerInfoErrors.deliveryAddress_postalCode ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_postalCode",{ required: true })}/>
               <span id="customerInformation_deliveryAddress_postalCode" className='input-info invalid' role="alert">
               {customerInfoErrors.deliveryAddress_postalCode && customerInfoErrors.deliveryAddress_postalCode?.type === "required" && (
-                "Postinumero on pakollinen kenttä"
+                t('postalCode')+' '+t('mandatory')
               )}
               </span>
             </div>
@@ -275,7 +275,7 @@ const BillingAddressForm = ({navigation}) => {
               <input type="text" name="deliveryAddress_city"  id="deliveryAddress_city" className={customerInfoErrors.deliveryAddress_city ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_city",{ required: true })}/>
               <span id="customerInformation_deliveryAddress_city" className='input-info invalid' role="alert">
               {customerInfoErrors.deliveryAddress_city && customerInfoErrors.deliveryAddress_city?.type === "required" && (
-                "Postitoimipaikka on pakollinen kenttä"
+                t('city')+' '+t('mandatory')
               )}
               </span>
             </div>
@@ -288,7 +288,7 @@ const BillingAddressForm = ({navigation}) => {
               </select>
               <span id="customerInformation_deliveryAddress_country" className='input-info invalid' role="alert">
                 {customerInfoErrors.deliveryAddress_country && customerInfoErrors.deliveryAddress_country?.type === "required" && (
-                  "Maa on pakollinen kenttä"
+                 t('country')+' '+t('mandatory')
                 )}
                 </span>
             </div>
@@ -298,7 +298,7 @@ const BillingAddressForm = ({navigation}) => {
               <input type="text" name="deliveryAddress_phonenumber"  id="deliveryAddress_phonenumber" className={customerInfoErrors.deliveryAddress_phonenumber ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_phonenumber",{ required: false })}/>
               <span id="customerInformation_deliveryAddress_phonenumber" className='input-info invalid' role="alert">
               {customerInfoErrors.deliveryAddress_phonenumber && customerInfoErrors.deliveryAddress_phonenumber?.type === "required" && (
-                "Puhelinnumero on pakollinen kenttä"
+                t('phonenumber')+' '+t('mandatory')
               )}
               </span>
             </div>
@@ -308,7 +308,7 @@ const BillingAddressForm = ({navigation}) => {
               <input type="text" name="deliveryAddress_email"  id="deliveryAddress_email" className={customerInfoErrors.deliveryAddress_email ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_email",{ required: false })}/>
               <span id="customerInformation_deliveryAddress_email" className='input-info invalid' role="alert">
               {customerInfoErrors.deliveryAddress_email && customerInfoErrors.deliveryAddress_email?.type === "required" && (
-                "Sähköpostiosoite on pakollinen kenttä"
+                t('email')+' '+t('mandatory')
               )}
               </span>
             </div>

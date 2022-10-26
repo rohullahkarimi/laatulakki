@@ -37,7 +37,7 @@ const DeliveryMethod = ({navigation}) => {
           <h2 className="heading">Valitse toimitustapaa</h2>
           <p>Meillä tällä hetkellä onnistuu pelkkä toimitus. Toimitusaika on 2-4 arkipäivää.</p>
 
-          <input type="hidden" name="deliveryPrice" value="8" {...register("deliveryPrice",{ 
+          <input type="hidden" name="deliveryPrice" value="6.90" {...register("deliveryPrice",{ 
             required: false,
           })}/>
 
@@ -49,7 +49,7 @@ const DeliveryMethod = ({navigation}) => {
               })}
               required/>
               <label htmlFor="delivery" className="checkbox-label checkbox-label-larger">
-                {t("delivery")} (8.00 €)
+                {t("delivery")} (6.90 €)
               </label>
             </div>
 

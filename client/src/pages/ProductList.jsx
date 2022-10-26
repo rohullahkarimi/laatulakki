@@ -73,7 +73,7 @@ const ProductList = () => {
                     <Option valuee="color" disabled>
                     {t("color")}
                     </Option>
-                    <Option value="sinivalkoinen">Sinivalkoinen</Option>
+                    <Option value="valkoinen">Valkoinen</Option>
                     <Option value="musta">Musta</Option>
                 </Select>
                 <Select name="size" onChange={handleFilters}>
@@ -89,8 +89,8 @@ const ProductList = () => {
                 <FilterText> {t("arrange_product")}:</FilterText>
                 <Select onChange={e=>setSort(e.target.value)}>
                     <Option value="newest">Uutuudet</Option>
-                    <Option value="asc">A-Z</Option>
-                    <Option value="desc">Z-A hinta</Option>
+                    <Option value="cheapest">Halvin</Option>
+                    <Option value="most_expensive">Kallein</Option>
                 </Select>
             </Filter>
         </FilterContainer>

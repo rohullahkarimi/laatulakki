@@ -41,7 +41,7 @@ const Image = styled.img`
     max-height: 80%;
     max-width: 90%;
     z-index: 2;
-    margin-bottom: 20%;
+    /* margin-bottom: 20%; */
 `
 
 const Name = styled.div`

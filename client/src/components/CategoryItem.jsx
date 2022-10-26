@@ -12,6 +12,12 @@ const Container = styled.div`
     position: relative;
 `
 
+const HideInMobile = styled.div`
+    ${smartPhone({display: "none"})}
+    ${mobile({display: "none"})}
+`
+
+
 const Image = styled.img`
     width: 100%;
     height: 100%;
@@ -66,23 +72,27 @@ const CategoryItem = () => {
     </Container>
 
     <Container>
-        <Link to={`/products/ylioppilaslakki`}>
-            <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/ammattilakki-lr.jpg"/>
-            <Info>
-                <Title>{t("engineerCap").toUpperCase()}</Title>
-                <Button>{t("buy_now").toUpperCase()}</Button>
-            </Info>
-        </Link>
+        <HideInMobile>
+            <Link to={`/products/ylioppilaslakki`}>
+                <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/ammattilakki-lr.jpg"/>
+                <Info>
+                    <Title>{t("engineerCap").toUpperCase()}</Title>
+                    <Button>{t("buy_now").toUpperCase()}</Button>
+                </Info>
+            </Link>
+        </HideInMobile>
     </Container>
 
     <Container>
-        <Link to={`/products/ylioppilaslakki`}>
-            <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/valmistujaislakit.jpg"/>
-            <Info>
-                <Title>{t("graduationCap").toUpperCase()}</Title>
-                <Button>{t("buy_now").toUpperCase()}</Button>
-            </Info>
-        </Link>
+        <HideInMobile>
+            <Link to={`/products/ylioppilaslakki`}>
+                <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/valmistujaislakit.jpg"/>
+                <Info>
+                    <Title>{t("graduationCap").toUpperCase()}</Title>
+                    <Button>{t("buy_now").toUpperCase()}</Button>
+                </Info>
+            </Link>
+        </HideInMobile>
     </Container>
     </>
   )

@@ -274,10 +274,8 @@ const ReviewForm = () => {
           }else{
             console.log("Data is saving...")
           }
-        }, 3000);
-        
-       
-      }, 2000);
+        }, 3000); // 3000
+      }, 2000); // 2000
     }
   }
   
@@ -285,14 +283,7 @@ const ReviewForm = () => {
     margin: "auto"
   };
 
-  /*
-  <div>{JSON.stringify(cart, null, 2)}</div> 
-  <h3>billing</h3>
-  <Address {...cart.billingAddress} />
-
-  <h3>delivery</h3>
-  <Address {...(cart.deliverySameAsBilling ? cart.billingAddress : cart.deliveryAddress)} />
-  */
+ 
   
   return (
     <div className='container'>

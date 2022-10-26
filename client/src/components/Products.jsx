@@ -12,13 +12,15 @@ const Container = styled.div`
     justify-content: space-between;
 `
 
-const Products = ({cat, filters, sort}) => {
+const Products = ({cat, filters, sort, selectedProduct}) => {
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
   const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
   });
 
+
+  
   useEffect(() =>{
     const getProducts = async ()=>{
       try{
@@ -62,15 +64,15 @@ const Products = ({cat, filters, sort}) => {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => a.createdAt - b.createdAt)
       );
-    } else if (sort === "asc") {
+    } else if (sort === "cheapest") {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => a.price - b.price)
       );
-    } else {
+    } else if(sort === "most_expensive") {
       setFilteredProducts((prev) =>
         [...prev].sort((a, b) => b.price - a.price)
       );
-    }
+    } 
   }, [sort]);
 
   return (
@@ -79,7 +81,7 @@ const Products = ({cat, filters, sort}) => {
         ? filteredProducts.map((item) => <Product item={item} key={item._id} />)
         : products
             .slice(0, 8)
-            .map((item) => <Product item={item} key={item._id} />)}
+            .map((item) => item._id !== selectedProduct && <Product item={item} key={item._id} />)}
     </Container>
   );
 }
