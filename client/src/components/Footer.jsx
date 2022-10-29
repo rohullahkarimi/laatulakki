@@ -1,10 +1,23 @@
-import { Facebook, Instagram, MailOutlined, Phone, Room, YouTube } from "@mui/icons-material"
+import { Instagram, MailOutlined, Phone, Room, YouTube } from "@mui/icons-material"
 import styled from "styled-components"
 import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 import { elementBackgroundColor } from "../theme"
 import { useTranslation } from "react-i18next"
 import { useNavigate } from "react-router";
 
+const TikTokIcon = ({ color = "#000000" }) => {
+    return (
+      <svg
+        fill={color}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 50 50"
+        width="80%"
+        height="80%"
+      >
+        <path d="M41,4H9C6.243,4,4,6.243,4,9v32c0,2.757,2.243,5,5,5h32c2.757,0,5-2.243,5-5V9C46,6.243,43.757,4,41,4z M37.006,22.323 c-0.227,0.021-0.457,0.035-0.69,0.035c-2.623,0-4.928-1.349-6.269-3.388c0,5.349,0,11.435,0,11.537c0,4.709-3.818,8.527-8.527,8.527 s-8.527-3.818-8.527-8.527s3.818-8.527,8.527-8.527c0.178,0,0.352,0.016,0.527,0.027v4.202c-0.175-0.021-0.347-0.053-0.527-0.053 c-2.404,0-4.352,1.948-4.352,4.352s1.948,4.352,4.352,4.352s4.527-1.894,4.527-4.298c0-0.095,0.042-19.594,0.042-19.594h4.016 c0.378,3.591,3.277,6.425,6.901,6.685V22.323z" />
+      </svg>
+    );
+};
 
 const Container = styled.div`
     display: flex;
@@ -30,6 +43,8 @@ const Logo = styled.h1`
     cursor: pointer;
 `
 
+
+
 const SocialContainer = styled.div`
     display: flex;
     cursor: pointer;
@@ -44,6 +59,7 @@ const SocialIcon = styled.div`
     align-items: center;
     justify-content: center;
     margin-right: 20px;
+    border: solid 1px black;
 `
 
 const Center = styled.div`
@@ -110,6 +126,17 @@ const Footer = () => {
     navigate('/');
   } 
 
+  
+  const goToLink = (link) =>{
+    window.location.href= link;
+  }
+  
+
+  // youtube:  https://www.youtube.com/channel/UCfcLwu9-NMAARiiDQiacWcw
+  // instagram: https://www.instagram.com/laatulakki/
+  // tiktok: https://www.tiktok.com/@laatulakki
+
+
   return (
     <Container>
         <Left>
@@ -118,14 +145,14 @@ const Footer = () => {
             <ContactItem><Phone style={{marginRight:"10px"}}/> +380400269034</ContactItem>
             <ContactItem><MailOutlined style={{marginRight:"10px"}}/> laatulakki@gmail.com</ContactItem>
             <SocialContainer>
-                <SocialIcon color="3B5999">
-                    <Facebook/>
+                <SocialIcon color="E4405F" onClick={()=> goToLink("https://www.instagram.com/laatulakki/")}>
+                    <Instagram />
                 </SocialIcon>
-                <SocialIcon color="E4405F">
-                    <Instagram/>
+                <SocialIcon color="ffffff" onClick={()=> goToLink("https://www.tiktok.com/@laatulakki")}>
+                    <TikTokIcon color="ff2a56" />
                 </SocialIcon>
-                <SocialIcon color="FF0000">
-                    <YouTube/>
+                <SocialIcon color="FF0000" onClick={()=> goToLink("https://www.youtube.com/channel/UCfcLwu9-NMAARiiDQiacWcw")}>
+                    <YouTube />
                 </SocialIcon>
             </SocialContainer>
         </Left>

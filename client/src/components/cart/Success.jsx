@@ -43,7 +43,7 @@ const Button = styled.button`
 
 const Success = () => {
   const { t } = useTranslation();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const checkoutStatus = searchParams.get("checkout-status")
   const orderId = searchParams.get("checkout-reference")
   const axiosInstance = axios.create({

@@ -228,15 +228,13 @@ const order = {
 const Receipt = () => {
   const { t } = useTranslation();
   const [orderData, setOrderData] = useState({})
-  const searchParams = useSearchParams();
+  const [receiptValid, setReceiptValid] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const orderIdDetails = searchParams.get("orderId");
   const order_array = orderIdDetails.split('_');
 
   var receiptHash =  order_array[1];
   var orderId = order_array[0];
-
-
-  
 
 
   useEffect(() =>{
@@ -245,9 +243,8 @@ const Receipt = () => {
           const res = await publicRequest.get("/orders/getOrder/find/" + orderId);
           setOrderData(res.data);
 
-          if (orderData.receiptHash !== receiptHash){
-            console.log("Link is not valid.")
-            return false;
+          if (orderData.receiptHash === receiptHash){
+            setReceiptValid(true)
           }
       }catch(err){
         console.log(err)
@@ -339,105 +336,112 @@ const Receipt = () => {
   
 
   //console.log(order)
-  return (
-    <ContainerDiv>
-       <PrintContainer><Navbar/></PrintContainer>
-      <Container id="starter" style={{padding: "2% 0px 5% 0"}}>
-          <Title>{t("receipt").toUpperCase()} 
-              <PrintContainer>
-                  <PrintIcon style={{float: "right"}} fontSize="large" onClick={() => window.print()}/>
-              </PrintContainer>
-          </Title>
+  if(receiptValid){
+    return (
+      <ContainerDiv>
+        <PrintContainer><Navbar/></PrintContainer>
+        <Container id="starter" style={{padding: "2% 0px 5% 0"}}>
+            <Title>{t("receipt").toUpperCase()} 
+                <PrintContainer>
+                    <PrintIcon style={{float: "right"}} fontSize="large" onClick={() => window.print()}/>
+                </PrintContainer>
+            </Title>
 
-          <CustomerDetails>
-              <BillingAddress>
-              <H4>{t("ordererInfo")}</H4>
-              <Address {...order?.billingAddress} />
-              </BillingAddress>
+            <CustomerDetails>
+                <BillingAddress>
+                <H4>{t("ordererInfo")}</H4>
+                <Address {...order?.billingAddress} />
+                </BillingAddress>
 
 
-              <DeliveryAddress>
-              <H4>{t("receiverInfo")}</H4>
-              <Address {...(order.deliverySameAsBilling ? order.billingAddress : order.deliveryAddress)} />
-              </DeliveryAddress>
+                <DeliveryAddress>
+                <H4>{t("receiverInfo")}</H4>
+                <Address {...(order.deliverySameAsBilling ? order.billingAddress : order.deliveryAddress)} />
+                </DeliveryAddress>
 
-          </CustomerDetails>
+            </CustomerDetails>
 
-          <CommentContainer>
-              <Comment>
-              <DetailsInfo>
-                  {order.message && <Key>{t("order_extra_info")}: </Key>}
-                  {order.message && <Value>{order.message}</Value>}
-              </DetailsInfo>
-              </Comment>
-          </CommentContainer>
-          <Hr/>
+            <CommentContainer>
+                <Comment>
+                <DetailsInfo>
+                    {order.message && <Key>{t("order_extra_info")}: </Key>}
+                    {order.message && <Value>{order.message}</Value>}
+                </DetailsInfo>
+                </Comment>
+            </CommentContainer>
+            <Hr/>
 
-          <div>
-              {order.products?.map((product) => (
-              <Product key={product._id}>
-                  <ImageContainer><Image src={product.img} /></ImageContainer>
-                  <ProductDetail>
-                      <Details>
-                      <ProductName>
-                          <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
-                      </ProductName>
-                      <ProductId>
-                          <b>ID:</b> {product._id}
-                      </ProductId>
-                      <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>
-                      <ProductSize>
-                          <b>{t("size")}:</b> {product.size}
-                      </ProductSize>
-                      <ProductQuantity>
-                          <b>Kpl:</b> {product.quantity}
-                      </ProductQuantity>
+            <div>
+                {order.products?.map((product) => (
+                <Product key={product._id}>
+                    <ImageContainer><Image src={product.img} /></ImageContainer>
+                    <ProductDetail>
+                        <Details>
+                        <ProductName>
+                            <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
+                        </ProductName>
+                        <ProductId>
+                            <b>ID:</b> {product._id}
+                        </ProductId>
+                        <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>
+                        <ProductSize>
+                            <b>{t("size")}:</b> {product.size}
+                        </ProductSize>
+                        <ProductQuantity>
+                            <b>Kpl:</b> {product.quantity}
+                        </ProductQuantity>
 
-                      <ProductPriceText>
-                          <b>{t('vat')}:</b> {product.vatPercentage} €
-                      </ProductPriceText>
-                      <ProductPriceText>
-                          <b>{t('tax')}:</b> {product.tax} €
-                      </ProductPriceText>
-                      <ProductPriceText>
-                          <b>{t('tax_less')}:</b> {product.taxLess} €
-                      </ProductPriceText>
+                        <ProductPriceText>
+                            <b>{t('vat')}:</b> {product.vatPercentage} €
+                        </ProductPriceText>
+                        <ProductPriceText>
+                            <b>{t('tax')}:</b> {product.tax} €
+                        </ProductPriceText>
+                        <ProductPriceText>
+                            <b>{t('tax_less')}:</b> {product.taxLess} €
+                        </ProductPriceText>
 
-                      <ProductPriceText>
-                          <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
-                      </ProductPriceText>
-                      </Details>
-                  </ProductDetail>
-                  <PriceDetail>
-                      <ProductPrice>
-                      {(product.price * product.quantity).toFixed(2)} €
-                      </ProductPrice>
-                  </PriceDetail>
-              </Product>
-              ))}
-          </div>
-          <hr/>
+                        <ProductPriceText>
+                            <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
+                        </ProductPriceText>
+                        </Details>
+                    </ProductDetail>
+                    <PriceDetail>
+                        <ProductPrice>
+                        {(product.price * product.quantity).toFixed(2)} €
+                        </ProductPrice>
+                    </PriceDetail>
+                </Product>
+                ))}
+            </div>
+            <hr/>
 
-          <CustomerDetails>
-              <BillingAddress>
-                  <DetailsInfo>
-                  <Key>{t('vat') +" "+ t('total')}</Key>
-                  <Value>{order.totalPriceIncludeDelivery_tax} €</Value>
-                  </DetailsInfo>
-                  <DetailsInfo>
-                  <Key>{t('vatZero')}</Key>
-                  <Value>{order.totalPriceIncludeDelivery_taxLess} €</Value>
-                  </DetailsInfo>
-                  <DetailsInfo>
-                  <Key>{t('total')}</Key>
-                  <Value>{order.totalPriceIncludeDelivery} € </Value>
-                  </DetailsInfo>
-              </BillingAddress>
-          </CustomerDetails>
+            <CustomerDetails>
+                <BillingAddress>
+                    <DetailsInfo>
+                    <Key>{t('vat') +" "+ t('total')}</Key>
+                    <Value>{order.totalPriceIncludeDelivery_tax} €</Value>
+                    </DetailsInfo>
+                    <DetailsInfo>
+                    <Key>{t('vatZero')}</Key>
+                    <Value>{order.totalPriceIncludeDelivery_taxLess} €</Value>
+                    </DetailsInfo>
+                    <DetailsInfo>
+                    <Key>{t('total')}</Key>
+                    <Value>{order.totalPriceIncludeDelivery} € </Value>
+                    </DetailsInfo>
+                </BillingAddress>
+            </CustomerDetails>
+    
+        </Container>
+      </ContainerDiv>
+    )
+  }else{
+    return(
+      <div>Link is not valid.</div>
+    )
+  }
   
-      </Container>
-    </ContainerDiv>
-  )
 }
 
 export default Receipt

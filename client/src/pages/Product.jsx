@@ -16,7 +16,7 @@ import '../../node_modules/react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 import $ from "jquery"
 import Products from "../components/Products"
-import { hotjar } from 'react-hotjar';
+
 
 
 
@@ -182,9 +182,7 @@ const Product = () => {
   const dispatch = useDispatch()
   const [modalShow, setModalShow] = useState(false);
 
-  useEffect(() => {
-    hotjar.initialize(Number(String(process.env.REACT_APP_HOTJAR_HJID)), Number(String(process.env.REACT_APP_HOTJAR_HJSV)))
-  }, [])
+
 
   useEffect(() =>{
       const getProduct = async ()=> {
