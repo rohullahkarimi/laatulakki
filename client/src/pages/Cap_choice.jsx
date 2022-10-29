@@ -55,7 +55,8 @@ const CapChoice = () => {
                 <Col md={12}>
                     <InfoContainer>
                         <Title>{t("capChoice0")}</Title>
-
+                        
+                        <h4>{t("capChoice1a")}</h4>
                         <div>
                             <iframe width="560" height="315" src="https://www.youtube.com/embed/0A03Y9mzlKA?start=56" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
@@ -66,6 +67,7 @@ const CapChoice = () => {
                             <ListItem>{t("capChoice2")}</ListItem>
                             <ListItem>{t("capChoice3")}</ListItem>
                             <ListItem>{t("capChoice4")}</ListItem>
+                            <ListItem>{t("capChoice4a")}</ListItem>
                             <ListItem>{t("capChoice5")}</ListItem>
                         </List>
 

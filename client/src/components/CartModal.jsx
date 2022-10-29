@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { mobile, tablet} from "../responsive";
 import { useTranslation } from "react-i18next";
-import { useState } from 'react';
+
 
 
 const PlatformButton = styled.button`

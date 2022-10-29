@@ -2,9 +2,6 @@ import { CheckCircle } from "@mui/icons-material";
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components"
 import { mobile } from "../../responsive"
-import emailjs from '@emailjs/browser';
-import {  emptyCart } from '../../redux/cartRedux';
-import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
@@ -45,12 +42,10 @@ const Button = styled.button`
 `;
 
 const Success = () => {
-  const cart = useSelector((state) => state.cart);
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const checkoutStatus = searchParams.get("checkout-status")
   const orderId = searchParams.get("checkout-reference")
-  const dispatch = useDispatch()
   const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL //process.env.REACT_APP_API_URL,
   });

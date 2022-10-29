@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import Announcement from "../components/Announcement"
 import Footer from "../components/Footer"
@@ -8,6 +8,7 @@ import Products from "../components/Products"
 import { mobile } from "../responsive"
 import { useLocation } from "react-router";
 import { useTranslation } from "react-i18next"
+import { hotjar } from 'react-hotjar';
 
 const Container = styled.div`
     
@@ -50,6 +51,10 @@ const ProductList = () => {
     const [filters, setFilters] = useState({})
     const [sort, setSort] = useState("")
 
+    useEffect(() => {
+        hotjar.initialize(Number(String(process.env.REACT_APP_HOTJAR_HJID)), Number(String(process.env.REACT_APP_HOTJAR_HJSV)))
+    }, [])
+
     const handleFilters = (e) =>{
         const value = e.target.value;
         setFilters({
@@ -89,8 +94,8 @@ const ProductList = () => {
                 <FilterText> {t("arrange_product")}:</FilterText>
                 <Select onChange={e=>setSort(e.target.value)}>
                     <Option value="newest">Uutuudet</Option>
-                    <Option value="cheapest">Halvin</Option>
-                    <Option value="most_expensive">Kallein</Option>
+                    <Option value="cheapest">Hinta: halvin ensin</Option>
+                    <Option value="most_expensive">Hinta: kallein ensin</Option>
                 </Select>
             </Filter>
         </FilterContainer>

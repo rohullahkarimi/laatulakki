@@ -1,5 +1,5 @@
 import '../../common/css/style.css';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from 'react-hook-form';
 import {  saveDeliveryMethod } from '../../redux/cartRedux';
 import { useTranslation } from 'react-i18next';
@@ -9,10 +9,11 @@ import { useEffect } from 'react';
 
 const DeliveryMethod = ({navigation}) => {
   const { t } = useTranslation();
-  const cart = useSelector((state) => state.cart);
   const { register, handleSubmit, formState: { errors: customerPaymentMethodError } } = useForm();
   const dispatch = useDispatch()
   
+  console.log(customerPaymentMethodError)
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])

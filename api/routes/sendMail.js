@@ -94,7 +94,8 @@ function sendOrderEmail(orderId){
     var totalPriceIncludeDelivery_taxLess = (totalPriceIncludeDelivery / 1.24).toFixed(2);
     var totalPriceIncludeDelivery_tax = (totalPriceIncludeDelivery - totalPriceIncludeDelivery_taxLess).toFixed(2);
 
-    var receiptLink = "https://tester.laatulakki.fi/receipt?orderId="+orderId;
+    var receiptHash = response.receiptHash;
+    var receiptLink = "https://tester.laatulakki.fi/receipt?orderId="+orderId+"_"+receiptHash;
 
   
     // data for email

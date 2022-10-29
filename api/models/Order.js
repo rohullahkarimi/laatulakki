@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const randToken = require("rand-token");
 
 const OrderSchema = new mongoose.Schema(
     {
@@ -99,6 +100,12 @@ const OrderSchema = new mongoose.Schema(
         total: { type: Number, required: true},
         message: { type: String},
         status: { type: String, default: "pending"},
+        receiptHash: {
+            type: String,
+            default: function() {
+                return randToken.generate(64);
+            }
+        },
     },
     { timestamps: true}
 )

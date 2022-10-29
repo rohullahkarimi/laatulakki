@@ -228,9 +228,15 @@ const order = {
 const Receipt = () => {
   const { t } = useTranslation();
   const [orderData, setOrderData] = useState({})
+  const searchParams = useSearchParams();
+  const orderIdDetails = searchParams.get("orderId");
+  const order_array = orderIdDetails.split('_');
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const orderId = searchParams.get("orderId")  
+  var receiptHash =  order_array[1];
+  var orderId = order_array[0];
+
+
+  
 
 
   useEffect(() =>{
@@ -238,17 +244,20 @@ const Receipt = () => {
       try{
           const res = await publicRequest.get("/orders/getOrder/find/" + orderId);
           setOrderData(res.data);
+
+          if (orderData.receiptHash !== receiptHash){
+            console.log("Link is not valid.")
+            return false;
+          }
       }catch(err){
         console.log(err)
       }
     }
     getOrder()
-  }, [orderId]);
+  }, [orderId, orderData.receiptHash, receiptHash]);
 
-
-
-  console.log(orderId)
-  console.log(orderData)
+  //console.log(orderId)
+  //console.log(orderData)
 
   
   // make a new copy of product object, to sum the price in total
@@ -275,8 +284,6 @@ const Receipt = () => {
   var totalPriceIncludeDelivery_taxLess = (totalPriceIncludeDelivery / 1.24).toFixed(2);
   var totalPriceIncludeDelivery_tax = (totalPriceIncludeDelivery - totalPriceIncludeDelivery_taxLess).toFixed(2);
 
-
-
   // data for email
   const order = {
     billingAddress: orderData.billingAddress,
@@ -292,8 +299,6 @@ const Receipt = () => {
     totalPriceIncludeDelivery_tax: totalPriceIncludeDelivery_tax,
     totalPriceIncludeDelivery: totalPriceIncludeDelivery
   }
-  
-
 
   const Address = (data) => (
     <>

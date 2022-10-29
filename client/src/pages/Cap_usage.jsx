@@ -50,6 +50,7 @@ const CapUsage = () => {
                         
                         <H3>{t("capUsage1")}</H3>
                         <Desc>{t("capUsage2")}</Desc>
+                        <Desc>{t("capUsage2a")}</Desc>
 
                         <H3>{t("capUsage3")}</H3>
                         <Desc>{t("capUsage4")}</Desc>

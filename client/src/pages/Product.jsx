@@ -183,7 +183,7 @@ const Product = () => {
   const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
-    hotjar.initialize(3220042, 6)
+    hotjar.initialize(Number(String(process.env.REACT_APP_HOTJAR_HJID)), Number(String(process.env.REACT_APP_HOTJAR_HJSV)))
   }, [])
 
   useEffect(() =>{
