@@ -72,6 +72,7 @@
     "country": "Country",
     "phonenumber": "Phone number",
     "delivery": "Delivery",
+    "productsInTotal": "Total products",
     "pickup": "Pickup",
     "notInUse": "Not In Use",
     "ordererInfo": "Subscriber Information",

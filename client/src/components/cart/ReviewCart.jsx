@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { mobile, smartPhone, tablet } from "../../responsive";
 import { useNavigate } from "react-router";
 import { useTranslation } from 'react-i18next';
+import i18n from "i18next";
 
 
 const Product = styled.div`
@@ -148,6 +149,7 @@ const ReviewForm = () => {
   const goTo = useNavigate()
   var orderId = null
   var transactionId = null
+  const selectedLang = i18n.language
   const { register, handleSubmit, formState: { errors: handlePaymentErrors } } = useForm();
 
   console.log(handlePaymentErrors)
@@ -205,11 +207,11 @@ const ReviewForm = () => {
 
 
   console.log(cart)
+
   const saveOrder= async () => {
     setLoading(true)
-    console.log(cart)
     try {
-      await axiosInstance.post("/orders",  {cart})
+      await axiosInstance.post("/orders",  {cart: cart, language: selectedLang.toUpperCase()})
       .then((res) => {
         console.log(res)
         orderId = res.data._id

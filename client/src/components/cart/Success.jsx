@@ -50,6 +50,16 @@ const Success = () => {
     baseURL: process.env.REACT_APP_API_URL //process.env.REACT_APP_API_URL,
   });
 
+
+  const getOrderData = async (orderId) => {
+    try{
+      const res = await axios.get(process.env.REACT_APP_API_URL+"/orders/getOrder/find/"+orderId);
+      return res.data;
+    }catch(err){
+      console.log(err);
+    }
+  }
+
   const sendMail = async (orderId) => {
     if(!orderId){
       alert("Order id is not defined yet.")
@@ -76,7 +86,10 @@ const Success = () => {
   }
   
   const navigateToReceipt = () =>{
-    window.location.href= "https://tester.laatulakki.fi/receipt?orderId="+orderId;
+    getOrderData(orderId).then((response) => {
+      window.location.href = process.env.REACT_APP_CLIENT_URL+"/receipt?orderId="+orderId+"_"+response.receiptHash;
+    })
+    
   }
 
   return (

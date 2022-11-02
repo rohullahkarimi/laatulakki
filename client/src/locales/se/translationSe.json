@@ -72,6 +72,7 @@
     "country": "Land",
     "phonenumber": "Telefonnummer",
     "delivery": "Leverans",
+    "productsInTotal": "Totala produkter",
     "pickup": "Pickup",
     "notInUse": "Används inte",
     "ordererInfo": "Prenumerantinformation",

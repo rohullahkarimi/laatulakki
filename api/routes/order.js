@@ -10,6 +10,9 @@ const CHECKOUT_SECRET = process.env.PAYTRAIL_SECRET
 const client = new CheckoutClient(CHECKOUT_MERCHANT_ID, CHECKOUT_SECRET)
 require("../components/emailSender.js")();
 
+
+
+
 // GET ORDER Full data
 router.get("/getOrder/find/:id", async (req, res) => {
     try {
@@ -55,6 +58,14 @@ router.post("/", async (req, res)=>{
     //console.log(req.body.cart)
     // new order Data
     const newOrder = new Order(req.body.cart);
+    var clientLanguage = req.body.language;
+    if(clientLanguage === "SE"){
+        clientLanguage = "SV"
+    }
+    if(!clientLanguage){
+        clientLanguage = "FI"
+    }
+   
 
     // test
     //console.log(newOrder)
@@ -64,7 +75,7 @@ router.post("/", async (req, res)=>{
         var savedOrderId = savedOrder._id.valueOf()
         
         // save transaction ID
-        saveTransactionId(savedOrderId, savedOrder)
+        saveTransactionId(savedOrderId, savedOrder, clientLanguage)
         //console.log(savedOrderId, savedOrder)
         res.status(200).send(savedOrder);
         
@@ -75,7 +86,7 @@ router.post("/", async (req, res)=>{
 });
 
 // save transaction ID
-const saveTransactionId = async (getSavedOrderId, savedOrder) => {
+const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) => {
     
     const orderId = getSavedOrderId
     const paytrailProduct = []
@@ -111,7 +122,7 @@ const saveTransactionId = async (getSavedOrderId, savedOrder) => {
         reference: orderId,
         amount: parseInt((totalPriceIncludeDelivery * 100).toFixed(0)), 
         currency: 'EUR',
-        language: 'FI',
+        language: clientLanguage,
         items: paytrailProduct,
         customer: {
             firstName: savedOrder.billingAddress.firstname,
@@ -135,7 +146,6 @@ const saveTransactionId = async (getSavedOrderId, savedOrder) => {
     // TEST: 1
     //console.log(payment)
     //console.log(savedOrder)
-
 
 
     // Get transaction ID

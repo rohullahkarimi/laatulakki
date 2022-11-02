@@ -74,6 +74,7 @@
     "country": "Maa",
     "phonenumber": "Puhelinnumero",
     "delivery": "Toimitus",
+    "productsInTotal": "Tuotteet yhteensä",
     "pickup": "Nouto",
     "notInUse": "Ei ole Käytössä",
     "ordererInfo": "Tilaajan tiedot",

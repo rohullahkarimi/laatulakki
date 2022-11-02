@@ -18,6 +18,10 @@ const PrintContainer = styled.div`
 `;
 
 const ContainerDiv = styled.div`
+  padding: 10px 0;
+  @media print {
+    padding: 0;
+  }
 `
 const Title = styled.h2`
     text-align: center;
@@ -114,6 +118,9 @@ const CustomerDetails = styled.div`
   display: flex;
   margin-bottom: 5%;
   ${smartPhone({ flexDirection: "column" })}
+  @media print {
+    margin-bottom: 0;
+  }
 `;
 const BillingAddress = styled.div`
   flex: 1;
@@ -141,6 +148,9 @@ const Hr = styled.hr`
   background-color: #b0b0b0;
   border: none;
   height: 1px;
+  @media print {
+    display: none;
+  }
 `;
 
 
@@ -245,6 +255,8 @@ const Receipt = () => {
 
           if (orderData.receiptHash === receiptHash){
             setReceiptValid(true)
+          }else{
+            setReceiptValid(false)
           }
       }catch(err){
         console.log(err)
@@ -258,9 +270,14 @@ const Receipt = () => {
 
   
   // make a new copy of product object, to sum the price in total
+  var products_in_total = 0;
   const productsArray = orderData.products?.map(item => {
     var productPriceTax = (item.price / 1.24).toFixed(2);
     var productPriceTaxLess = (item.price - productPriceTax).toFixed(2);
+
+    // products in total
+    products_in_total += item.price;
+
 
     const productObject = {
       ...item, 
@@ -281,12 +298,22 @@ const Receipt = () => {
   var totalPriceIncludeDelivery_taxLess = (totalPriceIncludeDelivery / 1.24).toFixed(2);
   var totalPriceIncludeDelivery_tax = (totalPriceIncludeDelivery - totalPriceIncludeDelivery_taxLess).toFixed(2);
 
+
+
+  var products_in_total_taxLess =  (products_in_total / 1.24).toFixed(2);
+  var products_in_total_tax = (products_in_total - products_in_total_taxLess).toFixed(2);
+
   // data for email
   const order = {
     billingAddress: orderData.billingAddress,
     deliveryAddress: orderData.deliveryAddress, 
     message: orderData.message,
     products: productsArray,
+
+    products_in_total: products_in_total.toFixed(2),
+    products_in_total_taxLess: products_in_total_taxLess,
+    products_in_total_tax: products_in_total_tax,
+    
 
     delivery_tax: delivery_tax,
     delivery_taxLess: delivery_taxLess,
@@ -419,16 +446,31 @@ const Receipt = () => {
             <CustomerDetails>
                 <BillingAddress>
                     <DetailsInfo>
-                    <Key>{t('vat') +" "+ t('total')}</Key>
-                    <Value>{order.totalPriceIncludeDelivery_tax} €</Value>
+                      <Key> - </Key> <Key>{t('tax_less')}</Key>  <Key>{t('vat')}</Key> <Key>%</Key> <Key>{t('total')}</Key>
                     </DetailsInfo>
+
                     <DetailsInfo>
-                    <Key>{t('vatZero')}</Key>
-                    <Value>{order.totalPriceIncludeDelivery_taxLess} €</Value>
+                      <Key>{t('productsInTotal')}</Key>
+                      <Value>{order.products_in_total_taxLess} € </Value>
+                      <Value>{order.products_in_total_tax} € </Value>
+                      <Value>24 </Value>
+                      <Value>{order.products_in_total} € </Value>
                     </DetailsInfo>
+
                     <DetailsInfo>
-                    <Key>{t('total')}</Key>
-                    <Value>{order.totalPriceIncludeDelivery} € </Value>
+                      <Key>{t('delivery')}</Key>
+                      <Value>{order.delivery_taxLess} € </Value>
+                      <Value>{order.delivery_tax} € </Value>
+                      <Value>24 </Value>
+                      <Value>{order.deliveryPrice} € </Value>
+                    </DetailsInfo>
+
+                    <DetailsInfo>
+                      <Key>{t('total')}</Key>
+                      <Value>{order.totalPriceIncludeDelivery_taxLess} € </Value>
+                      <Value>{order.totalPriceIncludeDelivery_tax} € </Value>
+                      <Value>24 </Value>
+                      <Value>{order.totalPriceIncludeDelivery} € </Value>
                     </DetailsInfo>
                 </BillingAddress>
             </CustomerDetails>
