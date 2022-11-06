@@ -7,6 +7,7 @@ import axios from "axios";
 import { emptyCart } from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import { hotjar } from 'react-hotjar';
+import {getCookie} from "../../common/js/common.js";
 
 
 
