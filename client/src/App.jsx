@@ -16,6 +16,9 @@ import CapChoice from "./pages/Cap_choice";
 import CapUsage from "./pages/Cap_usage";
 import Receipt from "./pages/Receipt";
 import PaymentPage from "./pages/Payment_response";
+import { CookieBanner } from "@palmabit/react-cookie-law";
+import { useTranslation } from 'react-i18next';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -26,6 +29,7 @@ import { useSelector } from "react-redux";
 import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
+  const { t } = useTranslation();
   const user = useSelector((state)=> state.user.currentUser);
 
 
@@ -58,6 +62,74 @@ const App = () => {
         <Route path="/cap_usage" element={<CapUsage/>} />
         <Route path="/receipt" element={<Receipt/>} />
       </Routes>
+      <CookieBanner
+        message={t('cookies_Message')}
+        wholeDomain={true}
+        policyLink="/terms_and_condition"
+        privacyPolicyLinkText= {t('cookies_privacyPolicyLinkText')}
+
+        necessaryOptionText= {t('cookies_necessaryOptionText')}
+        preferencesOptionText = {t('cookies_preferencesOptionText')}
+        statisticsOptionText = {t('cookies_statisticsOptionText')}
+        marketingOptionText = {t('cookies_marketingOptionText')}
+
+        acceptButtonText = {t('cookies_acceptButtonText')}
+        declineButtonText = {t('cookies_declineButtonText')}
+        managePreferencesButtonText = {t('cookies_managePreferencesButtonText')}
+        savePreferencesButtonText= {t('cookies_savePreferencesButtonText')}
+        
+        showDeclineButton = {false}
+
+        onAccept={() => {}}
+        onAcceptPreferences={() => {}}
+        onAcceptStatistics={() => {}}
+        onAcceptMarketing={() => {}}
+
+        styles={{
+          dialog: { 
+            backgroundColor: "#8effff", 
+            position: "fixed",
+            top: "35%",
+            left: "0px",
+            right: "0px",
+            zIndex: 100000,
+            padding: "10px",
+            width: "fit-content",
+            margin: "auto",
+          },
+          button: {
+            display: "inline-block",
+            backgroundColor: "#000",
+            padding: "5px",
+            minWidth: "80px",
+            color: "#fff",
+            textDecoration: "none",
+            fontSize: "10pt",
+            fontWeight: "400",
+            marginRight: "5px",
+            marginLeft: "5px",
+            textAlign: "center",
+            whiteSpace: "nowrap",
+            cursor: "pointer",
+            border: "none",
+          },
+          optionLabel: {
+            height: "auto",
+            width: "auto",
+            minHeight: "14px",
+            fontSize: "12pt",
+            color: "#000",
+            display: "inline-block",
+            padding: "1px 0px 0px 20px",
+            position: "relative",
+            top: "0px",
+            left: "0px",
+            zIndex: 1,
+            cursor: "default",
+            verticalAlign: "top",
+          }
+        }}
+      />
     </Router>
   );
 };

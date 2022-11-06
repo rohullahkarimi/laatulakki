@@ -250,7 +250,7 @@ const Receipt = () => {
   useEffect(() =>{
     const getOrder = async ()=> {
       try{
-          const res = await publicRequest.get("/orders/getOrder/find/" + orderId);
+          const res = await publicRequest.get("/orders/getOrder/HDcSmyZpaWqR/find/" + orderId);
           setOrderData(res.data);
 
           if (orderData.receiptHash === receiptHash){
@@ -276,7 +276,7 @@ const Receipt = () => {
     var productPriceTaxLess = (item.price - productPriceTax).toFixed(2);
 
     // products in total
-    products_in_total += item.price;
+    products_in_total += item.price * item.quantity;
 
 
     const productObject = {

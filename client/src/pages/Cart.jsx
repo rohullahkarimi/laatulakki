@@ -14,8 +14,9 @@ import DeliveryMethod from '../components/cart/DeliveryMethod';
 import CartProduct from '../components/cart/CartProduct';
 import { useNavigate } from "react-router-dom";
 import { hotjar } from 'react-hotjar';
+import {getCookie} from "../common/js/common.js";
+import { useState } from "react";
 
-import { useEffect, useState } from "react";
 //import $ from 'jquery';
 import {
   Container
@@ -149,12 +150,15 @@ const Cart = () => {
   ];
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { Component } = step;
-  //console.log(step.id)
 
+  // call hotjar if user accepted preferences cookie
+  if(getCookie("rcl_preferences_consent") === "true"){
+    hotjar.initialize(3220042, 6)
+    hotjar.identify('USER_ID', { userProperty: 'value' });
+  }
  
-  hotjar.initialize(3220042, 6)
-  hotjar.identify('USER_ID', { userProperty: 'value' });
-  console.log("nice")
+  
+
 
   const props = { navigation };
 

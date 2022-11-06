@@ -214,5 +214,16 @@
     "footer1": "Användarvillkor",
     "footer2": "Registrera uttalande",
     "footer3": "Byte och returnera",
-    "onlineStore": "Onlinebutik"
+    "onlineStore": "Onlinebutik",
+
+    "cookies_Message": "Vi använder cookies för att förbättra användarupplevelsen, analysera webbplatsanvändning, anpassa innehåll och rikta marknadsföring.",
+    "cookies_privacyPolicyLinkText": "Läs mer om våra cookies här.",
+    "cookies_necessaryOptionText": "Nödvändigt",
+    "cookies_preferencesOptionText" : "Inställningar",
+    "cookies_statisticsOptionText" : "Statistik",
+    "cookies_marketingOptionText" : "Marknadsföring",
+    "cookies_acceptButtonText" : "Acceptera",
+    "cookies_declineButtonText" : "Avböja",
+    "cookies_managePreferencesButtonText" : "Hantera mina cookies",
+    "cookies_savePreferencesButtonText":"Spara och stäng"
 }

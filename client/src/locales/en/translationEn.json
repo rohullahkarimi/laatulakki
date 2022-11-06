@@ -63,7 +63,7 @@
     "pricePerPiece": "Price per Piece",
     "quantity": "quantity",
     "pay": "PAY",
-    "pervious": "PERVIOUS",
+    "pervious": "BACK",
     "youMightLike" : "You might also like these products",
     "product": "Product",
     "streetAddress": "Street Address",
@@ -215,5 +215,16 @@
     "footer1": "Terms of Use",
     "footer2": "Register statement",
     "footer3": "Exchange and return",
-    "onlineStore": "Online store"
+    "onlineStore": "Online store",
+
+    "cookies_Message": "We use cookies to improve the user experience, analyze site usage, personalize content and target marketing.",
+    "cookies_privacyPolicyLinkText": "Read more about our cookies here.",
+    "cookies_necessaryOptionText": "Necessary",
+    "cookies_preferencesOptionText" : "Preferences",
+    "cookies_statisticsOptionText" : "Statistics",
+    "cookies_marketingOptionText" : "Marketing",
+    "cookies_acceptButtonText" : "Accept",
+    "cookies_declineButtonText" : "Decline",
+    "cookies_managePreferencesButtonText" : "Manage my cookies",
+    "cookies_savePreferencesButtonText":"Save and Close"
 }

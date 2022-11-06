@@ -85,6 +85,10 @@ input.invalid {
   outline: none;
 }
 
+.hide_in_mobile{
+  display: block;
+}
+
 .checkbox-label {
     box-sizing: border-box;
     display: block;
@@ -113,4 +117,10 @@ input[type=checkbox], input[type=radio] {
     line-height: 1.6em;
     margin-left: 4px;
     padding-left: 18px;
+}
+
+@media (max-width: 600px) {
+  .hide_in_mobile {
+    display: none;
+  }
 }

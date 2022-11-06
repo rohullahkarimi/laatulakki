@@ -79,7 +79,7 @@
     "notInUse": "Ei ole Käytössä",
     "ordererInfo": "Tilaajan tiedot",
     "orderer_desc": "Täyttää tilaajan tiedot. Voit jätä vastaannottajan tiedot täyttämättä jos tiaalaja on sama kuin vastaannottaja.",
-    "receiverInfo": "Vataanottajan tiedot",
+    "receiverInfo": "Vastaanottajan tiedot",
     "iHaveRead": "Olen tutustunut ja hyväksyn",
     "deliveryterms": "Toimitusehtoihin",
     "youHaveToConfirm": "Toimitusehdot on hyväksyttävä!",
@@ -219,8 +219,19 @@
     "footer1": "Käyttöehdot",
     "footer2": "Rekisteriseloste",
     "footer3": "Vaihto ja palautus",
-    "onlineStore": "Verkkokauppa"
+    "onlineStore": "Verkkokauppa",
 
+
+    "cookies_Message": "Käytämme evästeitä käyttökokemuksen parantamiseen, sivuston käytön analysointiin, sisällön personointiin ja markkinoinnin kohdentamiseen.",
+    "cookies_privacyPolicyLinkText": "Lue lisää evästeistämme täältä.",
+    "cookies_necessaryOptionText": "Välttämättömät",
+    "cookies_preferencesOptionText" : "Toimivuusevästeet",
+    "cookies_statisticsOptionText" : "Suorituskykyevästeet",
+    "cookies_marketingOptionText" : "Kohdistamisevästeet",
+    "cookies_acceptButtonText" : "Hyväksy",
+    "cookies_declineButtonText" : "Hylkää",
+    "cookies_managePreferencesButtonText" : "Evästeasetukset",
+    "cookies_savePreferencesButtonText":"Tallenna ja sulje"
 
 }
 

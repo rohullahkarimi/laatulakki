@@ -12,11 +12,6 @@ const Container = styled.div`
     position: relative;
 `
 
-const HideInMobile = styled.div`
-    ${smartPhone({display: "none"})}
-    ${mobile({display: "none"})}
-`
-
 
 const Image = styled.img`
     width: 100%;
@@ -71,8 +66,8 @@ const CategoryItem = () => {
         </Link>
     </Container>
 
-    <Container>
-        <HideInMobile>
+    
+    <Container className="hide_in_mobile">
             <Link to={`/products/ylioppilaslakki`}>
                 <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/ammattilakki-lr.jpg"/>
                 <Info>
@@ -80,11 +75,9 @@ const CategoryItem = () => {
                     <Button>{t("buy_now").toUpperCase()}</Button>
                 </Info>
             </Link>
-        </HideInMobile>
     </Container>
 
-    <Container>
-        <HideInMobile>
+    <Container className="hide_in_mobile">
             <Link to={`/products/ylioppilaslakki`}>
                 <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/valmistujaislakit.jpg"/>
                 <Info>
@@ -92,8 +85,9 @@ const CategoryItem = () => {
                     <Button>{t("buy_now").toUpperCase()}</Button>
                 </Info>
             </Link>
-        </HideInMobile>
     </Container>
+
+  
     </>
   )
 }

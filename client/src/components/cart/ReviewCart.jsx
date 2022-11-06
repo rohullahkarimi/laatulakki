@@ -106,6 +106,7 @@ const DeliveryAddress = styled.div`
 
 const DetailsInfo = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 const Key = styled.div`
   flex: 1;

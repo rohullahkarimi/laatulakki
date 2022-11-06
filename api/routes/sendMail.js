@@ -158,7 +158,7 @@ async function handleOrderPaid(orderId){
 
 async function getOrderData(orderId){
   try{
-    const res = await axios.get(process.env.MAIN_API_URL+"/orders/getOrder/find/"+orderId);
+    const res = await axios.get(process.env.MAIN_API_URL+"/orders/getOrder/HDcSmyZpaWqR/find/"+orderId);
     return res.data;
   }catch(err){
     console.log(err);

@@ -4,6 +4,8 @@ import styled from "styled-components"
 import { mobile } from "../../responsive"
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import { emptyCart } from "../../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 
 
@@ -43,6 +45,7 @@ const Button = styled.button`
 
 const Success = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch()
   const [searchParams, setSearchParams] = useSearchParams();
   const checkoutStatus = searchParams.get("checkout-status")
   const orderId = searchParams.get("checkout-reference")
@@ -53,7 +56,7 @@ const Success = () => {
 
   const getOrderData = async (orderId) => {
     try{
-      const res = await axios.get(process.env.REACT_APP_API_URL+"/orders/getOrder/find/"+orderId);
+      const res = await axios.get(process.env.REACT_APP_API_URL+"/orders/getOrder/HDcSmyZpaWqR/find/"+orderId);
       return res.data;
     }catch(err){
       console.log(err);
@@ -71,8 +74,9 @@ const Success = () => {
         if(res.data.status !== "ok"){
           // redirect user to cancel page
           
-        }else if(res.data.status !== "ok"){
+        }else if(res.data.status === "ok"){
           console.log("order paid and email send")
+          dispatch(emptyCart());
         }
       });
     } catch(error) {

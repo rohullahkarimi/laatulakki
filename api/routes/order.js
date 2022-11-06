@@ -14,7 +14,8 @@ require("../components/emailSender.js")();
 
 
 // GET ORDER Full data
-router.get("/getOrder/find/:id", async (req, res) => {
+router.get("/getOrder/HDcSmyZpaWqR/find/:id", async (req, res) => {
+    // password: HDcSmyZpaWqR
     try {
         const order = await Order.findById(req.params.id);
         res.status(200).json(order);
