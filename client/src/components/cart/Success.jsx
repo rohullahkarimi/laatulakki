@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { emptyCart } from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import { hotjar } from 'react-hotjar';
 
 
 
@@ -53,6 +54,11 @@ const Success = () => {
     baseURL: process.env.REACT_APP_API_URL //process.env.REACT_APP_API_URL,
   });
 
+  // call hotjar if user accepted preferences cookie
+  if(getCookie("rcl_preferences_consent") === "true"){
+    hotjar.initialize(3220042, 6)
+    hotjar.identify('USER_ID', { userProperty: 'value' });
+  }
 
   const getOrderData = async (orderId) => {
     try{
