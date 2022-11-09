@@ -230,9 +230,10 @@ const Cart = () => {
         category: "Cart",
         action: "added to cart",
         label: "user cart", // optional
-        value: cartTotal.toFixed(2), // optional, must be a number
+        value: Number(cartTotal.toFixed(2)), // optional, must be a number
       });
     }
+  
     console.log(cart)
     return (
       <div>
