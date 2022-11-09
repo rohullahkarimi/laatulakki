@@ -72,7 +72,7 @@ const Price = styled.span`
 
 const FilterContainer = styled.div`
     width: 50%;
-    margin: 30px 0px;
+    margin: 30px 0px 0px 0px;
     flex-direction: column;
     display: flex;
     justify-content: space-between;
@@ -140,6 +140,13 @@ const GeneralError = styled.div`
     font-size: 18px;
 `
 
+const LeftAmount = styled.p`
+    font-size: 14px;
+    width: 100%;
+    margin: 5px 0px;
+`
+
+
 const Button = styled.button`
     width: 120px;
     padding: 15px;
@@ -179,6 +186,7 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1)
   const [color, setColor] = useState("")
   const [size, setSize] = useState("")
+  const [productStorage, setProductStorage] = useState("")
   const dispatch = useDispatch()
   const [modalShow, setModalShow] = useState(false);
 
@@ -206,6 +214,15 @@ const Product = () => {
 
   //console.log(size, color)
 
+  const handleSizeSelection = (e) =>{
+    const idx = e.target.selectedIndex;
+    const option = e.target.querySelectorAll('option')[idx];
+    const storage = option.getAttribute('data-storage');
+
+    setSize(e.target.value)
+    setProductStorage(storage)
+  }
+
   const handleClick = () =>{
     if(!color){
         $(".generalError").text("Valitse väri");
@@ -218,6 +235,7 @@ const Product = () => {
     let productId = product._id
     let title = product.title
     let img = product.img[0].thumbnail
+    console.log(size)
     // update cart
     dispatch(
         addProduct({ ...product, title, img, quantity, color, size, productId})
@@ -225,7 +243,7 @@ const Product = () => {
     setModalShow(true)
   }
 
-    //console.log(product)
+    console.log(product)
 
     let errorElement
     if(!size){
@@ -237,14 +255,17 @@ const Product = () => {
     }
 
     let instructionElements;
-    let sizeUnit;
     if (product.categories?.includes('lakki')) {
         instructionElements = <InstructionContainer><InstructionItem href="/cap_choice">Ohjeet mittaukseen</InstructionItem><InstructionItem href="/cap_usage">Lakin käyttö- ja hoito ohje</InstructionItem></InstructionContainer>
-        sizeUnit = "cm"
-    }else if(product.categories?.includes('lyyra')){
-        sizeUnit = "mm"
     }
 
+    const checkTotalProductSizeAmount = () => {
+        let productSizeQuantity = 0
+        product.size?.map((productSize, j) => productSizeQuantity += productSize.storage)
+        return(
+            productSizeQuantity <= 0 ? true : false
+        )
+    }
     return (
     <Container>
         <Navbar/>
@@ -286,14 +307,15 @@ const Product = () => {
                     </Filter>
                     <Filter>
                         <FilterTitle>{t("size")}</FilterTitle>
-                        
-                        <FilterSize onChange={(e)=>setSize(e.target.value)} required>
+    
+                        <FilterSize onChange={handleSizeSelection} required>
                             <FilterSizeOption value="" key="">Valitse</FilterSizeOption>
-                            {product.size?.map((s)=>(
-                                <FilterSizeOption key={s}>{s} {sizeUnit}</FilterSizeOption>
-                            ))}
+                            {product.size?.map((productSize, j) => {
+                                return(<FilterSizeOption data-storage={productSize.storage} value={productSize.name} key={j} disabled={productSize.storage <= 0 ? true : null}>{productSize.name} {productSize.unit}</FilterSizeOption>)
+                            })}
                         </FilterSize>
                     </Filter>
+                    {productStorage &&<LeftAmount>Jäljellä {productStorage} kpl</LeftAmount>}
                 </FilterContainer>
                 <AddContainer>
                     <AmountContainer>
@@ -301,12 +323,10 @@ const Product = () => {
                         <Amount>{quantity}</Amount>
                         <Add onClick={()=>handleQuantity("increase")}/>
                     </AmountContainer>
-                    <Button onClick={handleClick}>{t("buy")}</Button>
+                    <Button onClick={handleClick} disabled={checkTotalProductSizeAmount() === true ? true : null}>{checkTotalProductSizeAmount() === true ? t('soldOut') : t('buy')}</Button>
                 </AddContainer>
                 {errorElement}
-               
             </InfoContainer>
-            
         </Wrapper>
 
         <YouMightLike>{t("youMightLike")}</YouMightLike>

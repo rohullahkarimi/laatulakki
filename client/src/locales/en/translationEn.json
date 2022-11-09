@@ -92,6 +92,7 @@
     "tax": "Tax",
     "tax_less": "Tax less",
     "vatZero": "Tax-free amount VAT 0%",
+    "soldOut": "Sold Out!",
 
     "changeAndRefund.header": "CHANGE AND REFUND",
     "changeAndRefund.1": "From the general online store",

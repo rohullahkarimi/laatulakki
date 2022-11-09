@@ -28,6 +28,9 @@ import {
 import { useSelector } from "react-redux";
 import ScrollToTop from "./components/ScrollToTop";
 
+import ReactGA from "react-ga4";
+ReactGA.initialize("G-D2D2QPJM81");
+
 const App = () => {
   const { t } = useTranslation();
   const user = useSelector((state)=> state.user.currentUser);

@@ -16,6 +16,9 @@ import { useNavigate } from "react-router-dom";
 import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
 import { useState } from "react";
+import ReactGA from "react-ga4";
+
+
 
 //import $ from 'jquery';
 import {
@@ -151,11 +154,7 @@ const Cart = () => {
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { Component } = step;
 
-  // call hotjar if user accepted preferences cookie
-  if(getCookie("rcl_preferences_consent") === "true"){
-    hotjar.initialize(3220042, 6)
-    hotjar.identify('USER_ID', { userProperty: 'value' });
-  }
+
  
   
 
@@ -220,6 +219,20 @@ const Cart = () => {
       
     }
 
+    // call hotjar if user accepted preferences cookie
+    if(getCookie("rcl_preferences_consent") === "true"){
+      hotjar.initialize(3220042, 6)
+      hotjar.identify('USER_ID', { userProperty: 'value' });
+
+      // Send pageview with a custom path
+      ReactGA.send({ hitType: "pageview", page: "/cart" });
+      ReactGA.event({
+        category: "Cart",
+        action: "added to cart",
+        label: "user cart", // optional
+        value: cartTotal.toFixed(2), // optional, must be a number
+      });
+    }
     console.log(cart)
     return (
       <div>

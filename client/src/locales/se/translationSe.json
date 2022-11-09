@@ -92,6 +92,7 @@
     "tax": "Skatt",
     "tax_less": "Skatt mindre",
     "vatZero": "Skattefritt belopp moms 0%",
+    "soldOut": "Sålt slut!",
 
     "changeAndRefund.header": "ÄNDRA OCH ÅTERBETALNING",
     "changeAndRefund.1": "Från den allmänna onlinebutiken",

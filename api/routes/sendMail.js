@@ -41,6 +41,9 @@ async function getTransactionDetails(orderId, transactionId){
     if(data.status === "ok"){
       // send order emails 
       sendOrderEmail(orderId)
+
+      // decrease products quantity
+      handleProductStorage(orderId)    
     }else{
       res.status(400).json("The transaction is not valid, try again!")
     }
@@ -66,7 +69,6 @@ function sendOrderEmail(orderId){
   getOrderData(orderId).then((response) => {
     //console.log(response)
 
-    // TODO::  if email already send, do not send it 
     if(response.emailSent === true){
       return console.log("Email already has been sent.")
     }
@@ -144,15 +146,55 @@ async function handleOrderPaid(orderId){
   .then(()=>{
     const Order = require("../models/Order");
     const filter = { _id: orderId };
-    Order.findByIdAndUpdate(filter,{"emailSent": true, "paid": true}, function(err, result){
+    Order.findByIdAndUpdate(filter,
+    {
+      "emailSent": true, 
+      "paid": true,
+    }, 
+    function(err, result){
       if(err){
         console.log(err)
       }
-      // else can print something if needed
+    // else can print something if needed
     })
   })
   .catch((err)=>{
       console.log(err);
+  });
+}
+
+async function handleProductStorage(orderId){
+  getOrderData(orderId).then((response) => {
+    mongoose
+    .connect(process.env.MONGO_URL)
+    .then(()=>{
+      const Product = require("../models/Product");
+
+      response.products.map(item => {
+        const productFilter = { _id: item._id };
+        Product.findByIdAndUpdate(productFilter,
+        {
+          $inc:{
+            "size.$[r].storage": -Math.abs(item.quantity)
+          }
+        },
+        {
+          arrayFilters: [
+            {
+              "r.name": item.size 
+            }
+          ]
+        },
+        function(err, result){
+          if(err){
+            console.log(err)
+          }
+        })
+      })
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
   });
 }
 
