@@ -480,7 +480,9 @@ const Receipt = () => {
     )
   }else{
     return(
-      <div>Link is not valid.</div>
+      <ContainerDiv>
+        <div>Loading...</div>
+      </ContainerDiv>
     )
   }
   

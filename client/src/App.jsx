@@ -130,6 +130,11 @@ const App = () => {
             zIndex: 1,
             cursor: "default",
             verticalAlign: "top",
+          },
+          policy: {
+            fontSize: "10pt",
+            color: "#000",
+            textDecoration: "underline",
           }
         }}
       />

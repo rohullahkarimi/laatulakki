@@ -5,21 +5,16 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import CartModal from "../components/CartModal"
 import { useTranslation } from "react-i18next";
-import { mobile, smartPhone } from "../responsive"
+import { mobile, smallLaptop, smartPhone } from "../responsive"
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
 import { addProduct } from "../redux/cartRedux"
 import { useDispatch } from "react-redux"
-import { bodyColor } from "../theme"
 import '../../node_modules/react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 import $ from "jquery"
 import Products from "../components/Products"
-
-
-
-
 
 const Container = styled.div`
     
@@ -28,9 +23,9 @@ const Container = styled.div`
 const Wrapper = styled.div`
     padding: 50px;
     display: flex; 
-    //background-color: #${bodyColor};
-    ${mobile({padding: "10px", flexDirection: "column"})}
+    ${smallLaptop({padding: "20px", flexDirection: "column"})}
     ${smartPhone({padding: "10px", flexDirection: "column"})}
+    ${mobile({padding: "10px", flexDirection: "column"})}
 `
 
 const ImageContainer = styled.div`
@@ -45,6 +40,8 @@ const Image = styled.img`
 const InfoContainer = styled.div`
     flex: 1;
     padding: 0px 50px;
+    ${smallLaptop({padding: "20px"})}
+    ${smartPhone({padding: "10px"})}
     ${mobile({padding: "10px"})}
 `
 

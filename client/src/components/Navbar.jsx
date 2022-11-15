@@ -7,6 +7,7 @@ import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 import {useSelector} from "react-redux"
 import {  useNavigate } from "react-router-dom"
 import CartModal from "../components/CartModal"
+import logo from "../images/laatulakki_long_logo.jpg"
 
 
 // multi language
@@ -61,12 +62,12 @@ const Center = styled.div`
     text-align: center;
 `;
 
-const Logo = styled.h1`
-    font-weight: bold;
+const Logo = styled.img`
+    width: 140px;
+    height: "auto";
     cursor: pointer;
-    font-size: 32px;
-    ${mobile({fontSize: "18px", paddingTop: "8px"})}
-    ${smartPhone({fontSize: "20px", paddingTop: "8px"})}
+    ${smartPhone({width:"120px"})}
+    ${mobile({width:"115px"})}
 `
 
 const Right = styled.div`
@@ -156,7 +157,7 @@ const Navbar = () => {
                     </Language>
                 </LangDiv>
             </Left>
-            <Center><Logo onClick={goToHomePage}>LaatuLakki.fi</Logo></Center>
+            <Center><Logo onClick={goToHomePage} src={logo}/></Center>
             <Right>
                 <MenuItem onClick={handleEmptyCart}>
                     <Badge badgeContent={quantity} color="primary">
