@@ -66,6 +66,13 @@
     "pervious": "BACK",
     "youMightLike" : "You might also like these products",
     "product": "Product",
+    "sizeInstruction": "Instructions for measurement",
+    "usageDetails": "Usage and care instructions for the law",
+    "especialInfo": "Details",
+    "choose": "Choose",
+    "leftAmount": "Left",
+
+
     "streetAddress": "Street Address",
     "postalCode": "Postal Code",
     "city": "City",
@@ -78,7 +85,7 @@
     "ordererInfo": "Subscriber Information",
     "orderer_desc": "Fill in the orderer's information. You can leave the recipient's information blank if the orderer is the same as the recipient.",
     "receiverInfo": "Details of Vatanoin",
-    "ihaveRead": "I am familiar with and accept",
+    "haveAlreadyRead": "I am familiar with and accept",
     "deliveryterms": "Delivery Terms",
     "youHaveToConfirm": "Delivery terms must be accepted!",
     "thanksForYourOrder": "Thank you for your order",

@@ -75,13 +75,15 @@ const App = () => {
         preferencesOptionText = {t('cookies_preferencesOptionText')}
         statisticsOptionText = {t('cookies_statisticsOptionText')}
         marketingOptionText = {t('cookies_marketingOptionText')}
-
+      
+        showDeclineButton = {true}
         acceptButtonText = {t('cookies_acceptButtonText')}
         declineButtonText = {t('cookies_declineButtonText')}
         managePreferencesButtonText = {t('cookies_managePreferencesButtonText')}
         savePreferencesButtonText= {t('cookies_savePreferencesButtonText')}
         
-        showDeclineButton = {false}
+        
+        
 
         onAccept={() => {}}
         onAcceptPreferences={() => {}}
@@ -100,6 +102,10 @@ const App = () => {
             width: "fit-content",
             margin: "auto",
           },
+          buttonWrapper: {
+            float: "right",
+            marginTop: "10px",
+          },
           button: {
             display: "inline-block",
             backgroundColor: "#000",
@@ -107,7 +113,7 @@ const App = () => {
             minWidth: "80px",
             color: "#fff",
             textDecoration: "none",
-            fontSize: "10pt",
+            fontSize: "14px",
             fontWeight: "400",
             marginRight: "5px",
             marginLeft: "5px",
@@ -132,7 +138,7 @@ const App = () => {
             verticalAlign: "top",
           },
           policy: {
-            fontSize: "10pt",
+            fontSize: "14px",
             color: "#000",
             textDecoration: "underline",
           }

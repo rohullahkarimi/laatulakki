@@ -360,7 +360,7 @@ const ReviewForm = () => {
           })}
           />
           <label htmlFor="termsOfDelivery" className="checkbox-label checkbox-label-larger">
-            {t("iHaveRead")} <TermsOfDelivery target="_blank" onClick={handleTermsOfDelivery}>{t("deliveryterms")}</TermsOfDelivery>. * 
+          {t("haveAlreadyRead")} <TermsOfDelivery target="_blank" onClick={handleTermsOfDelivery}>{t("deliveryterms")}</TermsOfDelivery>. * 
           </label>
           <span id="customerInformation_termsOfDelivery" className='input-info invalid' role="alert">
             {handlePaymentErrors.termsOfDelivery && handlePaymentErrors.termsOfDelivery?.type === "required" && (

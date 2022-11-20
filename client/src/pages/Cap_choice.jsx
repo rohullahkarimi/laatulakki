@@ -58,7 +58,7 @@ const CapChoice = () => {
                         
                         <h4>{t("capChoice1a")}</h4>
                         <div>
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/0A03Y9mzlKA?start=56" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/0A03Y9mzlKA?start=56" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         </div>
 
                         <Desc>{t("capChoice1")}</Desc>

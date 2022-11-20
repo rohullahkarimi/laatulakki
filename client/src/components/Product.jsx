@@ -1,6 +1,6 @@
-//import {  SearchOutlined} from "@mui/icons-material"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import i18n from "../i18n"
 
 const Info = styled.div`
     opacity: 0; 
@@ -66,28 +66,20 @@ const Price = styled.div`
     font-size: 15px;
 `
 
-
-/*
-const Icon = styled.div`
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 10px;
-    transition: all 0.5s ease;
-
-    &:hover {
-        background-color: #e9f5f5;
-        transform: scale(1.1);
-    }
-`
-*/
-
 const Product = ({item}) => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+    const selectedLang = i18n.language
+ 
+    let title = ""
+    if(selectedLang === "se"){
+        title = item.title[0].se
+    }else if(selectedLang === "en"){
+        title = item.title[0].en
+    }else{
+        title = item.title[0].fi
+    }
+  
+
 
   const navigateToProductPage = () =>{
     navigate(`/product/${item._id}`)
@@ -101,7 +93,7 @@ const Product = ({item}) => {
         </Info>
         
         <NameContainer> 
-            <Name>{item.title}</Name>
+            <Name>{title}</Name>
         </NameContainer> 
         
        

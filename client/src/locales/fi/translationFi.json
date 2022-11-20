@@ -66,6 +66,11 @@
     "pervious": "EDELLINEN",
     "youMightLike" : "Voisit tykätä myös näistä tuotteista",
     "product": "Tuote",
+    "sizeInstruction": "Ohjeet mittaukseen",
+    "usageDetails": "Lakin käyttö- ja hoito ohje",
+    "especialInfo": "Yksityiskohdat",
+    "choose": "Valitse",
+    "leftAmount": "Jäljellä",
 
   
     "streetAddress": "Katuosoite",
@@ -80,7 +85,7 @@
     "ordererInfo": "Tilaajan tiedot",
     "orderer_desc": "Täyttää tilaajan tiedot. Voit jätä vastaannottajan tiedot täyttämättä jos tiaalaja on sama kuin vastaannottaja.",
     "receiverInfo": "Vastaanottajan tiedot",
-    "iHaveRead": "Olen tutustunut ja hyväksyn",
+    "haveAlreadyRead": "Olen tutustunut ja hyväksyn",
     "deliveryterms": "Toimitusehtoihin",
     "youHaveToConfirm": "Toimitusehdot on hyväksyttävä!",
     "thanksForYourOrder": "Kiitos tilauksesta!",

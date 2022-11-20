@@ -15,6 +15,7 @@ import '../../node_modules/react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 import $ from "jquery"
 import Products from "../components/Products"
+import i18n from "../i18n"
 
 const Container = styled.div`
     
@@ -177,9 +178,20 @@ const InstructionItem = styled.a`
 
 const Product = () => {
   const { t } = useTranslation();
+  const selectedLang = i18n.language
   const location = useLocation();
   const id = location.pathname.split("/")[2]
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({
+
+  })
+
+  const [productInternationalizeDetails, setProductInternationalizeDetails] = useState({
+    title: "",
+    desc: "",
+  })
+  const [productDetails, setProductDetails] = useState()
+  const [productColors, setProductColors] = useState()
+
   const [quantity, setQuantity] = useState(1)
   const [color, setColor] = useState("")
   const [size, setSize] = useState("")
@@ -187,19 +199,42 @@ const Product = () => {
   const dispatch = useDispatch()
   const [modalShow, setModalShow] = useState(false);
 
-
-
   useEffect(() =>{
-      const getProduct = async ()=> {
-        try{
-            const res = await publicRequest.get("/products/find/" + id);
-            setProduct(res.data);
-        }catch(err){
-
+        const handleProductSet = (data) => {
+            let title = ""
+            let desc = ""
+        
+            if(selectedLang === "se"){
+                title = data.title[0].se
+                desc = data.desc[0].se
+                setProductDetails(data.details[0].se)
+                setProductColors(data.color[0].se)
+            }else if(selectedLang === "en"){
+                title = data.title[0].en
+                desc = data.desc[0].en
+                setProductDetails(data.details[0].en)
+                setProductColors(data.color[0].en)
+            }else{
+                title = data.title[0].fi
+                desc = data.desc[0].fi
+                setProductDetails(data.details[0].fi)
+                setProductColors(data.color[0].fi)
+            }
+            setProductInternationalizeDetails(previousInputs => ({ ...previousInputs, title: title }))
+            setProductInternationalizeDetails(previousInputs => ({ ...previousInputs, desc: desc }))
         }
-      }
-      getProduct()
-  }, [id]);
+
+        const getProduct = async ()=> {
+            try{
+                const res = await publicRequest.get("/products/find/" + id);
+                setProduct(res.data);
+                handleProductSet(res.data);
+            }catch(err){
+                console.log(err)
+            }
+        }
+        getProduct()
+  }, [id, selectedLang]);
 
   const handleQuantity = (type)=>{
     if(type === "decrease"){
@@ -222,15 +257,15 @@ const Product = () => {
 
   const handleClick = () =>{
     if(!color){
-        $(".generalError").text("Valitse väri");
+        $(".generalError").text(t('choose')+" "+t('color'));
         return false
     }
     if(!size){
-        $(".generalError").text("Valitse koko");
+        $(".generalError").text(t('choose')+" "+t('size'));
         return false
     }
     let productId = product._id
-    let title = product.title
+    let title = product.title[0].fi
     let img = product.img[0].thumbnail
     console.log(size)
     // update cart
@@ -240,7 +275,14 @@ const Product = () => {
     setModalShow(true)
   }
 
+    /*
     console.log(product)
+    console.log(productInternationalizeDetails)
+    console.log(productDetails)
+    */
+    console.log(product)
+    console.log(productColors)
+    
 
     let errorElement
     if(!size){
@@ -253,7 +295,7 @@ const Product = () => {
 
     let instructionElements;
     if (product.categories?.includes('lakki')) {
-        instructionElements = <InstructionContainer><InstructionItem href="/cap_choice">Ohjeet mittaukseen</InstructionItem><InstructionItem href="/cap_usage">Lakin käyttö- ja hoito ohje</InstructionItem></InstructionContainer>
+        instructionElements = <InstructionContainer><InstructionItem href="/cap_choice">{t('sizeInstruction')}</InstructionItem><InstructionItem href="/cap_usage">{t('usageDetails')}</InstructionItem></InstructionContainer>
     }
 
     const checkTotalProductSizeAmount = () => {
@@ -272,16 +314,14 @@ const Product = () => {
                 {product?.img && <ImageGallery items={product?.img}  showFullscreenButton={false} showPlayButton={false} showBullets={true}/>}
             </ImageContainer>
             <InfoContainer>
-                {product.title?.split("<br>").map((productName, j) => {
-                return (
-                    <Title key={j}>{productName}</Title>
-                );
-                })}
-                <Desc>{product.desc}</Desc>
+
+                <Title>{productInternationalizeDetails.title}</Title>
+
+                <Desc>{productInternationalizeDetails.desc}</Desc>
 
                 <DetailsPartContainer>
-                    {product.details?.length > 0 && <h4>Yksityiskohdat</h4>}
-                    {product.details?.map((detailsName, j) => {
+                    {productDetails?.length > 0 && <h4>{t('especialInfo')}</h4>}
+                    {productDetails?.map((detailsName, j) => {
                         return(<DetailsPart key={j}><b>{detailsName.name}</b>: {detailsName.desc}</DetailsPart>)
                     })}
                 </DetailsPartContainer>
@@ -296,23 +336,23 @@ const Product = () => {
                     <Filter>
                         <FilterTitle>{t("color")}</FilterTitle>
                         <FilterColorSelect onChange={(e)=> setColor(e.target.value)} required>
-                            <FilterColorOption value="" key="">Valitse</FilterColorOption>
-                            {product.color?.map((s)=>(
-                                <FilterColorOption key={s}>{s}</FilterColorOption>
-                            ))}
+                            <FilterColorOption value="" key="">{t('choose')}</FilterColorOption>
+                            {productColors?.map((colorName, j) => {
+                                return(<FilterColorOption key={j}>{colorName.name}</FilterColorOption>)
+                            })}
                         </FilterColorSelect>
                     </Filter>
                     <Filter>
                         <FilterTitle>{t("size")}</FilterTitle>
     
                         <FilterSize onChange={handleSizeSelection} required>
-                            <FilterSizeOption value="" key="">Valitse</FilterSizeOption>
+                            <FilterSizeOption value="" key="">{t('choose')}</FilterSizeOption>
                             {product.size?.map((productSize, j) => {
                                 return(<FilterSizeOption data-storage={productSize.storage} value={productSize.name} key={j} disabled={productSize.storage <= 0 ? true : null}>{productSize.name} {productSize.unit}</FilterSizeOption>)
                             })}
                         </FilterSize>
                     </Filter>
-                    {productStorage &&<LeftAmount>Jäljellä {productStorage} kpl</LeftAmount>}
+                    {productStorage &&<LeftAmount>{t('leftAmount')} {productStorage} {t('quantity')}</LeftAmount>}
                 </FilterContainer>
                 <AddContainer>
                     <AmountContainer>
