@@ -16,6 +16,7 @@ import ImageGallery from 'react-image-gallery';
 import $ from "jquery"
 import Products from "../components/Products"
 import i18n from "../i18n"
+import TaxButton from '@mui/material/Button';
 
 const Container = styled.div`
     
@@ -158,6 +159,22 @@ const Button = styled.button`
     }
 `
 
+const IncludeTax = styled.p`
+    display: inline-flex;
+    background-color: transparent;
+    margin: 0;
+    user-select: none;
+    vertical-align: middle;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size: 14px;
+    min-width: auto;
+    padding: 2px 9px;
+    border: 0.5px solid #bbbcbc;
+    color: #bbbcbc;
+`
+
 const YouMightLike = styled.div`
     height: 35px;
     background-color: #f5fbfd;
@@ -267,7 +284,6 @@ const Product = () => {
     let productId = product._id
     let title = product.title[0].fi
     let img = product.img[0].thumbnail
-    console.log(size)
     // update cart
     dispatch(
         addProduct({ ...product, title, img, quantity, color, size, productId})
@@ -279,10 +295,10 @@ const Product = () => {
     console.log(product)
     console.log(productInternationalizeDetails)
     console.log(productDetails)
-    */
+   
     console.log(product)
     console.log(productColors)
-    
+     */
 
     let errorElement
     if(!size){
@@ -331,7 +347,7 @@ const Product = () => {
 
               
                 
-                {product.price && <Price>{product?.price.toFixed(2)} €</Price>}
+                {product.price && <Price>{product?.price.toFixed(2)} €  <IncludeTax>{t('includeTax')}</IncludeTax></Price>}
                 <FilterContainer>
                     <Filter>
                         <FilterTitle>{t("color")}</FilterTitle>

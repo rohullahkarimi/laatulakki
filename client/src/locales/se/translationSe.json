@@ -28,7 +28,7 @@
     "createAccountText" : "SKAPA ETT NYTT KONTO",
     "emailRequired": "E-postadress krävs",
     "enterEmail": "Vänligen ange en giltig e-postadress",
-    "feedback_desc": "Det bästa sättet att nå vår kundtjänst är inte under formuläret eller från adressen laatulakki@gmail.com.",
+    "feedback_desc": "Det bästa sättet att nå vår kundtjänst är under formuläret eller från adressen laatulakki@gmail.com.",
     "contact_header": "Kontaktinformation",
     "feedback_name": "Namn",
     "feedback_email": "E-post",
@@ -71,6 +71,7 @@
     "especialInfo": "Detaljer",
     "choose": "Välj",
     "leftAmount": "Vänster",
+    "includeTax": "incl. VAT",
 
 
     "streetAddress": "Gatuadress",

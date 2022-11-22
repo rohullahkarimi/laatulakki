@@ -28,7 +28,7 @@
     "createAccountText" : "LUO UUSI TILI",
     "emailRequired": "Sähköpostiosoite vaaditaan",
     "enterEmail": "Anna kelvollinen sähköpostiosoite",
-    "feedback_desc": "Asiakaspalvelumme tavoitat parhaiten älä lomakkeen alta tai osoitteesta laatulakki@gmail.com.",
+    "feedback_desc": "Asiakaspalvelumme tavoitat parhaiten tällä lomakkeella tai osoitteesta laatulakki@gmail.com.",
     "contact_header": "Yhteystiedot",
     "feedback_name": "Nimi",
     "feedback_email": "Sähköposti",
@@ -71,6 +71,7 @@
     "especialInfo": "Yksityiskohdat",
     "choose": "Valitse",
     "leftAmount": "Jäljellä",
+    "includeTax": "sis. ALV",
 
   
     "streetAddress": "Katuosoite",

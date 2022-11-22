@@ -18,6 +18,7 @@ import Receipt from "./pages/Receipt";
 import PaymentPage from "./pages/Payment_response";
 import { CookieBanner } from "@palmabit/react-cookie-law";
 import { useTranslation } from 'react-i18next';
+import $ from "jquery"
 
 import {
   BrowserRouter as Router,
@@ -65,85 +66,102 @@ const App = () => {
         <Route path="/cap_usage" element={<CapUsage/>} />
         <Route path="/receipt" element={<Receipt/>} />
       </Routes>
-      <CookieBanner
-        message={t('cookies_Message')}
-        wholeDomain={true}
-        policyLink="/terms_and_condition"
-        privacyPolicyLinkText= {t('cookies_privacyPolicyLinkText')}
+      <div className="cookies_container overlay">
+        <CookieBanner
+          message={t('cookies_Message')}
+          wholeDomain={true}
+          policyLink="/terms_and_condition"
+          privacyPolicyLinkText= {t('cookies_privacyPolicyLinkText')}
 
-        necessaryOptionText= {t('cookies_necessaryOptionText')}
-        preferencesOptionText = {t('cookies_preferencesOptionText')}
-        statisticsOptionText = {t('cookies_statisticsOptionText')}
-        marketingOptionText = {t('cookies_marketingOptionText')}
-      
-        showDeclineButton = {true}
-        acceptButtonText = {t('cookies_acceptButtonText')}
-        declineButtonText = {t('cookies_declineButtonText')}
-        managePreferencesButtonText = {t('cookies_managePreferencesButtonText')}
-        savePreferencesButtonText= {t('cookies_savePreferencesButtonText')}
+          necessaryOptionText= {t('cookies_necessaryOptionText')}
+          preferencesOptionText = {t('cookies_preferencesOptionText')}
+          statisticsOptionText = {t('cookies_statisticsOptionText')}
+          marketingOptionText = {t('cookies_marketingOptionText')}
         
-        
-        
+          showDeclineButton = {true}
+          acceptButtonText = {t('cookies_acceptButtonText')}
+          declineButtonText = {t('cookies_declineButtonText')}
+          managePreferencesButtonText = {t('cookies_managePreferencesButtonText')}
+          savePreferencesButtonText= {t('cookies_savePreferencesButtonText')}
+          
+          
+          
 
-        onAccept={() => {}}
-        onAcceptPreferences={() => {}}
-        onAcceptStatistics={() => {}}
-        onAcceptMarketing={() => {}}
+          onAccept={() => {
+            $(".cookies_container").removeClass("overlay");
+          }}
+          onAcceptPreferences={() => {}}
+          onAcceptStatistics={() => {}}
+          onAcceptMarketing={() => {}}
 
-        styles={{
-          dialog: { 
-            backgroundColor: "#8effff", 
-            position: "fixed",
-            top: "35%",
-            left: "0px",
-            right: "0px",
-            zIndex: 100000,
-            padding: "10px",
-            width: "fit-content",
-            margin: "auto",
-          },
-          buttonWrapper: {
-            float: "right",
-            marginTop: "10px",
-          },
-          button: {
-            display: "inline-block",
-            backgroundColor: "#000",
-            padding: "5px",
-            minWidth: "80px",
-            color: "#fff",
-            textDecoration: "none",
-            fontSize: "14px",
-            fontWeight: "400",
-            marginRight: "5px",
-            marginLeft: "5px",
-            textAlign: "center",
-            whiteSpace: "nowrap",
-            cursor: "pointer",
-            border: "none",
-          },
-          optionLabel: {
-            height: "auto",
-            width: "auto",
-            minHeight: "14px",
-            fontSize: "12pt",
-            color: "#000",
-            display: "inline-block",
-            padding: "1px 0px 0px 20px",
-            position: "relative",
-            top: "0px",
-            left: "0px",
-            zIndex: 1,
-            cursor: "default",
-            verticalAlign: "top",
-          },
-          policy: {
-            fontSize: "14px",
-            color: "#000",
-            textDecoration: "underline",
-          }
-        }}
-      />
+          styles={{
+            dialog: { 
+              backgroundColor: "#fff", 
+              position: "fixed",
+              top: "35%",
+              left: "0px",
+              right: "0px",
+              zIndex: 100000,
+              padding: "10px",
+              margin: "auto",
+              borderColor: "#000",
+              borderRadius: "10px",
+              width: "640px",
+              boxShadow: "0px 8px 28px rgb(0 0 0 / 20%) !important",
+              overflow: "auto",
+            },
+            buttonWrapper: {
+              float: "right",
+              marginTop: "10px",
+            },
+            button: {
+              display: "inline-block",
+              backgroundColor: "#000",
+              padding: "10px",
+              minWidth: "80px",
+              color: "#fff",
+              textDecoration: "none",
+              fontSize: "16px",
+              fontWeight: "400",
+              marginRight: "5px",
+              marginLeft: "5px",
+              textAlign: "center",
+              whiteSpace: "nowrap",
+              cursor: "pointer",
+              border: "none",
+            },
+            optionLabel: {
+              height: "auto",
+              width: "auto",
+              minHeight: "14px",
+              fontSize: "12pt",
+              color: "#000",
+              display: "inline-block",
+              padding: "1px 0px 0px 20px",
+              position: "relative",
+              top: "0px",
+              left: "0px",
+              zIndex: 1,
+              cursor: "default",
+              verticalAlign: "top",
+            },
+            policy: {
+              fontSize: "14px",
+              color: "#000",
+              textDecoration: "underline",
+            },
+            message: {
+              minHeight: "32px",
+              fontSize: "16px",
+              fontWeight: "400",
+              lineHeight: "130%",
+              padding: "10px 0px",
+              color: "rgb(0, 0, 0)",
+            }
+          
+          }}
+        />
+      </div>
     </Router>
   );
 };

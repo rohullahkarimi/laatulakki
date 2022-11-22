@@ -64,8 +64,10 @@ const cartSlice = createSlice({
           //state.total += action.payload.deliveryPrice;
         },
         addProduct: (state, action)=>{
-            const itemInCart = state.products.find((item) => item._id === action.payload._id);
+            const itemInCart = state.products.find((item) => item._id === action.payload._id && item.size === action.payload.size);
+
             if (itemInCart) {
+              // if same product with size
               itemInCart.quantity += action.payload.quantity;
             } else {
               state.quantity += 1;

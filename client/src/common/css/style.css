@@ -74,11 +74,35 @@ input[type="checkbox"][required] + .checkbox-label::after {
   font-size: 18px !important;
   padding-left: 26px !important;
 }
+
+.overlay {
+  background: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vw;
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity .3s;
+}
+
 /*
 input:invalid[focused="true"] {
   border: 1px solid red;
 }
 */
+
+.cookies_container{
+  height: 100%;
+  width: 100%;
+}
+.react-cookie-law-manage-btn, .react-cookie-law-save-btn{
+  border: 1px solid black !important;
+  background: white !important;
+  padding: 9px !important;
+}
+.react-cookie-law-manage-btn, .react-cookie-law-save-btn span {
+  color: black !important;
+}
 
 input.invalid {
   border: 1px solid #c1282d;
@@ -122,5 +146,8 @@ input[type=checkbox], input[type=radio] {
 @media (max-width: 600px) {
   .hide_in_mobile {
     display: none;
+  }
+  .react-cookie-law-dialog {
+    width: 100% !important;
   }
 }

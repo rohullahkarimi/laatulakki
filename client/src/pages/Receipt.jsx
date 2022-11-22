@@ -400,7 +400,7 @@ const Receipt = () => {
 
             <div>
                 {order.products?.map((product) => (
-                <Product key={product._id}>
+                <Product key={product._id+product.size}>
                     <ImageContainer><Image src={product.img} /></ImageContainer>
                     <ProductDetail>
                         <Details>
