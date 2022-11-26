@@ -16,7 +16,6 @@ import ImageGallery from 'react-image-gallery';
 import $ from "jquery"
 import Products from "../components/Products"
 import i18n from "../i18n"
-import TaxButton from '@mui/material/Button';
 
 const Container = styled.div`
     

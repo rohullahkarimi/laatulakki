@@ -103,7 +103,7 @@ function sendOrderEmail(orderId){
     // data for email
     const replacements = {
       billingAddress: response.billingAddress,
-      deliveryAddress: response.deliveryAddress, 
+      deliveryAddress: response.deliverySameAsBilling ? response.billingAddress : response.deliveryAddress,
       products: productsArray,
 
       receiptLink: receiptLink,

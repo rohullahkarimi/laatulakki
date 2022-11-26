@@ -30,14 +30,19 @@ import { useSelector } from "react-redux";
 import ScrollToTop from "./components/ScrollToTop";
 
 import ReactGA from "react-ga4";
+import { useEffect } from "react";
 ReactGA.initialize("G-D2D2QPJM81");
 
 const App = () => {
   const { t } = useTranslation();
   const user = useSelector((state)=> state.user.currentUser);
 
-
-  
+  useEffect(() => {
+    if($('.react-cookie-law-dialog').length){
+      $(".cookies_container").addClass("overlay");
+    }
+  });
+ 
   return (
     <Router>
       <ScrollToTop/>
@@ -66,7 +71,7 @@ const App = () => {
         <Route path="/cap_usage" element={<CapUsage/>} />
         <Route path="/receipt" element={<Receipt/>} />
       </Routes>
-      <div className="cookies_container overlay">
+      <div className="cookies_container">
         <CookieBanner
           message={t('cookies_Message')}
           wholeDomain={true}

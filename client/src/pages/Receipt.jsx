@@ -306,7 +306,7 @@ const Receipt = () => {
   // data for email
   const order = {
     billingAddress: orderData.billingAddress,
-    deliveryAddress: orderData.deliveryAddress, 
+    deliveryAddress: orderData.deliverySameAsBilling ? orderData.billingAddress : orderData.deliveryAddress,
     message: orderData.message,
     products: productsArray,
 

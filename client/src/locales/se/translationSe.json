@@ -101,6 +101,7 @@
     "tax_less": "Skatt mindre",
     "vatZero": "Skattefritt belopp moms 0%",
     "soldOut": "Sålt slut!",
+    "deliveryToDifferentPlace": "Leverans till en annan adress?",
 
     "changeAndRefund.header": "ÄNDRA OCH ÅTERBETALNING",
     "changeAndRefund.1": "Från den allmänna onlinebutiken",

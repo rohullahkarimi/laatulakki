@@ -26,7 +26,7 @@ const cartSlice = createSlice({
         },
         deliveryMethod: "",
         deliveryPrice: 0,
-        deliverySameAsBilling: false,
+        deliverySameAsBilling: true,
         quantity:0,
         total:0,
         message: ""
@@ -45,17 +45,21 @@ const cartSlice = createSlice({
             state.message = action.payload.comment;
 
             // save deliverySameAsBilling
-            state.deliverySameAsBilling = action.payload.deliverySameAsBilling;
+            if(action.payload.deliverySameAsBilling){
+              state.deliverySameAsBilling = false;
 
-            // save deliveryAddress
-            state.deliveryAddress['firstname'] = action.payload.deliveryAddress_firstName;
-            state.deliveryAddress['lastname'] = action.payload.deliveryAddress_lastName;
-            state.deliveryAddress['streetAddress'] = action.payload.deliveryAddress_streetAddress;
-            state.deliveryAddress['postalCode'] = action.payload.deliveryAddress_postalCode;
-            state.deliveryAddress['city'] = action.payload.deliveryAddress_city;
-            state.deliveryAddress['country'] = action.payload.deliveryAddress_country;
-            state.deliveryAddress['phonenumber'] = action.payload.deliveryAddress_phonenumber;
-            state.deliveryAddress['email'] = action.payload.deliveryAddress_email;
+              // delivery not same as billing
+              state.deliveryAddress['firstname'] = action.payload.deliveryAddress_firstName;
+              state.deliveryAddress['lastname'] = action.payload.deliveryAddress_lastName;
+              state.deliveryAddress['streetAddress'] = action.payload.deliveryAddress_streetAddress;
+              state.deliveryAddress['postalCode'] = action.payload.deliveryAddress_postalCode;
+              state.deliveryAddress['city'] = action.payload.deliveryAddress_city;
+              state.deliveryAddress['country'] = action.payload.deliveryAddress_country;
+              state.deliveryAddress['phonenumber'] = action.payload.deliveryAddress_phonenumber;
+              state.deliveryAddress['email'] = action.payload.deliveryAddress_email;
+            }else{
+              state.deliverySameAsBilling = true;
+            }
         },
         saveDeliveryMethod: (state, action)=>{
           // save payment method
@@ -130,7 +134,7 @@ const cartSlice = createSlice({
           };
           state.deliveryMethod= "";
           state.deliveryPrice= 0;
-          state.deliverySameAsBilling = false;
+          state.deliverySameAsBilling = true;
           state.quantity = 0;
           state.total = 0;
           state.message = "";
