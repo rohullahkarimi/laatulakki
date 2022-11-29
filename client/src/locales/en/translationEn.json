@@ -1,5 +1,10 @@
 {
     "mandatory": "is a mandatory field",
+    "white": "White", 
+    "black": "Black", 
+    "newest": "New products", 
+    "cheapest_first": "Price: cheapest first", 
+    "expensive_first": "Price: most expensive first",
     "buy": "Buy",
     "homepage": "Homepage",
     "signIn": "Sign In",

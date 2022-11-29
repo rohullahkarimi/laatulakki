@@ -39,17 +39,33 @@ const Products = ({cat, filters, sort, selectedProduct}) => {
     getProducts()
   },[cat]);
 
-  useEffect(()=>{
-    cat && 
-    setFilteredProducts(
-      products.filter(item=>
-        Object.entries(filters).every(([key, value])=>
-          item[key].includes(value)
-        )  
-      )
-    ); 
-  },[products, cat, filters]);
 
+
+  /*
+  useEffect(()=>{
+    cat && 
+    setFilteredProducts(
+      products.filter((item)=> {
+        //console.log(item)
+
+        var productSizes = []; 
+        item.size.map((size)=>{
+          console.log(size.name)
+          productSizes.push(size.name)
+        })
+        console.log(productSizes)
+
+
+        Object.entries(filters).every(([key, value])=>{
+          //console.log(item[key][0].name)
+          //console.log(value)
+          item[key].includes(value)
+        })  
+      })
+    ); 
+  },[products, cat, filters]);
+  */
+  
   useEffect(()=>{
     cat && 
     setFilteredProducts(
@@ -60,6 +76,7 @@ const Products = ({cat, filters, sort, selectedProduct}) => {
       )
     ); 
   },[products, cat, filters]);
+  
 
   useEffect(() => {
     if (sort === "newest") {

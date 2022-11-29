@@ -1,5 +1,10 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "white": "Valkoinen",
+    "black": "Musta",
+    "newest": "Uutuudet",
+    "cheapest_first": "Hinta: halvin ensin",
+    "expensive_first": "Hinta: kallein ensin",
     "buy": "Osta",
     "homepage": "Kotisivu",
     "signIn": "Kirjaudu",

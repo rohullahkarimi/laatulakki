@@ -1,5 +1,10 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "white": "Vit", 
+    "black": "Svart", 
+    "newest": "Nya produkter", 
+    "cheapest_first": "Pris: billigast först", 
+    "expensive_first": "Pris: dyrast först",
     "buy": "Köpa",
     "homepage": "Hemsida",
     "signIn": "Logga in",

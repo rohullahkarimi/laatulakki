@@ -63,8 +63,6 @@ const ProductList = () => {
         });
     };
 
-    console.log(filters)
-
 
     return (
     <Container>
@@ -74,28 +72,39 @@ const ProductList = () => {
         <FilterContainer>
             <Filter>
                 <FilterText>{t("filter_product")}:</FilterText>
-                <Select name="color" onChange={handleFilters}>
-                    <Option valuee="color" disabled>
+                <Select name="colorFilter" defaultValue="none" onChange={handleFilters}>
+                    <Option value="none"  disabled="disabled">
                     {t("color")}
                     </Option>
-                    <Option value="valkoinen">Valkoinen</Option>
-                    <Option value="musta">Musta</Option>
+                    <Option value="valkoinen">{t('white')}</Option>
+                    <Option value="musta">{t('black')}</Option>
                 </Select>
-                <Select name="size" onChange={handleFilters}>
-                    <Option valuee="size" disabled>
+                <Select name="sizeFilter" defaultValue="none" onChange={handleFilters}>
+                    <Option value="none" disabled="disabled">
                     {t("size")}
                     </Option>
-                    <Option value="57">57</Option>
-                    <Option value="58">58</Option>
-                    <Option value="59">59</Option>
+                    <Option value="52">52 cm</Option>
+                    <Option value="53">53 cm</Option>
+                    <Option value="54">54 cm</Option>
+                    <Option value="55">55 cm</Option>
+                    <Option value="58">56 cm</Option>
+                    <Option value="57">57 cm</Option>
+                    <Option value="58">58 cm</Option>
+                    <Option value="59">59 cm</Option>
+                    <Option value="60">60 cm</Option>
+                    <Option value="61">61 cm</Option>
+                    <Option value="62">62 cm</Option>
+                    <Option value="63">63 cm</Option>
+                    <Option value="64">64 cm</Option>
+                    <Option value="65">65 cm</Option>
                 </Select>
             </Filter>
             <Filter>
                 <FilterText> {t("arrange_product")}:</FilterText>
                 <Select onChange={e=>setSort(e.target.value)}>
-                    <Option value="newest">Uutuudet</Option>
-                    <Option value="cheapest">Hinta: halvin ensin</Option>
-                    <Option value="most_expensive">Hinta: kallein ensin</Option>
+                    <Option value="newest">{t('newest')}</Option>
+                    <Option value="cheapest">{t('cheapest_first')}</Option>
+                    <Option value="most_expensive">{t('expensive_first')}</Option>
                 </Select>
             </Filter>
         </FilterContainer>
