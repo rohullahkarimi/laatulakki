@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Add, DeleteOutline, Remove } from "@mui/icons-material";
+import { Add, DeleteForeverOutlined, Remove } from "@mui/icons-material";
 import '../../common/css/style.css';
 import styled from "styled-components";
-import { mobile, tablet } from "../../responsive";
+import { mobile, smartPhone, tablet } from "../../responsive";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increaseProduct, decreaseProduct, deleteProduct } from '../../redux/cartRedux';
@@ -12,36 +12,56 @@ import { useTranslation } from 'react-i18next';
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
+  flex-direction: column;
+
+  /*${smartPhone({ flexDirection: "column" })}*/
 `;
 
 const ProductDetail = styled.div`
-  flex: 2;
   display: flex;
-  ${tablet({ flexDirection: "column", alignItems: "center" })}
+  align-items: center;
+  padding: 10px 0;
+  /*${tablet({ flexDirection: "column", alignItems: "center" })}*/
+`;
+
+const ImageContainer = styled.div`
+  flex: 1;
 `;
 
 const Image = styled.img`
-  width: 200px;
+  flex: 1;
+  width: 100%;
+  ${smartPhone({ width: "80px" })}
+  ${mobile({ width: "60px" })}
+`;
+
+const DetailsContainer = styled.div`
+  flex: 1;
+  padding-left: 3%;
 `;
 
 const Details = styled.div`
-  padding: 20px;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  ${smartPhone({ padding: "0 10px" })}
 `;
 
 const ProductName = styled.span`
   display: block;
   color: #000;
   font-size: 16px;
+  ${smartPhone({ fontSize: "14px" })}
+  ${mobile({ fontSize: "12px" })}
 `;
 
 const ProductId = styled.span`
   display: block;
   color: #000;
   font-size: 16px;
+  ${smartPhone({ fontSize: "14px" })}
+  ${mobile({ fontSize: "12px" })}
 `;
 
 const ProductColor = styled.span`
@@ -49,12 +69,16 @@ const ProductColor = styled.span`
   color: #000;
   font-size: 16px;
   background-color: ${(props) => props.color};
+  ${smartPhone({ fontSize: "14px" })}
+  ${mobile({ fontSize: "12px" })}
 `;
 
 const ProductSize = styled.span`
   display: block;
   color: #000;
   font-size: 16px;
+  ${smartPhone({ fontSize: "14px" })}
+  ${mobile({ fontSize: "12px" })}
 `;
 
 const PriceDetail = styled.div`
@@ -68,22 +92,25 @@ const PriceDetail = styled.div`
 const ProductAmountContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
 `;
 
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
-  ${mobile({ margin: "5px 15px" })}
+  ${smartPhone({ margin: "5px 5px" })}
 `;
 
 const ProductPrice = styled.div`
-  font-size: 30px;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
+  flex: 1;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  ${smartPhone({ fontSize: "16px" })}
+  ${mobile({ fontSize: "14px" })}
 `;
 const RemoveProduct = styled.div`
-  flex: 0.5;
+  flex: 1;
+  padding: 0 3%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,7 +118,7 @@ const RemoveProduct = styled.div`
 `;
 
 const RemoveProductContainer = styled.div`
-  display: flex;
+  flex: 1;
   align-items: center;
   margin-bottom: 20px;
 `;
@@ -100,6 +127,8 @@ const ProductPriceText = styled.span`
   display: block;
   color: #000;
   font-size: 16px;
+  ${smartPhone({ fontSize: "14px" })}
+  ${mobile({ fontSize: "12px" })}
 `;
 
 
@@ -127,13 +156,16 @@ const CartProduct = () => {
   }, [dispatch, cartItems]);
 
   const handleQuantityIncrease = useCallback((product) => {
-    dispatch(
-      increaseProduct({
-        id: product._id,
-        price: product.price,
-      })
-    );
-    console.log(product);
+    if(product.quantity < product.productStorage){
+      dispatch(
+        increaseProduct({
+          id: product._id,
+          price: product.price,
+        })
+      );
+    }else{
+      alert(t('stockExceed'))
+    }
   }, [dispatch]);
 
   const handleQuantityDecrease = useCallback((product) => {
@@ -158,36 +190,50 @@ const CartProduct = () => {
       {cart.products.map((product) => (
       <Product key={product._id+product.size}>
         <ProductDetail>
-          <Image src={product.img} />
-          <Details>
-            <ProductName>
-              <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
-            </ProductName>
-            <ProductId>
-              <b>ID:</b> {product._id}
-            </ProductId>
-            {product.color && <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>}
-            <ProductSize>
-              <b>{t("size")}:</b> {product.size}
-            </ProductSize>
-            <ProductPriceText>
-              <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
-            </ProductPriceText>
-          </Details>
-        </ProductDetail>
-        <PriceDetail>
-          <ProductAmountContainer>
-            <Remove onClick={()=>handleQuantityDecrease(product)}/>
-            <ProductAmount>{product.quantity}</ProductAmount>
-            <Add onClick={()=>handleQuantityIncrease(product)}/>
-          </ProductAmountContainer>
+          <ImageContainer>
+            <Image src={product.img} />
+          </ImageContainer>
+          
+          <DetailsContainer>
+            <Details>
+              <ProductName>
+              {product.title?.replace("<br>"," / ")}
+              </ProductName>
+              {product.color && <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>}
+              <ProductSize>
+                <b>{t("size")}:</b> {product.size}
+              </ProductSize>
+              <ProductPriceText>
+                <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
+              </ProductPriceText>
+            </Details>
+          </DetailsContainer>
+         
+
           <ProductPrice>
             {(product.price * product.quantity).toFixed(2)} €
           </ProductPrice>
-        </PriceDetail>
-        <RemoveProduct>
-          <RemoveProductContainer><DeleteOutline onClick={() => handleDelete(product)} style={{color: "tomato"}}/></RemoveProductContainer>
-        </RemoveProduct>
+
+          <RemoveProduct>
+            <RemoveProductContainer><DeleteForeverOutlined onClick={() => handleDelete(product)} style={{color: "tomato"}}/></RemoveProductContainer>
+      
+            <ProductAmountContainer>
+              <Remove onClick={()=>handleQuantityDecrease(product)}/>
+              <ProductAmount>{product.quantity}</ProductAmount>
+              <Add onClick={()=>handleQuantityIncrease(product)}/>
+            </ProductAmountContainer>
+
+          </RemoveProduct>
+
+        </ProductDetail>
+
+       
+
+      
+
+
+      
+       
       </Product>
     ))}
     </div>

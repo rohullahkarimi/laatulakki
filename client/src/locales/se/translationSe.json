@@ -1,5 +1,6 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "stockExceed": "Den valda produktkvantiteten överstiger lagersaldot.",
     "white": "Vit", 
     "black": "Svart", 
     "newest": "Nya produkter", 

@@ -280,12 +280,16 @@ const Product = () => {
         $(".generalError").text(t('choose')+" "+t('size'));
         return false
     }
+    if(quantity > productStorage){
+        $(".generalError").text(t('stockExceed'));
+        return false
+    }
     let productId = product._id
     let title = product.title[0].fi
     let img = product.img[0].thumbnail
     // update cart
     dispatch(
-        addProduct({ ...product, title, img, quantity, color, size, productId})
+        addProduct({ ...product, title, img, quantity, color, size, productId, productStorage})
     )
     setModalShow(true)
   }
@@ -303,6 +307,8 @@ const Product = () => {
     if(!size){
         errorElement = <GeneralError className="generalError"></GeneralError>
     }else if (!color){
+        errorElement = <GeneralError className="generalError"></GeneralError>
+    }else if (quantity > productStorage){
         errorElement = <GeneralError className="generalError"></GeneralError>
     }else{
         errorElement = ""

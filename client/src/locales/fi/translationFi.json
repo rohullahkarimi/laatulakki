@@ -1,5 +1,6 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "stockExceed": "Valittu tuotemäärä ylittää varastosaldoa.",
     "white": "Valkoinen",
     "black": "Musta",
     "newest": "Uutuudet",

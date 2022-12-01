@@ -1,5 +1,6 @@
 {
     "mandatory": "is a mandatory field",
+    "stockExceed": "The selected product quantity exceeds the stock balance.",
     "white": "White", 
     "black": "Black", 
     "newest": "New products", 

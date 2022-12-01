@@ -104,6 +104,7 @@ function sendOrderEmail(orderId){
     const replacements = {
       billingAddress: response.billingAddress,
       deliveryAddress: response.deliverySameAsBilling ? response.billingAddress : response.deliveryAddress,
+      message: response.message,
       products: productsArray,
 
       receiptLink: receiptLink,

@@ -5,9 +5,8 @@ import Modal from 'react-bootstrap/Modal';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { mobile, tablet} from "../responsive";
 import { useTranslation } from "react-i18next";
-
+import CartProduct from '../components/cart/CartProduct';
 
 
 const PlatformButton = styled.button`
@@ -22,90 +21,16 @@ const PlatformButton = styled.button`
 `;
 
 
-const Hr = styled.hr`
-  background-color: #b0b0b0;
-  border: none;
-  height: 1px;
-`;
-
-const Product = styled.div`
-  display: flex;
-  justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
-`;
-
-const ProductDetail = styled.div`
-  flex: 2;
-  display: flex;
-  ${tablet({ flexDirection: "column", alignItems: "center" })}
-`;
-
-const Image = styled.img`
-  width: 40%;
-  height: auto;
-  object-fit: contain;
-`;
-
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
-const ProductName = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
 
 
-const ProductColor = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-  background-color: ${(props) => props.color};
-`;
 
-const ProductSize = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
-
-const ProductQuantity = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
 
 const EmptyCartText = styled.div`
   text-align: center;
   font-size: 20px;
 `;
 
-const PriceDetail = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
 
-
-
-const ProductPrice = styled.div`
-  font-size: 30px;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
-`;
-
-
-const ProductPriceText = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
 
 const CartModal = (props) => {
   const cart = useSelector((state) => state.cart);
@@ -125,42 +50,13 @@ const CartModal = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="show-grid">
-        <Container>
           <Row>
             <Col xs={12} md={12}>
-            <div>
-            {cart.products.map((product) => (
-              <Product key={product._id+product.size}>
-                <ProductDetail>
-                  <Image src={product.img} />
-                  <Details>
-                    <ProductName>
-                      <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
-                    </ProductName>
-                    <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>
-                    <ProductSize>
-                      <b>{t("size")}:</b> {product.size}
-                    </ProductSize>
-                    <ProductQuantity>
-                      <b>{t("quantity")}:</b> {product.quantity}
-                    </ProductQuantity>
-                    <ProductPriceText>
-                      <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
-                    </ProductPriceText>
-                  </Details>
-                </ProductDetail>
-                <PriceDetail>
-                  <ProductPrice>
-                    {(product.price * product.quantity).toFixed(2)} €
-                  </ProductPrice>
-                </PriceDetail>
-                <Hr/>
-              </Product>
-              ))}
+              <div>
+                <CartProduct/>
               </div>
             </Col>
           </Row>
-        </Container>
       </Modal.Body>
       <Modal.Footer>
         <PlatformButton onClick={props.onHide}>{t("continue_shopping")}</PlatformButton>
