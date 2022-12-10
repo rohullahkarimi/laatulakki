@@ -75,12 +75,23 @@ function sendOrderEmail(orderId){
 
     // make a new copy of product object, to sum the price in total
     const productsArray = response.products.map(item => {
-      var productPriceTax = (item.price / 1.24).toFixed(2);
-      var productPriceTaxLess = (item.price - productPriceTax).toFixed(2);
+
+      // if product has discount
+      var unitPrice;
+      if(item.discount){
+          var afterDiscountPrice = item.price - (item.price * (item.discount / 100)).toFixed(2);
+          unitPrice = afterDiscountPrice;
+      }else{
+          unitPrice = item.price.toFixed(2);
+      }
+
+      var productPriceTax = (unitPrice / 1.24).toFixed(2);
+      var productPriceTaxLess = (unitPrice - productPriceTax).toFixed(2);
 
       const productObject = {
         ...item, 
-        priceInTotal : (item.price * item.quantity).toFixed(2),
+        unitPrice: unitPrice,
+        priceInTotal : (unitPrice * item.quantity).toFixed(2),
         tax: productPriceTax,
         taxLess: productPriceTaxLess
       };

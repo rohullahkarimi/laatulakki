@@ -28,6 +28,9 @@ const OrderSchema = new mongoose.Schema(
                 price: {
                     type: Number,
                 },
+                discount: {
+                    type: Number,
+                },
                 vatPercentage: {
                     type: Number,
                 },

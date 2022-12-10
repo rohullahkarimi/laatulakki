@@ -5,89 +5,11 @@ import axios from "axios";
 import ClipLoader from 'react-spinners/ClipLoader';
 import { useForm } from 'react-hook-form';
 import styled from "styled-components";
-import { mobile, smartPhone, tablet } from "../../responsive";
+import { smartPhone } from "../../responsive";
 import { useNavigate } from "react-router";
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
-
-
-const Product = styled.div`
-  display: flex;
-  justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
-`;
-
-const ProductDetail = styled.div`
-  flex: 2;
-  display: flex;
-  ${tablet({ flexDirection: "column", alignItems: "center" })}
-`;
-
-const Image = styled.img`
-  width: 200px;
-`;
-
-const Details = styled.div`
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
-const ProductName = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
-
-const ProductId = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
-
-const ProductColor = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-  background-color: ${(props) => props.color};
-`;
-
-const ProductSize = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
-
-const ProductQuantity = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
-
-
-const PriceDetail = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-
-
-const ProductPrice = styled.div`
-  font-size: 30px;
-  font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
-`;
-
-
-const ProductPriceText = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
+import CartProduct from './CartProduct';
 
 const CustomerDetails = styled.div`
   display: flex;
@@ -315,39 +237,8 @@ const ReviewForm = () => {
       </CommentContainer>
       <Hr/>
 
-      <div >
-        {cart.products.map((product) => (
-        <Product key={product._id+product.size}>
-          <ProductDetail>
-            <Image src={product.img} />
-            <Details>
-              <ProductName>
-                <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
-              </ProductName>
-              <ProductId>
-                <b>ID:</b> {product._id}
-              </ProductId>
-              <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>
-              <ProductSize>
-                <b>{t("size")}:</b> {product.size}
-              </ProductSize>
-              <ProductQuantity>
-                <b>Kpl:</b> {product.quantity}
-              </ProductQuantity>
-              <ProductPriceText>
-                <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
-              </ProductPriceText>
-            </Details>
-          </ProductDetail>
-          <PriceDetail>
-            <ProductPrice>
-              {(product.price * product.quantity).toFixed(2)} €
-            </ProductPrice>
-          </PriceDetail>
-        </Product>
-        ))}
-      </div>
-
+    
+      <CartProduct page="review"/>
       
       <Hr/>
 

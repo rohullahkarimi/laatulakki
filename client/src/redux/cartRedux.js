@@ -77,7 +77,13 @@ const cartSlice = createSlice({
               state.quantity += 1;
               state.products.push(action.payload);
             }
-            state.total += action.payload.price * action.payload.quantity;
+            if(action.payload.discount){
+              var price = action.payload.price - (action.payload.price * (action.payload.discount / 100)).toFixed(2);
+              state.total += price * action.payload.quantity;
+            }else{
+              state.total += action.payload.price * action.payload.quantity;
+            }
+           
         },
         increaseProduct: (state, action) => {
             state.products.findIndex((i) => 
@@ -85,7 +91,14 @@ const cartSlice = createSlice({
                 ? i.quantity += 1
                 : console.log("Product not found!")
             )
-            state.total += action.payload.price;
+
+            if(action.payload.discount){
+              var price = action.payload.price - (action.payload.price * (action.payload.discount / 100)).toFixed(2);
+              state.total += price;
+            }else{
+              state.total += action.payload.price;
+            }
+           
         },
         decreaseProduct: (state, action) => {
             const item = state.products.find((item) => item._id === action.payload.id);
@@ -93,7 +106,14 @@ const cartSlice = createSlice({
               item.quantity = 1
             } else {
               item.quantity--;
-              state.total -= action.payload.price;
+
+              // decrease total amount
+              if(action.payload.discount){
+                var price = action.payload.price - (action.payload.price * (action.payload.discount / 100)).toFixed(2);
+                state.total -= price;
+              }else{
+                state.total -= action.payload.price;
+              }
             }
         },
         deleteProduct: (state, action) => {

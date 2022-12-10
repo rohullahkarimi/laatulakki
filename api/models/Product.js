@@ -12,6 +12,7 @@ const ProductSchema = new mongoose.Schema(
         color:{ type: Array},
         details: { type: Array},
         price:{ type: Number, required: true},
+        discount:{ type: Number},
         vatPercentage: {type: Number, default: 24, required: true},
         inStock: {type: Boolean, default: true},
     },

@@ -145,9 +145,9 @@ const BillingAddressForm = ({navigation}) => {
             </span>
         </div>
   
-        <div className="inputwrapper">
+        <div className="inputwrapper required">
           <label className="label" htmlFor="deliveryAddress_phonenumber" data-optional="(Optional)">{t("phonenumber")}</label>
-          <input type="text" name="deliveryAddress_phonenumber"  id="deliveryAddress_phonenumber" className={customerInfoErrors.deliveryAddress_phonenumber ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_phonenumber",{ required: false })}/>
+          <input type="text" name="deliveryAddress_phonenumber"  id="deliveryAddress_phonenumber" className={customerInfoErrors.deliveryAddress_phonenumber ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_phonenumber",{ required: true })}/>
           <span id="customerInformation_deliveryAddress_phonenumber" className='input-info invalid' role="alert">
           {customerInfoErrors.deliveryAddress_phonenumber && customerInfoErrors.deliveryAddress_phonenumber?.type === "required" && (
             t('phonenumber')+' '+t('mandatory')
@@ -155,9 +155,9 @@ const BillingAddressForm = ({navigation}) => {
           </span>
         </div>
   
-        <div className="inputwrapper">
+        <div className="inputwrapper required">
           <label className="label" htmlFor="deliveryAddress_email" data-optional="(Optional)">{t("email")}</label>
-          <input type="text" name="deliveryAddress_email"  id="deliveryAddress_email" className={customerInfoErrors.deliveryAddress_email ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_email",{ required: false })}/>
+          <input type="text" name="deliveryAddress_email"  id="deliveryAddress_email" className={customerInfoErrors.deliveryAddress_email ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_email",{ required: true })}/>
           <span id="customerInformation_deliveryAddress_email" className='input-info invalid' role="alert">
           {customerInfoErrors.deliveryAddress_email && customerInfoErrors.deliveryAddress_email?.type === "required" && (
             t('email')+' '+t('mandatory')

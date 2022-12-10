@@ -88,15 +88,29 @@ router.post("/", async (req, res)=>{
 
 // save transaction ID
 const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) => {
-    
+
     const orderId = getSavedOrderId
     const paytrailProduct = []
 
     savedOrder.products?.map((key, index) =>{
-    var productPrice = parseFloat(key.price).toFixed(2);
+    
     //console.log(productPrice)
+
+
+    // if product has discound 
+    var productPrice = parseFloat(key.price).toFixed(2);
+    var unitPrice;
+    if(key.discount){
+        var afterDiscountPrice = productPrice - (productPrice * (key.discount / 100)).toFixed(2);
+        unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
+    }else{
+        unitPrice = parseInt((productPrice * 100).toFixed(0));
+    }
+
+  
+    
     const paytrailItem = {
-        unitPrice: parseInt((productPrice * 100).toFixed(0)), // number
+        unitPrice: unitPrice, // number
         units: key.quantity,     // number
         vatPercentage: key.vatPercentage, // number
         productCode: key.productId, // string 

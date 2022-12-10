@@ -161,7 +161,7 @@ const Button = styled.button`
 const IncludeTax = styled.p`
     display: inline-flex;
     background-color: transparent;
-    margin: 0;
+    margin: 0 0 0 3%;
     user-select: none;
     vertical-align: middle;
     -webkit-text-decoration: none;
@@ -287,6 +287,9 @@ const Product = () => {
     let productId = product._id
     let title = product.title[0].fi
     let img = product.img[0].thumbnail
+
+  
+   
     // update cart
     dispatch(
         addProduct({ ...product, title, img, quantity, color, size, productId, productStorage})
@@ -326,18 +329,21 @@ const Product = () => {
             productSizeQuantity <= 0 ? true : false
         )
     }
+    
     return (
     <Container>
         <Navbar/>
         <Announcement/>
         <Wrapper>
+           
             <ImageContainer>
+                {product.discount &&<span className="flag-discount">-{product.discount}%</span>}
                 {product?.img && <ImageGallery items={product?.img}  showFullscreenButton={false} showPlayButton={false} showBullets={true}/>}
             </ImageContainer>
             <InfoContainer>
 
                 <Title>{productInternationalizeDetails.title}</Title>
-
+            
                 <Desc>{productInternationalizeDetails.desc}</Desc>
 
                 <DetailsPartContainer>
@@ -352,7 +358,12 @@ const Product = () => {
 
               
                 
-                {product.price && <Price>{product?.price.toFixed(2)} €  <IncludeTax>{t('includeTax')}</IncludeTax></Price>}
+            
+                {product.discount && <Price>{ product?.price - (product?.price * (product.discount / 100)).toFixed(2)} € </Price> }
+
+                {product.discount ? <Price><s className="originalPrice">{product?.price && product?.price.toFixed(2)} €</s><IncludeTax>{t('includeTax')}</IncludeTax></Price> : <Price>{product?.price && product?.price.toFixed(2)} € <IncludeTax>{t('includeTax')}</IncludeTax></Price>}
+            
+                
                 <FilterContainer>
                     <Filter>
                         <FilterTitle>{t("color")}</FilterTitle>

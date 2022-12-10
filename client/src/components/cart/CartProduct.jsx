@@ -41,11 +41,9 @@ const DetailsContainer = styled.div`
 `;
 
 const Details = styled.div`
-  padding: 0 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  ${smartPhone({ padding: "0 10px" })}
 `;
 
 const ProductName = styled.span`
@@ -56,12 +54,12 @@ const ProductName = styled.span`
   ${mobile({ fontSize: "12px" })}
 `;
 
-const ProductId = styled.span`
+
+
+const ProductQuantity = styled.span`
   display: block;
   color: #000;
   font-size: 16px;
-  ${smartPhone({ fontSize: "14px" })}
-  ${mobile({ fontSize: "12px" })}
 `;
 
 const ProductColor = styled.span`
@@ -81,13 +79,6 @@ const ProductSize = styled.span`
   ${mobile({ fontSize: "12px" })}
 `;
 
-const PriceDetail = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
 
 const ProductAmountContainer = styled.div`
   display: flex;
@@ -123,6 +114,12 @@ const RemoveProductContainer = styled.div`
   margin-bottom: 20px;
 `;
 
+const ProductPriceContainer = styled.div`
+  flex: 1;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
 const ProductPriceText = styled.span`
   display: block;
   color: #000;
@@ -132,7 +129,7 @@ const ProductPriceText = styled.span`
 `;
 
 
-const CartProduct = () => {
+const CartProduct = (props) => {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch()
   const [cartItems, setCartItems] = useState(cart.quantity);
@@ -161,18 +158,20 @@ const CartProduct = () => {
         increaseProduct({
           id: product._id,
           price: product.price,
+          discount: product.discount
         })
       );
     }else{
       alert(t('stockExceed'))
     }
-  }, [dispatch]);
+  }, [dispatch, t]);
 
   const handleQuantityDecrease = useCallback((product) => {
     dispatch(
       decreaseProduct({
         id: product._id,
         price: product.price,
+        discount: product.discount
       })
     );
     console.log(product);
@@ -203,37 +202,39 @@ const CartProduct = () => {
               <ProductSize>
                 <b>{t("size")}:</b> {product.size}
               </ProductSize>
+              <ProductQuantity>
+               <b>{t("quantity")}</b> {product.quantity}
+              </ProductQuantity>
               <ProductPriceText>
-                <b>{t("pricePerPiece")}:</b> {product.price.toFixed(2)} €
+                <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product?.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } € 
               </ProductPriceText>
             </Details>
           </DetailsContainer>
          
 
-          <ProductPrice>
-            {(product.price * product.quantity).toFixed(2)} €
-          </ProductPrice>
+          <ProductPriceContainer>
+            {product.discount && <ProductPrice>{ ((product.price - (product?.price * (product.discount / 100)).toFixed(2)) * product.quantity).toFixed(2)} € </ProductPrice> }
 
-          <RemoveProduct>
-            <RemoveProductContainer><DeleteForeverOutlined onClick={() => handleDelete(product)} style={{color: "tomato"}}/></RemoveProductContainer>
-      
-            <ProductAmountContainer>
-              <Remove onClick={()=>handleQuantityDecrease(product)}/>
-              <ProductAmount>{product.quantity}</ProductAmount>
-              <Add onClick={()=>handleQuantityIncrease(product)}/>
-            </ProductAmountContainer>
+            {product.discount ? <ProductPrice><s className="originalPriceCart">{product?.price && (product.price * product.quantity).toFixed(2)} €</s></ProductPrice> : <ProductPrice>{product?.price && (product.price * product.quantity).toFixed(2)} € </ProductPrice>}
+          </ProductPriceContainer>
+         
 
-          </RemoveProduct>
+         
+
+          {props.page !== "review" ?
+            <RemoveProduct>
+              <RemoveProductContainer><DeleteForeverOutlined onClick={() => handleDelete(product)} style={{color: "tomato"}}/></RemoveProductContainer>
+              <ProductAmountContainer>
+                <Remove onClick={()=>handleQuantityDecrease(product)}/>
+                <ProductAmount>{product.quantity}</ProductAmount>
+                <Add onClick={()=>handleQuantityIncrease(product)}/>
+              </ProductAmountContainer>
+            </RemoveProduct>
+            : <></>
+          }
 
         </ProductDetail>
 
-       
-
-      
-
-
-      
-       
       </Product>
     ))}
     </div>
