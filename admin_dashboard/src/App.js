@@ -13,24 +13,24 @@ import Login from "./pages/login/Login";
 
 
 function App() {
-  const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
+  const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user).currentUser?.isAdmin;
   
   /*
-  const admin = falsee
+  var admin = false
   if(JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser !== null){
-    const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
+    admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
   }
   */
+  
+
   
   
   return (
     <Router>
       <Switch>
-      <Route path="/login">
-        <Login />
-      </Route>
+    
 
-      { admin && (
+      { admin ? (
         <>
       <Topbar />
       <div className="container">
@@ -58,7 +58,9 @@ function App() {
           </Route>
         </div>
         </>
-      )}
+      )
+      :   <Login />
+      }
       </Switch>
     </Router>
   );

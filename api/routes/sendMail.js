@@ -1,11 +1,13 @@
 const axios = require("axios");
 const nodemailer = require("nodemailer");
 const handlebars = require("handlebars");
+const { verifyTokenAndAdmin } = require("./verifyToken");
 const fs = require("fs")
 const path = require("path")
 require('dotenv').config()
 const router = require("express").Router();
 const mongoose = require("mongoose");
+const Order = require("../models/Order");
 
 // checkout
 const {CheckoutClient} = require('checkout-finland/lib/Checkout');
@@ -147,6 +149,102 @@ function sendOrderEmail(orderId){
       }else{
         // set order paid to true 
         handleOrderPaid(orderId)
+      }
+    });
+  });
+}
+
+
+// UPDATE ORDER STATUS
+router.put("/updateOrderStatus/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+      const updatedOrder = await Order.findByIdAndUpdate(
+          req.params.id, {
+          $set: req.body
+      },
+          { new: true }
+      );
+
+      // send mail 
+      sendOrderStatusEmail(req.params.id, req.body.status);
+
+      res.status(200).json(updatedOrder);
+  } catch (err) {
+      res.status(500).json(err)
+  }
+});
+
+function sendOrderStatusEmail(orderId, status) {
+  if(status === "created"){
+    return false;
+  }
+
+  var subject = "";
+  var statusText = "";
+  switch(status) {
+    case "confirmed":
+      subject = "Tilauksesi on vahvistettu";
+      statusText = "Olemme vahvistaneet tilauksesi ja toimitamme sen 24 tunnin sisällä.";
+      break;
+    case "delivering":
+      subject = "Tilauksesi on toimituksessa";
+      statusText = "Olemme lähetäneet tilauksesi.";
+      break;
+    case "delivered":
+      subject = "Tilauksesi on toimitettu";
+      statusText = "Tilauksesti on toimitettu ja tietoamme mukaan olette saaneet tilaamasi tuotteesi.";
+      break;
+    default:
+      return false;
+  }
+
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_EMAIL,
+      pass: process.env.GMAIL_PASS
+    }
+  });
+
+  // HTML TEMPLATE
+  const filePath = path.join(__dirname, '../emails/orderStatusTemplate.html');
+  const source = fs.readFileSync(filePath, 'utf-8').toString();
+  const template = handlebars.compile(source);
+
+  getOrderData(orderId).then((response) => {
+
+    
+
+   
+
+    var receiptHash = response.receiptHash;
+    var receiptLink = process.env.MAIN_CLIENT_URL+"/receipt?orderId="+orderId+"_"+receiptHash;
+
+  
+    // data for email
+    const replacements = {
+      orderId: response._id,
+      billingAddress: response.billingAddress,
+      deliveryAddress: response.deliverySameAsBilling ? response.billingAddress : response.deliveryAddress,
+      receiptLink: receiptLink,
+      statusText: statusText
+    }
+
+    // get data 
+    const htmlToSend = template(replacements);
+
+    // mail options
+    let mailOptions = {
+      from: "laatulakki@gmail.com",
+      to: [response.billingAddress.email], // , "najibullahahmad69@gmail.com"
+      subject: subject +" "+ response._id,
+      html: htmlToSend,
+    };
+
+    // Send email
+    transporter.sendMail(mailOptions, (err, data) => {
+      if (err) {
+        return console.log(err);
       }
     });
   });

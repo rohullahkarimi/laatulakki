@@ -1,13 +1,10 @@
 import Chart from "../../components/chart/Chart";
 import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
 import "./home.css";
-import { userData } from "../../dummyData";
-import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
 import { useMemo, useState } from "react";
 import { useEffect } from "react";
 import { userRequest } from "../../requestMethods";
-import { MonetizationOn } from "@material-ui/icons";
 
 export default function Home() {
   const[userStats, setUserStats] = useState([])
@@ -54,7 +51,6 @@ export default function Home() {
       <FeaturedInfo />
       <Chart data={userStats} title="User Analytics" grid dataKey="Active User"/>
       <div className="homeWidgets">
-        <WidgetSm/>
         <WidgetLg/>
       </div>
     </div>

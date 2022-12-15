@@ -102,7 +102,7 @@ const OrderSchema = new mongoose.Schema(
         transactionId: { type: String, default: ""},
         total: { type: Number, required: true},
         message: { type: String},
-        status: { type: String, default: "pending"},
+        status: { type: String, default: "created"},
         receiptHash: {
             type: String,
             default: function() {
