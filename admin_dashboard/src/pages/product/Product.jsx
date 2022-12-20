@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import "./product.css";
 import Chart from "../../components/chart/Chart"
-import {productData} from "../../dummyData"
+//import {productData} from "../../dummyData"
 import { Publish } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import { useEffect, useMemo, useState } from "react";
@@ -67,7 +67,7 @@ export default function Product() {
           </div>
           <div className="productTopRight">
               <div className="productInfoTop">
-                  <img className="productImg" src={product.img} />
+                  <img className="productImg" alt="rightTop" src={product.img} />
                   <span className="productName">{product.title}</span>
               </div>
               <div className="productInfoBottom">

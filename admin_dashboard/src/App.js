@@ -9,6 +9,7 @@ import NewUser from "./pages/newUser/NewUser";
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import OrderPage from "./pages/orderPage/Orderpage";
 import Login from "./pages/login/Login";
 
 
@@ -56,6 +57,11 @@ function App() {
           <Route path="/newproduct">
             <NewProduct />
           </Route>
+          <Route path="/orderPage">
+            <OrderPage />
+          </Route>
+          
+
         </div>
         </>
       )

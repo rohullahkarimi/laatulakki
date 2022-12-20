@@ -29,7 +29,15 @@ router.post("/login", async (req, res)=>{
             }
         );
 
-        !user && res.status(401).json("Wrong credentials!");
+      
+        //!user &&  res.status(401).end("wrong credentials");
+
+        if (!user) {
+            return res.status(401).json({
+              message: "email not found."
+            });
+          
+        }
 
         const hashedPassword = CryptoJS.AES.decrypt(
             user.password, 
@@ -37,9 +45,15 @@ router.post("/login", async (req, res)=>{
         );
 
         const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+        //console.log(OriginalPassword, req.body.password  );
 
-        OriginalPassword !== req.body.password &&
-            res.status(401).json("Wrong credentials!");
+        //OriginalPassword !== req.body.password && res.status(401).end("wrong credentials.");
+
+        if (OriginalPassword !== req.body.password) {
+            return res.status(400).json({
+                message: "wrong password."
+            });
+        }
 
 
         const accessToken = jwt.sign(
@@ -53,6 +67,7 @@ router.post("/login", async (req, res)=>{
 
         const { password, ...others } = user._doc;
         res.status(200).json({...others, accessToken});
+   
     } catch (err){
         res.status(500).json(err);
     }

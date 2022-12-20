@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { userRequest } from "../../requestMethods";
 import "./widgetLg.css";
-import {format} from "timeago.js"
+//import {format} from "timeago.js"
+import {format} from "date-fns"
 import $ from 'jquery';
+import { Link } from "react-router-dom";
 
 export default function WidgetLg() {
   const[orders, setOrders] = useState([])
@@ -41,7 +43,9 @@ export default function WidgetLg() {
     <div className="widgetLg">
       <h3 className="widgetLgTitle">Latest orders</h3>
       <table className="widgetLgTable">
+       
         <tr className="widgetLgTr">
+          <th className="widgetLgTh">ID</th>
           <th className="widgetLgTh">Status</th>
           <th className="widgetLgTh">Customer</th>
           <th className="widgetLgTh">Date</th>
@@ -49,28 +53,30 @@ export default function WidgetLg() {
         </tr>
 
         {orders.map(order=>(
-          <tr className="widgetLgTr" key={order._id}>
-            <td className="widgetLgStatus">
-
-              <select id={order._id} className={order.status} defaultValue={order.status} onChange={e => HandleOrderStatus(e, order._id)}>
-                  <option  value="created">Created</option>
-                  <option  value="confirmed">Confirmed</option>
-                  <option  value="delivering">Delivering</option>
-                  <option  value="delivered">Delivered</option>
-              </select>
-            </td>
-            <td className="widgetLgUser">
-              <img
-                src="https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif"
-                alt=""
-                className="widgetLgImg"
-              />
-              <span className="widgetLgName">{order.billingAddress.firstname} {order.billingAddress.lastname}</span>
-            </td>
-            <td className="widgetLgDate">{format(order.createdAt)}</td>
-            <td className="widgetLgAmount">{order.amount}</td>
-           
-          </tr>
+          
+            <tr className="widgetLgTr" key={order._id}>
+              <td><Link to={"./orderpage/"+ order._id}>{order._id}</Link></td>
+              <td className="widgetLgStatus">
+                
+                <select id={order._id} className={order.status} defaultValue={order.status} onChange={e => HandleOrderStatus(e, order._id)}>
+                    <option  value="created">Created</option>
+                    <option  value="confirmed">Confirmed</option>
+                    <option  value="delivering">Delivering</option>
+                    <option  value="delivered">Delivered</option>
+                </select>
+              </td>
+              <td className="widgetLgUser">
+                <img
+                  src="https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif"
+                  alt=""
+                  className="widgetLgImg"
+                />
+                <span className="widgetLgName">{order.billingAddress.firstname} {order.billingAddress.lastname}</span>
+              </td>
+              <td className="widgetLgDate">{format(new Date(order.createdAt), 'dd.MM.yyyy HH:mm')}</td>
+              <td className="widgetLgAmount">{order.total.toFixed(2)} €</td>
+            </tr>
+         
          ))}
       </table>
     </div>
