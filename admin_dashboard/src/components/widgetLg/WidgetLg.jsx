@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 export default function WidgetLg() {
   const[orders, setOrders] = useState([])
 
-
   const HandleOrderStatus = async (event, orderId) => {
     const status = event.target.value;
 
@@ -30,15 +29,16 @@ export default function WidgetLg() {
     const getOrders = async () =>{
       try{
         const res = await userRequest.get("orders");
-      setOrders(res.data);
+        setOrders(res.data);
       }catch(err){
         console.log(err);
       }
     }
     getOrders();
+
   },[]);
 
-  console.log(orders)
+  //console.log(orders)
   return (
     <div className="widgetLg">
       <h3 className="widgetLgTitle">Latest orders</h3>
@@ -52,7 +52,7 @@ export default function WidgetLg() {
           <th className="widgetLgTh">Amount</th>
         </tr>
 
-        {orders.map(order=>(
+        {orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(order=>(
           
             <tr className="widgetLgTr" key={order._id}>
               <td><Link to={"./orderpage/"+ order._id}>{order._id}</Link></td>
