@@ -6,7 +6,7 @@ const shortId = new ShortUniqueId({ length: 10, dictionary: 'number' });
 const OrderSchema = new mongoose.Schema(
     {
         userId:{ type: String, required:false},
-        shortId: { type: String, default: shortId(), required: true, unique: true},
+        shortId: { type: String, default: shortId(), required: true},
         products: [
             {
                 productId: {
