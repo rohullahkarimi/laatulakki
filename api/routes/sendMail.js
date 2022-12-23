@@ -138,7 +138,7 @@ function sendOrderEmail(orderId){
     let mailOptions = {
       from: "laatulakki@gmail.com",
       to: [response.billingAddress.email, "laatulakki@gmail.com"], // , "najibullahahmad69@gmail.com"
-      subject: "Kiitos tilauksesta "+ response._id,
+      subject: "Kiitos tilauksesta #"+ response.shortId,
       html: htmlToSend,
     };
 
@@ -237,7 +237,7 @@ function sendOrderStatusEmail(orderId, status) {
     let mailOptions = {
       from: "laatulakki@gmail.com",
       to: [response.billingAddress.email], // , "najibullahahmad69@gmail.com"
-      subject: subject +" "+ response._id,
+      subject: subject +" #"+ response.shortId,
       html: htmlToSend,
     };
 
