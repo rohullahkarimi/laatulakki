@@ -6,6 +6,7 @@ import styled from 'styled-components'
 //import { sliderItems } from '../data'
 import { mobile, smartPhone, tablet } from '../responsive'
 import { useTranslation } from "react-i18next";
+import '../fonts/OmnesBold.ttf';
 
 
 const Container = styled.div`
@@ -71,9 +72,21 @@ const InfoContainer = styled.div`
 `
 
 const Title = styled.h1`
-    font-size: 70px;
+    font-feature-settings: "kern", "ss01", "ss05", "ss07";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    font-family: 'Omnes Bold', sans-serif;
+    font-variant-ligatures: common-ligatures;
+    font-size: 3.75rem;
+    line-height: 4.75rem;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    text-transform: none;
+    margin: 0px 0px 2.75rem;
 `
 const Description = styled.p`
+    font-family: 'Omnes Bold', sans-serif;
     margin: 50px 0px;
     font-style: 20px;
     font-weight: 500;

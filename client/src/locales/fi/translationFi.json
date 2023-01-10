@@ -1,5 +1,6 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "invalidEmail": "Virhellinen sähköpostiosoite",
     "stockExceed": "Valittu tuotemäärä ylittää varastosaldoa.",
     "white": "Valkoinen",
     "black": "Musta",
@@ -43,7 +44,7 @@
     "announcement_text": "Toimitusaika 2-4 arkipäivää! 📦",
     "payment_options": "Maksutavat",
     "hope": "TOIVE",
-    "hope_desc": "Tulevaisuus toiveita täynnä",
+    "hope_desc": "200 rajoitettu ylioppilaslakki",
     "oiva": "OIVA",
     "oiva_desc": "Oivallinen vaihtoehto jokaiselle",
     "vegani": "VEGAANILAKKI",

@@ -1,5 +1,6 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "invalidEmail": "Ogiltig e-postadress",
     "stockExceed": "Den valda produktkvantiteten överstiger lagersaldot.",
     "white": "Vit", 
     "black": "Svart", 
@@ -43,7 +44,7 @@
     "announcement_text": "Leveranstid 2-4 arbetsdagar! 📦",
     "payment_options": "Betalningsmetoder",
     "hope": "ÖNSKAR",
-    "hope_desc": "Framtiden är full av förhoppningar",
+    "hope_desc": "200 begränsad studentmössa",
     "oiva": "EXCELLENT",
     "oiva_desc": "Ett bra alternativ för alla",
     "vegani": "VEGAN KEPS",

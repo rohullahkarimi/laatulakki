@@ -1,5 +1,6 @@
 {
     "mandatory": "is a mandatory field",
+    "invalidEmail": "Invalid email address",
     "stockExceed": "The selected product quantity exceeds the stock balance.",
     "white": "White", 
     "black": "Black", 
@@ -43,7 +44,7 @@
     "announcement_text": "Delivery time 2-4 business days! 📦",
     "payment_options": "Payment methods",
     "hope": "WISH",
-    "hope_desc": "The future is full of hopes",
+    "hope_desc": "200 limited student cap",
     "oiva": "EXCELLENT",
     "oiva_desc": "A great option for everyone",
     "vegani": "VEGAN CAP",

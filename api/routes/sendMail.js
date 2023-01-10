@@ -115,6 +115,7 @@ function sendOrderEmail(orderId){
   
     // data for email
     const replacements = {
+      orderId: response.shortId,
       billingAddress: response.billingAddress,
       deliveryAddress: response.deliverySameAsBilling ? response.billingAddress : response.deliveryAddress,
       message: response.message,
@@ -223,7 +224,7 @@ function sendOrderStatusEmail(orderId, status) {
   
     // data for email
     const replacements = {
-      orderId: response._id,
+      orderId: response.shortId,
       billingAddress: response.billingAddress,
       deliveryAddress: response.deliverySameAsBilling ? response.billingAddress : response.deliveryAddress,
       receiptLink: receiptLink,

@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+
 const BillingAddressForm = ({navigation}) => {
   const { t } = useTranslation();
   //console.log(navigation)
@@ -21,6 +22,9 @@ const BillingAddressForm = ({navigation}) => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+ 
+
 
   const handleCustomerInformationSubmit = (data) => {
     console.log(data)
@@ -81,7 +85,7 @@ const BillingAddressForm = ({navigation}) => {
         <h2 className="heading">{t('receiverInfo')}</h2>
       </header>
 
-      <fieldset>
+      <fieldset id="fs">
         <div className="inputwrapper required">
           <label className="label" htmlFor="deliveryAddress_firstName" data-optional="(Optional)">{t("firstname")}</label>
           <input type="text" name="deliveryAddress_firstName"  id="deliveryAddress_firstName" className={customerInfoErrors.deliveryAddress_firstName ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_firstName",{ required: true })}/>
@@ -157,7 +161,10 @@ const BillingAddressForm = ({navigation}) => {
   
         <div className="inputwrapper required">
           <label className="label" htmlFor="deliveryAddress_email" data-optional="(Optional)">{t("email")}</label>
-          <input type="text" name="deliveryAddress_email"  id="deliveryAddress_email" className={customerInfoErrors.deliveryAddress_email ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_email",{ required: true })}/>
+          <input type="email" name="deliveryAddress_email"  id="deliveryAddress_email" className={customerInfoErrors.deliveryAddress_email ? 'invalid form_input' : 'form_input'}  {...register("deliveryAddress_email",{ 
+            required: true
+            
+            })}/>
           <span id="customerInformation_deliveryAddress_email" className='input-info invalid' role="alert">
           {customerInfoErrors.deliveryAddress_email && customerInfoErrors.deliveryAddress_email?.type === "required" && (
             t('email')+' '+t('mandatory')
@@ -256,10 +263,19 @@ const BillingAddressForm = ({navigation}) => {
 
           <div className="inputwrapper required">
             <label className="label" htmlFor="email" data-optional="(Optional)">{t("email")}</label>
-            <input type="email" name="email"  id="email" className={customerInfoErrors.email ? 'invalid form_input' : 'form_input'}  {...register("email",{ required: true })}/>
+            <input type="email" name="email"  id="email" className={customerInfoErrors.email ? 'invalid form_input' : 'form_input'}  {...register("email",{ 
+              required: true,
+              pattern: {
+                value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: 'Please enter a valid email',
+              }
+            })}/>
             <span id="customerInformation_email" className='input-info invalid' role="alert">
             {customerInfoErrors.email && customerInfoErrors.email?.type === "required" && (
               t('email')+' '+t("mandatory")
+            )}
+            {customerInfoErrors.email?.message  && (
+              t('invalidEmail')
             )}
             </span>
           </div>

@@ -272,7 +272,7 @@ const Product = () => {
   }
 
   const handleClick = () =>{
-    if(!color){
+    if(productColors.length > 1 && !color){
         $(".generalError").text(t('choose')+" "+t('color'));
         return false
     }
@@ -329,6 +329,8 @@ const Product = () => {
             productSizeQuantity <= 0 ? true : false
         )
     }
+
+   
     
     return (
     <Container>
@@ -366,13 +368,17 @@ const Product = () => {
                 
                 <FilterContainer>
                     <Filter>
-                        <FilterTitle>{t("color")}</FilterTitle>
-                        <FilterColorSelect onChange={(e)=> setColor(e.target.value)} required>
-                            <FilterColorOption value="" key="">{t('choose')}</FilterColorOption>
-                            {productColors?.map((colorName, j) => {
-                                return(<FilterColorOption key={j}>{colorName.name}</FilterColorOption>)
-                            })}
-                        </FilterColorSelect>
+                        {productColors?.length > 1 &&
+                        <>
+                            <FilterTitle>{t("color")}</FilterTitle>
+                            <FilterColorSelect onChange={(e)=> setColor(e.target.value)} required>
+                                <FilterColorOption value="" key="">{t('choose')}</FilterColorOption>
+                                {productColors?.map((colorName, j) => {
+                                    return(<FilterColorOption key={j}>{colorName.name}</FilterColorOption>)
+                                })}
+                            </FilterColorSelect>
+                         </>
+                        }
                     </Filter>
                     <Filter>
                         <FilterTitle>{t("size")}</FilterTitle>

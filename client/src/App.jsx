@@ -41,6 +41,7 @@ const App = () => {
     if($('.react-cookie-law-dialog').length){
       $(".cookies_container").addClass("overlay");
     }
+    console.log(process.env.REACT_APP_CLIENT_URL);
   });
  
   return (

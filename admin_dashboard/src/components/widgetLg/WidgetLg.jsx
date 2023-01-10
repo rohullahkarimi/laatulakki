@@ -58,12 +58,15 @@ export default function WidgetLg() {
               <td><Link to={"./orderpage/"+ order._id}>{order.shortId ? order.shortId : order._id}</Link></td>
               <td className="widgetLgStatus">
                 
+                { order.paid === true ?
                 <select id={order._id} className={order.status} defaultValue={order.status} onChange={e => HandleOrderStatus(e, order._id)}>
                     <option  value="created">Created</option>
                     <option  value="confirmed">Confirmed</option>
                     <option  value="delivering">Delivering</option>
                     <option  value="delivered">Delivered</option>
                 </select>
+                : "Not paid"
+                }
               </td>
               <td className="widgetLgUser">
                 <img
