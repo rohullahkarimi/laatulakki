@@ -1,7 +1,7 @@
+const config =  require('./config.js');
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const userRoute = require("./routes/user");
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
@@ -12,7 +12,8 @@ const paytrailRoute = require("./routes/paytrail");
 const sendMail = require("./routes/sendMail");
 const cors = require("cors");
 
-dotenv.config();
+console.log(`NODE_ENV=${config.NODE_ENV}`);
+
 
 mongoose
 .connect(process.env.MONGO_URL)
