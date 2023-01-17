@@ -1,0 +1,2 @@
+REACT_APP_API_URL = "https://tester.laatulakki.fi/api"
+REACT_APP_CLIENT_URL = "https://tester.laatulakki.fi"

@@ -38,6 +38,6 @@ app.use("/api/orders", orderRoute);
 app.use("/api/checkout", paytrailRoute);
 app.use("/api/sendMail", sendMail);
 
-app.listen((config.PORT || 5000), () => {
+app.listen((config.PORT), () => {
     console.log("backend server is running!");
 });
