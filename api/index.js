@@ -13,7 +13,7 @@ const sendMail = require("./routes/sendMail");
 const cors = require("cors");
 
 console.log(`NODE_ENV=${config.NODE_ENV}`);
-
+console.log("api starts");
 
 mongoose
 .connect(config.MONGO_URL)
