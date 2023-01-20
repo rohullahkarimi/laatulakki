@@ -6,7 +6,7 @@ import {
     Container
   } from 'react-bootstrap';
 import Navbar from "../components/Navbar";
-import { useSearchParams } from "react-router-dom";
+//import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods"
 
@@ -160,7 +160,9 @@ const H4 = styled.h4`
 const CommentContainer = styled.div`
   width: 80%;
   display: flex;
-  padding: 0 10px 0 0;
+  padding: 2% 5%;
+  ${smartPhone({ padding: "2% 5%" })}
+  ${mobile({ padding: "2% 5%" })}
 `;
 
 const Comment = styled.div`
@@ -239,8 +241,9 @@ const Receipt = () => {
   const { t } = useTranslation();
   const [orderData, setOrderData] = useState({})
   const [receiptValid, setReceiptValid] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const orderIdDetails = searchParams.get("orderId");
+  //const [searchParams, setSearchParams] = useSearchParams();
+  const queryParameters = new URLSearchParams(window.location.search)
+  const orderIdDetails = queryParameters.get("orderId");
   const order_array = orderIdDetails.split('_');
 
   var receiptHash =  order_array[1];
@@ -378,7 +381,7 @@ const Receipt = () => {
     return (
       <ContainerDiv>
         <PrintContainer><Navbar/></PrintContainer>
-        <Container id="starter" style={{padding: "2% 0px 5% 0"}}>
+        <Container id="starter">
             <Title>{t("receipt").toUpperCase()} 
                 <PrintContainer>
                     <PrintIcon style={{float: "right"}} fontSize="large" onClick={() => window.print()}/>

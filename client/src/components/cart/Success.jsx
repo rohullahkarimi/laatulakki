@@ -1,5 +1,5 @@
 import { CheckCircle } from "@mui/icons-material";
-import { useSearchParams } from "react-router-dom";
+//import { useSearchParams } from "react-router-dom";
 import styled from "styled-components"
 import { mobile } from "../../responsive"
 import { useTranslation } from "react-i18next";
@@ -48,9 +48,10 @@ const Button = styled.button`
 const Success = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch()
-  const [searchParams, setSearchParams] = useSearchParams();
-  const checkoutStatus = searchParams.get("checkout-status")
-  const orderId = searchParams.get("checkout-reference")
+  //const [searchParams, setSearchParams] = useSearchParams();
+  const queryParameters = new URLSearchParams(window.location.search)
+  const checkoutStatus = queryParameters.get("checkout-status")
+  const orderId = queryParameters.get("checkout-reference")
   const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL //process.env.REACT_APP_API_URL,
   });
