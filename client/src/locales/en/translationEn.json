@@ -1,5 +1,10 @@
 {
     "mandatory": "is a mandatory field",
+    "close": "Close",
+    "chooseDeliveryMethod": "Choose a delivery method",
+    "weDeliverProductByPost": "We deliver the products you ordered by post. The delivery time is 2-4 business days.",
+    "sliderTitle": "Student cap 2023",
+    "sliderDesc": "We sell high-quality and affordable graduation caps",
     "invalidEmail": "Invalid email address",
     "stockExceed": "The selected product quantity exceeds the stock balance.",
     "white": "White", 
@@ -41,7 +46,9 @@
     "feedback_email": "Email",
     "feedback_message": "Write here your message...",
     "send_button": "Send",
-    "announcement_text": "Delivery time 2-4 business days! 📦",
+    "announcement_text": "Delivery time 2-4 business days. Free delivery for orders over €90 in Finland. 🚚",
+    "freeOfCharge": "Free of charge",
+    "deliveryFee": "Delivery fee",
     "payment_options": "Payment methods",
     "hope": "WISH",
     "hope_desc": "200 limited student cap",
@@ -121,7 +128,7 @@
     "changeAndRefund.8": "The product and its packaging should always be mailed in a separate package or bag.",
     "changeAndRefund.9": "Fill out the return notice in the shipment and put it in the package with the product to be returned.",
     "changeAndRefund.10": "Glue the address label found on the return notice on the package.",
-    "changeAndRefund.11": "Return the package to the post office. The return is free only from the post office.",
+    "changeAndRefund.11": "Return the package to the post office and pay the postage. Email us a picture of the receipt and we'll refund you for the postage.",
     "changeAndRefund.12": "Please note that our shipping costs are always the same regardless of the number of products. For this reason, shipping costs will not be refunded if the return only applies to part of the products. We will try to deliver a new, similar product to replace the defective product. If we are unable to offer you a replacement product, you will receive the price corresponding to the product you returned, plus postage.",
     "changeAndRefund.13": "We recommend that you request a receipt for your return shipment. Refunds will be made via Paytrail using the payment method used to purchase the product.",
 
@@ -131,7 +138,7 @@
     "registration.4": "Phone",
     "registration.5": "CONTACT PERSON IN REGISTRATION MATTERS",
     "registration.6": "REGISTER NAME",
-    "registration.7": "RohisTech website registration",
+    "registration.7": "Laatulakki website registration",
     "registration.8": "PURPOSE OF PERSONAL DATA PROCESSING",
     "registration.9": "The information of persons registered through the website is used to improve the user experience and develop the website. The personal information received via the contact forms on the website is processed in an appropriate manner intended for the processing of contacts.",
     "registration.10": "Information can be collected about the website behavior of visitors to the website, such as the visitor's movements on the lautalukki.fi website, the time the visitor spends on the site and the source of income for the pages. This information is used to develop the user experience of the lautalukki.fi website and to improve the quality of the service, so that the user interesting information would be more easily accessible to the web visitor.",
@@ -232,6 +239,7 @@
     "footer1": "Terms of Use",
     "footer2": "Register statement",
     "footer3": "Exchange and return",
+    "footer4": "Delivery Terms",
     "onlineStore": "Online store",
 
     "cookies_Message": "We use cookies to improve the user experience, analyze site usage, personalize content and target marketing.",
@@ -243,5 +251,14 @@
     "cookies_acceptButtonText" : "Accept",
     "cookies_declineButtonText" : "Decline",
     "cookies_managePreferencesButtonText" : "Manage my cookies",
-    "cookies_savePreferencesButtonText":"Save and Close"
+    "cookies_savePreferencesButtonText":"Save and Close",
+
+    "deliveryTerms_0": "DELIVERY TERMS",
+    "deliveryTerms_1": "Delivery terms and costs",
+    "deliveryTerms_2": "We process all orders within 24 hours of the order. We mail products every day of the week within the Posti's opening hours. Domestic deliveries can be picked up within 2-4 business days of the order.",
+    "deliveryTerms_3": "Domestic deliveries",
+    "deliveryTerms_4": "Postin Postipaketti €6.90",
+    "deliveryTerms_5": "If you buy products for more than €90, we offer you free delivery.",
+    "deliveryTerms_6": "Retrieve the package from the machine or at the service point. For more information about the order, you can request the Posti machine where you would like to pick up your order. You can track the transport of your order using the OmaPosti application. You will receive a message when the package is available for collection.",
+    "deliveryTerms_7": "After receiving the arrival notification, you have 7 days to pick up your shipment. The delivery time is approximately 2-4 business days."
 }

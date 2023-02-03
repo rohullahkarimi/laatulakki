@@ -203,7 +203,7 @@ const CartProduct = (props) => {
                 <b>{t("size")}:</b> {product.size}
               </ProductSize>
               <ProductQuantity>
-               <b>{t("quantity")}</b> {product.quantity}
+               <b>{t("quantity")}:</b> {product.quantity}
               </ProductQuantity>
               <ProductPriceText>
                 <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product?.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } € 

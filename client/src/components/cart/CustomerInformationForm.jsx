@@ -282,7 +282,7 @@ const BillingAddressForm = ({navigation}) => {
 
 
           <div className="inputwrapper">
-            <label className="label" htmlFor="comment" data-optional="(Optional)">Tilauksen kommentit</label>
+            <label className="label" htmlFor="comment" data-optional="(Optional)">{t('order_extra_info')}</label>
             <textarea type="text" name="comment"  id="comment" className={customerInfoErrors.comment ? 'invalid form_input' : 'form_input'}  {...register("comment",{ required: false })}/>
             <span id="customerInformation_comment" className='input-info invalid' role="alert">
             {customerInfoErrors.comment && customerInfoErrors.comment?.type === "required" && (

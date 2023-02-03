@@ -1,5 +1,5 @@
 import '../../common/css/style.css';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from 'react-hook-form';
 import {  saveDeliveryMethod } from '../../redux/cartRedux';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 
 const DeliveryMethod = ({navigation}) => {
   const { t } = useTranslation();
+  const cart = useSelector((state) => state.cart);
   const { register, handleSubmit, formState: { errors: customerPaymentMethodError } } = useForm();
   const dispatch = useDispatch()
   
@@ -19,9 +20,15 @@ const DeliveryMethod = ({navigation}) => {
   }, [])
   
   const handlePaymentMethod = (data) => {
+    // check if price equal or over 90€, make the delivery free of charge 
+    var deliveryPriceSet = 0
+    if(cart.total <= 90){
+      deliveryPriceSet = Number(parseFloat(data.deliveryPrice, 10).toFixed(2))
+    }
+
     const deliveryMethodConst = {
       deliveryMethod: data.deliveryMethod,
-      deliveryPrice: Number(parseFloat(data.deliveryPrice, 10).toFixed(2))
+      deliveryPrice: deliveryPriceSet
     }
     console.log(deliveryMethodConst)
     dispatch(saveDeliveryMethod(deliveryMethodConst));
@@ -35,12 +42,14 @@ const DeliveryMethod = ({navigation}) => {
     <div className='container'>
     <div className="customer_information_form">
         <header className="header">
-          <h2 className="heading">Valitse toimitustapaa</h2>
-          <p>Meillä tällä hetkellä onnistuu pelkkä toimitus. Toimitusaika on 2-4 arkipäivää.</p>
+          <h2 className="heading">{t('chooseDeliveryMethod')}</h2>
+          <p>{t('weDeliverProductByPost')}</p>
 
-          <input type="hidden" name="deliveryPrice" value="6.90" {...register("deliveryPrice",{ 
-            required: false,
-          })}/>
+          <input type="hidden" name="deliveryPrice" value="6.90" 
+            {...register("deliveryPrice",{ 
+              required: false,
+            })}
+          />
 
           <form id="paymentMethodForm" name="paymentMethodForm" onSubmit={handleSubmit(handlePaymentMethod)}>
             <div className="inputwrapper">
@@ -50,18 +59,7 @@ const DeliveryMethod = ({navigation}) => {
               })}
               required/>
               <label htmlFor="delivery" className="checkbox-label checkbox-label-larger">
-                {t("delivery")} (6.90 €)
-              </label>
-            </div>
-
-            <div className="inputwrapper">
-              <input type="radio" className="checkbox-input checkbox-larger" id="pickup" name="deliveryMethod" value="pickup"
-              {...register("deliveryMethod",{ 
-                required: true,
-              })}
-              disabled/>
-              <label htmlFor="pickup" className="checkbox-label checkbox-label-larger">
-              {t("pickup")} ({t("notInUse")}!)
+                { cart.total <= 90 ? t("delivery") + " (6.90 €)" : t("delivery") + " ("+t('freeOfCharge')+")" }
               </label>
             </div>
           </form>
@@ -71,4 +69,17 @@ const DeliveryMethod = ({navigation}) => {
   )
 };
 
+
+/*
+  <div className="inputwrapper">
+    <input type="radio" className="checkbox-input checkbox-larger" id="pickup" name="deliveryMethod" value="pickup"
+    {...register("deliveryMethod",{ 
+      required: true,
+    })}
+    disabled/>
+    <label htmlFor="pickup" className="checkbox-label checkbox-label-larger">
+    {t("pickup")} ({t("notInUse")}!)
+    </label>
+  </div>
+*/
 export default DeliveryMethod;

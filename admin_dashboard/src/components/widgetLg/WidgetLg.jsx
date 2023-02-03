@@ -9,10 +9,27 @@ import { Link } from "react-router-dom";
 export default function WidgetLg() {
   const[orders, setOrders] = useState([])
 
+  
+  const sendReminder = async (orderId) => {
+    const reminderEmailSent = true
+
+    try {
+      const res = await userRequest.put("sendMail/sendOrderReminder/" + orderId, { reminderEmailSent: reminderEmailSent });
+      console.log(res.statusText)
+
+      console.log("reminder sent");
+      $('#'+orderId).prop('disabled', true);
+      
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const HandleOrderStatus = async (event, orderId) => {
     const status = event.target.value;
 
     console.log(status, orderId)
+
 
     try {
       const res = await userRequest.put("sendMail/updateOrderStatus/" + orderId, { status: status });
@@ -65,7 +82,7 @@ export default function WidgetLg() {
                     <option  value="delivering">Delivering</option>
                     <option  value="delivered">Delivered</option>
                 </select>
-                : "Not paid"
+                : order.reminderEmailSent ? "reminder already sent" : <button id={order._id} onClick={e => sendReminder(order._id)}>Not paid, send reminder</button>
                 }
               </td>
               <td className="widgetLgUser">

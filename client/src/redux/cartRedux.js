@@ -25,7 +25,7 @@ const cartSlice = createSlice({
           email:"",
         },
         deliveryMethod: "",
-        deliveryPrice: 0,
+        deliveryPrice: null,
         deliverySameAsBilling: true,
         quantity:0,
         total:0,
@@ -153,7 +153,7 @@ const cartSlice = createSlice({
             email:"",
           };
           state.deliveryMethod= "";
-          state.deliveryPrice= 0;
+          state.deliveryPrice= null;
           state.deliverySameAsBilling = true;
           state.quantity = 0;
           state.total = 0;

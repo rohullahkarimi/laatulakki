@@ -1,5 +1,10 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "close": "Stäng",
+    "chooseDeliveryMethod": "Välj en leveransmetod",
+    "weDeliverProductByPost": "Vi levererar de produkter du beställt per post. Leveranstiden är 2-4 arbetsdagar.",
+    "sliderTitle": "Studentmössa 2023",
+    "sliderDesc": "Vi säljer högkvalitativa och prisvärda examensmössor",
     "invalidEmail": "Ogiltig e-postadress",
     "stockExceed": "Den valda produktkvantiteten överstiger lagersaldot.",
     "white": "Vit", 
@@ -41,7 +46,9 @@
     "feedback_email": "E-post",
     "feedback_message": "Skriv ditt meddelande här...",
     "send_button": "skicka",
-    "announcement_text": "Leveranstid 2-4 arbetsdagar! 📦",
+    "announcement_text": "Leveranstid 2-4 arbetsdagar. Fri leverans för beställningar över 90 € i Finland. 🚚",
+    "freeOfCharge": "Gratis",
+    "deliveryFee": "Leveransavgift",
     "payment_options": "Betalningsmetoder",
     "hope": "ÖNSKAR",
     "hope_desc": "200 begränsad studentmössa",
@@ -121,7 +128,7 @@
     "changeAndRefund.8": "Produkten och dess förpackning ska alltid skickas i ett separat paket eller påse.",
     "changeAndRefund.9": "Fyll i returmeddelandet i försändelsen och lägg det i paketet med produkten som ska returneras.",
     "changeAndRefund.10": "Lima adressetiketten som finns på returmeddelandet på paketet.",
-    "changeAndRefund.11": "Returnera paketet till postkontoret. Returen är gratis endast från postkontoret.",
+    "changeAndRefund.11": "Lämna tillbaka paketet till posten och betala portot. Maila oss en bild på kvittot så återbetalar vi dig för portot.",
     "changeAndRefund.12": "Observera att våra fraktkostnader alltid är desamma oavsett antal produkter. Av denna anledning kommer fraktkostnader inte att återbetalas om returen endast gäller en del av produkterna. Vi kommer att försöka leverera en ny liknande produkt för att ersätta den defekta produkten. Om vi ​​inte kan erbjuda dig en ersättningsprodukt får du det pris som motsvarar den produkt du returnerade, plus porto.",
     "changeAndRefund.13": "Vi rekommenderar att du begär ett kvitto på din retursändning. Återbetalningar kommer att göras via Paytrail med den betalningsmetod som användes för att köpa produkten.",
 
@@ -131,7 +138,7 @@
     "registration.4": "Telefon",
     "registration.5": "KONTAKTPERSON I REGISTRERINGSFRÅGOR",
     "registration.6": "REGISTRERA NAMN",
-    "registration.7": "Registrering av RohisTech-webbplats",
+    "registration.7": "Registrering av Laatulakki-webbplats",
     "registration.8": "SYFTE MED BEHANDLING AV PERSONUPPGIFTER",
     "registration.9": "Uppgifterna om personer som registrerats via webbplatsen används för att förbättra användarupplevelsen och utveckla webbplatsen. De personuppgifter som erhålls via kontaktformulären på webbplatsen behandlas på ett lämpligt sätt avsett för behandling av kontakter .",
     "registration.10": "Information kan samlas in om webbplatsens beteende hos besökare på webbplatsen, såsom besökarens rörelser på webbplatsen lautalukki.fi, den tid besökaren tillbringar på webbplatsen och inkomstkällan för sidorna. Denna information används för att utveckla användarupplevelsen av webbplatsen lautalukki.fi och för att förbättra kvaliteten på tjänsten, så att användaren intressant information blir lättare tillgänglig för webbbesökaren.",
@@ -231,6 +238,7 @@
     "footer1": "Användarvillkor",
     "footer2": "Registrera uttalande",
     "footer3": "Byte och returnera",
+    "footer4": "Leveransvillkor",
     "onlineStore": "Onlinebutik",
 
     "cookies_Message": "Vi använder cookies för att förbättra användarupplevelsen, analysera webbplatsanvändning, anpassa innehåll och rikta marknadsföring.",
@@ -242,5 +250,14 @@
     "cookies_acceptButtonText" : "Acceptera",
     "cookies_declineButtonText" : "Avböja",
     "cookies_managePreferencesButtonText" : "Hantera mina cookies",
-    "cookies_savePreferencesButtonText":"Spara och stäng"
+    "cookies_savePreferencesButtonText":"Spara och stäng",
+
+    "deliveryTerms_0": "LEVERANSVILLKOR",
+    "deliveryTerms_1": "Leveransvillkor och kostnader",
+    "deliveryTerms_2": "Vi behandlar alla beställningar inom 24 timmar efter beställningen. Vi postar produkter alla dagar i veckan inom Postens öppettider. Inrikes leveranser kan hämtas inom 2-4 arbetsdagar efter beställningen.",
+    "deliveryTerms_3": "Inrikes leveranser",
+    "deliveryTerms_4": "Postin Postipaketti €6,90",
+    "deliveryTerms_5": "Om du köper produkter för mer än 90 € erbjuder vi dig gratis leverans.",
+    "deliveryTerms_6": "Hämta paketet från maskinen eller på servicestället. För mer information om beställningen kan du begära Posti-maskinen där du vill hämta din beställning. Du kan spåra transporten av din beställning med hjälp av OmaPosti-ansökan. Du får ett meddelande när paketet är tillgängligt för avhämtning.",
+    "deliveryTerms_7": "Efter att ha mottagit ankomstaviseringen har du 7 dagar på dig att hämta din försändelse. Leveranstiden är cirka 2-4 arbetsdagar."
 }

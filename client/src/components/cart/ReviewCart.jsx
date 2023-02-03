@@ -6,10 +6,10 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import { useForm } from 'react-hook-form';
 import styled from "styled-components";
 import { smartPhone } from "../../responsive";
-import { useNavigate } from "react-router";
 import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
 import CartProduct from './CartProduct';
+import DeliveryTermsModal from "../DeliveryTermsModal"
 
 const CustomerDetails = styled.div`
   display: flex;
@@ -46,8 +46,9 @@ const Hr = styled.hr`
 `;
 
 const TermsOfDelivery = styled.span`
-  color: blue;
-  display: inline-block;
+ color: blue;
+  margin-left: 4px;
+  font-size: 18px !important;
 `;
 
 const H4 = styled.h4`
@@ -69,11 +70,11 @@ const ReviewForm = () => {
   const { t } = useTranslation();
   const cart = useSelector((state) => state.cart);
   const [isLoading, setLoading] = useState(false);
-  const goTo = useNavigate()
   var orderId = null
   var transactionId = null
   const selectedLang = i18n.language
   const { register, handleSubmit, formState: { errors: handlePaymentErrors } } = useForm();
+  const [modalShow, setModalShow] = useState(false);
 
   console.log(handlePaymentErrors)
 
@@ -81,8 +82,11 @@ const ReviewForm = () => {
     window.scrollTo(0, 0)
   }, [])
 
-  const handleTermsOfDelivery = () => {
-    goTo("/terms_of_delivery")
+  const handleTermsOfDelivery = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    //goTo("/terms_of_delivery")
+    setModalShow(true)
   }
 
 
@@ -250,9 +254,13 @@ const ReviewForm = () => {
             required: true,
           })}
           />
-          <label htmlFor="termsOfDelivery" className="checkbox-label checkbox-label-larger">
-          {t("haveAlreadyRead")} <TermsOfDelivery target="_blank" onClick={handleTermsOfDelivery}>{t("deliveryterms")}</TermsOfDelivery>. * 
-          </label>
+          <div>
+            <label htmlFor="termsOfDelivery" className="checkbox-label checkbox-label-larger">
+              {t("haveAlreadyRead")} 
+              <TermsOfDelivery target="_blank" onClick={handleTermsOfDelivery}>{t("deliveryterms")} . *</TermsOfDelivery>
+            </label>
+          </div>
+          
           <span id="customerInformation_termsOfDelivery" className='input-info invalid' role="alert">
             {handlePaymentErrors.termsOfDelivery && handlePaymentErrors.termsOfDelivery?.type === "required" && (
               t("youHaveToConfirm")
@@ -261,7 +269,7 @@ const ReviewForm = () => {
         </div>
       </form>
       {isLoading &&  <div><ClipLoader cssOverride={spinnerStyle}  size={40} /></div>}
-
+      <DeliveryTermsModal show={modalShow} onHide={() => setModalShow(false)} />
     </div>
   );
 };

@@ -155,6 +155,28 @@ function sendOrderEmail(orderId){
   });
 }
 
+// Send order reminder mail 
+router.put("/sendOrderReminder/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+      const updatedOrder = await Order.findByIdAndUpdate(
+          req.params.id, {
+          $set: req.body
+      },
+          { new: true }
+      );
+
+      var reminder = "";
+      if(req.body.reminderEmailSent){
+        reminder = "reminder";
+      }
+      // send mail 
+      sendOrderStatusEmail(req.params.id, reminder);
+
+      res.status(200).json(updatedOrder);
+  } catch (err) {
+      res.status(500).json(err)
+  }
+});
 
 // UPDATE ORDER STATUS
 router.put("/updateOrderStatus/:id", verifyTokenAndAdmin, async (req, res) => {
@@ -185,7 +207,7 @@ function sendOrderStatusEmail(orderId, status) {
   switch(status) {
     case "confirmed":
       subject = "Tilauksesi on vahvistettu";
-      statusText = "Olemme vahvistaneet tilauksesi ja toimitamme sen 24 tunnin sisällä.";
+      statusText = "Olemme vahvistaneet tilauksesi ja toimitamme sen postille 24 tunnin sisällä.";
       break;
     case "delivering":
       subject = "Tilauksesi on toimituksessa";
@@ -193,7 +215,11 @@ function sendOrderStatusEmail(orderId, status) {
       break;
     case "delivered":
       subject = "Tilauksesi on toimitettu";
-      statusText = "Tilauksesti on toimitettu ja tietoamme mukaan olette saaneet tilaamasi tuotteesi.";
+      statusText = "Tilauksesi on toimitettu ja tietomme mukaan olette saaneet tilaamasi tuotteet.";
+      break;
+    case "reminder":
+      subject = "Tilauksesi on yhä kesken";
+      statusText = "Ostoskorisi maksaminen jäi kesken. Tilausta ei ole muodustunut. Voit jatka maksamista alla olevasta painikkeesta";
       break;
     default:
       return false;
@@ -228,6 +254,8 @@ function sendOrderStatusEmail(orderId, status) {
       billingAddress: response.billingAddress,
       deliveryAddress: response.deliverySameAsBilling ? response.billingAddress : response.deliveryAddress,
       receiptLink: receiptLink,
+      reminderOrNot: status === "reminder" ? true : false,
+      transactionId: "https://services.paytrail.com/pay/"+response.transactionId,
       statusText: statusText
     }
 

@@ -8,9 +8,12 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
   
-    const handleClick = (e) => {
-      e.preventDefault();
-      login(dispatch, { email, password });
+    async function handleClick() {
+      try {
+        login(dispatch, { email, password });
+      } catch(error) {
+        console.log("email or password is wrong")
+      }
     };
   
     return (

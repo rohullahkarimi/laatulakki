@@ -48,6 +48,7 @@ const Wrapper = styled.div`
 `
 
 const Slide = styled.div`
+    position: relative;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -67,8 +68,14 @@ const Image = styled.img`
 `
 
 const InfoContainer = styled.div`
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translate(-30%, -50%);
+    /*
     padding: 50px;
-    flex: 0.5;
+    flex: 1;
+    */
 `
 
 const Title = styled.h1`
@@ -77,25 +84,36 @@ const Title = styled.h1`
     text-rendering: optimizelegibility;
     font-family: 'Omnes Bold', sans-serif;
     font-variant-ligatures: common-ligatures;
-    font-size: 3.75rem;
+    font-size: 18px;
     line-height: 4.75rem;
     font-weight: 700;
     font-style: normal;
     font-stretch: normal;
     text-transform: none;
-    margin: 0px 0px 2.75rem;
+    margin: 0px 0px 0px;
+    color: ${(props) =>
+    props.color === "white" ? "white" : "black"};
 `
 const Description = styled.p`
     font-family: 'Omnes Bold', sans-serif;
-    margin: 50px 0px;
+    width: 30%;
+    margin: 10px 0px;
     font-style: 20px;
+    font-size: 2.25rem;
     font-weight: 500;
     letter-spacing: 3px;
+    color: ${(props) =>
+    props.color === "white" ? "white" : "black"};
 `
 const Button = styled.button`
-    padding: 10px;
+    padding: 10px 30px;
     font-size: 20px;
+    margin-top: 15px;
     background-color: transparent;
+    color: ${(props) =>
+    props.color === "white" ? "white" : "black"};
+    border-color: ${(props) =>
+    props.color === "white" ? "white" : "black"};
     cursor: pointer;
 `
 
@@ -104,10 +122,11 @@ const Slider = () => {
     const [slideIndex, setSlideIndex] = useState(0);
     const navigate = useNavigate()
     const handleClick = (direction) => {
+        console.log(slideIndex)
         if(direction === "left"){
-            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2)
+            setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 1)
         }else{
-            setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0)
+            setSlideIndex(slideIndex < 1 ? slideIndex + 1 : 0)
         }
     };
 
@@ -119,34 +138,23 @@ const Slider = () => {
             <Wrapper slideIndex={slideIndex}>
                 <Slide key="1" bg="f5fafd">
                     <ImgContainer>
-                        <Image src="https://images.squarespace-cdn.com/content/v1/5ded2afaf87cb8636cacc659/0954be2b-4467-4253-89a1-348b06f750aa/_11B9027.jpg"/>
+                        <Image src="/images/slider/slider1.jpg"/>
                     </ImgContainer>
                     <InfoContainer>
-                        <Title>{t("hope")}</Title>
-                        <Description>{t("hope_desc")}</Description>
-                        <Button onClick={()=>navigate("/products/lakki")}>{t("buy_now")}</Button>
+                        <Title color="white">{t('sliderTitle')}</Title>
+                        <Description color="white">{t('sliderDesc')}</Description>
+                        <Button color="white" onClick={()=>navigate("/products/lakki")}>{t("buy_now")}</Button>
                     </InfoContainer>
                 </Slide>
 
                 <Slide key="2" bg="fcf1ed">
                     <ImgContainer>
-                        <Image src="https://www.vastavalo.net/albums/userpics/10728/normal_yo-3767.jpg"/>
+                        <Image src="/images/slider/slider2.jpg"/>
                     </ImgContainer>
                     <InfoContainer>
-                        <Title>{t("oiva")}</Title>
-                        <Description>{t("oiva_desc")}</Description>
-                        <Button onClick={()=>navigate("/products/lakki")}>{t("buy_now")}</Button>
-                    </InfoContainer>
-                </Slide>
-
-                <Slide key="3" bg="fbf0f4">
-                    <ImgContainer>
-                        <Image src="https://www.kemi.fi/wp-content/uploads/2022/05/Ylioppilaslakki-rotated-e1653637283799.jpg"/>
-                    </ImgContainer>
-                    <InfoContainer>
-                        <Title>{t("vegani")}</Title>
-                        <Description>{t("vegani_desc")}</Description>
-                        <Button onClick={()=>navigate("/products/lakki")}>{t("buy_now")}</Button>
+                        <Title color="white">{t('sliderTitle')}</Title>
+                        <Description color="white">{t('sliderDesc')}</Description>
+                        <Button color="white" onClick={()=>navigate("/products/lakki")}>{t("buy_now")}</Button>
                     </InfoContainer>
                 </Slide>
             </Wrapper>

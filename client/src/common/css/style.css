@@ -18,6 +18,9 @@ s.straight::before, strike.straight::before{transform: rotate(0deg);left:-1%;wid
 .originalPrice{
   font-size: 25px;
 }
+.juicer-feed h1.referral{
+  display: none !important;
+}
 .originalPriceCart{
   font-size: 15px;
 }

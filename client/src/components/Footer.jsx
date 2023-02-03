@@ -1,4 +1,4 @@
-import { Instagram, MailOutlined, Phone, Room, YouTube } from "@mui/icons-material"
+import { Instagram, MailOutlined, Phone, Room, YouTube, Store } from "@mui/icons-material"
 import styled from "styled-components"
 import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 import { elementBackgroundColor } from "../theme"
@@ -37,11 +37,12 @@ const Left = styled.div`
     padding: 20px;
 
 `
-
+/*
 const Logo = styled.h1`
     margin-bottom: 30px;
     cursor: pointer;
 `
+*/
 
 
 
@@ -122,6 +123,11 @@ const Footer = () => {
   const goToChange_and_refund = () =>{
     navigate('/change_and_refund');
   } 
+
+  const goToDeliveryTerms = () =>{
+    navigate('/terms_of_delivery');
+  } 
+
   const goToHomePage = () =>{
     navigate('/');
   } 
@@ -140,10 +146,12 @@ const Footer = () => {
   return (
     <Container>
         <Left>
-            <Logo onClick={goToHomePage}>LaatuLakki.fi</Logo>
-            <ContactItem><Room style={{marginRight:"10px"}}/> Hyvinkää 05880</ContactItem>
-            <ContactItem><Phone style={{marginRight:"10px"}}/> +380400269034</ContactItem>
-            <ContactItem><MailOutlined style={{marginRight:"10px"}}/> laatulakki@gmail.com</ContactItem>
+            <Title onClick={goToHomePage}>Laatulakki Oy</Title>
+            <ContactItem><Store style={{marginRight:"10px"}}/> Y-tunnus: 3337953-9</ContactItem>
+            <ContactItem><Room style={{marginRight:"10px"}}/> Kontionkatu 5 M<br/>
+            05460 Hyvinkää, Finland</ContactItem>
+            <ContactItem><Phone style={{marginRight:"10px"}}/> +358400269034</ContactItem>
+            <ContactItem><MailOutlined style={{marginRight:"10px"}}/> info@laatulakki.fi</ContactItem>
             <SocialContainer>
                 <SocialIcon color="E4405F" onClick={()=> goToLink("https://www.instagram.com/laatulakki/")}>
                     <Instagram />
@@ -161,7 +169,10 @@ const Footer = () => {
             <List>
                 <ListItem onClick={goToTermsPage}>{t("footer1")}</ListItem>
                 <ListItem onClick={goToRegistrationStatement}>{t("footer2")}</ListItem>
+                <ListItem onClick={goToDeliveryTerms}>{t("footer4")}</ListItem>
                 <ListItem onClick={goToChange_and_refund}>{t("footer3")}</ListItem>
+
+             
             </List>
         </Center>
         <Right>

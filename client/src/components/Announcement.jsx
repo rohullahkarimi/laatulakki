@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { notificationBar } from "../theme"
 import { useTranslation } from "react-i18next";
+import { smartPhone } from "../responsive"
 
 const Container = styled.div`
     height: 30px;
@@ -11,6 +12,7 @@ const Container = styled.div`
     justify-content: center;
     font-size: 14px;
     font-weight: 500;
+    ${smartPhone({height: "47px", textAlign: "center"})}
 `
 
 const Announcement = () => {

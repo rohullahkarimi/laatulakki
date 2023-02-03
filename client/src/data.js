@@ -1,7 +1,7 @@
 export const sliderItems = [
     {
         id: 1,
-        img: "https://images.squarespace-cdn.com/content/v1/5ded2afaf87cb8636cacc659/0954be2b-4467-4253-89a1-348b06f750aa/_11B9027.jpg",
+        img: "http://localhost:3000/images/slider/homepage.jpg",
         title: "TOIVE",
         desc: "Tulevaisuus toiveita täynnä",
         bg: "f5fafd",

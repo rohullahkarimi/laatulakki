@@ -18,14 +18,14 @@ const PrintContainer = styled.div`
 `;
 
 const ContainerDiv = styled.div`
-  padding: 10px 0;
+ 
   @media print {
     padding: 0;
   }
 `
 const Title = styled.h2`
     text-align: center;
-    margin-bottom: 2%;
+    margin: 2% 0;
 `
 
 const Product = styled.div`
@@ -65,11 +65,13 @@ const ProductName = styled.span`
   font-size: 16px;
 `;
 
+/*
 const ProductId = styled.span`
   display: block;
   color: #000;
   font-size: 16px;
 `;
+*/
 
 const ProductColor = styled.span`
   display: block;
@@ -421,9 +423,6 @@ const Receipt = () => {
                         <ProductName>
                             <b>{t("product")}:</b> {product.title?.replace("<br>"," / ")}
                         </ProductName>
-                        <ProductId>
-                            <b>ID:</b> {product._id}
-                        </ProductId>
                         <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>
                         <ProductSize>
                             <b>{t("size")}:</b> {product.size}
@@ -460,7 +459,7 @@ const Receipt = () => {
             <CustomerDetails>
                 <BillingAddress>
                     <DetailsInfo>
-                      <Key> - </Key> <Key>{t('tax_less')}</Key>  <Key>{t('vat')}</Key> <Key>%</Key> <Key>{t('total')}</Key>
+                      <Key>  </Key> <Key>{t('tax_less')}</Key>  <Key>{t('vat')}</Key> <Key>%</Key> <Key>{t('total')}</Key>
                     </DetailsInfo>
 
                     <DetailsInfo>

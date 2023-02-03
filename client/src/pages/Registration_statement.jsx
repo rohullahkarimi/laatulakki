@@ -55,13 +55,13 @@ const { t } = useTranslation();
                         
                         <H3>{t("registeration.2")}</H3>
                         <Desc>
-                        RohisTech tmi<Br/>
-                        Jussilankatu 1 B 11,<Br/>
-                        05880 Hyvinkää<Br/>
+                        Laatulakki Oy<Br/>
+                        Kontionkatu 5 M,<Br/>
+                        05460 Hyvinkää, Finland<Br/>
                         <Br/>
-                        {t("registeration.3")}: 3189040-5<Br/>
+                        {t("registeration.3")}: 3337953-9<Br/>
                         {t("registeration.4")}: 040 026 9034<Br/>
-                        rohistech@gmail.com<Br/>
+                        info@laatulakki.fi<Br/>
                         </Desc>
                         
 
@@ -69,11 +69,11 @@ const { t } = useTranslation();
                         <H3>{t("registeration.5")}</H3>
                         <Desc>
                         Rohullah Karimi<Br/>
-                        rohistech@gmail.com<Br/>
+                        info@laatulakki.fi<Br/>
                         <Br/>
-                        RohisTech tmi<Br/>
-                        Jussilankatu 1 B 11,<Br/>
-                        05880 Hyvinkää
+                        Laatulakki Oy<Br/>
+                        Kontionkatu 5 M,<Br/>
+                        05460 Hyvinkää, Finland
                         </Desc>
 
                         

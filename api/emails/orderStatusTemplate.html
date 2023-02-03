@@ -508,7 +508,17 @@
                         
                         <hr>
 
-                        <p align="center">Katso tai tulosta kuitti täältä</p>
+                        
+                       
+
+                        {{#if reminderOrNot}}
+                          <p align="center">Tämä viesti on aiheeton jos olet jo ehtinyt tehdä uuden tilauksen.</p>
+                        {{/if}}
+
+                        {{#unless reminderOrNot}}
+                          <p align="center">Voit katsoa tai tulostaa kuittisi täältä</p>
+                        {{/unless}}
+
                         <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
                             <tr>
@@ -516,7 +526,15 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <td><a href="{{receiptLink}}" target="_blank">KUITTI</a> </td>
+
+                                      {{#if reminderOrNot}}
+                                      <td><a href="{{transactionId}}" target="_blank">JATKA TILAUSTA</a> </td>
+                                      {{/if}}
+
+                                      {{#unless reminderOrNot}}
+                                        <td><a href="{{receiptLink}}" target="_blank">KUITTI</a> </td>
+                                      {{/unless}}
+                                    
                                     </tr>
                                   </tbody>
                                 </table>
@@ -524,10 +542,11 @@
                             </tr>
                           </tbody>
                         </table>
+                        
 
                         <hr>
 
-                        <p>Ongelma tilanteessa tavoitat asiakaspalvelumme sähköpostista laatulakki@gmail.com</p>
+                        <p>Ongelmatilanteessa ota yhteyttä meihin sähköpostilla: info@laatulakki.fi.</p>
                   
                       </td>
                     </tr>

@@ -89,7 +89,7 @@ const Product = ({item}) => {
   return (
     <Container onClick={navigateToProductPage}>
         {item.discount &&<span className="flag-discount-productList">-{item.discount}%</span>}
-        <Image src={item.img[0].thumbnail}/>
+        <Image loading="lazy" alt="product image" src={item.img[0].original}/>
         <Info>
         </Info>
         

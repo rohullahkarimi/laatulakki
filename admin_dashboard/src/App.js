@@ -14,15 +14,18 @@ import Login from "./pages/login/Login";
 
 
 function App() {
-  const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user).currentUser?.isAdmin;
-  
-  /*
-  var admin = false
-  if(JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser !== null){
-    admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
+  const isAdmin = () => {
+    const persistRoot = JSON.parse(localStorage.getItem('persist:root'));
+
+    if (persistRoot) {
+      return JSON.parse(persistRoot.user).currentUser?.isAdmin;
+    }else{
+      return false;
+    }
   }
-  */
-  
+
+  //const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user).currentUser?.isAdmin;
+
 
   
   
@@ -31,7 +34,7 @@ function App() {
       <Switch>
     
 
-      { admin ? (
+      { isAdmin() ? (
         <>
       <Topbar />
       <div className="container">

@@ -16,6 +16,7 @@ import ImageGallery from 'react-image-gallery';
 import $ from "jquery"
 import Products from "../components/Products"
 import i18n from "../i18n"
+import CapChoiceModal from "../components/CapChoiceModal"
 
 const Container = styled.div`
     
@@ -189,6 +190,7 @@ const InstructionContainer = styled.div`
     margin-bottom: 10px;
 `
 const InstructionItem = styled.a`
+    cursor: pointer;
     display: block;
 `
 
@@ -197,6 +199,7 @@ const Product = () => {
   const selectedLang = i18n.language
   const location = useLocation();
   const id = location.pathname.split("/")[2]
+  const [modalShow, setModalShow] = useState(false);
   const [product, setProduct] = useState({
 
   })
@@ -213,7 +216,7 @@ const Product = () => {
   const [size, setSize] = useState("")
   const [productStorage, setProductStorage] = useState("")
   const dispatch = useDispatch()
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShowCapChoice, setModalShowCapChoice] = useState(false);
 
   useEffect(() =>{
         const handleProductSet = (data) => {
@@ -317,9 +320,15 @@ const Product = () => {
         errorElement = ""
     }
 
+    const handleCapChoice = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        setModalShowCapChoice(true)
+    }
+
     let instructionElements;
     if (product.categories?.includes('lakki')) {
-        instructionElements = <InstructionContainer><InstructionItem href="/cap_choice">{t('sizeInstruction')}</InstructionItem><InstructionItem href="/cap_usage">{t('usageDetails')}</InstructionItem></InstructionContainer>
+        instructionElements = <InstructionContainer><InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem><InstructionItem href="/cap_usage">{t('usageDetails')}</InstructionItem></InstructionContainer>
     }
 
     const checkTotalProductSizeAmount = () => {
@@ -340,7 +349,7 @@ const Product = () => {
            
             <ImageContainer>
                 {product.discount &&<span className="flag-discount">-{product.discount}%</span>}
-                {product?.img && <ImageGallery items={product?.img}  showFullscreenButton={false} showPlayButton={false} showBullets={true}/>}
+                {product?.img && <ImageGallery  items={product?.img}  showFullscreenButton={false} showPlayButton={false} showBullets={true} loading="lazy"/>}
             </ImageContainer>
             <InfoContainer>
 
@@ -358,9 +367,6 @@ const Product = () => {
 
                 {instructionElements}
 
-              
-                
-            
                 {product.discount && <Price>{ product?.price - (product?.price * (product.discount / 100)).toFixed(2)} € </Price> }
 
                 {product.discount ? <Price><s className="originalPrice">{product?.price && product?.price.toFixed(2)} €</s><IncludeTax>{t('includeTax')}</IncludeTax></Price> : <Price>{product?.price && product?.price.toFixed(2)} € <IncludeTax>{t('includeTax')}</IncludeTax></Price>}
@@ -408,6 +414,7 @@ const Product = () => {
         <Products selectedProduct={id}/>
         <Footer/>
         <CartModal show={modalShow} onHide={() => setModalShow(false)} />
+        <CapChoiceModal show={modalShowCapChoice} onHide={() => setModalShowCapChoice(false)} />
     </Container>
   )
 }

@@ -102,6 +102,7 @@ const OrderSchema = new mongoose.Schema(
         deliveryPrice: { type: Number},
         paid: { type: Boolean, required: true, default: false},
         emailSent: { type: Boolean, required: true, default: false},
+        reminderEmailSent: { type: Boolean, default: false},
         transactionId: { type: String, default: ""},
         total: { type: Number, required: true},
         message: { type: String},

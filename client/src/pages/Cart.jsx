@@ -263,7 +263,7 @@ const Cart = () => {
                   <SummaryItemPrice>{cartSubtotal.toFixed(2)} €</SummaryItemPrice>
                 </SummaryItem>
                 
-                {cart.deliveryPrice !== 0 && <SummaryItem><SummaryItemText>Toimitusmaksu</SummaryItemText><SummaryItemPrice>{deliveryPrice?.toFixed(2)} €</SummaryItemPrice></SummaryItem>}
+                {cart.deliveryPrice !== null && <SummaryItem><SummaryItemText>{t('deliveryFee')}</SummaryItemText><SummaryItemPrice>{deliveryPrice?.toFixed(2)} €</SummaryItemPrice></SummaryItem>}
                   
                 <SummaryItem type="total">
                   <SummaryItemText>{t("total")}</SummaryItemText>
