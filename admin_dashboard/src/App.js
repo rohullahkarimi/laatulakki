@@ -11,10 +11,25 @@ import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import OrderPage from "./pages/orderPage/Orderpage";
 import Login from "./pages/login/Login";
+import jwt_decode from "jwt-decode";
 
 
 function App() {
+  
+  const CheckIfTokenExpired = () => {
+    const token = JSON.parse(JSON.parse(localStorage.getItem('persist:root')).user).currentUser?.accessToken;
+    if(token){
+      if (jwt_decode(token).exp < Date.now() / 1000) {
+        console.log("expired")
+        localStorage.clear();
+      }else{
+        console.log("not expired")
+      }
+    }
+  }
+
   const isAdmin = () => {
+    CheckIfTokenExpired();
     const persistRoot = JSON.parse(localStorage.getItem('persist:root'));
 
     if (persistRoot) {

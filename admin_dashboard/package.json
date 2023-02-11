@@ -17,6 +17,7 @@
     "date-fns": "^2.29.3",
     "firebase": "^9.9.2",
     "jquery": "^3.6.2",
+    "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^8.0.2",
@@ -33,7 +34,7 @@
     "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:dev": "env-cmd -f .dev.env npm start", 
+    "start:dev": "env-cmd -f .dev.env npm start",
     "build:dev": "env-cmd -f .dev.env npm run-script build",
     "start:beta": "env-cmd -f .stag.env  npm start",
     "build:beta": "env-cmd -f .stag.env npm run build"

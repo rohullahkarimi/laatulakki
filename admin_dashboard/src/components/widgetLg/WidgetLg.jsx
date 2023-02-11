@@ -5,9 +5,12 @@ import "./widgetLg.css";
 import {format} from "date-fns"
 import $ from 'jquery';
 import { Link } from "react-router-dom";
+import { Badge } from "@material-ui/core";
+import { Notifications } from "@material-ui/icons";
 
 export default function WidgetLg() {
   const[orders, setOrders] = useState([])
+  const [newOrders, setNewOrders] = useState(0);
 
   
   const sendReminder = async (orderId) => {
@@ -42,11 +45,17 @@ export default function WidgetLg() {
     }
   };
 
+  
+
   useEffect(() => {
     const getOrders = async () =>{
       try{
         const res = await userRequest.get("orders");
         setOrders(res.data);
+
+        const searchData = res.data.filter((item) => item.status === "created" && item.paid === true);
+        setNewOrders(searchData.length)
+        
       }catch(err){
         console.log(err);
       }
@@ -55,10 +64,15 @@ export default function WidgetLg() {
 
   },[]);
 
+ 
+
   //console.log(orders)
   return (
     <div className="widgetLg">
-      <h3 className="widgetLgTitle">Latest orders</h3>
+      <h3 className="widgetLgTitle">Latest orders 
+        <Badge color="secondary" badgeContent={newOrders}><Notifications/></Badge>
+      </h3>
+
       <table className="widgetLgTable">
        
         <tr className="widgetLgTr">
@@ -70,8 +84,9 @@ export default function WidgetLg() {
         </tr>
 
         {orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(order=>(
-          
+      
             <tr className="widgetLgTr" key={order._id}>
+              
               <td><Link to={"./orderpage/"+ order._id}>{order.shortId ? order.shortId : order._id}</Link></td>
               <td className="widgetLgStatus">
                 

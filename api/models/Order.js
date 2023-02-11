@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 const randToken = require("rand-token");
 const ShortUniqueId = require('short-unique-id');
-const shortId = new ShortUniqueId({ length: 10, dictionary: 'number' });
+const shortId = new ShortUniqueId({ length: 5, dictionary: 'number' });
+const d = new Date();
+const ms = d.valueOf();
 
 const OrderSchema = new mongoose.Schema(
     {
         userId:{ type: String, required:false},
-        shortId: { type: String, default: shortId(), required: true},
+        shortId: { type: String, default: shortId()+"-"+ms, required: true},
         products: [
             {
                 productId: {

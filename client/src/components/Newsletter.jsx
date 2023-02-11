@@ -37,7 +37,7 @@ const Title = styled.h1`
 const Desc = styled.div`
     font-size: 18px;
     font-weight: 300;
-    margin-bottom: 20px;
+    margin: 15px 0;
     width: 80%;
     ${mobile({fontSize: "16px", textAlign: "center", padding: "0px 10px"})}
 `
@@ -51,7 +51,7 @@ const InputContainer = styled.div`
 
 const Input = styled.input`
     padding: 15px;
-    margin: 10px 0px;
+    margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid gray;
     width: auto;
@@ -59,7 +59,6 @@ const Input = styled.input`
 
 const TextAreaContainer = styled.div`
     width: 80%;
-    height: 100px;
     display: flex;
     flex-direction: column;
     ${mobile({width: "80%"})}
@@ -67,7 +66,8 @@ const TextAreaContainer = styled.div`
 
 const TextArea = styled.textarea`
     padding: 15px;
-    margin: 10px 0px;
+    min-height: 150px;
+    margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid gray;
 `

@@ -11,27 +11,47 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods"
 
 
+const HeaderContainer = styled.div`
+  display: flex;
+  margin: 2% 0;
+`
+
+const Title = styled.h2`
+    flex: 1;
+    text-align: center;
+`
+
+
 const PrintContainer = styled.div`
+  flex: 1;
   @media print {
     display: none;
   }
 `;
 
+
+const CompanyContainer = styled.div`  
+  flex:1;
+`;
+
+
+
 const ContainerDiv = styled.div`
- 
   @media print {
     padding: 0;
+    font-size: 14px;
   }
 `
-const Title = styled.h2`
-    text-align: center;
-    margin: 2% 0;
-`
+
 
 const Product = styled.div`
+
   display: flex;
   justify-content: space-between;
   ${mobile({ flexDirection: "column" })}
+  @media print {
+    font-size: 14px;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -62,7 +82,10 @@ const Details = styled.div`
 const ProductName = styled.span`
   display: block;
   color: #000;
-  font-size: 16px;
+  font-size: 14px;
+  @media print {
+    font-size: 14px;
+  }
 `;
 
 /*
@@ -76,20 +99,29 @@ const ProductId = styled.span`
 const ProductColor = styled.span`
   display: block;
   color: #000;
-  font-size: 16px;
+  font-size: 14px;
   background-color: ${(props) => props.color};
+  @media print {
+    font-size: 14px;
+  }
 `;
 
 const ProductSize = styled.span`
   display: block;
   color: #000;
-  font-size: 16px;
+  font-size: 14px;
+  @media print {
+    font-size: 14px;
+  }
 `;
 
 const ProductQuantity = styled.span`
   display: block;
   color: #000;
-  font-size: 16px;
+  font-size: 14px;
+  @media print {
+    font-size: 14px;
+  }
 `;
 
 
@@ -107,18 +139,24 @@ const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
   ${mobile({ marginBottom: "20px" })}
+  @media print {
+    font-size: 14px;
+  }
 `;
 
 
 const ProductPriceText = styled.span`
   display: block;
   color: #000;
-  font-size: 16px;
+  font-size: 14px;
+  @media print {
+    font-size: 14px;
+  }
 `;
 
 const CustomerDetails = styled.div`
   display: flex;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
   ${smartPhone({ flexDirection: "column" })}
   @media print {
     margin-bottom: 0;
@@ -156,7 +194,7 @@ const Hr = styled.hr`
 `;
 
 
-const H4 = styled.h4`
+const H4 = styled.h5`
 `;
 
 const CommentContainer = styled.div`
@@ -383,12 +421,24 @@ const Receipt = () => {
     return (
       <ContainerDiv>
         <PrintContainer><Navbar/></PrintContainer>
+
+
         <Container id="starter">
-            <Title>{t("receipt").toUpperCase()} 
-                <PrintContainer>
-                    <PrintIcon style={{float: "right"}} fontSize="large" onClick={() => window.print()}/>
-                </PrintContainer>
-            </Title>
+
+          <HeaderContainer>
+            <CompanyContainer>
+              Laatulakki Oy<br/>
+              Y-tunnus: 3337953-9<br/>
+              Kontionkatu 5 M<br/>
+              05460 Hyvinkää, Finland
+            </CompanyContainer>
+            <Title>{t("receipt").toUpperCase()} </Title>
+            <PrintContainer>
+                <PrintIcon style={{float: "right"}} fontSize="large" onClick={() => window.print()}/>
+            </PrintContainer>
+          </HeaderContainer>
+          <Hr/>
+          
 
             <CustomerDetails>
                 <BillingAddress>

@@ -114,6 +114,11 @@ const Footer = () => {
   const {t} = useTranslation()
   const navigate = useNavigate()
 
+  
+
+  const goToStory = () =>{
+    navigate('/our_story');
+  } 
   const goToTermsPage = () =>{
     navigate('/terms_and_condition#starter');
   } 
@@ -167,6 +172,7 @@ const Footer = () => {
         <Center>
             <Title>{t("onlineStore")}</Title>
             <List>
+                <ListItem onClick={goToStory}>{t("footer0")}</ListItem>
                 <ListItem onClick={goToTermsPage}>{t("footer1")}</ListItem>
                 <ListItem onClick={goToRegistrationStatement}>{t("footer2")}</ListItem>
                 <ListItem onClick={goToDeliveryTerms}>{t("footer4")}</ListItem>

@@ -1,5 +1,6 @@
 {
     "mandatory": "is a mandatory field",
+    "deliveryAddress": "Delivery Address",
     "close": "Close",
     "chooseDeliveryMethod": "Choose a delivery method",
     "weDeliverProductByPost": "We deliver the products you ordered by post. The delivery time is 2-4 business days.",
@@ -87,7 +88,7 @@
     "leftAmount": "Left",
     "includeTax": "incl. VAT",
 
-
+    "address": "Address",
     "streetAddress": "Street Address",
     "postalCode": "Postal Code",
     "city": "City",
@@ -236,6 +237,7 @@
     "capUsage3": "Care",
     "capUsage4": "Perhaps you have seen your grandparent's yellowed university cap? Wear and tear and yellowing are part of the yo-yo cap's life cycle, but you can also clean the cap if you wish by lightly brushing it with a velvet brush or with a piece of foam and a stain remover. However, the university cap should not be washed with water or soaked.",
     
+    "footer0": "Our Story",
     "footer1": "Terms of Use",
     "footer2": "Register statement",
     "footer3": "Exchange and return",
@@ -260,5 +262,10 @@
     "deliveryTerms_4": "Postin Postipaketti €6.90",
     "deliveryTerms_5": "If you buy products for more than €90, we offer you free delivery.",
     "deliveryTerms_6": "Retrieve the package from the machine or at the service point. For more information about the order, you can request the Posti machine where you would like to pick up your order. You can track the transport of your order using the OmaPosti application. You will receive a message when the package is available for collection.",
-    "deliveryTerms_7": "After receiving the arrival notification, you have 7 days to pick up your shipment. The delivery time is approximately 2-4 business days."
+    "deliveryTerms_7": "After receiving the arrival notification, you have 7 days to pick up your shipment. The delivery time is approximately 2-4 business days.",
+
+    "our_story1": "We founded the Laatulakki company in the summer of 2022 with the idea that we want to offer students high-quality and affordable graduation caps with fast delivery. Laatulakki is a small Hyvinkää company and our caps are made in a Pakistani sewing workshop, while supporting local families. Our selection currently only has graduation caps, but there is a selection intend to expand to other graduation caps in the future as well. Our small business wants to offer you an easy and pleasant shopping experience, and that's why we send beautifully packaged orders every day of the week.",
+    "our_story2": "Rohullah Karimi, the founder and CEO of Laatulak, was born in Afghanistan, where he has seen that education is not a given or even an option for everyone. After arriving in Finland as an asylum seeker, he noticed that there are almost limitless opportunities for studying in Finland and the opportunity to create the life he wants, when on the other hand, in his home country, the future of many young people, especially girls, is not in their own hands. Karimi soon learned the Finnish language and quickly studied for a professional and university of applied sciences degree and got a job in his field. However, Karimi had long had the idea of his own business and wanted a way to help people with it with help. The idea of selling student caps was born. Starting a small business from scratch included both ups and downs. You had to find a reliable manufacturer for the caps, figure out how to stand out from the competition, fill out a big pile of different papers and find an effective marketing method so that the consumer at would find us. We have learned a lot on this journey and we are grateful for everything. We want to offer our buyers only the best and we want to make them feel that they are special.",
+    "our_story3": "Because of Karim's own background, the opportunity to study is particularly important to us. We can be grateful that in Finland we all have the same opportunities to study and train in the field we want. Studying should be a human right and possible for everyone around the world, regardless of their gender or background. This is why we want to help those who are not as lucky and through the Red Cross we donate 5% of our annual income to support the teaching and education of children in developing countries. These children have the opportunity to change the direction of their own future and at the same time positively affect other people's lives as well, but they need help to do that, that's why this project is especially close to our hearts.",
+    "our_story4": "Education is the most effective way to change the world, so let's celebrate it appropriately. Each of us is unique and valuable and everyone deserves to know that. Graduation parties are the highlight of the early summer for many young people, and hard work with textbooks is rewarded when you can celebrate your own success with family and friends to celebrate. We want to make your celebration day special, that's why every cap bought from us is made and packaged beautifully just for you."
 }

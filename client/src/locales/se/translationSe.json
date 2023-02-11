@@ -1,5 +1,6 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "deliveryAddress": "Leveransadress",
     "close": "Stäng",
     "chooseDeliveryMethod": "Välj en leveransmetod",
     "weDeliverProductByPost": "Vi levererar de produkter du beställt per post. Leveranstiden är 2-4 arbetsdagar.",
@@ -87,7 +88,7 @@
     "leftAmount": "Vänster",
     "includeTax": "incl. VAT",
 
-
+    "address": "Adress",
     "streetAddress": "Gatuadress",
     "postalCode": "Postnummer",
     "city": "Postkontor",
@@ -235,6 +236,7 @@
     "capUsage3": "Vård",
     "capUsage4": "Du kanske har sett din morförälders gulnade universitetsmössa? Slitage och gulning är en del av jojokepsens livscykel, men du kan även rengöra kepsen om du vill genom att lätt borsta den med en sammetsborste eller med en bit skum och ett fläckborttagningsmedel. Däremot bör universitetsmössan inte tvättas med vatten eller blötläggas.", 
     
+    "footer0": "Vår berättelse",
     "footer1": "Användarvillkor",
     "footer2": "Registrera uttalande",
     "footer3": "Byte och returnera",
@@ -259,5 +261,10 @@
     "deliveryTerms_4": "Postin Postipaketti €6,90",
     "deliveryTerms_5": "Om du köper produkter för mer än 90 € erbjuder vi dig gratis leverans.",
     "deliveryTerms_6": "Hämta paketet från maskinen eller på servicestället. För mer information om beställningen kan du begära Posti-maskinen där du vill hämta din beställning. Du kan spåra transporten av din beställning med hjälp av OmaPosti-ansökan. Du får ett meddelande när paketet är tillgängligt för avhämtning.",
-    "deliveryTerms_7": "Efter att ha mottagit ankomstaviseringen har du 7 dagar på dig att hämta din försändelse. Leveranstiden är cirka 2-4 arbetsdagar."
+    "deliveryTerms_7": "Efter att ha mottagit ankomstaviseringen har du 7 dagar på dig att hämta din försändelse. Leveranstiden är cirka 2-4 arbetsdagar.",
+
+    "our_story1": "Vi grundade företaget Laatulakki sommaren 2022 med idén att vi vill erbjuda studenter högkvalitativa och prisvärda examensmössor med snabb leverans. Laatulakki är ett litet företag i Hyvinkää och våra kepsar är gjorda i pakistansk sömnad. verkstad, samtidigt som vi stödjer lokala familjer. Vårt utbud har för närvarande bara examenslock, men det finns ett urval som avser att expandera till andra examenslock i framtiden också. Vårt lilla företag vill erbjuda dig en enkel och trevlig shoppingupplevelse, och det är därför vi skickar vackert förpackade beställningar alla dagar i veckan.",
+    "our_story2": "Rohullah Karimi, grundaren och VD för Laatulak, föddes i Afghanistan, där han har sett att utbildning inte är givet eller ens ett alternativ för alla. Efter att ha kommit till Finland som asylsökande märkte han att det finns är nästan obegränsade möjligheter att studera i Finland och möjligheten att skapa det liv han vill, när å andra sidan, i sitt hemland, är framtiden för många unga, särskilt flickor, inte i deras egna händer.Karimi lärde sig snart att finska språket och studerade snabbt till yrkes- och yrkeshögskoleexamen och fick jobb inom sitt område. Karimi hade dock länge haft idén om ett eget företag och ville ha ett sätt att hjälpa människor med det med hjälp. att sälja studentmössor föddes. Att starta ett litet företag från grunden omfattade både upp- och nedgångar. Du var tvungen att hitta en pålitlig tillverkare för kepsarna, ta reda på hur du skulle sticka ut från konkurrenterna, fylla i en stor hög med olika papper och hitta en effektiv marknadsföringsmetod så att konsumenten vid skulle hitta oss. Vi har lärt oss mycket på den här resan och vi är tacksamma för allt. Vi vill erbjuda våra köpare bara det bästa och vi vill få dem att känna att de är speciella.",
+    "our_story3": "På grund av Karims egen bakgrund är möjligheten att studera särskilt viktig för oss. Vi kan vara tacksamma för att vi i Finland alla har samma möjligheter att studera och utbilda oss inom det område vi vill. Att studera ska vara en mänsklig rättighet och möjligt för alla runt om i världen, oavsett kön eller bakgrund. Det är därför vi vill hjälpa de som inte har lika tur och genom Röda Korset donerar vi 5 % av vår årliga inkomst för att stödja undervisning och utbildning av barn i utvecklingsländer. Dessa barn har möjlighet att ändra inriktningen på sin egen framtid och samtidigt påverka andra människors liv positivt också, men de behöver hjälp för att göra det, det är därför det här projektet ligger oss särskilt varmt om hjärtat.",
+    "our_story4": "Utbildning är det mest effektiva sättet att förändra världen, så låt oss fira det på lämpligt sätt. Var och en av oss är unik och värdefull och alla förtjänar att veta det. Examenskalas är höjdpunkten på försommaren för många unga människor, och hårt arbete med läroböcker belönas när du kan fira din egen framgång med familj och vänner att fira. Vi vill göra din firande dag speciell, det är därför varje keps köpt från oss är gjord och förpackad vackert just för dig."
 }

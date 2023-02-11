@@ -225,7 +225,7 @@ const ReviewForm = () => {
 
 
         <DeliveryAddress>
-          <H4>{t("receiverInfo")}</H4>
+          <H4>{t("deliveryAddress")}</H4>
           <Address {...(cart.deliverySameAsBilling ? cart.billingAddress : cart.deliveryAddress)} />
         </DeliveryAddress>
 

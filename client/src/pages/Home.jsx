@@ -1,5 +1,5 @@
 import Announcement from '../components/Announcement'
-import Categories from '../components/Categories'
+//import Categories from '../components/Categories'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Newsletter from '../components/Newsletter'
@@ -23,7 +23,7 @@ const Container = styled.div`
 </Container>
 */
 
-
+// <Categories/>
 const Home = () => {
 
   return (
@@ -31,7 +31,7 @@ const Home = () => {
         <Announcement/>
         <Navbar/>
         <Slider/>
-        <Categories/>
+        
         <Products/>
         <Newsletter/>
         <Footer/>
