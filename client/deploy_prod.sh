@@ -5,7 +5,7 @@ echo "Building prod app..."
 sudo npm run build
 
 echo "Deploying files to server"
-sudo scp -r build/* ec2-user@23.23.248.65:/var/www/laatulakki/production/client
+sudo scp -r build/* ec2-user@52.51.192.51:/var/www/laatulakki/production/client
 
 
 echo "Done"
