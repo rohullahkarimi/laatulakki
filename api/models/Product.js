@@ -15,6 +15,7 @@ const ProductSchema = new mongoose.Schema(
         discount:{ type: Number},
         vatPercentage: {type: Number, default: 24, required: true},
         inStock: {type: Boolean, default: true},
+        visibility: {type: Boolean, default: true},
     },
     { timestamps: true}
 )

@@ -89,9 +89,7 @@ const ReviewForm = () => {
     setModalShow(true)
   }
 
-
-  const Address = (data) => (
-  
+  const BillingAddressComponent = (data) => (
     <>
       <DetailsInfo>
         <Key>{t("firstname")}</Key>
@@ -100,22 +98,6 @@ const ReviewForm = () => {
       <DetailsInfo>
         <Key>{t("lastname")}</Key>
         <Value>{data.lastname}</Value>
-      </DetailsInfo>
-      <DetailsInfo>
-        <Key>{t("streetAddress")}</Key>
-        <Value>{data.streetAddress}</Value>
-      </DetailsInfo>
-      <DetailsInfo>
-        <Key>{t("postalCode")}</Key>
-        <Value>{data.postalCode}</Value>
-      </DetailsInfo>
-      <DetailsInfo>
-        <Key>{t("city")}</Key>
-        <Value>{data.city}</Value>
-      </DetailsInfo>
-      <DetailsInfo>
-        <Key>{t("country")}</Key>
-        <Value>{data.country}</Value>
       </DetailsInfo>
       <DetailsInfo>
         <Key>{t("phonenumber")}</Key>
@@ -127,6 +109,34 @@ const ReviewForm = () => {
       </DetailsInfo>
     </>
   );
+
+  const DeliveryAddressComponent = (props) => {
+    console.log(props)
+    return (
+      <>
+      {props.deliverySameAsBilling !== true && <DetailsInfo><Key>{t("firstname")}</Key><Value>{props.data.firstname}</Value></DetailsInfo>}
+      {props.deliverySameAsBilling !== true && <DetailsInfo><Key>{t("lastname")}</Key><Value>{props.data.lastname}</Value></DetailsInfo>}
+      <DetailsInfo>
+        <Key>{t("streetAddress")}</Key>
+        <Value>{props.data.streetAddress}</Value>
+      </DetailsInfo>
+      <DetailsInfo>
+        <Key>{t("postalCode")}</Key>
+        <Value>{props.data.postalCode}</Value>
+      </DetailsInfo>
+      <DetailsInfo>
+        <Key>{t("city")}</Key>
+        <Value>{props.data.city}</Value>
+      </DetailsInfo>
+      <DetailsInfo>
+        <Key>{t("country")}</Key>
+        <Value>{props.data.country}</Value>
+      </DetailsInfo>
+      {props.deliverySameAsBilling !== true && <DetailsInfo><Key>{t("phonenumber")}</Key><Value>{props.data.phonenumber}</Value></DetailsInfo>}
+      {props.deliverySameAsBilling !== true && <DetailsInfo><Key>{t("email")}</Key><Value>{props.data.email}</Value></DetailsInfo>}
+    </>
+    )
+  };
   
   const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL //process.env.REACT_APP_API_URL,
@@ -212,7 +222,7 @@ const ReviewForm = () => {
     margin: "auto"
   };
 
- 
+  console.log(cart)
   
   return (
     <div className='container'>
@@ -220,13 +230,13 @@ const ReviewForm = () => {
       <CustomerDetails>
         <BillingAddress>
           <H4>{t("ordererInfo")}</H4>
-          <Address {...cart.billingAddress} />
+          <BillingAddressComponent {...cart.billingAddress} />
         </BillingAddress>
 
 
         <DeliveryAddress>
           <H4>{t("deliveryAddress")}</H4>
-          <Address {...(cart.deliverySameAsBilling ? cart.billingAddress : cart.deliveryAddress)} />
+          <DeliveryAddressComponent data={cart.deliverySameAsBilling ? cart.billingAddress : cart.deliveryAddress} deliverySameAsBilling={cart.deliverySameAsBilling} />
         </DeliveryAddress>
 
       </CustomerDetails>

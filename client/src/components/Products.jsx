@@ -100,7 +100,7 @@ const Products = ({cat, filters, sort, selectedProduct}) => {
         ? filteredProducts.map((item) => <Product item={item} key={item._id} />)
         : products
             .slice(0, 8)
-            .map((item) => item._id !== selectedProduct && <Product item={item} key={item._id} />)}
+            .map((item) => item.visibility === true && item._id !== selectedProduct && <Product item={item} key={item._id} />)}
     </Container>
   );
 }
