@@ -142,7 +142,7 @@ const Slider = () => {
                     </ImgContainer>
                     <InfoContainer>
                         <Title color="white">{t('sliderTitle')}</Title>
-                        <Description color="white">{t('sliderDesc')}</Description>
+                        <Description color="white">{t('sliderDesc1')}</Description>
                         <Button color="white" onClick={()=>navigate("/product/"+process.env.REACT_APP_PRODUCT_PAGE)}>{t("buy_now")}</Button>
                     </InfoContainer>
                 </Slide>
