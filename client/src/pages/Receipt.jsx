@@ -198,11 +198,8 @@ const H4 = styled.h5`
 `;
 
 const CommentContainer = styled.div`
-  width: 80%;
+  width: 50%;
   display: flex;
-  padding: 2% 5%;
-  ${smartPhone({ padding: "2% 5%" })}
-  ${mobile({ padding: "2% 5%" })}
 `;
 
 const Comment = styled.div`
