@@ -42,7 +42,7 @@ const CartModal = (props) => {
  
   function CartNotEmpty() {
     return (
-      <>
+      
       <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
@@ -63,13 +63,13 @@ const CartModal = (props) => {
         <PlatformButton type="filled" onClick={()=>navigate("/cart")}>{t("checkout")}</PlatformButton>
       </Modal.Footer>
     </Modal>
-    </>
+  
     )
   }
   
   function CartEmpty() {
     return (
-      <>
+    
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
@@ -91,17 +91,17 @@ const CartModal = (props) => {
           <PlatformButton onClick={props.onHide}>{t("continue_shopping")}</PlatformButton>
         </Modal.Footer>
         </Modal>
-      </>
+      
     )
   }
   
   return (
-    <>
+    <div>
     {cart.quantity === 0 
       ? <CartEmpty/>
       : <CartNotEmpty/>
     }
-    </>
+    </div>
   );
 }
 

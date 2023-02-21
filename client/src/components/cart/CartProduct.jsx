@@ -196,7 +196,7 @@ const CartProduct = (props) => {
           <DetailsContainer>
             <Details>
               <ProductName>
-              {product.title?.replace("<br>"," / ")}
+              {product.title}
               </ProductName>
               {product.color && <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>}
               <ProductSize>
@@ -206,16 +206,16 @@ const CartProduct = (props) => {
                <b>{t("quantity")}:</b> {product.quantity}
               </ProductQuantity>
               <ProductPriceText>
-                <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product?.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } € 
+                <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } € 
               </ProductPriceText>
             </Details>
           </DetailsContainer>
          
 
           <ProductPriceContainer>
-            {product.discount && <ProductPrice>{ ((product.price - (product?.price * (product.discount / 100)).toFixed(2)) * product.quantity).toFixed(2)} € </ProductPrice> }
+            {product.discount && <ProductPrice>{ ((product.price - (product.price * (product.discount / 100)).toFixed(2)) * product.quantity).toFixed(2)} € </ProductPrice> }
 
-            {product.discount ? <ProductPrice><s className="originalPriceCart">{product?.price && (product.price * product.quantity).toFixed(2)} €</s></ProductPrice> : <ProductPrice>{product?.price && (product.price * product.quantity).toFixed(2)} € </ProductPrice>}
+            {product.discount ? <ProductPrice><s className="originalPriceCart">{product.price && (product.price * product.quantity).toFixed(2)} €</s></ProductPrice> : <ProductPrice>{product.price && (product.price * product.quantity).toFixed(2)} € </ProductPrice>}
           </ProductPriceContainer>
          
 
@@ -230,7 +230,7 @@ const CartProduct = (props) => {
                 <Add onClick={()=>handleQuantityIncrease(product)}/>
               </ProductAmountContainer>
             </RemoveProduct>
-            : <></>
+            : <div></div>
           }
 
         </ProductDetail>
