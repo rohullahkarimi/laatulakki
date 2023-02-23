@@ -14,9 +14,10 @@ import { useDispatch } from "react-redux"
 import '../../node_modules/react-image-gallery/styles/css/image-gallery.css';
 import ImageGallery from 'react-image-gallery';
 import $ from "jquery"
-import Products from "../components/Products"
+//import Products from "../components/Products"
 import i18n from "../i18n"
 import CapChoiceModal from "../components/CapChoiceModal"
+import CapUsageModal from "../components/CapUsageModal"
 
 const Container = styled.div`
     
@@ -174,7 +175,7 @@ const IncludeTax = styled.p`
     border: 0.5px solid #bbbcbc;
     color: #bbbcbc;
 `
-
+/*
 const YouMightLike = styled.div`
     height: 35px;
     background-color: #f5fbfd;
@@ -185,6 +186,7 @@ const YouMightLike = styled.div`
     font-size: 18px;
     font-weight: 500;
 `
+*/
 
 const InstructionContainer = styled.div`
     margin-bottom: 10px;
@@ -217,6 +219,7 @@ const Product = () => {
   const [productStorage, setProductStorage] = useState("")
   const dispatch = useDispatch()
   const [modalShowCapChoice, setModalShowCapChoice] = useState(false);
+  const [modalShowCapUsage, setModalShowCapUsage] = useState(false);
 
   useEffect(() =>{
         const handleProductSet = (data) => {
@@ -326,9 +329,15 @@ const Product = () => {
         setModalShowCapChoice(true)
     }
 
+    const handleCapUsage = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        setModalShowCapUsage(true)
+    }
+
     let instructionElements;
     if (product.categories?.includes('lakki')) {
-        instructionElements = <InstructionContainer><InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem><InstructionItem href="/cap_usage">{t('usageDetails')}</InstructionItem></InstructionContainer>
+        instructionElements = <InstructionContainer><InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem><InstructionItem target="_blank" onClick={handleCapUsage}>{t('usageDetails')}</InstructionItem></InstructionContainer>
     }
 
     const checkTotalProductSizeAmount = () => {
@@ -410,13 +419,18 @@ const Product = () => {
             </InfoContainer>
         </Wrapper>
 
-        <YouMightLike>{t("youMightLike")}</YouMightLike>
-        <Products selectedProduct={id}/>
+      
         <Footer/>
         <CartModal show={modalShow} onHide={() => setModalShow(false)} />
         <CapChoiceModal show={modalShowCapChoice} onHide={() => setModalShowCapChoice(false)} />
+        <CapUsageModal show={modalShowCapUsage} onHide={() => setModalShowCapUsage(false)} />
     </Container>
   )
 }
+
+/*
+<YouMightLike>{t("youMightLike")}</YouMightLike>
+<Products selectedProduct={id}/>
+*/
 
 export default Product

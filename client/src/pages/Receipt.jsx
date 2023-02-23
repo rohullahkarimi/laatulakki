@@ -179,6 +179,17 @@ const Key = styled.div`
   flex: 1;
   font-weight: 550;
 `;
+
+const CommentDetails = styled.div`
+  font-weight: 550;
+  display: inherit;
+`;
+
+const CommentValueDetail = styled.div`
+  font-weight: normal;
+  margin-left: 5px;
+`;
+
 const Value = styled.div`
   flex: 1;
   padding-left: 10px;
@@ -198,7 +209,7 @@ const H4 = styled.h5`
 `;
 
 const CommentContainer = styled.div`
-  width: 50%;
+  width: 100%;
   display: flex;
 `;
 
@@ -333,8 +344,8 @@ const Receipt = () => {
     const productObject = {
       ...item, 
       priceInTotal : (unitPrice * item.quantity).toFixed(2),
-      tax: productPriceTax,
-      taxLess: productPriceTaxLess
+      taxLess: productPriceTax,
+      tax: productPriceTaxLess
     };
     return productObject;
   })
@@ -454,8 +465,8 @@ const Receipt = () => {
             <CommentContainer>
                 <Comment>
                 <DetailsInfo>
-                    {order.message && <Key>{t("order_extra_info")}: </Key>}
-                    {order.message && <Value>{order.message}</Value>}
+                    {order.message && <CommentDetails>{t("order_extra_info")}: <CommentValueDetail>  {order.message}</CommentValueDetail></CommentDetails>}
+                    
                 </DetailsInfo>
                 </Comment>
             </CommentContainer>
@@ -479,7 +490,7 @@ const Receipt = () => {
                         </ProductQuantity>
 
                         <ProductPriceText>
-                            <b>{t('vat')}:</b> {product.vatPercentage} €
+                            <b>{t('vat')}:</b> {product.vatPercentage} %
                         </ProductPriceText>
                         <ProductPriceText>
                             <b>{t('tax')}:</b> {product.tax} €

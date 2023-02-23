@@ -267,7 +267,7 @@ const ReviewForm = () => {
           <div>
             <label htmlFor="termsOfDelivery" className="checkbox-label checkbox-label-larger">
               {t("haveAlreadyRead")} 
-              <TermsOfDelivery target="_blank" onClick={handleTermsOfDelivery}>{t("deliveryterms")} . *</TermsOfDelivery>
+              <TermsOfDelivery target="_blank" onClick={handleTermsOfDelivery}>{t("deliveryterms")}. *</TermsOfDelivery>
             </label>
           </div>
           
