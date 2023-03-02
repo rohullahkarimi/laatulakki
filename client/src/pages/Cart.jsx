@@ -105,7 +105,7 @@ const Summary = styled.div`
   border: 0.5px solid lightgray;
   border-radius: 10px;
   padding: 20px;
-  height: 50vh;
+  height: auto;
   ${tablet({ marginTop: "15px"})}
 `;
 
@@ -153,9 +153,24 @@ const Cart = () => {
   ];
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { Component } = step;
+  const [promoCode, setPromoCode] = useState("");
+  const [discountPercent, setDiscountPercent] = useState(0);
 
 
- 
+  const PROMOTIONS = [
+    {
+      code: "SUMMER",
+      discount: "50%"
+    },
+    {
+      code: "AUTUMN",
+      discount: "40%"
+    },
+    {
+      code: "WINTER",
+      discount: "30%"
+    }
+  ];
   
 
 
@@ -213,6 +228,7 @@ const Cart = () => {
 
     const deliveryPrice = cart.deliveryPrice
     var cartSubtotal = cart.total
+    var discount = (cartSubtotal * discountPercent) / 100;
     var cartTotal = cart.total
     if(cart.deliveryPrice > 0){
       cartTotal += cart.deliveryPrice
@@ -233,6 +249,26 @@ const Cart = () => {
         value: Number(cartTotal.toFixed(2)), // optional, must be a number
       });
     }
+
+
+    const onEnterPromoCode = (event) => {
+      console.log("onEnterCoder")
+      setPromoCode(event.target.value.toUpperCase());
+    };
+  
+    const checkPromoCode = () => {
+      console.log("checkPromoCode")
+
+      for (var i = 0; i < PROMOTIONS.length; i++) {
+        if (promoCode === PROMOTIONS[i].code) {
+          setDiscountPercent(parseFloat(PROMOTIONS[i].discount.replace("%", "")));
+          console.log(promoCode, discountPercent)
+          return;
+        }
+      }
+  
+      alert("Sorry, the Promotional code you entered is not valid!");
+    };
   
     console.log(cart)
     return (
@@ -258,10 +294,26 @@ const Cart = () => {
               </Info>
               <Summary>
                 <SummaryTitle>{t("summary")}</SummaryTitle>
+
+                <SummaryItem>
+                  <div className="promotion">
+                    <input type="text" value={promoCode}  placeholder="Lisää kampanjakoodi" onChange={onEnterPromoCode} />
+                    <button type="button" className="promotionButton" onClick={checkPromoCode} />
+                  </div>
+                </SummaryItem>
+
                 <SummaryItem>
                   <SummaryItemText>{t("subtotal")}</SummaryItemText>
                   <SummaryItemPrice>{cartSubtotal.toFixed(2)} €</SummaryItemPrice>
                 </SummaryItem>
+
+                {discount > 0 && (
+                  <SummaryItem>
+                    <SummaryItemText>Discount ({discountPercent}%)</SummaryItemText>
+                    <SummaryItemPrice>-{discount.toFixed(2)} €</SummaryItemPrice>
+                  </SummaryItem>
+                )}
+
                 
                 { cart.deliveryPrice !== null && <SummaryItem><SummaryItemText>{t('deliveryFee')}</SummaryItemText><SummaryItemPrice>{ cartTotal < 90 ? deliveryPrice?.toFixed(2) : "0.00" } €</SummaryItemPrice></SummaryItem>}
                   
