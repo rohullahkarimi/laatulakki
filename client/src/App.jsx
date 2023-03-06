@@ -16,6 +16,8 @@ import CapChoice from "./pages/Cap_choice";
 import CapUsage from "./pages/Cap_usage";
 import Receipt from "./pages/Receipt";
 import Story from "./pages/Story";
+import FAQ from "./pages/FAQ";
+import Instagram from "./pages/Instagram";
 import PaymentPage from "./pages/Payment_response";
 import { CookieBanner } from "@palmabit/react-cookie-law";
 import { useTranslation } from 'react-i18next';
@@ -73,6 +75,8 @@ const App = () => {
         <Route path="/cap_usage" element={<CapUsage/>} />
         <Route path="/receipt" element={<Receipt/>} />
         <Route path="/our_story" element={<Story/>} />
+        <Route path="/faq" element={<FAQ/>} />
+        <Route path="/instagram" element={<Instagram/>} />
       </Routes>
       <div className="cookies_container">
         <CookieBanner

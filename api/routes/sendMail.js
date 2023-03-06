@@ -104,6 +104,8 @@ function sendOrderEmail(orderId){
     var delivery_taxLess = (response.deliveryPrice / 1.24).toFixed(2);
     var delivery_tax = (response.deliveryPrice - delivery_taxLess).toFixed(2);
 
+   
+
     // total price
     var totalPriceIncludeDelivery = response.total.toFixed(2);
     var totalPriceIncludeDelivery_taxLess = (totalPriceIncludeDelivery / 1.24).toFixed(2);
@@ -126,6 +128,10 @@ function sendOrderEmail(orderId){
       delivery_tax: delivery_tax,
       delivery_taxLess: delivery_taxLess,
       deliveryPrice: response.deliveryPrice.toFixed(2),
+
+      addedPromoOrNot: response.promoPercentage > 0 ? true : false,
+      promoPercentage: response.promoPercentage,
+      promoAmount: response.discountAmount.toFixed(2),
       
       totalPriceIncludeDelivery_taxLess: totalPriceIncludeDelivery_taxLess,
       totalPriceIncludeDelivery_tax: totalPriceIncludeDelivery_tax,

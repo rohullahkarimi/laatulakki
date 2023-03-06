@@ -381,6 +381,9 @@ const Receipt = () => {
     delivery_taxLess: delivery_taxLess,
     deliveryPrice: orderData?.deliveryPrice?.toFixed(2),
 
+    promoPercentage: orderData?.promoPercentage,
+    promoAmount: orderData?.discountAmount,
+
     totalPriceIncludeDelivery_taxLess: totalPriceIncludeDelivery_taxLess,
     totalPriceIncludeDelivery_tax: totalPriceIncludeDelivery_tax,
     totalPriceIncludeDelivery: totalPriceIncludeDelivery
@@ -527,6 +530,16 @@ const Receipt = () => {
                       <Value>24 </Value>
                       <Value>{order.products_in_total} € </Value>
                     </DetailsInfo>
+
+                    { order.promoPercentage > 0 &&
+                      <DetailsInfo>
+                        <Key>{t('discount')} ({order.promoPercentage}%)</Key>
+                        <Value> - </Value>
+                        <Value> - </Value>
+                        <Value> - </Value>
+                        <Value>-{order.promoAmount} €</Value>
+                      </DetailsInfo>
+                    }
 
                     <DetailsInfo>
                       <Key>{t('delivery')}</Key>

@@ -10,6 +10,7 @@ const orderRoute = require("./routes/order");
 //const stripeRoute = require("./routes/stripe");
 const paytrailRoute = require("./routes/paytrail");
 const sendMail = require("./routes/sendMail");
+const promoRoute =  require("./routes/promoCode");
 const cors = require("cors");
 
 console.log(`NODE_ENV=${config.NODE_ENV}`);
@@ -37,6 +38,7 @@ app.use("/api/orders", orderRoute);
 //app.use("/api/checkout", stripeRoute);
 app.use("/api/checkout", paytrailRoute);
 app.use("/api/sendMail", sendMail);
+app.use("/api/promocodes", promoRoute);
 
 app.listen((config.PORT), () => {
     console.log("backend server is running!");

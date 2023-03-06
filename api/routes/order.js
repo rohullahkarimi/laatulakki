@@ -93,32 +93,34 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
     const paytrailProduct = []
 
     savedOrder.products?.map((key, index) =>{
+        //console.log(productPrice)
+
+
+        // if product has discound 
+        var productPrice = parseFloat(key.price).toFixed(2);
+        var unitPrice;
+        if(key.discount){
+            var afterDiscountPrice = productPrice - (productPrice * (key.discount / 100)).toFixed(2);
+            unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
+        }else if(savedOrder.promoPercentage > 0){
+            var afterDiscountPrice = productPrice - (productPrice * (savedOrder.promoPercentage / 100)).toFixed(2);
+            unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
+        }else{
+            unitPrice = parseInt((productPrice * 100).toFixed(0));
+        }
+
     
-    //console.log(productPrice)
-
-
-    // if product has discound 
-    var productPrice = parseFloat(key.price).toFixed(2);
-    var unitPrice;
-    if(key.discount){
-        var afterDiscountPrice = productPrice - (productPrice * (key.discount / 100)).toFixed(2);
-        unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
-    }else{
-        unitPrice = parseInt((productPrice * 100).toFixed(0));
-    }
-
-  
-    
-    const paytrailItem = {
-        unitPrice: unitPrice, // number
-        units: key.quantity,     // number
-        vatPercentage: key.vatPercentage, // number
-        productCode: key.productId, // string 
-    }
-    paytrailProduct.push(paytrailItem)
+        
+        const paytrailItem = {
+            unitPrice: unitPrice, // number
+            units: key.quantity,     // number
+            vatPercentage: key.vatPercentage, // number
+            productCode: key.productId, // string 
+        }
+        paytrailProduct.push(paytrailItem)
     });
 
-    var totalPriceIncludeDelivery = (savedOrder.deliveryPrice + savedOrder.total).toFixed(2);
+    var totalPriceIncludeDelivery = (savedOrder.deliveryPrice - savedOrder.discountAmount + savedOrder.total).toFixed(2);
 
     // for delivery 
     if(savedOrder.deliveryPrice !== 0){

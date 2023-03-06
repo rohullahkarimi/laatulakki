@@ -1,5 +1,9 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "promoExpired": "Tarjouskoodi on vanhentunut.",
+    "promoNotValid": "Valitettavasti antamasi tarjouskoodi ei ole kelvollinen!",
+    "promoCode": "Kampanjakoodi",
+    "discount": "Alennus",
     "deliveryAddress": "Toimitusosoite",
     "close": "Sulje",
     "chooseDeliveryMethod": "Valitse toimitustapa",

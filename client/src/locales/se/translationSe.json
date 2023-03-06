@@ -1,5 +1,9 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "promoExpired": "Kampanjkoden har upphört att gälla.",
+    "promoNotValid": "Tyvärr är kampanjkoden du angav inte giltig!",
+    "promoCode": "Kampanjkod",
+    "discount": "Rabatt",
     "deliveryAddress": "Leveransadress",
     "close": "Stäng",
     "chooseDeliveryMethod": "Välj en leveransmetod",

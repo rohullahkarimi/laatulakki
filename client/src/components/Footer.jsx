@@ -133,6 +133,10 @@ const Footer = () => {
     navigate('/terms_of_delivery');
   } 
 
+  const goToFAQ  = () =>{
+    navigate('/faq');
+  } 
+
   const goToHomePage = () =>{
     navigate('/');
   } 
@@ -177,6 +181,7 @@ const Footer = () => {
                 <ListItem onClick={goToRegistrationStatement}>{t("footer2")}</ListItem>
                 <ListItem onClick={goToDeliveryTerms}>{t("footer4")}</ListItem>
                 <ListItem onClick={goToChange_and_refund}>{t("footer3")}</ListItem>
+                <ListItem onClick={goToFAQ}>FAQ</ListItem>
 
              
             </List>

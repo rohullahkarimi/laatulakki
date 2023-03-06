@@ -74,6 +74,10 @@
 }
 
 /* promotion */
+#promotionInput::placeholder {
+  font-size:  13px;
+}
+
 .promotionButton {
   background-color: #000;
   border: 2px solid #000;

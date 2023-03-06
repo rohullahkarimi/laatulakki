@@ -1,5 +1,9 @@
 {
     "mandatory": "is a mandatory field",
+    "promoExpired": "The promo code is expired.",
+    "promoNotValid": "Unfortunately, the promo code you entered is not valid!",
+    "promoCode": "Promo Code",
+    "discount": "Discount",
     "deliveryAddress": "Delivery Address",
     "close": "Close",
     "chooseDeliveryMethod": "Choose a delivery method",

@@ -15,8 +15,10 @@ import CartProduct from '../components/cart/CartProduct';
 import { useNavigate } from "react-router-dom";
 import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
+import { addPromoCode } from '../redux/cartRedux';
+import { publicRequest } from "../requestMethods"
 
 
 
@@ -153,25 +155,22 @@ const Cart = () => {
   ];
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { Component } = step;
+  const [promotions, setPromotions] = useState()
   const [promoCode, setPromoCode] = useState("");
-  const [discountPercent, setDiscountPercent] = useState(0);
 
 
-  const PROMOTIONS = [
-    {
-      code: "SUMMER",
-      discount: "50%"
-    },
-    {
-      code: "AUTUMN",
-      discount: "40%"
-    },
-    {
-      code: "WINTER",
-      discount: "30%"
+
+  useEffect(() =>{
+    const getPromoCode = async ()=> {
+        try{
+            const res = await publicRequest.get("/promocodes");
+            setPromotions(res.data);
+        }catch(err){
+            console.log(err)
+        }
     }
-  ];
-  
+    getPromoCode()
+  }, []);
 
 
   const props = { navigation };
@@ -228,8 +227,7 @@ const Cart = () => {
 
     const deliveryPrice = cart.deliveryPrice
     var cartSubtotal = cart.total
-    var discount = (cartSubtotal * discountPercent) / 100;
-    var cartTotal = cart.total
+    var cartTotal = cart.total - cart.discountAmount
     if(cart.deliveryPrice > 0){
       cartTotal += cart.deliveryPrice
       
@@ -258,17 +256,42 @@ const Cart = () => {
   
     const checkPromoCode = () => {
       console.log("checkPromoCode")
+      console.log(promotions)
 
-      for (var i = 0; i < PROMOTIONS.length; i++) {
-        if (promoCode === PROMOTIONS[i].code) {
-          setDiscountPercent(parseFloat(PROMOTIONS[i].discount.replace("%", "")));
-          console.log(promoCode, discountPercent)
+      for (var i = 0; i < promotions.length; i++) {
+        if (promoCode === promotions[i].code) {
+
+          // check if not expire 
+          var ExpireDate =  promotions[i].expire;
+          var CurrentDate = new Date();
+          ExpireDate = new Date(ExpireDate);
+          
+          if(CurrentDate > ExpireDate){
+            alert(t('promoExpired'));
+            return false;
+          }
+          // promo discount amount
+          var cartSubtotal = cart.total
+          var discountAmount  = (cartSubtotal * promotions[i].discountPercentage) / 100;
+         
+          //console.log(promoCode, promotions[i].discountPercentage, discountAmount )
+
+          dispatch(
+            addPromoCode({
+              promoCode: promoCode,
+              percentage: promotions[i].discountPercentage,
+              discountAmount: discountAmount,
+            })
+          );
+
           return;
         }
       }
-  
-      alert("Sorry, the Promotional code you entered is not valid!");
+      alert(t('promoNotValid'));
     };
+
+
+    
   
     console.log(cart)
     return (
@@ -297,7 +320,7 @@ const Cart = () => {
 
                 <SummaryItem>
                   <div className="promotion">
-                    <input type="text" value={promoCode}  placeholder="Lisää kampanjakoodi" onChange={onEnterPromoCode} />
+                    <input id="promotionInput" type="text" value={promoCode}  placeholder={t('promoCode')} onChange={onEnterPromoCode} />
                     <button type="button" className="promotionButton" onClick={checkPromoCode} />
                   </div>
                 </SummaryItem>
@@ -307,10 +330,10 @@ const Cart = () => {
                   <SummaryItemPrice>{cartSubtotal.toFixed(2)} €</SummaryItemPrice>
                 </SummaryItem>
 
-                {discount > 0 && (
+                {cart.discountAmount > 0 && (
                   <SummaryItem>
-                    <SummaryItemText>Discount ({discountPercent}%)</SummaryItemText>
-                    <SummaryItemPrice>-{discount.toFixed(2)} €</SummaryItemPrice>
+                    <SummaryItemText>Discount ({cart.promoPercentage}%)</SummaryItemText>
+                    <SummaryItemPrice>-{cart.discountAmount.toFixed(2)} €</SummaryItemPrice>
                   </SummaryItem>
                 )}
 

@@ -651,6 +651,15 @@
                                     <td class="productTdBold"></td>
                                     <td class="productTdRegularRight leipateksti">{{totalPriceIncludeDelivery_taxLess}} €</td>
                                 </tr>
+
+                                {{#if addedPromoOrNot}}
+                                <tr class="productTr">
+                                  <td class="productTdRegular leipateksti" style="width: 35%;">Alennus ({{promoPercentage}}%)</td> 
+                                  <td class="productTdBold"  style="width: 15%;"></td>
+                                  <td class="productTdBold"></td>
+                                  <td class="productTdRegularRight leipateksti">-{{promoAmount}} €</td>
+                                </tr>
+                                {{/if}}
                               
                                 <tr class="productTr">
                                     <td class="productTdBold" style="width: 35%;">Yhteensä</td> 

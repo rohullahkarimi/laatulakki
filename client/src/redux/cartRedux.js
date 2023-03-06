@@ -28,6 +28,9 @@ const cartSlice = createSlice({
         deliveryPrice: null,
         deliverySameAsBilling: true,
         quantity:0,
+        promoCode: "",
+        promoPercentage: 0,
+        discountAmount: 0,
         total:0,
         message: ""
     },
@@ -130,6 +133,11 @@ const cartSlice = createSlice({
           }
           
         },
+        addPromoCode: (state, action) => {
+          state.promoCode = action.payload.promoCode;
+          state.promoPercentage = action.payload.percentage;
+          state.discountAmount  = action.payload.discountAmount;
+        },
         emptyCart: (state) => {
           state.products = [];
           state.billingAddress = {
@@ -157,10 +165,13 @@ const cartSlice = createSlice({
           state.deliverySameAsBilling = true;
           state.quantity = 0;
           state.total = 0;
+          state.promoCode = "";
+          state.promoPercentage = 0;
+          state.discountAmount = 0;
           state.message = "";
         },
     },
 });
 
-export const {saveCustomerInformation, saveDeliveryMethod, deliveryAddress, addProduct, increaseProduct, decreaseProduct, deleteProduct, emptyCart} = cartSlice.actions;
+export const {saveCustomerInformation, saveDeliveryMethod, deliveryAddress, addProduct, increaseProduct, decreaseProduct, deleteProduct, addPromoCode, emptyCart} = cartSlice.actions;
 export default cartSlice.reducer;
