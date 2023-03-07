@@ -151,6 +151,7 @@ const Footer = () => {
   // instagram: https://www.instagram.com/laatulakki/
   // tiktok: https://www.tiktok.com/@laatulakki
 
+  // <ListItem onClick={goToFAQ}>FAQ</ListItem>
 
   return (
     <Container>
@@ -181,7 +182,7 @@ const Footer = () => {
                 <ListItem onClick={goToRegistrationStatement}>{t("footer2")}</ListItem>
                 <ListItem onClick={goToDeliveryTerms}>{t("footer4")}</ListItem>
                 <ListItem onClick={goToChange_and_refund}>{t("footer3")}</ListItem>
-                <ListItem onClick={goToFAQ}>FAQ</ListItem>
+                
 
              
             </List>
