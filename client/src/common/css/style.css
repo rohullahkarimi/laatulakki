@@ -87,6 +87,11 @@ s.straight::before, strike.straight::before{transform: rotate(0deg);left:-1%;wid
   border-color: transparent transparent #93274f transparent;
 }
 /* end: discount flag */
+.my-auto{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 
 .form_button{
     -webkit-tap-highlight-color: transparent; 
@@ -239,3 +244,38 @@ input[type=checkbox], input[type=radio] {
     font-size: 16px;
   }
 }
+
+
+
+/* start: our story */
+.projects-section {
+  padding: 0 0;
+}
+
+.projects-section .featured-text {
+  padding: 2rem;
+}
+
+@media (min-width: 992px) {
+  .projects-section .featured-text {
+    padding: 0 0 0 2rem;
+    border-left: 0.5rem solid #00d8d6;
+  }
+}
+
+.projects-section .project-text {
+  padding: 3rem;
+  font-size: 90%;
+}
+
+@media (min-width: 992px) {
+  .projects-section .project-text {
+    padding: 5rem;
+  }
+  .projects-section .project-text hr {
+    border-color: #00d8d6;
+    border-width: .25rem;
+    width: 30%;
+  }
+}
+/* end: our story */

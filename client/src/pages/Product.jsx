@@ -200,7 +200,10 @@ const Product = () => {
   const { t } = useTranslation();
   const selectedLang = i18n.language
   const location = useLocation();
-  const id = location.pathname.split("/")[2]
+  const id = location.pathname.split("/")[3]
+  //console.log(id);
+
+
   const [modalShow, setModalShow] = useState(false);
   const [product, setProduct] = useState({
 

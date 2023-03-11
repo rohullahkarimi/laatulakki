@@ -1,4 +1,4 @@
-import { Instagram, MailOutlined, Phone, Room, YouTube, Store } from "@mui/icons-material"
+import { Instagram, MailOutlined, Phone, Room, YouTube, Store, Facebook } from "@mui/icons-material"
 import styled from "styled-components"
 import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 import { elementBackgroundColor } from "../theme"
@@ -133,9 +133,11 @@ const Footer = () => {
     navigate('/terms_of_delivery');
   } 
 
+  
   const goToFAQ  = () =>{
     navigate('/faq');
   } 
+  
 
   const goToHomePage = () =>{
     navigate('/');
@@ -151,7 +153,7 @@ const Footer = () => {
   // instagram: https://www.instagram.com/laatulakki/
   // tiktok: https://www.tiktok.com/@laatulakki
 
-  // <ListItem onClick={goToFAQ}>FAQ</ListItem>
+  // 
 
   return (
     <Container>
@@ -165,6 +167,9 @@ const Footer = () => {
             <SocialContainer>
                 <SocialIcon color="E4405F" onClick={()=> goToLink("https://www.instagram.com/laatulakki/")}>
                     <Instagram />
+                </SocialIcon>
+                <SocialIcon color="4267B2" onClick={()=> goToLink("https://www.facebook.com/profile.php?id=100090012454476")}>
+                    <Facebook />
                 </SocialIcon>
                 <SocialIcon color="ffffff" onClick={()=> goToLink("https://www.tiktok.com/@laatulakki")}>
                     <TikTokIcon color="ff2a56" />
@@ -182,7 +187,7 @@ const Footer = () => {
                 <ListItem onClick={goToRegistrationStatement}>{t("footer2")}</ListItem>
                 <ListItem onClick={goToDeliveryTerms}>{t("footer4")}</ListItem>
                 <ListItem onClick={goToChange_and_refund}>{t("footer3")}</ListItem>
-                
+                <ListItem onClick={goToFAQ}>FAQ</ListItem>
 
              
             </List>

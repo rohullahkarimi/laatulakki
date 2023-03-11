@@ -82,7 +82,8 @@ const Product = ({item}) => {
 
 
   const navigateToProductPage = () =>{
-    navigate(`/product/${item._id}`)
+    const productTitleForUrl = title.replace(/\s+/g, '-').toLowerCase();
+    navigate(`/product/${productTitleForUrl}/${item._id}`)
   }
 
   //console.log(item)

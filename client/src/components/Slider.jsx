@@ -143,7 +143,7 @@ const Slider = () => {
                     <InfoContainer>
                         <Title color="white">{t('sliderTitle')}</Title>
                         <Description color="white">{t('sliderDesc1')}</Description>
-                        <Button color="white" onClick={()=>navigate("/product/"+process.env.REACT_APP_PRODUCT_PAGE)}>{t("buy_now")}</Button>
+                        <Button color="white" onClick={()=>navigate("/product/perinteinen-suomalainen-ylioppilaslakki/"+process.env.REACT_APP_PRODUCT_PAGE)}>{t("buy_now")}</Button>
                     </InfoContainer>
                 </Slide>
 
@@ -154,7 +154,7 @@ const Slider = () => {
                     <InfoContainer>
                         <Title color="white">{t('sliderTitle')}</Title>
                         <Description color="white">{t('sliderDesc')}</Description>
-                        <Button color="white" onClick={()=>navigate("/product/"+process.env.REACT_APP_PRODUCT_PAGE)}>{t("buy_now")}</Button>
+                        <Button color="white" onClick={()=>navigate("/product/Perinteinen%20suomalainen%20ylioppilaslakki/"+process.env.REACT_APP_PRODUCT_PAGE)}>{t("buy_now")}</Button>
                     </InfoContainer>
                 </Slide>
             </Wrapper>
