@@ -549,6 +549,7 @@ const Receipt = () => {
                       <Value>{order.deliveryPrice} € </Value>
                     </DetailsInfo>
 
+                    <hr/>
                     <DetailsInfo>
                       <Key>{t('total')}</Key>
                       <Value>{order.totalPriceIncludeDelivery_taxLess} € </Value>

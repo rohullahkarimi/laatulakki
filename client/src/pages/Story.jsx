@@ -53,7 +53,7 @@ const Story = () => {
                             </div>
                             <div className="col-xl-4 col-lg-5">
                             <div className="featured-text text-center text-lg-left">
-                                <h4>{t('footer0')}</h4>
+                                <h4>{t('footer0').toUpperCase()}</h4>
                                 <p className="text-black-50 mb-0">{t('our_story1')}</p>
                             </div>
                             </div>
@@ -61,15 +61,15 @@ const Story = () => {
 
                     
                         <div className="row justify-content-center no-gutters mb-5 mb-lg-0">
-                            <div className="col-lg-6">
+                            <div className="col-lg-6 mb-3">
                             <img className="img-fluid" src="https://www.laatulakki.fi/images/rohullah_karimi_afghanistan.JPG" alt=""/>
 
                             </div>
-                            <div className="col-lg-6">
+                            <div className="col-lg-6 mb-3">
                             <div className="bg-black text-center h-100 project">
                                 <div className="d-flex h-100">
                                 <div className="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 className="text-white">Afghanistan 2013</h4>
+                                    <h4 className="text-white">AFGHANISTAN 2013</h4>
                                     <p className="mb-0 text-white-50">{t('our_story2')}</p>
                                     <hr className="d-none d-lg-block mb-0 ml-0"/>
                                 </div>
@@ -80,10 +80,10 @@ const Story = () => {
 
 
                         <div className="row justify-content-center no-gutters">
-                            <div className="col-lg-6" align="center">
-                            <img className="img-fluid" src="https://www.laatulakki.fi/images/rohullah_karimi_graduated.JPG" alt=""/>
+                            <div className="col-lg-6 mb-3" align="center">
+                            <img className="img-fluid" src="https://www.laatulakki.fi/images/rohullah_karimi_graduated.jpg" alt=""/>
                             </div>
-                            <div className="col-lg-6 order-lg-first">
+                            <div className="col-lg-6 mb-3 order-lg-first">
                             <div className="bg-black text-center h-100 project">
                                 <div className="d-flex h-100">
                                 <div className="project-text w-100 my-auto text-center text-lg-right">
