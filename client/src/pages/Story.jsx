@@ -48,7 +48,7 @@ const Story = () => {
 
                         <div className="row align-items-center no-gutters mb-4 mb-lg-5">
                             <div className="col-xl-8 col-lg-7">
-                            <img className="img-fluid mb-3 mb-lg-0" src="http://localhost:3000/images/ylioppilaslakki_ruusu.JPG" alt=""/>
+                            <img className="img-fluid mb-3 mb-lg-0" src="https://www.laatulakki.fi/images/ylioppilaslakki_ruusu.JPG" alt=""/>
 
                             </div>
                             <div className="col-xl-4 col-lg-5">
@@ -62,7 +62,7 @@ const Story = () => {
                     
                         <div className="row justify-content-center no-gutters mb-5 mb-lg-0">
                             <div className="col-lg-6">
-                            <img className="img-fluid" src="http://localhost:3000/images/rohullah_karimi_afghanistan.JPG" alt=""/>
+                            <img className="img-fluid" src="https://www.laatulakki.fi/images/rohullah_karimi_afghanistan.JPG" alt=""/>
 
                             </div>
                             <div className="col-lg-6">
@@ -81,7 +81,7 @@ const Story = () => {
 
                         <div className="row justify-content-center no-gutters">
                             <div className="col-lg-6" align="center">
-                            <img className="img-fluid" src="http://localhost:3000/images/rohullah_karimi_graduated.JPG" alt=""/>
+                            <img className="img-fluid" src="https://www.laatulakki.fi/images/rohullah_karimi_graduated.JPG" alt=""/>
                             </div>
                             <div className="col-lg-6 order-lg-first">
                             <div className="bg-black text-center h-100 project">
