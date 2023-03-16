@@ -120,7 +120,7 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
         paytrailProduct.push(paytrailItem)
     });
 
-    var totalPriceIncludeDelivery = (savedOrder.deliveryPrice - savedOrder.discountAmount + savedOrder.total).toFixed(2);
+    var totalPriceIncludeDelivery = (savedOrder.deliveryPrice - savedOrder.discountAmount.toFixed(2) + savedOrder.total).toFixed(2);
 
     // for delivery 
     if(savedOrder.deliveryPrice !== 0){
