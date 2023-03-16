@@ -109,6 +109,8 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
             unitPrice = parseInt((productPrice * 100).toFixed(0));
         }
 
+        // test 1: 
+        console.log(unitPrice);
     
         
         const paytrailItem = {

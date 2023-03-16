@@ -227,7 +227,7 @@ const Cart = () => {
 
     const deliveryPrice = cart.deliveryPrice
     var cartSubtotal = cart.total
-    var cartTotal = cart.total - cart.discountAmount
+    var cartTotal = (cart.total - cart.discountAmount).toFixed(2);
     if(cart.deliveryPrice > 0){
       cartTotal += cart.deliveryPrice
       
