@@ -161,8 +161,8 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
 
 
     // TEST: 1
-    //console.log(payment)
-    //console.log(savedOrder)
+    console.log(payment)
+    console.log(savedOrder)
 
 
     // Get transaction ID
