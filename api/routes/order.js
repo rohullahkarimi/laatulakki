@@ -125,11 +125,11 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
     totalPriceIncludeDelivery = Math.ceil(totalPriceIncludeDelivery * 100) / 100;
     
     // test 
-    
+    /*
     console.log(savedOrder.deliveryPrice +"--"+ savedOrder.discountAmount +"--"+ savedOrder.total);
     console.log(totalPriceIncludeDelivery);
     console.log(parseInt((totalPriceIncludeDelivery * 100).toFixed(0)));
-    
+    */
 
     // for delivery 
     if(savedOrder.deliveryPrice !== 0){
@@ -170,8 +170,10 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
 
 
     // TEST: 1
+    /*
     console.log(payment)
     console.log(savedOrder)
+    */
 
 
     // Get transaction ID
