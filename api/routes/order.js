@@ -100,10 +100,10 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
         var productPrice = parseFloat(key.price).toFixed(2);
         var unitPrice;
         if(key.discount){
-            var afterDiscountPrice = productPrice - (productPrice * (key.discount / 100)).toFixed(2);
+            var afterDiscountPrice = productPrice - (productPrice * (key.discount / 100));
             unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
         }else if(savedOrder.promoPercentage > 0){
-            var afterDiscountPrice = productPrice - (productPrice * (savedOrder.promoPercentage / 100)).toFixed(2);
+            var afterDiscountPrice = productPrice - (productPrice * (savedOrder.promoPercentage / 100));
             unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
         }else{
             unitPrice = parseInt((productPrice * 100).toFixed(0));
