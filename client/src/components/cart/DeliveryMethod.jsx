@@ -22,7 +22,7 @@ const DeliveryMethod = ({navigation}) => {
   const handlePaymentMethod = (data) => {
     // check if price equal or over 90€, make the delivery free of charge 
     var deliveryPriceSet = 0
-    if(cart.total <= 90){
+    if(cart.total - cart.discountAmount <= 90){
       deliveryPriceSet = Number(parseFloat(data.deliveryPrice, 10).toFixed(2))
     }
 
@@ -59,7 +59,7 @@ const DeliveryMethod = ({navigation}) => {
               })}
               required/>
               <label htmlFor="delivery" className="checkbox-label checkbox-label-larger">
-                { cart.total <= 90 ? t("delivery") + " (6.90 €)" : t("delivery") + " ("+t('freeOfCharge')+")" }
+                { cart.total - cart.discountAmount <= 90 ? t("delivery") + " (6.90 €)" : t("delivery") + " ("+t('freeOfCharge')+")" }
               </label>
             </div>
           </form>

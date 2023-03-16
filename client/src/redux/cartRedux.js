@@ -86,6 +86,9 @@ const cartSlice = createSlice({
             }else{
               state.total += action.payload.price * action.payload.quantity;
             }
+
+            // update discount amount 
+            state.discountAmount = (state.total * state.promoPercentage) / 100;
            
         },
         increaseProduct: (state, action) => {
@@ -101,6 +104,9 @@ const cartSlice = createSlice({
             }else{
               state.total += action.payload.price;
             }
+
+            // update discount amount 
+            state.discountAmount = (state.total * state.promoPercentage) / 100;
            
         },
         decreaseProduct: (state, action) => {
@@ -118,6 +124,9 @@ const cartSlice = createSlice({
                 state.total -= action.payload.price;
               }
             }
+
+            // update discount amount 
+            state.discountAmount = (state.total * state.promoPercentage) / 100;
         },
         deleteProduct: (state, action) => {
           state.products.splice(
@@ -131,6 +140,9 @@ const cartSlice = createSlice({
             state.total -= action.payload.total;
             state.quantity -= 1;
           }
+
+          // update discount amount 
+          state.discountAmount = (state.total * state.promoPercentage) / 100;
           
         },
         addPromoCode: (state, action) => {

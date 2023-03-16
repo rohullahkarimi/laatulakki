@@ -338,7 +338,7 @@ const Cart = () => {
                 )}
 
                 
-                { cart.deliveryPrice !== null && <SummaryItem><SummaryItemText>{t('deliveryFee')}</SummaryItemText><SummaryItemPrice>{ cartTotal < 90 ? deliveryPrice?.toFixed(2) : "0.00" } €</SummaryItemPrice></SummaryItem>}
+                { cart.deliveryPrice !== null && <SummaryItem><SummaryItemText>{t('deliveryFee')}</SummaryItemText><SummaryItemPrice>{ cartTotal - cart.discountAmount < 90 ? deliveryPrice?.toFixed(2) : "0.00" } €</SummaryItemPrice></SummaryItem>}
                   
                 <SummaryItem type="total">
                   <SummaryItemText>{t("total")}</SummaryItemText>
