@@ -123,9 +123,9 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
     var totalPriceIncludeDelivery = (savedOrder.deliveryPrice - savedOrder.discountAmount.toFixed(2) + savedOrder.total).toFixed(2);
 
 
-    console.log(savedOrder.deliveryPrice +"--"+ savedOrder.discountAmount.toFixed(2) +"--"+ savedOrder.total).toFixed(2);
+    console.log(savedOrder.deliveryPrice +"--"+ savedOrder.discountAmount +"--"+ savedOrder.total);
 
-    
+
     // for delivery 
     if(savedOrder.deliveryPrice !== 0){
         const paytrailItem = {
