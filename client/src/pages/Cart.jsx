@@ -227,7 +227,15 @@ const Cart = () => {
 
     const deliveryPrice = cart.deliveryPrice
     var cartSubtotal = cart.total
-    var cartTotal = (cart.total - cart.discountAmount).toFixed(2);
+    var cartTotal = cart.total - cart.discountAmount;
+    console.log(cartTotal)
+    cartTotal = Math.ceil(cartTotal * 100) / 100; 
+
+
+    //console.log(cartTotal)
+ 
+
+
     if(cart.deliveryPrice > 0){
       cartTotal += cart.deliveryPrice
       
@@ -244,7 +252,7 @@ const Cart = () => {
         category: "Cart",
         action: "added to cart",
         label: "user cart", // optional
-        value: Number(cartTotal.toFixed(2)), // optional, must be a number
+        value: Number(cartTotal), // optional, must be a number
       });
     }
 
