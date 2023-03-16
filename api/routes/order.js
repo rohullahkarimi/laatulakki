@@ -91,27 +91,27 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
 
     const orderId = getSavedOrderId
     const paytrailProduct = []
+    var totalAmountOfProductsAndDeliveryCost = 0;
 
     savedOrder.products?.map((key, index) =>{
         //console.log(productPrice)
-
 
         // if product has discound 
         var productPrice = parseFloat(key.price).toFixed(2);
         var unitPrice;
         if(key.discount){
-            var afterDiscountPrice = productPrice - (productPrice * (key.discount / 100)).toFixed(2);
+            var afterDiscountPrice = productPrice - (productPrice * (key.discount / 100));
             unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
         }else if(savedOrder.promoPercentage > 0){
-            var afterDiscountPrice = productPrice - (productPrice * (savedOrder.promoPercentage / 100)).toFixed(2);
+            var afterDiscountPrice = productPrice - (productPrice * (savedOrder.promoPercentage / 100));
             unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
         }else{
             unitPrice = parseInt((productPrice * 100).toFixed(0));
         }
-
-        // test 
-        //console.log(unitPrice);
         
+        // add to total 
+        totalAmountOfProductsAndDeliveryCost += unitPrice * key.quantity;
+
         const paytrailItem = {
             unitPrice: unitPrice, // number
             units: key.quantity,     // number
@@ -124,15 +124,12 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
     var totalPriceIncludeDelivery = savedOrder.deliveryPrice - savedOrder.discountAmount + savedOrder.total;
     totalPriceIncludeDelivery = Math.ceil(totalPriceIncludeDelivery * 100) / 100;
     
-    // test 
-    /*
-    console.log(savedOrder.deliveryPrice +"--"+ savedOrder.discountAmount +"--"+ savedOrder.total);
-    console.log(totalPriceIncludeDelivery);
-    console.log(parseInt((totalPriceIncludeDelivery * 100).toFixed(0)));
-    */
+  
+    
 
     // for delivery 
     if(savedOrder.deliveryPrice !== 0){
+        totalAmountOfProductsAndDeliveryCost += parseInt((savedOrder.deliveryPrice * 100).toFixed(0))
         const paytrailItem = {
             unitPrice: parseInt((savedOrder.deliveryPrice * 100).toFixed(0)), // number
             units: 1,     // number
@@ -142,11 +139,20 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
         paytrailProduct.push(paytrailItem)
     }
 
+
+    // test 
+    /*
+    console.log(savedOrder.deliveryPrice +"--"+ savedOrder.discountAmount +"--"+ savedOrder.total +"----"+totalAmountOfProductsAndDeliveryCost);
+    console.log(totalPriceIncludeDelivery);
+    console.log(parseInt((totalPriceIncludeDelivery * 100).toFixed(0)));
+    */
+
+
     // Payment Data
     const payment = {
         stamp: new Date().toISOString(),
         reference: orderId,
-        amount: parseInt((totalPriceIncludeDelivery * 100).toFixed(0)), 
+        amount: totalAmountOfProductsAndDeliveryCost, //parseInt((totalPriceIncludeDelivery * 100).toFixed(0)), 
         currency: 'EUR',
         language: clientLanguage,
         items: paytrailProduct,
@@ -174,6 +180,7 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
     console.log(payment)
     console.log(savedOrder)
     */
+    
 
 
     // Get transaction ID

@@ -228,14 +228,10 @@ const Cart = () => {
     const deliveryPrice = cart.deliveryPrice
     var cartSubtotal = cart.total
     var cartTotal = cart.total - cart.discountAmount;
-    console.log(cartTotal)
+    //console.log(cartTotal)
     cartTotal = Math.ceil(cartTotal * 100) / 100; 
 
-
     //console.log(cartTotal)
- 
-
-
     if(cart.deliveryPrice > 0){
       cartTotal += cart.deliveryPrice
       
