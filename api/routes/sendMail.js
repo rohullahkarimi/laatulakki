@@ -9,6 +9,7 @@ const router = require("express").Router();
 const mongoose = require("mongoose");
 const Order = require("../models/Order");
 
+
 // checkout
 const {CheckoutClient} = require('checkout-finland/lib/Checkout');
 const CHECKOUT_MERCHANT_ID = process.env.PAYTRAIL_MERCHANT_ID
@@ -262,7 +263,8 @@ function sendOrderStatusEmail(orderId, status) {
       receiptLink: receiptLink,
       reminderOrNot: status === "reminder" ? true : false,
       transactionId: "https://services.paytrail.com/pay/"+response.transactionId,
-      statusText: statusText
+      statusText: statusText,
+      Delivered: status === "delivered" ? true : false,
     }
 
     // get data 
