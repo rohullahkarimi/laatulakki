@@ -54,7 +54,7 @@ const App = () => {
         <Route index path="/" element={<Home />} />
         <Route path="/products/:category" element={<ProductList />} />
         <Route path="/product/:name/:id" element={<Product />} />
-        <Route path="/product/6372439cd4925b8f3d5be3ae" element={ <Navigate to="/product/perinteinen-suomalainen-ylioppilaslakki/6372439cd4925b8f3d5be3a" /> }/>
+        <Route path="/product/6372439cd4925b8f3d5be3ae" element={ <Navigate to="/product/perinteinen-suomalainen-ylioppilaslakki/6372439cd4925b8f3d5be3ae" /> }/>
 
         <Route path="/cart" element={<Cart />} />
         <Route path="/success" element={<Success />} />
