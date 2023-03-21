@@ -18,6 +18,8 @@ import $ from "jquery"
 import i18n from "../i18n"
 import CapChoiceModal from "../components/CapChoiceModal"
 import CapUsageModal from "../components/CapUsageModal"
+import ReactPixel from 'react-facebook-pixel';
+ReactPixel.pageView(); // For tracking page view
 
 const Container = styled.div`
     
@@ -304,6 +306,7 @@ const Product = () => {
         addProduct({ ...product, title, img, quantity, color, size, productId, productStorage})
     )
     setModalShow(true)
+    ReactPixel.track("track", "Buy-button"); // For tracking default events. More info about standard events: https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#standard-events
   }
 
     /*

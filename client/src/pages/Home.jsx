@@ -5,6 +5,11 @@ import Navbar from '../components/Navbar'
 import Newsletter from '../components/Newsletter'
 import Products from '../components/Products'
 import Slider from '../components/Slider'
+import ReactPixel from 'react-facebook-pixel';
+
+
+// page view
+ReactPixel.pageView(); // For tracking page view
 
 /* Juicer
 import styled from "styled-components";

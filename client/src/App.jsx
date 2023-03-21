@@ -23,6 +23,7 @@ import { CookieBanner } from "@palmabit/react-cookie-law";
 import { useTranslation } from 'react-i18next';
 import $ from "jquery"
 
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -34,7 +35,19 @@ import ScrollToTop from "./components/ScrollToTop";
 
 import ReactGA from "react-ga4";
 import { useEffect } from "react";
+import ReactPixel from 'react-facebook-pixel';
+
+// facebook pixel
+const advancedMatching = { em: 'info@laatulakki.fi' }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/advanced/advanced-matching
+const options = {
+  autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
+  debug: false, // enable logs
+};
+ReactPixel.init('1417097358830412', advancedMatching, options);
+
+
 ReactGA.initialize("G-D2D2QPJM81");
+
 
 const App = () => {
   const { t } = useTranslation();

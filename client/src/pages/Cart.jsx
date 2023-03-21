@@ -19,17 +19,15 @@ import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { addPromoCode } from '../redux/cartRedux';
 import { publicRequest } from "../requestMethods"
-
-
-
 //import $ from 'jquery';
 import {
   Container
 } from 'react-bootstrap';
 import { useTranslation } from "react-i18next";
+import ReactPixel from 'react-facebook-pixel';
 
 
-
+ReactPixel.pageView(); // For tracking page view
 
 
 
