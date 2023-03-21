@@ -43,7 +43,7 @@ const options = {
   autoConfig: true, // set pixel's autoConfig. More info: https://developers.facebook.com/docs/facebook-pixel/advanced/
   debug: false, // enable logs
 };
-ReactPixel.init('1417097358830412', advancedMatching, options);
+ReactPixel.init('2026348184423893', advancedMatching, options);
 
 
 ReactGA.initialize("G-D2D2QPJM81");
