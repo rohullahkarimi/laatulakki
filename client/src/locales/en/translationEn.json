@@ -1,5 +1,6 @@
 {
     "mandatory": "is a mandatory field",
+    "FreeRefund": "✓ 14-day free return and exchange",
     "promoExpired": "The promo code is expired.",
     "promoNotValid": "Unfortunately, the promo code you entered is not valid!",
     "promoCode": "Promo Code",

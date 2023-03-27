@@ -19,6 +19,9 @@ import i18n from "../i18n"
 import CapChoiceModal from "../components/CapChoiceModal"
 import CapUsageModal from "../components/CapUsageModal"
 import ReactPixel from 'react-facebook-pixel';
+import { hotjar } from 'react-hotjar';
+import {getCookie} from "../common/js/common.js";
+import ReactGA from "react-ga4";
 ReactPixel.pageView(); // For tracking page view
 
 const Container = styled.div`
@@ -158,7 +161,7 @@ const Button = styled.button`
     font-weight: 500;
 
     &:hover{
-        background-color: #f8f4f4;
+        background-color: #b5f3ff;
     }
 `
 
@@ -196,6 +199,12 @@ const InstructionContainer = styled.div`
 const InstructionItem = styled.a`
     cursor: pointer;
     display: block;
+`
+
+const FreeRefund = styled.p`
+    padding: 10px 0;
+    font-weight: 500;
+    font-size: 18px;
 `
 
 const Product = () => {
@@ -271,6 +280,16 @@ const Product = () => {
     }
   }
 
+   // call hotjar if user accepted preferences cookie
+   if(getCookie("rcl_preferences_consent") === "true"){
+        hotjar.initialize(3220042, 6)
+        hotjar.identify('USER_ID', { userProperty: 'value' });
+
+        // Send pageview with a custom path
+        ReactGA.send({ hitType: "pageview", page: "/product" });
+      
+    }
+
   //console.log(size, color)
 
   const handleSizeSelection = (e) =>{
@@ -343,7 +362,7 @@ const Product = () => {
 
     let instructionElements;
     if (product.categories?.includes('lakki')) {
-        instructionElements = <InstructionContainer><InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem><InstructionItem target="_blank" onClick={handleCapUsage}>{t('usageDetails')}</InstructionItem></InstructionContainer>
+        instructionElements = <InstructionContainer><InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem><InstructionItem target="_blank" onClick={handleCapUsage}>{t('usageDetails')}</InstructionItem><FreeRefund>{t('FreeRefund')}</FreeRefund></InstructionContainer>
     }
 
     const checkTotalProductSizeAmount = () => {

@@ -1,5 +1,6 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "FreeRefund": "✓ 14 päivän ilmainen palautus ja vaihto",
     "promoExpired": "Tarjouskoodi on vanhentunut.",
     "promoNotValid": "Valitettavasti antamasi tarjouskoodi ei ole kelvollinen!",
     "promoCode": "Kampanjakoodi",

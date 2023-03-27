@@ -1,5 +1,6 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "FreeRefund": "✓ 14 dagars fri retur och byte",
     "promoExpired": "Kampanjkoden har upphört att gälla.",
     "promoNotValid": "Tyvärr är kampanjkoden du angav inte giltig!",
     "promoCode": "Kampanjkod",
