@@ -68,7 +68,16 @@ const TopButtonNext = styled.button`
   border: none;
   background-color: black;
   color: white;
+
+  &:disabled {
+    background-color: white;
+    color: #ebebeb;
+    border: 1px solid #ebebeb;
+  }
+
 `;
+
+
 /*
 const TopText = styled.span`
   cursor: pointer;
@@ -196,12 +205,18 @@ const Cart = () => {
     }
   }
 
+
+
+ 
+
+
   const CartNextPageNavigator =  () => {
     //console.log(step.id)
     if(step.id === 'cart_product'){
       navigation.next()
     }else if(step.id === 'cart_review'){
-      alert("pay time")
+      console.log("pay time")
+
     }else{
       console.log("Error in navigation")
     }
@@ -209,17 +224,15 @@ const Cart = () => {
 
   
  
-
- 
     let nextButton;
     if(step.id === "cart_customer_information"){
       nextButton = <TopButtonNext form="customerInformation" type="submit"> {step.nextButtonName}</TopButtonNext>
     }else if(step.id === "deliveryMethod"){
       nextButton = <TopButtonNext form="paymentMethodForm" type="submit"> {step.nextButtonName}</TopButtonNext>
     }else if(step.id === "cart_review"){
-      nextButton = <TopButtonNext form="handlePaymentForm" type="submit"> {step.nextButtonName}</TopButtonNext>
+      nextButton = <TopButtonNext id="payButton" form="handlePaymentForm" type="submit"> {step.nextButtonName}</TopButtonNext>
     }else{
-      nextButton =  <TopButton type="filled" onClick={CartNextPageNavigator}> {step.nextButtonName}</TopButton>
+      nextButton =  <TopButton type="filled" onClick={CartNextPageNavigator} > {step.nextButtonName}</TopButton>
     }
 
 

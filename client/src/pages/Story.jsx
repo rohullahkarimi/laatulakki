@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import {
     Container, Row, Col
   } from 'react-bootstrap';
+import { buttonColor } from "../theme"
+import { useNavigate } from "react-router-dom";
 
   
 const ContainerDiv = styled.div`
@@ -27,10 +29,30 @@ const Desc = styled.p`
 `
 */
 
+const InputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 15px 0;
+`
 
+const Button = styled.button`
+    flex: 8;
+    border: none;
+    width: 25%;
+    background-color: #${buttonColor};
+    color: white;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+`
 
 const Story = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate()
   //const location = useLocation();
   
 
@@ -38,7 +60,7 @@ const Story = () => {
     <ContainerDiv>
         <Navbar/>
            
-            <Container id="starter" style={{padding: "2% 0px 5% 0"}}>
+            <Container id="starter" style={{padding: "2% 0px 1% 0"}}>
 
                 <Row>
                 <Col md={12}>
@@ -116,6 +138,13 @@ const Story = () => {
 
                         </div>
                     </section>    
+
+
+                    <InputContainer>
+                        <Button onClick={()=>navigate("/product/perinteinen-suomalainen-ylioppilaslakki/"+process.env.REACT_APP_PRODUCT_PAGE)}>
+                            {t('buy')}
+                        </Button>
+                    </InputContainer>
 
                 </Col>     
                 </Row>

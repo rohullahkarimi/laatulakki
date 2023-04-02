@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 //import { sliderItems } from '../data'
-import { mobile, smartPhone, tablet } from '../responsive'
+import { mobile, smartPhone, tablet, laptop } from '../responsive'
 import { useTranslation } from "react-i18next";
 import '../fonts/OmnesBold.ttf';
 
@@ -104,6 +104,7 @@ const Description = styled.p`
     letter-spacing: 3px;
     color: ${(props) =>
     props.color === "white" ? "white" : "black"};
+    ${laptop({fontSize: "1.3rem"})}
 `
 const Button = styled.button`
     padding: 10px 30px;

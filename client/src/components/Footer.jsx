@@ -68,8 +68,13 @@ const Center = styled.div`
     padding: 20px;
 `
 
-const Title = styled.h3`
-   margin-bottom: 30px;
+const Title = styled.h4`
+   margin-bottom: 25px;
+`
+
+const TitleSmall = styled.h5`
+  margin-bottom: 10px;   
+  margin-top: 15px;
 `
 
 const List = styled.ul`
@@ -147,6 +152,10 @@ const Footer = () => {
   const goToLink = (link) =>{
     window.location.href= link;
   }
+
+  const goToCooperationSite = (link) =>{
+    window.location.href= link;
+  }
   
 
   // youtube:  https://www.youtube.com/channel/UCfcLwu9-NMAARiiDQiacWcw
@@ -193,11 +202,16 @@ const Footer = () => {
             </List>
         </Center>
         <Right>
-            <Title>{t('payment_options')}</Title>
+            <Title>{t('cooperationTitle')}</Title>
+            <List>
+                <ListItem onClick={()=> goToCooperationSite("https://tilikauha.fi/")}>Tilikauha Oy</ListItem>
+                <ListItem onClick={()=> goToCooperationSite("https://www.ttkauppa.fi/")}>ttkauppa.fi</ListItem>
+            </List>
+
+            <TitleSmall>{t('payment_options')}</TitleSmall>
             <ImgContainer>
                 <Payment />
             </ImgContainer>
-            
         </Right>
     </Container>
   )

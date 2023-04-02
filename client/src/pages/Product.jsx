@@ -5,7 +5,7 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import CartModal from "../components/CartModal"
 import { useTranslation } from "react-i18next";
-import { mobile, smallLaptop, smartPhone } from "../responsive"
+import { laptop, mobile, smallLaptop, smartPhone } from "../responsive"
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
@@ -180,7 +180,7 @@ const IncludeTax = styled.p`
     border: 0.5px solid #bbbcbc;
     color: #bbbcbc;
 `
-/*
+
 const YouMightLike = styled.div`
     height: 35px;
     background-color: #f5fbfd;
@@ -191,7 +191,7 @@ const YouMightLike = styled.div`
     font-size: 18px;
     font-weight: 500;
 `
-*/
+
 
 const InstructionContainer = styled.div`
     margin-bottom: 10px;
@@ -205,6 +205,29 @@ const FreeRefund = styled.p`
     padding: 10px 0;
     font-weight: 500;
     font-size: 18px;
+`
+
+const PackingDiv = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3% 0;
+    ${smallLaptop({padding: "20px", flexDirection: "column"})}
+    ${smartPhone({padding: "10px", flexDirection: "column"})}
+    ${mobile({padding: "10px", flexDirection: "column"})}
+`
+const Col1 = styled.div`
+    flex: 1;
+    padding-bottom: 5px;
+`
+const Col2 = styled.div`
+    flex: 1;
+    padding-bottom: 5px;
+    ${smartPhone({display: "none"})}
+`
+const Col3 = styled.div`
+    flex: 1;
+    ${laptop({display: "none"})}
 `
 
 const Product = () => {
@@ -444,6 +467,18 @@ const Product = () => {
             </InfoContainer>
         </Wrapper>
 
+        <YouMightLike>{t('packingDesc')}</YouMightLike>
+        <PackingDiv>
+            <Col1 className="text-center">
+                <iframe width="320" height="560" src="https://www.youtube.com/embed/zkM1YBVyqN0" title="Pakataan ylioppilaslakki yhdessä 💖" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+            </Col1>
+            <Col2 className="text-center">
+                <iframe width="320" height="560" src="https://www.youtube.com/embed/kZ2kLGNYCWY" title="Pakataan ylioppilaslakki yhdessä 🌹" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+            </Col2>    
+            <Col3 className="text-center">
+                <iframe width="320" height="560" src="https://www.youtube.com/embed/MQCEgyjye70" title="Pakataan Ylioppilaslakki 2022 🖤 #laatulakki" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+            </Col3>         
+        </PackingDiv>
       
         <Footer/>
         <CartModal show={modalShow} onHide={() => setModalShow(false)} />

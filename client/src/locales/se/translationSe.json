@@ -1,5 +1,7 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "packingDesc": "Studentmössa med vacker förpackning",
+    "cooperationTitle": "Deltager i samarbete",
     "FreeRefund": "✓ 14 dagars fri retur och byte",
     "promoExpired": "Kampanjkoden har upphört att gälla.",
     "promoNotValid": "Tyvärr är kampanjkoden du angav inte giltig!",

@@ -1,5 +1,7 @@
 {
     "mandatory": "is a mandatory field",
+    "packingDesc": "Student cap with beautiful packaging",
+    "cooperationTitle": "Participating in cooperation",
     "FreeRefund": "✓ 14-day free return and exchange",
     "promoExpired": "The promo code is expired.",
     "promoNotValid": "Unfortunately, the promo code you entered is not valid!",

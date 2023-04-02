@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import i18n from "i18next";
 import CartProduct from './CartProduct';
 import DeliveryTermsModal from "../DeliveryTermsModal"
+import $ from 'jquery';
 
 const CustomerDetails = styled.div`
   display: flex;
@@ -147,6 +148,11 @@ const ReviewForm = () => {
 
   const saveOrder= async () => {
     setLoading(true)
+
+    // disable pay button
+    $("#payButton").prop("disabled",true);
+
+
     try {
       await axiosInstance.post("/orders",  {cart: cart, language: selectedLang.toUpperCase()})
       .then((res) => {
@@ -208,6 +214,10 @@ const ReviewForm = () => {
         setTimeout(() => {
           if(transactionId){
             setLoading(false)
+
+            // enable pay button
+            $("#payButton").prop("disabled",false);
+
             const url = "https://pay.paytrail.com/pay/"+transactionId
             window.location.href=url;
           }else{
