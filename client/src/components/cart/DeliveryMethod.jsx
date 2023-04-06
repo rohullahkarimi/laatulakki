@@ -97,7 +97,7 @@ const DeliveryMethod = ({navigation}) => {
 
 
 
-
+  console.log(freeDelivery.current)
   return (
     <div className='container'>
     <div className="customer_information_form">
