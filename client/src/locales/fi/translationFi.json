@@ -1,6 +1,6 @@
 {   
     "mandatory": "on pakollinen kenttä",
-    "freeDeliveryMessage": "Ilmaiset toimituskulut {{deliveryDateExpire}}  mennessä. 🚚",
+    "freeDeliveryMessage": "Ilmaiset toimituskulut {{deliveryDateExpire}}. 🚚",
     "packingDesc": "Ylioppilaslakki kauniilla paketoinnilla",
     "cooperationTitle": "Yhteistyössä mukana",
     "FreeRefund": "✓ 14 päivän ilmainen palautus ja vaihto",

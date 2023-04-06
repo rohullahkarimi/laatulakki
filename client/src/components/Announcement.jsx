@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { smartPhone } from "../responsive"
 import { useEffect, useRef, useState } from "react";
 import { publicRequest } from "../requestMethods";
-import { format } from 'date-fns';
+//import { format } from 'date-fns';
 
 const Container = styled.div`
     height: 30px;
@@ -23,6 +23,7 @@ const Announcement = () => {
   const freeDelivery = useRef(false);
   const [setting, setSetting] = useState({
     "status": false,
+    "message": "",
     "expire": "2023-02-22",
   })
 
@@ -36,6 +37,7 @@ const Announcement = () => {
           let updatedValue = {};
           updatedValue = {
             status: res.data[0].status,
+            message: res.data[0].message,
             expire: res.data[0].expire,
           };
           
@@ -72,7 +74,7 @@ const Announcement = () => {
 
   return (
     <Container>
-        {freeDelivery.current === true ? t("freeDeliveryMessage", {deliveryDateExpire : format(new Date(setting.expire), 'dd.MM.yyyy')}) : t('announcement_text')}
+        {freeDelivery.current === true ? t("freeDeliveryMessage", {deliveryDateExpire : setting.message}) : t('announcement_text')}
     </Container>
   )
 }

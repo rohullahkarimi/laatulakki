@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const SettingSchema = new mongoose.Schema(
     {
         status: { type: Boolean, default: false, required: true},
+        message:{ type: String, required: true},
         expire:{ type: String, required: true},
     },
     { timestamps: true}
