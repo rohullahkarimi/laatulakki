@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from 'react-hook-form';
 import {  saveDeliveryMethod } from '../../redux/cartRedux';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+//import { format } from 'date-fns';
+import { publicRequest } from '../../requestMethods';
 
 
 
@@ -12,20 +14,76 @@ const DeliveryMethod = ({navigation}) => {
   const cart = useSelector((state) => state.cart);
   const { register, handleSubmit, formState: { errors: customerPaymentMethodError } } = useForm();
   const dispatch = useDispatch()
-  
+  const freeDelivery = useRef(false);
+  const [setting, setSetting] = useState({
+    "status": false,
+    "expire": "2023-02-22",
+  })
+
+  //console.log(setting)
   console.log(customerPaymentMethodError)
 
   useEffect(() => {
+    // get setting data
+    const getSetting = async ()=> {
+      try{
+          const res = await publicRequest.get("/setting");
+          
+          let updatedValue = {};
+          updatedValue = {
+            status: res.data[0].status,
+            expire: res.data[0].expire,
+          };
+          
+          setSetting(setting => ({
+            ...setting,
+            ...updatedValue
+          }));
+          
+      }catch(err){
+          console.log(err)
+      }
+    }
+    getSetting()
+
+
     window.scrollTo(0, 0)
   }, [])
+
+  
+  // check delivery price
+  const checkDeliveryCost = () => {
+    if((cart.total - cart.discountAmount) >= 90){
+      //console.log("> 90, yes free")
+      freeDelivery.current = true;
+    }else if(setting.status === true){
+      var ExpireDate =  setting.expire;
+      var CurrentDate = new Date();
+      ExpireDate = new Date(ExpireDate);
+      
+      if(CurrentDate > ExpireDate){
+        //console.log("free true, not free because the date is expired free")
+        freeDelivery.current = false;
+      }else{
+        //console.log("free true, yes free")
+        freeDelivery.current = true;
+      }
+    }else{
+      //console.log("not free")
+      freeDelivery.current = false;
+    }
+  }
+  checkDeliveryCost()
+ 
   
   const handlePaymentMethod = (data) => {
     // check if price equal or over 90€, make the delivery free of charge 
     var deliveryPriceSet = 0
-    if(cart.total - cart.discountAmount <= 90){
+    if(!freeDelivery.current){
       deliveryPriceSet = Number(parseFloat(data.deliveryPrice, 10).toFixed(2))
     }
 
+    console.log(deliveryPriceSet)
     const deliveryMethodConst = {
       deliveryMethod: data.deliveryMethod,
       deliveryPrice: deliveryPriceSet
@@ -37,7 +95,9 @@ const DeliveryMethod = ({navigation}) => {
   //console.log(customerPaymentMethodError)
   //console.log(cart)
 
-  //  {JSON.stringify(cart, null, 2)}
+
+
+
   return (
     <div className='container'>
     <div className="customer_information_form">
@@ -59,7 +119,7 @@ const DeliveryMethod = ({navigation}) => {
               })}
               required/>
               <label htmlFor="delivery" className="checkbox-label checkbox-label-larger">
-                { cart.total - cart.discountAmount <= 90 ? t("delivery") + " (6.90 €)" : t("delivery") + " ("+t('freeOfCharge')+")" }
+                <span>{ freeDelivery.current === false ? t("delivery") + " (6.90 €)" : t("delivery") + " ("+t('freeOfCharge')+")" }</span><br/>
               </label>
             </div>
           </form>

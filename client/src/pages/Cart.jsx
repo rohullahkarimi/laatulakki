@@ -275,7 +275,6 @@ const Cart = () => {
 
       for (var i = 0; i < promotions.length; i++) {
         if (promoCode === promotions[i].code) {
-
           // check if not expire 
           var ExpireDate =  promotions[i].expire;
           var CurrentDate = new Date();
@@ -290,6 +289,10 @@ const Cart = () => {
           var discountAmount  = (cartSubtotal * promotions[i].discountPercentage) / 100;
          
           //console.log(promoCode, promotions[i].discountPercentage, discountAmount )
+
+          // check if product is on discount 
+          
+
 
           dispatch(
             addPromoCode({

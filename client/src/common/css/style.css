@@ -18,6 +18,19 @@ s::before, strike::before {
 }
 s.straight::before, strike.straight::before{transform: rotate(0deg);left:-1%;width:102%;}
 
+.f16{
+  font-size: 16px ;
+}
+.commonninja_component{
+  border-top: 1px solid #ededed;
+  padding: 10px 0;
+}
+
+.commonninja-ribbon{
+  display: none !important;
+}
+
+
 .originalPrice{
   font-size: 25px;
 }

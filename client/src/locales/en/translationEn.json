@@ -1,5 +1,6 @@
 {
     "mandatory": "is a mandatory field",
+    "freeDeliveryMessage": "Free delivery by {{deliveryDateExpire}}. 🚚",
     "packingDesc": "Student cap with beautiful packaging",
     "cooperationTitle": "Participating in cooperation",
     "FreeRefund": "✓ 14-day free return and exchange",

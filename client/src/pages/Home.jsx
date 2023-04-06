@@ -50,6 +50,7 @@ const Home = () => {
         <Slider/>
         
         <Products/>
+        <div className="commonninja_component pid-5f13afcd-6d5d-46d5-b13e-04033b8c7ede"></div>
         <Newsletter/>
         <Footer/>
     </div>

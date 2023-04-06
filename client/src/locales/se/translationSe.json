@@ -1,5 +1,6 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "freeDeliveryMessage": "Gratis leverans senast {{deliveryDateExpire}}. 🚚",
     "packingDesc": "Studentmössa med vacker förpackning",
     "cooperationTitle": "Deltager i samarbete",
     "FreeRefund": "✓ 14 dagars fri retur och byte",

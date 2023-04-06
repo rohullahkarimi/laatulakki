@@ -467,6 +467,8 @@ const Product = () => {
             </InfoContainer>
         </Wrapper>
 
+        <div className="commonninja_component pid-5f13afcd-6d5d-46d5-b13e-04033b8c7ede"></div>
+
         <YouMightLike>{t('packingDesc')}</YouMightLike>
         <PackingDiv>
             <Col1 className="text-center">
@@ -479,7 +481,7 @@ const Product = () => {
                 <iframe width="320" height="560" src="https://www.youtube.com/embed/MQCEgyjye70" title="Pakataan Ylioppilaslakki 2022 🖤 #laatulakki" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
             </Col3>         
         </PackingDiv>
-      
+    
         <Footer/>
         <CartModal show={modalShow} onHide={() => setModalShow(false)} />
         <CapChoiceModal show={modalShowCapChoice} onHide={() => setModalShowCapChoice(false)} />
