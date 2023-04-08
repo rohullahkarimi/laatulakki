@@ -62,6 +62,13 @@ const ProductQuantity = styled.span`
   font-size: 16px;
 `;
 
+const ProductDiscount = styled.span`
+  display: block;
+  color: #000;
+  font-size: 16px;
+`;
+
+
 const ProductColor = styled.span`
   display: block;
   color: #000;
@@ -205,6 +212,7 @@ const CartProduct = (props) => {
               <ProductQuantity>
                <b>{t("quantity")}:</b> {product.quantity}
               </ProductQuantity>
+              {product.discount &&<ProductDiscount><b>{t("discount")}:</b> -{product.discount} %</ProductDiscount>}
               <ProductPriceText>
                 <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } € 
               </ProductPriceText>

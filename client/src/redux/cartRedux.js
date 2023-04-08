@@ -1,5 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit"
 
+
+
 const cartSlice = createSlice({
     name: "cart",
     initialState:{
@@ -70,6 +72,39 @@ const cartSlice = createSlice({
           state.deliveryPrice = action.payload.deliveryPrice;
           //state.total += action.payload.deliveryPrice;
         },
+        discountAndTotalAmountBasedOnProducts: (state, action) => {
+          
+          var discountAmountByProduction = 0;
+          var productCurrentPrice = 0;
+          var total = 0;
+          state.products.filter(item=> {
+        
+            if(item.discount){
+              // total calculation
+              var price = item.price - (item.price * (item.discount / 100)).toFixed(2);
+              total += price * item.quantity;
+
+              // cannot get discount from already dicounted product
+              discountAmountByProduction += 0
+            }else{
+              productCurrentPrice = item.price * item.quantity;
+
+              // total calculation 
+              total += productCurrentPrice;
+
+              // discount
+              discountAmountByProduction += (productCurrentPrice * state.promoPercentage) / 100
+            }
+            return discountAmountByProduction
+          })
+
+          // Test 
+          //console.log(total.toFixed(2))
+          //console.log(discountAmountByProduction)
+
+          state.discountAmount =  discountAmountByProduction
+          state.total = Number(total.toFixed(2));
+        },
         addProduct: (state, action)=>{
             const itemInCart = state.products.find((item) => item._id === action.payload._id && item.size === action.payload.size);
 
@@ -80,15 +115,9 @@ const cartSlice = createSlice({
               state.quantity += 1;
               state.products.push(action.payload);
             }
-            if(action.payload.discount){
-              var price = action.payload.price - (action.payload.price * (action.payload.discount / 100)).toFixed(2);
-              state.total += price * action.payload.quantity;
-            }else{
-              state.total += action.payload.price * action.payload.quantity;
-            }
 
-            // update discount amount 
-            state.discountAmount = (state.total * state.promoPercentage) / 100;
+            // update discount amount and total
+            cartSlice.caseReducers.discountAndTotalAmountBasedOnProducts(state, action); //(state.total * state.promoPercentage) / 100;
            
         },
         increaseProduct: (state, action) => {
@@ -98,15 +127,8 @@ const cartSlice = createSlice({
                 : console.log("Product not found!")
             )
 
-            if(action.payload.discount){
-              var price = action.payload.price - (action.payload.price * (action.payload.discount / 100)).toFixed(2);
-              state.total += price;
-            }else{
-              state.total += action.payload.price;
-            }
-
-            // update discount amount 
-            state.discountAmount = (state.total * state.promoPercentage) / 100;
+            // update discount amount and total
+            cartSlice.caseReducers.discountAndTotalAmountBasedOnProducts(state, action); 
            
         },
         decreaseProduct: (state, action) => {
@@ -115,18 +137,10 @@ const cartSlice = createSlice({
               item.quantity = 1
             } else {
               item.quantity--;
-
-              // decrease total amount
-              if(action.payload.discount){
-                var price = action.payload.price - (action.payload.price * (action.payload.discount / 100)).toFixed(2);
-                state.total -= price;
-              }else{
-                state.total -= action.payload.price;
-              }
             }
 
-            // update discount amount 
-            state.discountAmount = (state.total * state.promoPercentage) / 100;
+            // update discount amount and total
+            cartSlice.caseReducers.discountAndTotalAmountBasedOnProducts(state, action); 
         },
         deleteProduct: (state, action) => {
           state.products.splice(
@@ -137,12 +151,12 @@ const cartSlice = createSlice({
             state.quantity = 0;
             state.total = 0;
           }else{
-            state.total -= action.payload.total;
+            //state.total -= action.payload.total;
             state.quantity -= 1;
           }
 
-          // update discount amount 
-          state.discountAmount = (state.total * state.promoPercentage) / 100;
+         // update discount amount and total
+         cartSlice.caseReducers.discountAndTotalAmountBasedOnProducts(state, action); 
           
         },
         addPromoCode: (state, action) => {

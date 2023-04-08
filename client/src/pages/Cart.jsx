@@ -130,6 +130,16 @@ const SummaryItem = styled.div`
   font-size: ${(props) => props.type === "total" && "24px"};
 `;
 
+const SummaryItemDiscount = styled.div`
+  margin: 30px 0 5px 0px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: ${(props) => props.type === "total" && "500"};
+  font-size: ${(props) => props.type === "total" && "24px"};
+`;
+
+
+
 const SummaryItemText = styled.span`
   display: block;
   color: #000;
@@ -142,10 +152,16 @@ const SummaryItemPrice = styled.span`
   font-size: 16px;
 `;
 
+const DiscountInfo = styled.div`
+  font-size: 12px;
+`
+
 const Ul = styled.ul`
 `
 const Li = styled.li`
 `
+
+
 
 
 const Cart = () => {
@@ -269,11 +285,28 @@ const Cart = () => {
       console.log("onEnterCoder")
       setPromoCode(event.target.value.toUpperCase());
     };
+
+    const discountAmountBasedOnProducts = (promoPercentage) => {
+      var discountAmountByProduction = 0;
+      var productCurrentPrice = 0;
+      cart.products.filter(item=> {
+
+        if(item.discount){
+          // cannot get discount from already dicounted product
+          discountAmountByProduction += 0
+        }else{
+          productCurrentPrice = item.price
+          discountAmountByProduction += (productCurrentPrice * promoPercentage) / 100
+        }
+        return discountAmountByProduction
+      })
+      return discountAmountByProduction
+    }
   
     const checkPromoCode = () => {
-      console.log("checkPromoCode")
-      console.log(promotions)
-
+      //console.log("checkPromoCode")
+      //console.log(promotions)
+      
       for (var i = 0; i < promotions.length; i++) {
         if (promoCode === promotions[i].code) {
           // check if not expire 
@@ -286,15 +319,12 @@ const Cart = () => {
             return false;
           }
           // promo discount amount
-          var cartSubtotal = cart.total
-          var discountAmount  = (cartSubtotal * promotions[i].discountPercentage) / 100;
-         
-          //console.log(promoCode, promotions[i].discountPercentage, discountAmount )
+          //var cartSubtotal = cart.total
+          var discountAmount  = discountAmountBasedOnProducts(promotions[i].discountPercentage) //(cartSubtotal * promotions[i].discountPercentage) / 100;
 
-          // check if product is on discount 
-          
-
-
+          if(discountAmount <= 0){
+            alert(t('discountNote'));
+          }
           dispatch(
             addPromoCode({
               promoCode: promoCode,
@@ -349,10 +379,19 @@ const Cart = () => {
                 </SummaryItem>
 
                 {cart.discountAmount > 0 && (
-                  <SummaryItem>
-                    <SummaryItemText>{t('discount')} ({cart.promoPercentage}%)</SummaryItemText>
-                    <SummaryItemPrice>-{cart.discountAmount.toFixed(2)} €</SummaryItemPrice>
-                  </SummaryItem>
+
+                  <div>
+                    <SummaryItemDiscount>
+                      <SummaryItemText>
+                        {t('discount')} ({cart.promoPercentage}%)
+                      </SummaryItemText>
+                      <SummaryItemPrice>-{cart.discountAmount?.toFixed(2)} €</SummaryItemPrice>
+                    </SummaryItemDiscount>
+                    <DiscountInfo>
+                      {t('discountNote')}
+                    </DiscountInfo>
+                  </div>
+
                 )}
 
                 

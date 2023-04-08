@@ -65,6 +65,17 @@ const Price = styled.div`
     text-align: left;
     font-size: 15px;
 `
+const PriceDiscount = styled.div`
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+    position: absolute;
+    bottom: 0;
+    left: 65px;
+    font-size: 15px;
+`
+
+
 
 const Product = ({item}) => {
     const navigate = useNavigate();
@@ -99,7 +110,9 @@ const Product = ({item}) => {
         </NameContainer> 
         
        
-        <Price>{item.price.toFixed(2)} €</Price>
+        
+        {item.discount ? <Price>{ (item.price - (item.price * (item.discount / 100)).toFixed(2))} € </Price> : <Price>{item.price.toFixed(2)} €</Price>}
+        {item.discount && <PriceDiscount><s className="originalPriceProductList">{item?.price && item?.price.toFixed(2)} €</s></PriceDiscount>}
     </Container>
   )
 }
