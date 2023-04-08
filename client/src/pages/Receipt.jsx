@@ -535,7 +535,7 @@ const Receipt = () => {
 
                     { order.promoPercentage > 0 &&
                       <DetailsInfo>
-                        <Key>{t('discount')} ({order.promoPercentage}%)</Key>
+                        <Key>{t('dicountCode')} ({order.promoPercentage}%)</Key>
                         <Value> - </Value>
                         <Value> - </Value>
                         <Value> - </Value>

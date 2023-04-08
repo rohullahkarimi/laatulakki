@@ -1,5 +1,6 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "dicountCode": "Alennuskoodi",
     "freeDeliveryMessage": "Ilmaiset toimituskulut {{deliveryDateExpire}}. 🚚",
     "discountNote": "Huom! Alennuskoodia ei voi käyttää jo alennettuihin tuotteisiin.",
     "packingDesc": "Ylioppilaslakki kauniilla paketoinnilla",

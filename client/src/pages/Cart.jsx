@@ -383,7 +383,7 @@ const Cart = () => {
                   <div>
                     <SummaryItemDiscount>
                       <SummaryItemText>
-                        {t('discount')} ({cart.promoPercentage}%)
+                        {t('dicountCode')} ({cart.promoPercentage}%)
                       </SummaryItemText>
                       <SummaryItemPrice>-{cart.discountAmount?.toFixed(2)} €</SummaryItemPrice>
                     </SummaryItemDiscount>

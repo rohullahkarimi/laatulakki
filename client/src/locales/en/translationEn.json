@@ -1,5 +1,6 @@
 {
     "mandatory": "is a mandatory field",
+    "dicountCode": "Discount Code",
     "freeDeliveryMessage": "Free delivery by {{deliveryDateExpire}}. 🚚",
     "discountNote": "Note! The discount code cannot be used for already discounted products.",
     "packingDesc": "Student cap with beautiful packaging",

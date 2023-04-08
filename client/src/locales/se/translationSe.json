@@ -1,5 +1,6 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "dicountCode": "Rabattkod",
     "freeDeliveryMessage": "Gratis leverans senast {{deliveryDateExpire}}. 🚚",
     "discountNote": "Obs! Rabattkoden kan inte användas för redan rabatterade produkter.",
     "packingDesc": "Studentmössa med vacker förpackning",
