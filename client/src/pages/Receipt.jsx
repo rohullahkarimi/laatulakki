@@ -501,7 +501,9 @@ const Receipt = () => {
                         <ProductPriceText>
                             <b>{t('tax_less')}:</b> {product.taxLess} €
                         </ProductPriceText>
-
+                        {product.discount &&  
+                          <ProductPriceText><b>{t("discount")}:</b> -{product.discount} %</ProductPriceText>
+                        }
                         <ProductPriceText>
                             <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product?.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } €   
                         </ProductPriceText>
@@ -537,7 +539,7 @@ const Receipt = () => {
                         <Value> - </Value>
                         <Value> - </Value>
                         <Value> - </Value>
-                        <Value>-{order.promoAmount} €</Value>
+                        <Value>-{order.promoAmount.toFixed(2)} €</Value>
                       </DetailsInfo>
                     }
 
