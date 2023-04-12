@@ -295,7 +295,7 @@ const Cart = () => {
           // cannot get discount from already dicounted product
           discountAmountByProduction += 0
         }else{
-          productCurrentPrice = item.price
+          productCurrentPrice = item.price * item.quantity
           discountAmountByProduction += (productCurrentPrice * promoPercentage) / 100
         }
         return discountAmountByProduction
