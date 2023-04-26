@@ -137,13 +137,13 @@
     "changeAndRefund.5": "Follow these instructions when returning products:",
     "changeAndRefund.6": "The product to be returned must be in its original packaging and must be unused.",
     "changeAndRefund.7": "Do not mark the return or address on the sales package.",
-    "changeAndRefund.8": "The product and its packaging should always be mailed in a separate package or bag.",
-    "changeAndRefund.9": "Fill out the return notice in the shipment and put it in the package with the product to be returned.",
-    "changeAndRefund.10": "Glue the address label found on the return notice on the package.",
-    "changeAndRefund.11": "Return the package to the post office and pay the postage. Email us a picture of the receipt and we'll refund you for the postage.",
+    "changeAndRefund.8": "The product must always be mailed in its original packaging.",
+    "changeAndRefund.9": "Ask us for a refund printout via email info@laatulakki.fi.",
+    "changeAndRefund.10": "Glue the refund printout on the package.",
+    "changeAndRefund.11": "Return the package to the post office.",
     "changeAndRefund.12": "Please note that our shipping costs are always the same regardless of the number of products. For this reason, shipping costs will not be refunded if the return only applies to part of the products. We will try to deliver a new, similar product to replace the defective product. If we are unable to offer you a replacement product, you will receive the price corresponding to the product you returned, plus postage.",
     "changeAndRefund.13": "We recommend that you request a receipt for your return shipment. Refunds will be made via Paytrail using the payment method used to purchase the product.",
-
+    
     "registration.1": "WEBSITE REGISTRATION STATEMENT",
     "registration.2": "REGISTER HOLDER",
     "registration.3": "Y ID",

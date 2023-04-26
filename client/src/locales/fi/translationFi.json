@@ -139,10 +139,10 @@
     "changeAndRefund.5": "Noudata seuraavia ohjeita, kun palautat tuotteita:",
     "changeAndRefund.6": "Palautettavan tuotteen tulee olla sen alkuperäisessä pakkauksessa ja sen tulee olla käyttämätön.",
     "changeAndRefund.7": "Älä tee palautus- tai osoitemerkintöjä myyntipakkaukseen.",
-    "changeAndRefund.8": "Tuote ja sen pakkaus tulee aina postittaa erillisessä paketissa tai pussissa.",
-    "changeAndRefund.9": "Täytä lähetyksessä oleva palautusilmoitus ja laita se palautettavan tuotteen mukana pakettiin.",
-    "changeAndRefund.10": "Liimaa paketin päälle palautusilmoituksesta löytyvä osoitetarra.",
-    "changeAndRefund.11": "Palauta paketti postiin ja maksa postikulut. Lähetä kuva kuitista meille sähköpostilla, niin maksamme sinulle postikulut takaisin.",
+    "changeAndRefund.8": "Tuote tulee aina postittaa alkuperäisessä pakkauksessa.",
+    "changeAndRefund.9": "Pyydä meiltä palautustuloste sähköpostin kautta info@laatulakki.fi.",
+    "changeAndRefund.10": "Liimaa paketin päälle palautustuloste.",
+    "changeAndRefund.11": "Palauta paketti postiin.",
     "changeAndRefund.12": "Otathan huomioon, että toimituskulumme ovat aina samansuuruiset riippumatta tuotteiden lukumäärästä. Tästä syystä toimituskuluja ei makseta takaisin, mikäli palautus koskee vain osaa tuotteista. Pyrimme toimittamaan uuden vastaavan tuotteen viallisen tuotteen tilalle. Mikäli emme pysty tarjoamaan sinulle vaihtotuotetta, saat takaisin palauttamaasi tuotetta vastaavan hinnan postikuluineen.",
     "changeAndRefund.13": "Suosittelemme, että pyydät tositteen palautuslähetyksestäsi. Rahat palautetaan Paytrailin kautta sillä maksutavalla, jolla tuote on ostettu.",
 
@@ -238,7 +238,7 @@
     "capChoice1": "Nyt tarvitseekin enää valita sopivan kokoinen ylioppilaslakki - onneksi se on helppoa. Tarvitset vain yhden mitan – päänympäryksen. Mittaa päänympäryksesi senttimetreinä otsalta, korvien yläpuolelta takaraivolle asti ja pyydä tarvittaessa kaveria apuun. Verkkokaupan koot vastaavat päänympäryksen senttimetrejä. Vuosien kuluessa pää yleensä vielä hieman kasvaa, joten suosittelemme pyöristämään saamasi päänympäryksen ylöspäin. Esimerkiksi jos mittaamasi päänympärys on 57,3 cm, niin kannattaa tilata lakki koossa 58. Näin saat upean ylioppilaslakkisi päähän Vappujuhliin vielä 20 vuoden kuluttua!",
     "capChoice2": "Mittaa mittanauhalla päänympärys otsalta, korvien yläpuolelta takaraivolle.",
     "capChoice3": "Valitse haluamasi lakki",
-    "capChoice4": "Valitse kooksi mittaamasi päänympärys, mielellään hieman ylöspäin pyöristettynä",
+    "capChoice4": "Valitse kooksi mittaamasi päänympärys, aina hieman ylöspäin pyöristettynä",
     "capChoice4a": "Tilaa",
     "capChoice5": "Juhli ja nauti saavutuksestasi!",
 

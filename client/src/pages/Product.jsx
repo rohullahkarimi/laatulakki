@@ -155,13 +155,16 @@ const LeftAmount = styled.p`
 const Button = styled.button`
     width: 120px;
     padding: 15px;
-    border: 2px solid teal;
-    background-color: white;
+    border: 2px solid #14aeae;
+    background-color: #14aeae;
+    color: #fff;
     cursor: pointer;
     font-weight: 500;
 
     &:hover{
-        background-color: #b5f3ff;
+        background-color:  #1b8484;
+        border: 2px solid #1b8484;
+        color: #fff;
     }
 `
 
