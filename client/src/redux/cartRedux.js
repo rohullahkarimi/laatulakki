@@ -32,6 +32,7 @@ const cartSlice = createSlice({
         quantity:0,
         promoCode: "",
         promoPercentage: 0,
+        allowOnTopOfDiscount: false,
         discountAmount: 0,
         total:0,
         message: ""
@@ -80,12 +81,27 @@ const cartSlice = createSlice({
           state.products.filter(item=> {
         
             if(item.discount){
-              // total calculation
-              var price = item.price - (item.price * (item.discount / 100)).toFixed(2);
-              total += price * item.quantity;
 
-              // cannot get discount from already dicounted product
-              discountAmountByProduction += 0
+              // check if the promoCode allow to add on Top of already Discount product?
+              if(state.allowOnTopOfDiscount === true){
+                var discountedPrice = item.price - (item.price * (item.discount / 100)).toFixed(2);
+                console.log(discountedPrice)
+                productCurrentPrice = discountedPrice * item.quantity
+                discountAmountByProduction += (productCurrentPrice * state.promoPercentage) / 100
+
+                //console.log(productCurrentPrice)
+                //console.log(total)
+                total += productCurrentPrice;
+
+                ///console.log(total)
+              }else{
+                // total calculation
+                var price = item.price - (item.price * (item.discount / 100)).toFixed(2);
+                total += price * item.quantity;
+
+                // cannot get discount from already dicounted product
+                discountAmountByProduction += 0
+              }
             }else{
               productCurrentPrice = item.price * item.quantity;
 
@@ -162,6 +178,7 @@ const cartSlice = createSlice({
         addPromoCode: (state, action) => {
           state.promoCode = action.payload.promoCode;
           state.promoPercentage = action.payload.percentage;
+          state.allowOnTopOfDiscount = action.payload.allowOnTopOfDiscount;
           state.discountAmount  = action.payload.discountAmount;
         },
         emptyCart: (state) => {
@@ -193,6 +210,7 @@ const cartSlice = createSlice({
           state.total = 0;
           state.promoCode = "";
           state.promoPercentage = 0;
+          state.allowOnTopOfDiscount = false;
           state.discountAmount = 0;
           state.message = "";
         },

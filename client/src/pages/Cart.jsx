@@ -286,14 +286,24 @@ const Cart = () => {
       setPromoCode(event.target.value.toUpperCase());
     };
 
-    const discountAmountBasedOnProducts = (promoPercentage) => {
+    const discountAmountBasedOnProducts = (promoPercentage, allowOnTopOfDiscount) => {
+      //console.log(typeof allowOnTopOfDiscount)
+
       var discountAmountByProduction = 0;
       var productCurrentPrice = 0;
       cart.products.filter(item=> {
 
         if(item.discount){
-          // cannot get discount from already dicounted product
-          discountAmountByProduction += 0
+          // check if the promoCode allow to add on Top of already Discount product?
+          if(allowOnTopOfDiscount === true){
+            var discountedPrice = item.price - (item.price * (item.discount / 100)).toFixed(2);
+            productCurrentPrice = discountedPrice * item.quantity
+            discountAmountByProduction += (productCurrentPrice * promoPercentage) / 100
+            //console.log(discountedPrice)
+          }else{
+            // cannot get discount from already dicounted product
+            discountAmountByProduction += 0
+          }
         }else{
           productCurrentPrice = item.price * item.quantity
           discountAmountByProduction += (productCurrentPrice * promoPercentage) / 100
@@ -318,17 +328,22 @@ const Cart = () => {
             alert(t('promoExpired'));
             return false;
           }
+
+          var allowOnTopOfDiscount = promotions[i].allowOnTopOfDiscount;
+          console.log(allowOnTopOfDiscount)
           // promo discount amount
           //var cartSubtotal = cart.total
-          var discountAmount  = discountAmountBasedOnProducts(promotions[i].discountPercentage) //(cartSubtotal * promotions[i].discountPercentage) / 100;
+          var discountAmount  = discountAmountBasedOnProducts(promotions[i].discountPercentage, allowOnTopOfDiscount) //(cartSubtotal * promotions[i].discountPercentage) / 100;
 
           if(discountAmount <= 0){
             alert(t('discountNote'));
+            return false;
           }
           dispatch(
             addPromoCode({
               promoCode: promoCode,
               percentage: promotions[i].discountPercentage,
+              allowOnTopOfDiscount: promotions[i].allowOnTopOfDiscount,
               discountAmount: discountAmount,
             })
           );

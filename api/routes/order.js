@@ -99,14 +99,17 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
         // if product has discound 
         var productPrice = parseFloat(key.price).toFixed(2);
         var unitPrice;
-        if(key.discount){
-            var afterDiscountPrice = productPrice - (productPrice * (key.discount / 100));
-            unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
-        }else if(savedOrder.promoPercentage > 0){
+        if(savedOrder.promoPercentage > 0){
             var afterDiscountPrice = productPrice - (productPrice * (savedOrder.promoPercentage / 100));
             unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
+            //console.log("order has over 0 discount discount")
+        }else if(key.discount){
+            var afterDiscountPrice = productPrice - (productPrice * (key.discount / 100));
+            unitPrice = parseInt((afterDiscountPrice * 100).toFixed(0));
+            //console.log("product is in discount")
         }else{
             unitPrice = parseInt((productPrice * 100).toFixed(0));
+            //console.log("order no discount")
         }
         
         // add to total 
@@ -176,10 +179,10 @@ const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) =>
 
 
     // TEST: 1
-    /*
-    console.log(payment)
-    console.log(savedOrder)
-    */
+    
+    //console.log(payment)
+    //console.log(savedOrder)
+    
     
 
 
