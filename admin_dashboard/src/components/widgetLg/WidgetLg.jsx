@@ -6,11 +6,16 @@ import {format} from "date-fns"
 import $ from 'jquery';
 import { Link } from "react-router-dom";
 import { Badge } from "@material-ui/core";
-import { Notifications } from "@material-ui/icons";
+import { Notifications, CheckCircle, Cancel } from "@material-ui/icons";
 
 export default function WidgetLg() {
   const[orders, setOrders] = useState([])
   const [newOrders, setNewOrders] = useState(0);
+  const [newOrdersDelivered, setNewOrdersDelivered] = useState(0);
+  const [newOrdersRefunded, setNewOrdersRefunded] = useState(0);
+  
+  
+
 
   
   const sendReminder = async (orderId) => {
@@ -54,7 +59,12 @@ export default function WidgetLg() {
         setOrders(res.data);
 
         const searchData = res.data.filter((item) => item.status === "created" && item.paid === true);
+        const searchDataDelivered = res.data.filter((item) => item.status === "delivered" && item.paid === true);
+        const searchDataRefunded = res.data.filter((item) => item.status === "refunded" && item.paid === true);
+
         setNewOrders(searchData.length)
+        setNewOrdersDelivered(searchDataDelivered.length)
+        setNewOrdersRefunded(searchDataRefunded.length)
         
       }catch(err){
         console.log(err);
@@ -71,18 +81,21 @@ export default function WidgetLg() {
     <div className="widgetLg">
       <h3 className="widgetLgTitle">Latest orders 
         <Badge color="secondary" badgeContent={newOrders}><Notifications/></Badge>
+        <Badge color="secondary" badgeContent={newOrdersDelivered}><CheckCircle/></Badge>
+        <Badge color="secondary" badgeContent={newOrdersRefunded}><Cancel/></Badge>
       </h3>
 
       <table className="widgetLgTable">
-       
-        <tr className="widgetLgTr">
-          <th className="widgetLgTh">ID</th>
-          <th className="widgetLgTh">Status</th>
-          <th className="widgetLgTh">Customer</th>
-          <th className="widgetLgTh">Date</th>
-          <th className="widgetLgTh">Amount</th>
-        </tr>
-
+        <thead>
+          <tr className="widgetLgTr">
+            <th className="widgetLgTh">ID</th>
+            <th className="widgetLgTh">Status</th>
+            <th className="widgetLgTh">Customer</th>
+            <th className="widgetLgTh">Date</th>
+            <th className="widgetLgTh">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
         {orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(order=>(
       
             <tr className="widgetLgTr" key={order._id}>
@@ -96,6 +109,7 @@ export default function WidgetLg() {
                     <option  value="confirmed">Confirmed</option>
                     <option  value="delivering">Delivering</option>
                     <option  value="delivered">Delivered</option>
+                    <option  value="refunded">Refunded</option>
                 </select>
                 : order.reminderEmailSent ? "reminder already sent" : <button id={order._id} onClick={e => sendReminder(order._id)}>Not paid, send reminder</button>
                 }
@@ -113,6 +127,7 @@ export default function WidgetLg() {
             </tr>
          
          ))}
+         </tbody>
       </table>
     </div>
   );

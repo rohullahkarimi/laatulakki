@@ -18,6 +18,7 @@ import i18n from "i18next";
 // theme
 import { brandColor } from '../theme';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Container = styled.div`
     height: 60px;
@@ -92,7 +93,7 @@ const LangDiv = styled.div`
 
 
 const Navbar = () => {
-  //const { t } = useTranslation();
+  const { t } = useTranslation();
   //const user = useSelector((state)=> state.user.currentUser);
   const cart = useSelector((state) => state.cart);
   const onChange = (event) => {
@@ -121,7 +122,7 @@ const Navbar = () => {
     if(cart.quantity === 0){
         setModalShow(true)
     }else{
-        navigate("/cart")
+        window.location.pathname === "/cart" ? alert(t("alreadyInCart")) : navigate("/cart")    
     }
   });
   

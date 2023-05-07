@@ -8,8 +8,8 @@ import { publicRequest } from "../requestMethods";
 
 const Container = styled.div`
     height: 30px;
-    background-color: #ff46e4;
-    /* background-color: #${notificationBar}; */
+    /* background-color: #ff46e4; */
+    background-color: #${notificationBar}; 
     color: white;
     display: flex;
     align-items: center;

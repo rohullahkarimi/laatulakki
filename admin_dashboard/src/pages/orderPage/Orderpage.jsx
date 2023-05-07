@@ -237,12 +237,15 @@ const Receipt = () => {
   var products_in_total_taxLess =  (products_in_total / 1.24).toFixed(2);
   var products_in_total_tax = (products_in_total - products_in_total_taxLess).toFixed(2);
 
+  
+  
   // data for email
   const order = {
     billingAddress: orderData.billingAddress,
     deliveryAddress: orderData.deliverySameAsBilling ? orderData.billingAddress : orderData.deliveryAddress,
     message: orderData.message,
     products: productsArray,
+    
 
     products_in_total: products_in_total.toFixed(2),
     products_in_total_taxLess: products_in_total_taxLess,
@@ -257,6 +260,8 @@ const Receipt = () => {
     totalPriceIncludeDelivery_tax: totalPriceIncludeDelivery_tax,
     totalPriceIncludeDelivery: totalPriceIncludeDelivery
   }
+
+  
 
   const navigateToReceipt = () =>{
     console.log(process.env.REACT_APP_CLIENT_URL)
@@ -394,6 +399,16 @@ const Receipt = () => {
                       <Value>24 </Value>
                       <Value>{order.products_in_total} € </Value>
                     </DetailsInfo>
+
+                    { orderData.promoPercentage > 0 &&
+                      <DetailsInfo>
+                        <Key>Discount ({orderData.promoPercentage}% - {orderData.promoCode})</Key>
+                        <Value> - </Value>
+                        <Value> - </Value>
+                        <Value> - </Value>
+                        <Value>-{orderData?.discountAmount?.toFixed(2)} €</Value>
+                      </DetailsInfo>
+                    }
 
                     <DetailsInfo>
                       <Key>Delivery</Key>

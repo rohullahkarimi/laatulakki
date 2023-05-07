@@ -1,5 +1,6 @@
 {
     "mandatory": "is a mandatory field",
+    "alreadyInCart": "You are already on the shopping cart page, continue shopping on the current page",
     "dicountCode": "Discount Code",
     "freeDeliveryMessage": "Free delivery by {{deliveryDateExpire}}. 🚚",
     "discountNote": "Note! The discount code cannot be used for already discounted products.",
