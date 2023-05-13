@@ -3,6 +3,7 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { useTranslation } from "react-i18next";
 import { mobile } from "../responsive"
+import {Helmet} from "react-helmet";
 import {
     Container, Row, Col
   } from 'react-bootstrap';
@@ -43,6 +44,11 @@ const TermsOfDelivery = () => {
 
   return (
     <ContainerDiv>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>TOIMITUSEHDOT -  LAATULAKKI - YLIOPPILASLAKKI</title>
+            <meta name="description" content="Käsittelemme kaikki tilaukset 24 tunnin sisällä tilauksesta. Postitamme tuotteita viikon jokaisena päivänä Postin aukioloaikojen puitteissa." />
+        </Helmet>
         <Navbar/>
             <Container id="starter" style={{padding: "2% 0px 5% 0"}}>
                 <Row>

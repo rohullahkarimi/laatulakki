@@ -8,6 +8,8 @@ import {
   } from 'react-bootstrap';
 import { buttonColor } from "../theme"
 import { useNavigate } from "react-router-dom";
+import {Helmet} from "react-helmet";
+
 
   
 const ContainerDiv = styled.div`
@@ -58,6 +60,11 @@ const Story = () => {
 
   return (
     <ContainerDiv>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>TARINAMME -  LAATULAKKI - YLIOPPILASLAKKI</title>
+            <meta name="description" content="Tarinamme: Perustimme Laatulakki-yrityksen kesällä 2022 ajatuksella, että haluamme tarjota opiskelijoille laadukkaita ja edullisia ylioppilaslakkeja nopealla toimituksella... " />
+        </Helmet>
         <Navbar/>
            
             <Container id="starter" style={{padding: "2% 0px 1% 0"}}>

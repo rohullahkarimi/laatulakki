@@ -9,6 +9,7 @@ import { mobile } from "../responsive"
 import { useLocation } from "react-router";
 import { useTranslation } from "react-i18next"
 import { hotjar } from 'react-hotjar';
+import {Helmet} from "react-helmet";
 
 const Container = styled.div`
     
@@ -66,6 +67,11 @@ const ProductList = () => {
 
     return (
     <Container>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title> TUOTTEET -  LAATULAKKI - YLIOPPILASLAKKI</title>
+            <meta name="description" content="Tilaa perinteinen suomalainen ylioppilaslakki sinivalkoisella vuorilla ja paljon muita helposti Laatulakin verkkokaupasta. Toimitusaika 2-4 arkipäivää." />
+        </Helmet>
         <Navbar/>
         <Announcement/>
         <Title>{cat.charAt(0).toUpperCase() + cat.slice(1)}</Title>

@@ -3,6 +3,7 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { useTranslation } from "react-i18next";
 import { mobile } from "../responsive"
+import {Helmet} from "react-helmet";
 
 import {
     Container, Row, Col
@@ -49,6 +50,11 @@ const Product = () => {
 
   return (
     <ContainerDiv>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>VAIHTO JA PALAUTUS -  LAATULAKKI - YLIOPPILASLAKKI</title>
+            <meta name="description" content="Suomeen toimitettavilla tilaamillasi tuotteilla on 14 päivän vaihto- ja palautusoikeus - Laatulakki - Ylioppilaslakki" />
+        </Helmet>
         <Navbar/>
             <Container style={{padding: "2% 0"}}>
                 <Row>

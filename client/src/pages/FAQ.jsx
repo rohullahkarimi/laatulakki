@@ -5,6 +5,7 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
+import {Helmet} from "react-helmet";
 
 
 const questions = [
@@ -120,6 +121,12 @@ function FAQ(props) {
 
     return (
         <div className='container faqCotainer'>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Usein Kysyttyjä Kysymyksiä - LAATULAKKI - YLIOPPILASLAKKI</title>
+                <meta name="description" content="Usein kysyttyihin kysymyksiin yo-lakeista ja ABI-tuotteista löydät vastaukset FAQ:stamme. Tarvittaessa asiakaspalvelumme on valmiina auttamaan sinua kysymyksissäsi." />
+            </Helmet>
+
             <div className="faqHeader">
                 <h2 className="heading">{t('faq_1')}</h2>
             </div>

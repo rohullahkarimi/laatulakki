@@ -3,6 +3,7 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { useTranslation } from "react-i18next";
 import { mobile } from "../responsive"
+import {Helmet} from "react-helmet";
 import {
     Container, Row, Col
   } from 'react-bootstrap';
@@ -40,6 +41,11 @@ const CapUsage = () => {
 
   return (
     <ContainerDiv>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>YLIOPPILASLAKIN KÄYTTÖ- JA HOITO-OHJEET</title>
+            <meta name="description" content="Kulumat ja kellastuminen ovat normaaleja yo-lakin elinkaaren vaiheita. Voit puhdistaa lakin kevyesti samettiharjalla, vaahtomuovipalalla tai tahranpoistoaineella." />
+        </Helmet>
         <Navbar/>
             <Container id="starter" style={{padding: "2% 0px 5% 0"}}>
                 <Row>

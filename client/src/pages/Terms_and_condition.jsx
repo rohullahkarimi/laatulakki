@@ -3,6 +3,7 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { useTranslation } from "react-i18next";
 import { mobile } from "../responsive"
+import {Helmet} from "react-helmet";
 import {
     Container, Row, Col
   } from 'react-bootstrap';
@@ -48,6 +49,11 @@ const Product = () => {
 
   return (
     <ContainerDiv>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Yleistä verkkokaupasta -  LAATULAKKI - YLIOPPILASLAKKI</title>
+            <meta name="description" content="Verkkokaupan tuotteita myy Laatulakki Oy y-tunnus 3337953-9" />
+        </Helmet>
         <Navbar/>
             <Container id="starter" style={{padding: "2% 0"}}>
                 <Row>

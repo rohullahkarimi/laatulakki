@@ -3,6 +3,8 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { useTranslation } from "react-i18next";
 import { mobile } from "../responsive"
+import {Helmet} from "react-helmet";
+
 import {
     Container, Row, Col
   } from 'react-bootstrap';
@@ -49,6 +51,11 @@ const CapChoice = () => {
 
   return (
     <ContainerDiv>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>Oikean ylioppilaslakin valinta</title>
+            <meta name="description" content="Oikean yo-lakin valinta - LaatuLakki - Ylioppilaslakki" />
+        </Helmet>
         <Navbar/>
             <Container id="starter" style={{padding: "2% 0px 5% 0"}}>
                 <Row>

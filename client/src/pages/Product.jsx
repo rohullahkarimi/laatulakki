@@ -22,7 +22,9 @@ import ReactPixel from 'react-facebook-pixel';
 import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
 import ReactGA from "react-ga4";
+import {Helmet} from "react-helmet";
 ReactPixel.pageView(); // For tracking page view
+
 
 const Container = styled.div`
     
@@ -415,6 +417,11 @@ const Product = () => {
     
     return (
     <Container>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title> {productInternationalizeDetails.title} -  LAATULAKKI - YLIOPPILASLAKKI</title>
+            <meta name="description" content="Tilaa perinteinen suomalainen ylioppilaslakki sinivalkoisella vuorilla helposti Laatulakin verkkokaupasta. Toimitusaika 2-4 arkipäivää." />
+        </Helmet>
         <Navbar/>
         <Announcement/>
         <Wrapper>

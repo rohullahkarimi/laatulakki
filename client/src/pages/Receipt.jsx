@@ -9,6 +9,7 @@ import Navbar from "../components/Navbar";
 //import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods"
+import {Helmet} from "react-helmet";
 
 
 const HeaderContainer = styled.div`
@@ -431,6 +432,11 @@ const Receipt = () => {
   if(receiptValid){
     return (
       <ContainerDiv>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>KUITTI -  LAATULAKKI - YLIOPPILASLAKKI</title>
+            <meta name="description" content="Tulosta kuittisi - Laatulakki - Ylioppilaslakki" />
+        </Helmet>
         <PrintContainer><Navbar/></PrintContainer>
 
 

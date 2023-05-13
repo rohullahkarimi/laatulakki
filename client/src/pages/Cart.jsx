@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { addPromoCode } from '../redux/cartRedux';
 import { publicRequest } from "../requestMethods"
+import {Helmet} from "react-helmet";
 //import $ from 'jquery';
 import {
   Container
@@ -359,6 +360,11 @@ const Cart = () => {
     console.log(cart)
     return (
       <div>
+        <Helmet>
+            <meta charSet="utf-8" />
+            <title>YLIOPPILASLAKKI - LAATULAKKI - OSTOSKORI</title>
+            <meta name="description" content="Hanki tyylikäs ja kestävä yo-lakki verkkokaupastamme! Yo-lakki on valmistettu laadukkaista materiaaleista ja se kestää käytössä pitkään." />
+        </Helmet>
         <Navbar />
         <Announcement />
         <Container>
