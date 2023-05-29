@@ -6,7 +6,7 @@ import { login } from "../redux/apiCalls";
 // multi language
 import '../i18n';
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom"
 
 // theme
 import { brandColor, buttonColor, elementBackgroundColor } from '../theme';

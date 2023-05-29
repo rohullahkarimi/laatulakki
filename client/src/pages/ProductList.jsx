@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
 import Products from "../components/Products"
 import { mobile } from "../responsive"
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { hotjar } from 'react-hotjar';
 import {Helmet} from "react-helmet";

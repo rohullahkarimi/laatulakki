@@ -22,6 +22,8 @@ import PaymentPage from "./pages/Payment_response";
 import { CookieBanner } from "@palmabit/react-cookie-law";
 import { useTranslation } from 'react-i18next';
 import $ from "jquery"
+//import AllPosts from "./components/AllPosts.js";
+//import OnePost from "./components/OnePost.js";
 
 
 import {
@@ -59,7 +61,9 @@ const App = () => {
     }
     console.log(process.env.REACT_APP_CLIENT_URL);
   });
- 
+  
+  //<Route path="/blog" element={<AllPosts/>} />
+  //<Route path="/:slug" element={<OnePost/>} />
   return (
     <Router>
       <ScrollToTop/>
@@ -92,6 +96,11 @@ const App = () => {
         <Route path="/our_story" element={<Story/>} />
         <Route path="/faq" element={<FAQ/>} />
         <Route path="/instagram" element={<Instagram/>} />
+  
+        
+
+    
+
       </Routes>
       <div className="cookies_container">
         <CookieBanner

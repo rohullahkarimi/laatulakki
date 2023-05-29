@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 import { elementBackgroundColor } from "../theme"
 import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom"
 
 const TikTokIcon = ({ color = "#000000" }) => {
     return (

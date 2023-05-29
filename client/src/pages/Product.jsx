@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar"
 import CartModal from "../components/CartModal"
 import { useTranslation } from "react-i18next";
 import { laptop, mobile, smallLaptop, smartPhone } from "../responsive"
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
 import { addProduct } from "../redux/cartRedux"
