@@ -1,5 +1,6 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "blog": "Blogi",
     "alreadyInCart": "Olet jo ostoskorisivulla, jatka ostosten tekemistä nykyisellä sivulla",
     "dicountCode": "Alennuskoodi",
     "freeDeliveryMessage": "Ilmaiset toimituskulut {{deliveryDateExpire}}. 🚚",

@@ -52,7 +52,9 @@ const Language = styled.select`
     outline: none;
     appearance: none;
     border-bottom: 2px solid #${brandColor};
-    ${mobile({fontSize: "18px", marginLeft: "10px"})}
+    ${mobile({fontSize: "14px", marginLeft: "10px"})}
+
+
 `
 
 const LanguageOption = styled.option`
@@ -68,7 +70,7 @@ const Logo = styled.img`
     height: "auto";
     cursor: pointer;
     ${smartPhone({width:"120px"})}
-    ${mobile({width:"115px"})}
+    ${mobile({width:"93px"})}
 `
 
 const Right = styled.div`
@@ -82,12 +84,20 @@ const Right = styled.div`
 const MenuItem = styled.div`
     font-size: 14px;
     cursor: pointer;
-    margin-left: 25px;
-    ${mobile({fontSize: "12px"})}
+    margin-left: 10px;
+    ${mobile({fontSize: "12px", marginLeft: "0px"})}
 `;
 
 const LangDiv = styled.div`
     display: flex;
+`;
+
+const StoryDiv = styled.div`
+    display: flex;
+    border-bottom: 2px solid rgb(52, 231, 228);
+    font-size: 16px;
+    cursor: pointer;
+    ${mobile({fontSize: "12px", marginLeft: "15px"})}
 `;
 
 
@@ -118,6 +128,12 @@ const Navbar = () => {
     navigate('/');
   };
 
+  const goToStoryPage = () => {
+    navigate('/our_story');
+  };
+
+  
+
   const handleEmptyCart = (() => {
     if(cart.quantity === 0){
         setModalShow(true)
@@ -144,6 +160,12 @@ const Navbar = () => {
     <Container>
         <Wrapper>
             <Left>
+                <StoryDiv onClick={goToStoryPage}>
+                    {t('footer0')}
+                </StoryDiv>
+            </Left>
+            <Center><Logo onClick={goToHomePage} src={logo}/></Center>
+            <Right>
                 <LangDiv>
                     <Language name="language" onChange={onChange} defaultValue={selectedLang}>
                         {languages.map(({lang, country})=>{
@@ -157,9 +179,6 @@ const Navbar = () => {
                         })}
                     </Language>
                 </LangDiv>
-            </Left>
-            <Center><Logo onClick={goToHomePage} src={logo}/></Center>
-            <Right>
                 <MenuItem onClick={handleEmptyCart}>
                     <Badge badgeContent={quantity} color="primary">
                         <ShoppingCartOutlined style={{marginLeft: "10px"}}/>

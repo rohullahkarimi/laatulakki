@@ -1,5 +1,6 @@
 {
     "mandatory": "is a mandatory field",
+    "blog": "Blog",
     "alreadyInCart": "You are already on the shopping cart page, continue shopping on the current page",
     "dicountCode": "Discount Code",
     "freeDeliveryMessage": "Free delivery by {{deliveryDateExpire}}. 🚚",

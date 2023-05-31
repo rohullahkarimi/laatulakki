@@ -1,5 +1,6 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "blog": "Blogg",
     "alreadyInCart": "Du är redan på kundvagnssidan, fortsätt handla på den aktuella sidan",
     "dicountCode": "Rabattkod",
     "freeDeliveryMessage": "Gratis leverans senast {{deliveryDateExpire}}. 🚚",

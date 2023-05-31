@@ -156,6 +156,9 @@ const Footer = () => {
   const goToCooperationSite = (link) =>{
     window.location.href= link;
   }
+
+  
+
   
 
   // youtube:  https://www.youtube.com/channel/UCfcLwu9-NMAARiiDQiacWcw
@@ -192,6 +195,7 @@ const Footer = () => {
             <Title>{t("onlineStore")}</Title>
             <List>
                 <ListItem onClick={goToStory}>{t("footer0")}</ListItem>
+                <ListItem onClick={()=> goToCooperationSite("https://blog.laatulakki.fi/")}>{t("blog")}</ListItem>
                 <ListItem onClick={goToTermsPage}>{t("footer1")}</ListItem>
                 <ListItem onClick={goToRegistrationStatement}>{t("footer2")}</ListItem>
                 <ListItem onClick={goToDeliveryTerms}>{t("footer4")}</ListItem>
