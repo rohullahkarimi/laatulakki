@@ -161,7 +161,7 @@ const Navbar = () => {
         <Wrapper>
             <Left>
                 <StoryDiv onClick={goToStoryPage}>
-                    {t('footer0')}
+                    {t('footer0')} 
                 </StoryDiv>
             </Left>
             <Center><Logo onClick={goToHomePage} src={logo}/></Center>
