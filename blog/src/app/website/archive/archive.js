@@ -77,11 +77,11 @@ export default function Post({ posts: initialposts }) {
       <Navbar/>
       <Container>
         <h1 className="text-center text-3xl font-semibold tracking-tight dark:text-white lg:text-4xl lg:leading-snug">
-          Archive
+          Laatulakki Blogi
         </h1>
         <div className="text-center">
           <p className="mt-2 text-lg">
-            See all posts we have ever written.
+            Tutustu ylioppilaslakkien maailmaan ja inspiroidu yritystoiminnan tarinoista
           </p>
         </div>
         {posts && posts?.length === 0 && (

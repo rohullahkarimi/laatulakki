@@ -30,15 +30,19 @@ export default function AuthorCard({ author }) {
           <div>
             {author.bio && <PortableText blocks={author.bio} />}
           </div>
-          <div className="mt-3">
-            <a
-              href={`/author/${author.slug.current}`}
-              className="bg-brand-secondary/20 rounded-full py-2 text-sm text-blue-600 dark:text-blue-500 ">
-              View Profile
-            </a>
-          </div>
         </div>
       </div>
     </div>
   );
 }
+
+/*
+<div className="mt-3">
+<a
+  href={`/author/${author.slug.current}`}
+  href="https://www.linkedin.com/in/rohullah-karimi-86b11214b/"
+  className="bg-brand-secondary/20 rounded-full py-2 text-sm text-blue-600 dark:text-blue-500 ">
+  Näytä profiili
+</a>
+</div>
+*/

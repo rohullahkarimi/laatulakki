@@ -33,6 +33,8 @@ const Left = styled.div`
     flex: 1;
     display: flix;
     align-items: center;
+    ${mobile({paddingLeft:"15px"})}
+
 `;
 
 /*
