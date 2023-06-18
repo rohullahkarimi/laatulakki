@@ -17,6 +17,7 @@ import CapUsage from "./pages/Cap_usage";
 import Receipt from "./pages/Receipt";
 import Story from "./pages/Story";
 import FAQ from "./pages/FAQ";
+import Yolakki from "./pages/Yolakki";
 import Instagram from "./pages/Instagram";
 import PaymentPage from "./pages/Payment_response";
 import { CookieBanner } from "@palmabit/react-cookie-law";
@@ -96,6 +97,7 @@ const App = () => {
         <Route path="/our_story" element={<Story/>} />
         <Route path="/faq" element={<FAQ/>} />
         <Route path="/instagram" element={<Instagram/>} />
+        <Route path="/Yolakki" element={<Yolakki/>} />
   
         
 

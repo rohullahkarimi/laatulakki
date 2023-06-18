@@ -66,7 +66,7 @@ const Price = styled.div`
     font-size: 15px;
 `
 const PriceDiscount = styled.div`
-    width: 100%;
+    /*width: 100%;*/
     height: auto;
     background: #ffffff;
     position: absolute;

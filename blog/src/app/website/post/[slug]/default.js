@@ -38,7 +38,7 @@ export default function Post(props) {
   const AuthorimageProps = post?.author?.image
     ? urlForImage(post.author.image)
     : null;
- 
+  
   return (
     <>
       <Navbar/>

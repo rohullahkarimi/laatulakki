@@ -206,7 +206,7 @@ const Footer = () => {
             </List>
         </Center>
         <Right>
-            <Title>{t('cooperationTitle')}</Title>
+            <Title onClick={()=> goToCooperationSite("https://blog.laatulakki.fi/post/yhteistyoekumpanit")}>{t('cooperationTitle')}</Title>
             <List>
                 <ListItem onClick={()=> goToCooperationSite("https://tilikauha.fi/")}>Tilikauha Oy</ListItem>
                 <ListItem onClick={()=> goToCooperationSite("https://www.ttkauppa.fi/")}>ttkauppa.fi</ListItem>
