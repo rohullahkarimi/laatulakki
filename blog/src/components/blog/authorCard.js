@@ -29,6 +29,7 @@ export default function AuthorCard({ author }) {
           </div>
           <div>
             {author.bio && <PortableText blocks={author.bio} />}
+            
           </div>
         </div>
       </div>

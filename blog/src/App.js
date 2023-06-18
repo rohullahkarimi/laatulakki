@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import Posts from "./app/website/archive/page.js";
 import PostDefault from "./app/website/post/[slug]/page.js";
+import AuthorDefault from "./app/website/author/[slug]/page.js";
 
 //  <Route component={AllPosts} path="/" exact />
 //   <Route component={OnePost} path="/:slug" />
@@ -14,6 +15,7 @@ function App() {
       <div>
         <Route component={Posts} path="/" exact />
         <Route component={PostDefault} path="/post/:slug" />
+        <Route component={AuthorDefault} path="/author/:slug" />
       </div>
     </BrowserRouter>
   );

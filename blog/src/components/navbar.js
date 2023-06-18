@@ -95,6 +95,10 @@ const Navbar = () => {
   //const navigate = useHistory();
 
   const goToHomePage = () => {
+    window.location.replace('/');
+  };
+
+  const goToShopPage = () => {
     window.location.replace('https://www.laatulakki.fi');
   };
 
@@ -106,7 +110,7 @@ const Navbar = () => {
     <Container>
         <Wrapper>
             <Left>
-                <LangDiv onClick={goToHomePage}>
+                <LangDiv onClick={goToShopPage}>
                   Verkkokauppa
                 </LangDiv>
             </Left>

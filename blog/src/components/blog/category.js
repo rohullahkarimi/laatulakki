@@ -11,14 +11,15 @@ export default function CategoryLabel({
     <div className="flex gap-3">
       {categories && categories?.length &&
         categories.slice(0).map((category, index) => (
-          <a
-            href={`/category/${category?.slug?.current}`}
-            key={index}>
-            <Label nomargin={nomargin} color={category.color}>
-              {category.title}
-            </Label>
-          </a>
+        
+          <Label  key={index} nomargin={nomargin} color={category.color}>
+            {category.title}
+          </Label>
+        
         ))}
     </div>
   );
 }
+
+// href of category page
+//  href={`/category/${category?.slug?.current}`}
