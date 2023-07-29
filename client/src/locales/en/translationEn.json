@@ -98,6 +98,7 @@
     "usageDetails": "Usage and care instructions for the law",
     "especialInfo": "Details",
     "choose": "Choose",
+    "chooseSize": "Choose size",
     "leftAmount": "Left",
     "includeTax": "incl. VAT",
 
@@ -286,5 +287,12 @@
     "faq_1": "Frequently Asked Questions",
 
     "hope1": "Hope",
-    "truth": "Truth"
+    "truth": "Truth",
+
+    "badge": "Badge",
+    "decorative_band": "Decorative ribbon",
+    "cap_cord": "Cap tape",
+    "front_text": "Front letter",
+    "back_text": "Back letter",
+    "exampleYearText": "E.g. name or graduation year"
 }

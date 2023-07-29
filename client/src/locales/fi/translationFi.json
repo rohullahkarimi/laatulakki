@@ -98,6 +98,7 @@
     "usageDetails": "Lakin käyttö- ja hoito-ohje",
     "especialInfo": "Yksityiskohdat",
     "choose": "Valitse",
+    "chooseSize": "Valitse koko",
     "leftAmount": "Jäljellä",
     "includeTax": "sis. ALV",
 
@@ -289,6 +290,15 @@
     "faq_1": "Usein Kysyttyjä Kysymyksiä",
 
     "hope1": "TOIVO",
-    "truth": "YLIOPPILASJUHLAT"
+    "truth": "YLIOPPILASJUHLAT",
+
+    "badge": "Lyyra",
+    "decorative_band": "Koristenauha",
+    "cap_cord": "Lippanauha",
+    "front_text": "Etukirjailu",
+    "back_text": "Takakirjailu",
+    "exampleYearText": "Esim. nimi tai valmistumisvuosi"
+
+
 }
 

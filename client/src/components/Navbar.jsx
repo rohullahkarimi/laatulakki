@@ -69,6 +69,7 @@ const Logo = styled.img`
     width: 140px;
     height: "auto";
     cursor: pointer;
+    margin: auto;
     ${smartPhone({width:"120px"})}
     ${mobile({width:"93px"})}
 `

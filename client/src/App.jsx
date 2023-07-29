@@ -17,14 +17,13 @@ import CapUsage from "./pages/Cap_usage";
 import Receipt from "./pages/Receipt";
 import Story from "./pages/Story";
 import FAQ from "./pages/FAQ";
-import Yolakki from "./pages/Yolakki";
 import Instagram from "./pages/Instagram";
 import PaymentPage from "./pages/Payment_response";
 import { CookieBanner } from "@palmabit/react-cookie-law";
 import { useTranslation } from 'react-i18next';
 import $ from "jquery"
-//import AllPosts from "./components/AllPosts.js";
-//import OnePost from "./components/OnePost.js";
+import Chair from "./pages/Chair";
+import Ylioppilaslakki from "./pages/Ylioppilaslakki";
 
 
 import {
@@ -63,8 +62,7 @@ const App = () => {
     console.log(process.env.REACT_APP_CLIENT_URL);
   });
   
-  //<Route path="/blog" element={<AllPosts/>} />
-  //<Route path="/:slug" element={<OnePost/>} />
+
   return (
     <Router>
       <ScrollToTop/>
@@ -97,7 +95,8 @@ const App = () => {
         <Route path="/our_story" element={<Story/>} />
         <Route path="/faq" element={<FAQ/>} />
         <Route path="/instagram" element={<Instagram/>} />
-        <Route path="/Yolakki" element={<Yolakki/>} />
+        <Route path="/chair" element={<Chair/>} />
+        <Route path="/ylioppilaslakki" element={<Ylioppilaslakki/>} />
   
         
 

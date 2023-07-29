@@ -98,6 +98,7 @@
     "usageDetails": "Användnings- och skötselanvisningar för lagen",
     "especialInfo": "Detaljer",
     "choose": "Välj",
+    "chooseSize": "Välj storlek",
     "leftAmount": "Vänster",
     "includeTax": "incl. VAT",
 
@@ -285,5 +286,12 @@
     "faq_1": "Vanliga frågor",
 
     "hope1": "Hoppa",
-    "truth": "Sanning"
+    "truth": "Sanning",
+
+    "badge": "Lyra",
+    "decorative_band": "Dekorativt band",
+    "cap_cord": "Cap-kabel",
+    "front_text": "Frontbroderi",
+    "back_text": "Tillbaka text",
+    "exampleYearText": "T.ex. namn eller examensår"
 }   

@@ -4,11 +4,11 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Newsletter from '../components/Newsletter'
 import Products from '../components/Products'
-import Slider from '../components/Slider'
 import ReactPixel from 'react-facebook-pixel';
 import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
 import ReactGA from "react-ga4";
+import Slider2023 from '../components/Slider2023'
 
 // page view
 ReactPixel.pageView(); // For tracking page view
@@ -42,15 +42,15 @@ const Home = () => {
       ReactGA.send({ hitType: "pageview", page: "/home" });
     
   }
-
+  // <div className="commonninja_component pid-5f13afcd-6d5d-46d5-b13e-04033b8c7ede"></div>
   return (
     <div>
         <Announcement/>
         <Navbar/>
-        <Slider/>
+        <Slider2023/>
         
         <Products/>
-        <div className="commonninja_component pid-5f13afcd-6d5d-46d5-b13e-04033b8c7ede"></div>
+
         <Newsletter/>
         <Footer/>
     </div>
