@@ -38,7 +38,7 @@ const CanvasDiv = styled.div`
     width: 100%;
 
     canvas {
-        width: 100% !important;
+        width: 100% !important; 
         height: auto; /* Set an explicit height value */
         ${largeLaptop({ height: "1200px !important"})}
         ${laptop({ height: "1100px !important"})}
