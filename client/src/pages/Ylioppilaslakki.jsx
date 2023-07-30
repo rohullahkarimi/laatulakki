@@ -5,7 +5,7 @@ import "../common/css/yolakki.css"
 import Configurator from "../components/Configurator";
 import { CustomizationProvider } from "../contexts/Customization";
 import styled from "styled-components";
-import { laptop, mobile, smallLaptop, smartPhone, tablet } from "../responsive";
+import { laptop, largeLaptop, mobile, smallLaptop, smartPhone, tablet } from "../responsive";
 import { Fullscreen, FullscreenExit, ThreeDRotationOutlined } from "@mui/icons-material";
 import Navbar from "../components/Navbar";
 import { useEffect, useRef, useState } from "react";
@@ -34,14 +34,18 @@ const MainDiv = styled.div`
 const CanvasDiv = styled.div`
     position: relative;
     flex: 12;
-    height: 800px; /* Set an explicit height value */
+    height: auto; /* Set an explicit height value */
     width: 100%;
 
     canvas {
         width: 100% !important;
-        height: 800px; /* Set an explicit height value */
-        ${tablet({ height: "550px"})}
-        ${smartPhone({ height: "450px"})}
+        height: auto; /* Set an explicit height value */
+        ${largeLaptop({ height: "1200px !important"})}
+        ${laptop({ height: "1100px !important"})}
+        ${smallLaptop({ height: "800px !important"})}
+        ${tablet({ height: "700px !important"})}
+        ${smartPhone({ height: "600px !important"})}
+        ${mobile({ height: "500px !important"})}
     }
     
 `
