@@ -3,7 +3,7 @@ import {
   Stage,
 } from "@react-three/drei";
 
-import Ylioppilaslakki from "./Cap_version_8";
+import Ylioppilaslakki from "./Cap_version_9";
 import { Suspense } from "react";
 
 
