@@ -1,0 +1,226 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400&display=swap");
+
+html, body, #root {
+    height: 100vh;
+}
+
+
+/* full screen button */
+.css-gre8e6 .renderer-fullscreen-button {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 14px;
+  pointer-events: all;
+}
+.css-10d1a0h-MuiButtonBase-root {
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0px;
+  border: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  padding: 0px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.MuiIconButton-root {
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 12px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 50%;
+}
+/* End: full screen button */
+
+.CanvasObject {
+  width: 100vw;
+  height: 100vh;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+  z-index: 10;
+  position: relative;
+  background-color: rgb(248, 248, 248);
+  overflow: hidden;
+}
+
+canvas{
+  touch-action: none;
+  width: 100%;
+  height: 100%;
+}
+
+.configurator {
+  right: 24px;
+  bottom: 25vh;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.configurator__section__title {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+.configurator__section__values {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 16px 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.4s;
+}
+
+.item:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.item__dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  border: solid 2px #999999;
+}
+
+.item.item--active .item__dot {
+  border: solid 2px black;
+  border-style: double;
+  border-width: 3px;
+}
+
+.item__label {
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: #aaa;
+  text-transform: capitalize;
+}
+.item.item--active .item__label {
+  color: rgb(0, 0, 0);
+}
+
+/* 3D input */
+.input-group-simple:focus {
+  outline: none;
+}
+
+.input-group-simple {
+  display: block;
+  max-width: 100%;
+  height: 70px;
+  border: 0;
+  background-color: #ffffff;
+  border-bottom-left-radius: 41px;
+  border-bottom-right-radius: 41px;
+  border-top-left-radius: 41px;
+  border-top-right-radius: 0;
+  box-shadow: 0 17px 40px 0 rgba(75, 128, 182, 0.07);
+  position: relative;
+  font-size: 17px;
+  color: #a7b4c1;
+  transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out,
+    box-shadow 0.1s ease-in-out;
+}
+
+.input-group-simple:hover {
+  box-shadow: 0 14px 44px 0 rgba(0, 0, 0, 0.077);
+}
+
+.input-group-simple input {
+  position: absolute;
+  outline: none;
+  border: 0;
+  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0);
+  top: 0;
+  height: 65px;
+  width: 100%;
+  padding: 0 53px;
+  box-sizing: border-box;
+  z-index: 3;
+  display: block;
+  color: #1a6fc4;
+  font-size: 17px;
+  font-family: "Oxygen", sans-serif;
+  transition: top 0.1s ease-in-out;
+}
+
+.input-group-simple input::placeholder {
+  color: rgba(0, 0, 0, 0);
+}
+
+.input-group-simple input:focus,
+.input-group-simple input:not(:placeholder-shown) {
+  top: 17px;
+}
+
+.input-group-simple label {
+  position: absolute;
+  border: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 0 53px;
+  box-sizing: border-box;
+  transition: all 0.1s ease-in-out;
+  cursor: text;
+}
+
+.input-group-simple input:focus + label,
+.input-group-simple input:not(:placeholder-shown) + label {
+  bottom: 20px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.req-mark {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  right: 33px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 22px;
+  color: #e0e0e0;
+  font-family: "Ubuntu", sans-serif;
+}
+/* End: End 3D input */
