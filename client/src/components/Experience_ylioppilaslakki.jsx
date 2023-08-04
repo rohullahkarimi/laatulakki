@@ -5,7 +5,7 @@ import {
 } from "@react-three/drei";
 
 //import Ylioppilaslakki from "./Ylioppilaslakki_component";
-import Ylioppilaslakki from "./Cap_version_9";
+import Ylioppilaslakki from "./Cap_versions";
 import { Suspense } from "react";
 
 
