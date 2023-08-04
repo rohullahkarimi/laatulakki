@@ -37,7 +37,7 @@ function Ylioppilaslakki(props) {
 
 
 
-  const { nodes, materials } = useGLTF("/models/cap_version_10.gltf");
+  const { nodes, materials } = useGLTF("/public/models/cap_version_10.gltf");
 
   const texture = new THREE.TextureLoader().load("/textures/embroidery/embroideryTexture.jpg");
 
@@ -244,4 +244,4 @@ function Ylioppilaslakki(props) {
 
 export default Ylioppilaslakki;
 
-useGLTF.preload("/models/cap_version_10.gltf");
+useGLTF.preload("/public/models/cap_version_10.gltf");
