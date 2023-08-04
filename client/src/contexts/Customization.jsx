@@ -1,17 +1,18 @@
+import React from 'react'; // Make sure you have this import
 import { createContext, useContext, useState } from "react";
 
 
 export const graduationCapCustomizationOptions = ({
   "title": [
     {
-      "fi": "Perinteinen suomalainen ylioppilaslakki",
+      "fi": " ylioppilaslakki",
       "en": "Traditional Finnish student cap",
       "se": "Traditionell finsk studentmössa"
     }
   ],
   "desc": [
     {
-      "fi": "Perinteinen suomalainen ylioppilaslakki. Lakissa on kiinnitettynä kullattu 16x16 mm lyyra. Lakin päällikangas on korkealaatuista, vettä ja likaa hylkivää Brilliant-samettia. Lakin vuorikangas on sinivalkoista viskoosia. Hikinauha on nahkaa ja lippa on valmistettu tekonahasta. Mittaa päänympäryksesi huolellisesti, jotta pystyt valitsemaan juuri sinulle oikeankokoisen ylioppilaslakin. Ylioppilaslakki toimitetaan sopivan kokoisessa laatikossa, jossa sitä on helppo säilyttää.",
+      "fi": "Perinteinen suomalainen ....",
       "en": "Traditional Finnish student cap. The cap has a gold-plated 16x16 mm lyre attached. The outer fabric of the cap is high-quality, water and dirt-repellent Brilliant velvet. The lining fabric of the cap is blue-white viscose. The sweatband is leather and the cap is made of artificial leather. Measure your head circumference carefully so that you can choose just for you the right-sized graduation cap. The graduation cap is delivered in an appropriately sized box, where it is easy to store.",
       "se": "Traditionell finsk studentmössa. Kepsen har en guldpläterad 16x16 mm lyra fäst. Yttertyget på kepsen är av hög kvalitet, vatten- och smutsavvisande Briljant sammet. Fodertyget på kepsen är blåvit viskos. Den svettband är läder och kepsen är gjord av konstläder Mät din huvudomkrets noggrant så att du kan välja just för dig en examensmössa i rätt storlek Graduation-kepsen levereras i en passande stor kartong, där den är enkel att förvara. "
     }
@@ -466,6 +467,7 @@ export const CustomizationProvider = (props) => {
   
   const [customization, setCustomization] = useState({
     badge: "fi",
+    textColor: "yellow",
     roundRibbonColor: "",
     cordColor: "black",
     embroideryTextFront: { left: "", right: "" },

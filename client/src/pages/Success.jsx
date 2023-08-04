@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import {useLocation} from "react-router-dom"
 
 const Success = () => {

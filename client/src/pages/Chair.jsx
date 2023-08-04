@@ -1,4 +1,5 @@
 
+import React from 'react'; // Make sure you have this import
 import Experience from "../components/Experience";
 import { Canvas } from "@react-three/fiber";
 import "../common/css/yolakki.css"

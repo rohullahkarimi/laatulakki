@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import styled from "styled-components"
 import { useTranslation } from "react-i18next";
 import { mobile, smartPhone, tablet } from "../responsive";

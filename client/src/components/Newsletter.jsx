@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import { Send } from "@mui/icons-material"
 import styled from "styled-components"
 import { mobile, tablet } from "../responsive"

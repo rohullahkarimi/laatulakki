@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import { Add, Remove } from "@mui/icons-material"
 import styled from "styled-components"
 import Announcement from "../components/Announcement"

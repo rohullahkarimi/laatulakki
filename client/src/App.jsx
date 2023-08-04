@@ -1,4 +1,5 @@
 //import Navbar from "./components/Navbar";
+import React from 'react'; // Make sure you have this import
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";

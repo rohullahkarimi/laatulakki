@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import styled from "styled-components"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"

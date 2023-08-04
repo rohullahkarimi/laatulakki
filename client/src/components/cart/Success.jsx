@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import { CheckCircle } from "@mui/icons-material";
 //import { useSearchParams } from "react-router-dom";
 import styled from "styled-components"

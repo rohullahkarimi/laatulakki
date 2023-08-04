@@ -1,4 +1,5 @@
 
+import React from 'react'; // Make sure you have this import
 import ExperienceYlioppilaslakki from "../components/Experience_ylioppilaslakki";
 import { Canvas } from "@react-three/fiber";
 import "../common/css/yolakki.css"
@@ -34,8 +35,10 @@ const MainDiv = styled.div`
 const CanvasDiv = styled.div`
     position: relative;
     flex: 12;
-    height: auto; /* Set an explicit height value */
-    width: 100%;
+    height: auto; 
+    width: 100%; 
+
+    
 
     canvas {
         width: 100% !important; 
@@ -129,7 +132,7 @@ const Ylioppilaslakki = () => {
                 <CanvasDiv style={{ position: "relative" }}>
                     {isLoading && (
                         <LoaderOverlay>
-                            <LoaderText>Loading...</LoaderText>
+                            <LoaderText>Loading the model...</LoaderText>
                         </LoaderOverlay>
                     )}
 

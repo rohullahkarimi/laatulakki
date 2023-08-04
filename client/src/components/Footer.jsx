@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import { Instagram, MailOutlined, Phone, Room, YouTube, Store, Facebook } from "@mui/icons-material"
 import styled from "styled-components"
 import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"

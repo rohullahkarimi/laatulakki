@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import { useEffect } from "react"
 import { useState } from "react"
 import styled from "styled-components"

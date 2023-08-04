@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this imports
 import { useEffect, useState } from 'react';
 import '../../common/css/style.css';
 import { useSelector } from "react-redux";

@@ -1,4 +1,5 @@
 
+import React from 'react'; // Make sure you have this import
 import styled from "styled-components";
 import "../common/css/slider2023.css"
 import { Helmet } from "react-helmet";

@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import styled from "styled-components";
 import { Add, Remove } from "@mui/icons-material"
 import "../common/css/yolakki.css";
@@ -7,6 +8,29 @@ import { BlockOutlined } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import i18n from "../i18n";
+import $ from "jquery"
+//import { useColorStore } from "../contexts/store";
+//import { useTextStore } from "../contexts/textStore";
+import { useColorStore } from "../Utils/store";
+import { useTextStore } from "../Utils/textStore";
+
+const Colors = [
+  {
+    hex: "#ffcd59",
+    name: "gold",
+  },
+  {
+    hex: "#e8e8e8",
+    name: "silver",
+  },
+];
+
+const Fonts = [
+  { name: "Kuano", path: "/Fonts/textType1.json" },
+  { name: "Tekstaus", path: "/Fonts/textType2.json" },
+  // Add more fonts if needed
+];
+
 
 const Title = styled.h1`
     font-weight: 200;
@@ -189,8 +213,15 @@ const LeftAmount = styled.p`
     margin: 5px 0px;
 `
 
+const GeneralError = styled.div`
+    color: tomato;
+    font-size: 18px;
+`
 
-const getTotalPrice = (prices) => {
+const GetTotalPrice = (prices) => {
+  const {
+    customization
+  } = useCustomization();
   let totalPrice = prices.cap_base_price;
 
   // Add the price of the selected badge
@@ -208,6 +239,9 @@ const getTotalPrice = (prices) => {
   // Add the price of the embroidery on the back
   totalPrice += prices.embroideryTextBack;
 
+  // Add the price of the quantity
+  totalPrice = totalPrice * customization.quantity;
+
   return totalPrice;
 };
 
@@ -219,6 +253,7 @@ const Configurator = () => {
       title: "",
       desc: "",
     })
+    const [errors, setErrors] = useState([]);
 
     const {
         customization,
@@ -229,8 +264,8 @@ const Configurator = () => {
     } = useCustomization();
 
 
-    //console.log(customization)
-    //console.log(prices)
+    console.log(customization)
+    console.log(prices)
 
 
     useEffect(() =>{
@@ -298,20 +333,20 @@ const Configurator = () => {
       
  
     const handleSizeSelection = (e) =>{
+      setErrors([]); // Set the 'errors' state back to an empty array
       const idx = e.target.selectedIndex;
       const option = e.target.querySelectorAll('option')[idx];
       const storage = option.getAttribute('data-storage');
   
+      console.log(e.target.value)
 
       setCustomization({
         ...customization,
         size: e.target.value,
+        productStorage: storage
       });
 
-      setCustomization({
-        ...customization,
-        productStorage: storage,
-      });
+      
     }
 
     const handleQuantity = (type) => {
@@ -329,8 +364,56 @@ const Configurator = () => {
     };
     
     
+    const handleCheckOut = () =>{
+      const newErrors = [];
+      if (!customization.size) {
+        newErrors.push(t('choose') + ' ' + t('size'));
+      }
+      if (customization.size && customization.quantity > customization.productStorage) {
+        newErrors.push(t('stockExceed'));
+      }
+      setErrors(newErrors);
+
+      /*
+      let productId = product._id
+      let title = product.title[0].fi
+      let img = product.img[0].thumbnail
+      */
+  
+    
+     
+      // update cart
+      /*
+      dispatch(
+          addProduct({ ...product, title, img, quantity, color, size, productId, productStorage})
+      )
+      */
+      
+      //setModalShow(true)
+      
+      //ReactPixel.track("track", "Buy-button"); // For tracking default events. More info about standard events: https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#standard-events
+    }
+
+    // 3D fonts
+    const setActiveColor = useColorStore((state) => state.setActiveColor);
+
+    const textFrontLeft = useTextStore((state) => state.textFrontLeft);
+    const textFrontRight = useTextStore((state) => state.textFrontRight);
+    const textBack = useTextStore((state) => state.textBack);
+  
+    const font = useTextStore((state) => state.font); // Get the selected font
+    const color = useColorStore((state) => state.activeColor); // Get the selected font
+    console.log(font, color)
 
 
+    const handleFontClick = (path, name) => {
+      console.log(path, name)
+      const selectedFontPath = path;
+      useTextStore.setState({ font: selectedFontPath });
+    };
+
+
+    
     return (
     <div className="configurator">
 
@@ -437,18 +520,69 @@ const Configurator = () => {
                 <OptionTitle className="configurator__section__title">{t('front_text')}</OptionTitle>
                 {prices.embroideryTextFront > 0 &&  <OptionPrice>+{prices.embroideryTextFront} €</OptionPrice>}
             </OptionTitlesContainer>
+
+            <div className="configurator__section__values">
+              {Fonts.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={`item ${font === item.path ? "item--active" : ""}`}
+                    onClick={() => handleFontClick(item.path, item.name)}
+                  >
+                    <div className="item__label">{item.name}</div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="configurator__section__values">
+              {Colors.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={`item ${
+                      color.name === item.name ? "item--active" : ""
+                    }`}
+                    onClick={() => setActiveColor(item)}
+                  >
+                    <div
+                      className="item__dot"
+                      style={{ backgroundColor: item.hex }}
+                    />
+                    <div className="item__label">{item.name}</div>
+                  </div>
+                  );
+              })}
+            </div>
           
             <InputDiv>
                 <InputDivCol1>  
                     <div className="input-group-simple">
-                        <input type="text" value={customization.embroideryTextFront.left}  onChange={(e) => handleEmbroideryTextChange("left", e.target.value, graduationCapCustomizationOptions.embroideryTextFront.price)} maxLength="13" name="left" id="left" required="required" placeholder="Ihr Name"/>
+                        <input 
+                          type='text'
+                          placeholder='Front Left'
+                          value={textFrontLeft}
+                          onChange={(e) =>
+                            useTextStore.setState({ textFrontLeft: e.target.value })
+                          }
+                          maxLength={13}
+                        />
                         <label  htmlFor="left">Etunimi</label>
                         <div className="req-mark">✓</div>
                     </div>
                 </InputDivCol1>
                 <InputDivCol2>
                     <div className="input-group-simple">
-                        <input type="text" value={customization.embroideryTextFront.right}   onChange={(e) => handleEmbroideryTextChange("right", e.target.value, graduationCapCustomizationOptions.embroideryTextFront.price)} maxLength="13" name="right" id="right" required="required" placeholder="Ihr Name"/>
+                        <input 
+                          type='text'
+                          placeholder='Front Right'
+                          value={textFrontRight}
+                          onChange={(e) =>
+                            useTextStore.setState({ textFrontRight: e.target.value })
+                          }
+                          max={13}
+                          maxLength={13}
+                        />
                         <label htmlFor="right">Sukunimi</label>
                         <div className="req-mark">✓</div>
                     </div>
@@ -464,7 +598,15 @@ const Configurator = () => {
             </OptionTitlesContainer>
             <ValueDiv>
                 <div className="input-group-simple">
-                    <input  type="text" value={customization.embroideryTextBack}   onChange={(e) => handleEmbroideryTextBackChange(e.target.value, graduationCapCustomizationOptions.embroideryTextBack.price)} maxLength="30" id="back" name="back" required="required" placeholder="Ihr Name"/>
+                    <input  
+                      type='text'
+                      placeholder='Back'
+                      value={textBack}
+                      onChange={(e) =>
+                        useTextStore.setState({ textBack: e.target.value })
+                      }
+                      maxLength={30}
+                    />
                     <label htmlFor="back">{t('exampleYearText')}
                     </label>
                     <div className="req-mark">✓</div>
@@ -497,14 +639,22 @@ const Configurator = () => {
             </SimpleFlexContainerCol>
         </SimpleFlexContainer>
 
+        {/* Display the error messages */}
+        {errors.length > 0 && (
+          <div>
+            {errors.map((error, index) => (
+              <GeneralError key={index}>{error}</GeneralError>
+            ))}
+          </div>
+        )}
 
         <CheckoutDiv>
             <CheckoutPrice>
                 <CheckoutPriceCol size="16px">{t('total').toUpperCase()}</CheckoutPriceCol>
-                <CheckoutPriceCol size="22px">{getTotalPrice(prices).toFixed(2)} €</CheckoutPriceCol>
+                <CheckoutPriceCol size="22px">{GetTotalPrice(prices).toFixed(2)} €</CheckoutPriceCol>
             </CheckoutPrice>
             <CheckoutButton>
-                <Button>Lisää ostoskoriin</Button>
+                <Button onClick={handleCheckOut}>Lisää ostoskoriin</Button>
             </CheckoutButton>
        </CheckoutDiv>
 

@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import { useEffect, useState } from "react"
 import "../css/Faq.css"
 import {  SearchOutlined, KeyboardArrowDownOutlined, KeyboardArrowUpOutlined } from "@mui/icons-material";

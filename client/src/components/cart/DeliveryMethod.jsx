@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import '../../common/css/style.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from 'react-hook-form';

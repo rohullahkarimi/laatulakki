@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import { ShoppingCartOutlined } from '@mui/icons-material';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { Badge } from '@mui/material';

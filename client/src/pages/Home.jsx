@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import Announcement from '../components/Announcement'
 //import Categories from '../components/Categories'
 import Footer from '../components/Footer'

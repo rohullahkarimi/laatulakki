@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import i18n from "../i18n"

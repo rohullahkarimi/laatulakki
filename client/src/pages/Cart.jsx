@@ -1,3 +1,4 @@
+import React from 'react'; // Make sure you have this import
 import {  RemoveShoppingCart } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
