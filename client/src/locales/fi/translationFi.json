@@ -1,5 +1,7 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "readMore": "Lue lisää",
+    "3dText": "3D-mallituote – Kustomoi ja liikuta sormella!",
     "blog": "Blogi",
     "alreadyInCart": "Olet jo ostoskorisivulla, jatka ostosten tekemistä nykyisellä sivulla",
     "dicountCode": "Alennuskoodi",

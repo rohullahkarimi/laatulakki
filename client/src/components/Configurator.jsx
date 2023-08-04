@@ -9,35 +9,23 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import i18n from "../i18n";
 import $ from "jquery"
-//import { useColorStore } from "../contexts/store";
-//import { useTextStore } from "../contexts/textStore";
-import { useColorStore } from "../Utils/store";
-import { useTextStore } from "../Utils/textStore";
+import ReadMoreModal from './ReadMoreModal';
 
-const Colors = [
-  {
-    hex: "#ffcd59",
-    name: "gold",
-  },
-  {
-    hex: "#e8e8e8",
-    name: "silver",
-  },
-];
 
 const Fonts = [
-  { name: "Kuano", path: "/Fonts/textType1.json" },
-  { name: "Tekstaus", path: "/Fonts/textType2.json" },
+  { name: "Kuano", path: "/Fonts/kauno.json" },
+  { name: "Tekstaus", path: "/Fonts/tekstaus.json" },
   // Add more fonts if needed
 ];
 
 
 const Title = styled.h1`
     font-weight: 200;
+    margin: 0;
 `
 
 const Desc = styled.p`
-    margin: 20px 0px;
+    margin: 0px 0px;
 `
 
 
@@ -218,6 +206,14 @@ const GeneralError = styled.div`
     font-size: 18px;
 `
 
+
+const ReadMoreButton = styled.button`
+  font-weight: 500;
+  text-decoration: none;
+  color: rgb(10, 11, 10);
+  cursor: pointer;
+`
+
 const GetTotalPrice = (prices) => {
   const {
     customization
@@ -254,6 +250,17 @@ const Configurator = () => {
       desc: "",
     })
     const [errors, setErrors] = useState([]);
+    const [showReadMoreModal, setShowReadMoreModal] = useState(false);
+
+    // Function to toggle the Modal visibility
+    const handleToggleModal = () => {
+      setShowReadMoreModal((prevShowReadMoreModal) => !prevShowReadMoreModal);
+    };
+
+    // Function to show the full text in the Modal
+    const handleReadMore = () => {
+      handleToggleModal();
+    };
 
     const {
         customization,
@@ -302,14 +309,18 @@ const Configurator = () => {
     };
 
 
-    const handleEmbroideryTextChange = (textType, textValue, textPrice) => {
+    const handleEmbroideryFrontTextChange = (textType, textValue, textPrice) => {
         setCustomization((prevCustomization) => ({
           ...prevCustomization,
-          embroideryTextFront: {
-            ...prevCustomization.embroideryTextFront,
-            [textType]: textValue,
+          embroidery: {
+            ...prevCustomization.embroidery,
+            embroideryTextFront: {
+              ...prevCustomization.embroidery.embroideryTextFront,
+              [textType]: textValue,
+            },
           },
         }));
+
         setPrices((prevPrices) => ({
           ...prevPrices,
           embroideryTextFront: textPrice,
@@ -319,10 +330,14 @@ const Configurator = () => {
     const handleEmbroideryTextBackChange = (value, price) => {
         // Calculate the price based on the length of the text
         let textPrice = price; // Replace this with your actual pricing logic
-      
+     
+
         setCustomization((prevCustomization) => ({
           ...prevCustomization,
-          embroideryTextBack: value,
+          embroidery: {
+            ...prevCustomization.embroidery,
+            embroideryTextBack: value,
+          },
         }));
       
         setPrices((prevPrices) => ({
@@ -395,30 +410,37 @@ const Configurator = () => {
     }
 
     // 3D fonts
-    const setActiveColor = useColorStore((state) => state.setActiveColor);
+    const textFrontLeft = customization.embroidery.embroideryTextFront.left; 
+    const textFrontRight = customization.embroidery.embroideryTextFront.right;
+    const textBack = customization.embroidery.embroideryTextBack;
+    const font = customization.embroidery.embroideryFont;
+    const color = customization.embroidery.embroideryTextColor;
 
-    const textFrontLeft = useTextStore((state) => state.textFrontLeft);
-    const textFrontRight = useTextStore((state) => state.textFrontRight);
-    const textBack = useTextStore((state) => state.textBack);
-  
-    const font = useTextStore((state) => state.font); // Get the selected font
-    const color = useColorStore((state) => state.activeColor); // Get the selected font
     console.log(font, color)
 
 
     const handleFontClick = (path, name) => {
       console.log(path, name)
       const selectedFontPath = path;
-      useTextStore.setState({ font: selectedFontPath });
+
+      setCustomization((prevCustomization) => ({
+        ...prevCustomization,
+        embroidery: {
+          ...prevCustomization.embroidery,
+          embroideryFont: selectedFontPath,
+        },
+      }));
     };
 
 
     
     return (
     <div className="configurator">
-
         <Title>{productInternationalizeDetails.title}</Title>
-        <Desc>{productInternationalizeDetails.desc}</Desc>
+        <div>
+          <Desc>{productInternationalizeDetails.desc.substring(0, productInternationalizeDetails.desc.indexOf('.', productInternationalizeDetails.desc.indexOf('.') + 1) + 1)} <ReadMoreButton onClick={handleReadMore}>{t('readMore')}</ReadMoreButton></Desc>
+          <ReadMoreModal title={productInternationalizeDetails.title} text={productInternationalizeDetails.desc} show={showReadMoreModal} handleClose={handleToggleModal} />
+        </div>
 
         <div style={{ display: graduationCapCustomizationOptions.onOff.badge ? 'block' : 'none' }} id="customization_section_1"  className="configurator__section">
           <OptionTitlesContainer>
@@ -536,20 +558,21 @@ const Configurator = () => {
             </div>
 
             <div className="configurator__section__values">
-              {Colors.map((item, index) => {
+              {graduationCapCustomizationOptions.embroideryTextFront.colors.map((item, index) => {
+                const colorName = item.name[selectedLang][0].name;
                 return (
                   <div
                     key={index}
                     className={`item ${
-                      color.name === item.name ? "item--active" : ""
+                      item.name["en"][0].name === color ? "item--active" : ""
                     }`}
-                    onClick={() => setActiveColor(item)}
+                    onClick={() => handleCustomizationChange("embroideryTextColor", item.name["en"][0].name, item.price)}
                   >
                     <div
                       className="item__dot"
-                      style={{ backgroundColor: item.hex }}
+                      style={{ backgroundColor: item.color }}
                     />
-                    <div className="item__label">{item.name}</div>
+                    <div className="item__label">{colorName}</div>
                   </div>
                   );
               })}
@@ -560,14 +583,14 @@ const Configurator = () => {
                     <div className="input-group-simple">
                         <input 
                           type='text'
-                          placeholder='Front Left'
+                          placeholder={t('firstname')}
                           value={textFrontLeft}
                           onChange={(e) =>
-                            useTextStore.setState({ textFrontLeft: e.target.value })
+                            handleEmbroideryFrontTextChange("left", e.target.value, 8)
                           }
                           maxLength={13}
                         />
-                        <label  htmlFor="left">Etunimi</label>
+                        <label  htmlFor="left">{t('firstname')}</label>
                         <div className="req-mark">✓</div>
                     </div>
                 </InputDivCol1>
@@ -575,15 +598,15 @@ const Configurator = () => {
                     <div className="input-group-simple">
                         <input 
                           type='text'
-                          placeholder='Front Right'
+                          placeholder={t('lastname')}
                           value={textFrontRight}
                           onChange={(e) =>
-                            useTextStore.setState({ textFrontRight: e.target.value })
+                            handleEmbroideryFrontTextChange("right", e.target.value, 8)
                           }
                           max={13}
                           maxLength={13}
                         />
-                        <label htmlFor="right">Sukunimi</label>
+                        <label htmlFor="right">{t('lastname')}</label>
                         <div className="req-mark">✓</div>
                     </div>
                 </InputDivCol2>
@@ -603,7 +626,7 @@ const Configurator = () => {
                       placeholder='Back'
                       value={textBack}
                       onChange={(e) =>
-                        useTextStore.setState({ textBack: e.target.value })
+                        handleEmbroideryTextBackChange(e.target.value, 10)
                       }
                       maxLength={30}
                     />

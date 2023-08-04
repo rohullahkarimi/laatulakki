@@ -79,8 +79,7 @@
     "typescript": "^4.8.3",
     "uuid": "^9.0.0",
     "web-vitals": "^1.0.1",
-    "xml2json": "^0.12.0",
-    "zustand": "^4.4.0"
+    "xml2json": "^0.12.0"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
@@ -91,6 +90,8 @@
     "build:dev": "env-cmd -f .dev.env npm run-script build",
     "start:beta": "env-cmd -f .stag.env  npm start",
     "build:beta": "env-cmd -f .stag.env npm run build",
+    "build:webpack-stag": "env-cmd -f .stag.env webpack --mode production",
+    "build:webpack-prod": "env-cmd -f .prod.env webpack --mode production",
     "sitemap": "babel-node ./sitemap-builder.js",
     "dev": "webpack-dev-server --env dev --mode development",
     "stag": "webpack-dev-server --env stag --mode development",

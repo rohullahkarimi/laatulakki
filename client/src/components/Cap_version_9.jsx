@@ -22,19 +22,20 @@ import {
   Center,
 } from "@react-three/drei";
 import { useControls } from "leva";
-import { useColorStore } from "../Utils/store";
-import { useTextStore } from "../Utils/textStore";
 
 import * as THREE from "three";
 import { useCustomization } from '../contexts/Customization';
 function Ylioppilaslakki(props) {
-  const activeColor = useColorStore((state) => state.activeColor);
-  const textFrontLeft = useTextStore((state) => state.textFrontLeft);
-  const textFrontRight = useTextStore((state) => state.textFrontRight);
-  const textBack = useTextStore((state) => state.textBack);
-  const font = useTextStore((state) => state.font);
 
   const { customization } = useCustomization();
+  const textFrontLeft = customization.embroidery.embroideryTextFront.left; 
+  const textFrontRight = customization.embroidery.embroideryTextFront.right;
+  const textBack = customization.embroidery.embroideryTextBack;
+  const font = customization.embroidery.embroideryFont;
+  const color = customization.embroidery.embroideryTextColor;
+
+
+
 
   const { nodes, materials } = useGLTF("/models/cap_version_9.gltf");
 
@@ -122,7 +123,7 @@ function Ylioppilaslakki(props) {
                   attach='material'
                   metalness={0.1}
                   roughness={1}
-                  color={activeColor?.hex}
+                  color={color}
                   map={texture}
                 />
                 {textFrontLeft}
@@ -139,7 +140,7 @@ function Ylioppilaslakki(props) {
                   attach='material'
                   metalness={0.1}
                   roughness={1}
-                  color={activeColor?.hex}
+                  color={color}
                   map={texture}
                 />
                 {textFrontRight}
@@ -173,7 +174,7 @@ function Ylioppilaslakki(props) {
                   attach='material'
                   metalness={0.1}
                   roughness={1}
-                  color={activeColor?.hex}
+                  color={color}
                   map={texture}
                 />
                 {textBack}

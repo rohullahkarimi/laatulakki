@@ -11,6 +11,7 @@ import { Fullscreen, FullscreenExit, ThreeDRotationOutlined } from "@mui/icons-m
 import Navbar from "../components/Navbar";
 import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
+import { t } from 'i18next';
 
 
 
@@ -32,6 +33,16 @@ const MainDiv = styled.div`
     ${smartPhone({ flexDirection: "column"})}
     ${mobile({flexDirection: "column"})}
 `
+
+
+
+const CanvasToMiddle = styled.div`
+    display: flex;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+`
+
 const CanvasDiv = styled.div`
     position: relative;
     flex: 12;
@@ -41,16 +52,25 @@ const CanvasDiv = styled.div`
     
 
     canvas {
-        width: 100% !important; 
-        height: auto; /* Set an explicit height value */
-        ${largeLaptop({ height: "1200px !important"})}
-        ${laptop({ height: "1100px !important"})}
-        ${smallLaptop({ height: "800px !important"})}
-        ${tablet({ height: "700px !important"})}
-        ${smartPhone({ height: "600px !important"})}
-        ${mobile({ height: "500px !important"})}
+        /* Add a max-width to maintain the aspect ratio */
+        max-width: 100%;
+        /* Set the max-height to prevent the canvas from growing too large */
+        max-height: 100%;
+        ${largeLaptop({ height: "700px !important", width: "auto !important"})}
+        ${laptop({ height: "500px !important"})}
+        ${smallLaptop({ height: "550px !important"})}
+        ${tablet({ height: "310px !important"})}
+        ${smartPhone({ height: "280px !important"})}
+        ${mobile({ height: "260px !important"})}
     }
     
+    // Position sticky on mobile
+    @media (max-width: 600px) {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background-color: white; // Change this to match your desired background color
+    }
 `
 const OptionsDiv = styled.div`
     display: flex;
@@ -89,7 +109,38 @@ const FullscreenButton = styled.div`
   ${smallLaptop({display: "block"})}
 `;
 
+const NavbarDesktop = styled.div`
+  display: block;
+  @media (max-width: 600px) {
+    display: none;
+  }
+`;
 
+// Navbar for mobile (screen width < 600px)
+const NavbarMobile = styled.div`
+  display: none;
+  @media (max-width: 600px) {
+    display: block;
+  }
+`;
+
+export const TextSlider = styled.div`
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    background-color: white; // Change this to match your desired background color
+    padding: 16px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    height: 45px;
+    border: 2px solid #f7f7f7; 
+    /* Add flexbox properties for vertical centering */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ${smartPhone({fontSize: "14px"})}
+`;
 
 const Ylioppilaslakki = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -123,13 +174,18 @@ const Ylioppilaslakki = () => {
     };
 
 
-
+    
   return (
     <CustomizationProvider>
         <CapMainDiv>
-            <Navbar/>
+            <NavbarDesktop>
+                <Navbar />
+            </NavbarDesktop>
             <MainDiv fullHeight={fullHeight}>
-                <CanvasDiv style={{ position: "relative" }}>
+                <CanvasDiv>
+                    <NavbarMobile>
+                        <Navbar />
+                    </NavbarMobile>
                     {isLoading && (
                         <LoaderOverlay>
                             <LoaderText>Loading the model...</LoaderText>
@@ -137,18 +193,28 @@ const Ylioppilaslakki = () => {
                     )}
 
             
-                    <ThreeDRotationOutlined style={{ position: "absolute", top: 4, right: 4, zIndex: 1, fontSize: "32px" }}/>
-                   
-                    <Canvas  ref={canvasRef}  >
-                        <color attach="background" args={["#e6e6e6"]} />
-                        <fog attach="fog" args={["#e6e6e6", 10, 20]} />
-                        <ExperienceYlioppilaslakki/>
-                    </Canvas>
-                    <FullscreenButton onClick={toggleFullscreen} style={{ position: "absolute", bottom: 4, right: 4, zIndex: 1 }}>
+                    <ThreeDRotationOutlined style={{ position: "absolute", bottom: 52, left: 10, zIndex: 1, fontSize: "30px" }}/>
+                    
+                    <CanvasToMiddle>
+                        <Canvas  ref={canvasRef}  >
+                            <color attach="background" args={["#e6e6e6"]} />
+                            <fog attach="fog" args={["#e6e6e6", 10, 20]} />
+                            <ExperienceYlioppilaslakki/>
+                        </Canvas>
+                    </CanvasToMiddle>
+                    <NavbarMobile>
+                        <TextSlider>{t('3dText')}</TextSlider>
+                    </NavbarMobile>
+
+
+                    <FullscreenButton onClick={toggleFullscreen} style={{ position: "absolute", bottom: 55, right: 10, zIndex: 1, fontSize: "30px" }}>
                         {isFullscreen ? <FullscreenExit/> : <Fullscreen/>}
                     </FullscreenButton>
+
+                   
                 
                 </CanvasDiv>
+              
                 <OptionsDiv id="options-div" style={{ display: optionsDivDisplay }}>
                     <Configurator/>
                 </OptionsDiv>

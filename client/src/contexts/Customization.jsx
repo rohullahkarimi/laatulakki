@@ -5,14 +5,14 @@ import { createContext, useContext, useState } from "react";
 export const graduationCapCustomizationOptions = ({
   "title": [
     {
-      "fi": " ylioppilaslakki",
+      "fi": "Suomalainen ylioppilaslakki",
       "en": "Traditional Finnish student cap",
       "se": "Traditionell finsk studentmössa"
     }
   ],
   "desc": [
     {
-      "fi": "Perinteinen suomalainen ....",
+      "fi": "Perinteinen suomalainen ylioppilaslakki. Lakissa on kiinnitettynä kullattu 16x16 mm lyyra. Lakin päällikangas on korkealaatuista, vettä ja likaa hylkivää Brilliant-samettia. Lakin vuorikangas on sinivalkoista viskoosia. Hikinauha on nahkaa ja lippa on valmistettu tekonahasta. Mittaa päänympäryksesi huolellisesti, jotta pystyt valitsemaan juuri sinulle oikeankokoisen ylioppilaslakin. Ylioppilaslakki toimitetaan sopivan kokoisessa laatikossa, jossa sitä on helppo säilyttää.",
       "en": "Traditional Finnish student cap. The cap has a gold-plated 16x16 mm lyre attached. The outer fabric of the cap is high-quality, water and dirt-repellent Brilliant velvet. The lining fabric of the cap is blue-white viscose. The sweatband is leather and the cap is made of artificial leather. Measure your head circumference carefully so that you can choose just for you the right-sized graduation cap. The graduation cap is delivered in an appropriately sized box, where it is easy to store.",
       "se": "Traditionell finsk studentmössa. Kepsen har en guldpläterad 16x16 mm lyra fäst. Yttertyget på kepsen är av hög kvalitet, vatten- och smutsavvisande Briljant sammet. Fodertyget på kepsen är blåvit viskos. Den svettband är läder och kepsen är gjord av konstläder Mät din huvudomkrets noggrant så att du kan välja just för dig en examensmössa i rätt storlek Graduation-kepsen levereras i en passande stor kartong, där den är enkel att förvara. "
     }
@@ -456,7 +456,46 @@ export const graduationCapCustomizationOptions = ({
       ]
     },  color: "#e8e8e8", price: 3, enabled: true, stock: 100 },
   ],
-  embroideryTextFront: { price: 10, enabled: true},
+  embroideryTextFront: {
+    colors: [
+      { name: {
+        "fi": [
+          {
+            "name": "kulta"
+          }
+        ],
+        "se": [
+          {
+            "name": "guld"
+          }
+        ],
+        "en": [
+          {
+            "name": "gold"
+          }
+        ]
+      },  color: "#ffcd59", price: 8, enabled: true, stock: 100 },
+      { name: {
+        "fi": [
+          {
+            "name": "hopea"
+          }
+        ],
+        "se": [
+          {
+            "name": "silver"
+          }
+        ],
+        "en": [
+          {
+            "name": "silver"
+          }
+        ]
+      },  color: "#e8e8e8", price: 8, enabled: true, stock: 100 },
+    ],
+    price: 10, 
+    enabled: true
+  },
   embroideryTextBack: { price: 8, enabled: true},
 });
 
@@ -470,8 +509,12 @@ export const CustomizationProvider = (props) => {
     textColor: "yellow",
     roundRibbonColor: "",
     cordColor: "black",
-    embroideryTextFront: { left: "", right: "" },
-    embroideryTextBack: "",
+    embroidery: {
+      embroideryTextColor: "gold",
+      embroideryTextFront: { left: "", right: "" },
+      embroideryTextBack: "",
+      embroideryFont: "/Fonts/kauno.json",
+    },
     size: "",
     quantity: 1,
     productStorage: "",
