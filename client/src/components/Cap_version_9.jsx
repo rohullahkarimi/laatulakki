@@ -244,4 +244,4 @@ function Ylioppilaslakki(props) {
 
 export default Ylioppilaslakki;
 
-useGLTF.preload("./models/cap_version_9.gltf");
+useGLTF.preload("/models/cap_version_9.gltf");

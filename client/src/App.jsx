@@ -23,7 +23,6 @@ import PaymentPage from "./pages/Payment_response";
 import { CookieBanner } from "@palmabit/react-cookie-law";
 import { useTranslation } from 'react-i18next';
 import $ from "jquery"
-import Chair from "./pages/Chair";
 import Ylioppilaslakki from "./pages/Ylioppilaslakki";
 
 
@@ -96,7 +95,6 @@ const App = () => {
         <Route path="/our_story" element={<Story/>} />
         <Route path="/faq" element={<FAQ/>} />
         <Route path="/instagram" element={<Instagram/>} />
-        <Route path="/chair" element={<Chair/>} />
         <Route path="/ylioppilaslakki" element={<Ylioppilaslakki/>} />
   
         
