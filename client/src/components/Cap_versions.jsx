@@ -35,7 +35,7 @@ function Ylioppilaslakki(props) {
   const textBack = customization.embroidery.embroideryTextBack;
   const font = customization.embroidery.embroideryFont;
   const color = customization.embroidery.embroideryTextColor;
-
+  console.log(color)
 
 
 
@@ -170,7 +170,7 @@ function Ylioppilaslakki(props) {
                 height={0.3}
                 font={font}
                 position={[25.909000000000173, -11.239999999999993, -0.46]}
-                color='black'
+              
               >
                 <meshPhysicalMaterial
                   attach='material'
