@@ -41,7 +41,7 @@ function Ylioppilaslakki(props) {
 
   //const { nodes, materials } = useGLTF("/public/models/cap_version_9.gltf");
 
-  const texture = new THREE.TextureLoader().load("/textures/embroidery/embroideryTexture.jpg");
+  const texture = new THREE.TextureLoader().load("/public/textures/embroidery/embroideryTexture.jpg");
 
   const { pos, height, rotation } = useControls({
     //{"pos":[-0.3099999999999997,0.36000000000000065,-0.46]}

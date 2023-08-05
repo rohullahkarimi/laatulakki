@@ -70,6 +70,7 @@ const CanvasDiv = styled.div`
         top: 0;
         z-index: 999;
         background-color: white; // Change this to match your desired background color
+        pointer-events: none;
     }
 `
 const OptionsDiv = styled.div`
