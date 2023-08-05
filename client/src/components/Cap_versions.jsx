@@ -25,7 +25,9 @@ import { useControls } from "leva";
 
 import * as THREE from "three";
 import { useCustomization } from '../contexts/Customization';
+import useGLTFLoader from './useGLTFLoader';
 function Ylioppilaslakki(props) {
+  const { nodes, materials } = useGLTFLoader("/public/models/cap_version_9.gltf"); // Use the custom hook
 
   const { customization } = useCustomization();
   const textFrontLeft = customization.embroidery.embroideryTextFront.left; 
@@ -37,7 +39,7 @@ function Ylioppilaslakki(props) {
 
 
 
-  const { nodes, materials } = useGLTF("/public/models/cap_version_10.gltf");
+  //const { nodes, materials } = useGLTF("/public/models/cap_version_9.gltf");
 
   const texture = new THREE.TextureLoader().load("/textures/embroidery/embroideryTexture.jpg");
 
@@ -244,4 +246,4 @@ function Ylioppilaslakki(props) {
 
 export default Ylioppilaslakki;
 
-useGLTF.preload("/public/models/cap_version_10.gltf");
+//useGLTF.preload("/public/models/cap_version_9.gltf");

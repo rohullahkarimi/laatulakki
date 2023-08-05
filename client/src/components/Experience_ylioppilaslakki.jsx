@@ -2,6 +2,7 @@ import React from 'react'; // Make sure you have this import
 import {
   OrbitControls,
   Stage,
+  useGLTF,
 } from "@react-three/drei";
 
 //import Ylioppilaslakki from "./Ylioppilaslakki_component";
@@ -12,7 +13,8 @@ import { Suspense } from "react";
 const ExperienceYlioppilaslakki = () => { 
 
 
-
+  // Preload the GLTF model
+  useGLTF("/public/models/cap_version_9.gltf");
   return (
     <Suspense fallback={null}>
        <OrbitControls 

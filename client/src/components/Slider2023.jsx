@@ -40,7 +40,7 @@ const Slider2023 = () => {
         <main className="main">
             <section className="section banner banner-section">
                 <div className="container banner-column">
-                    <img className="banner-image" src="/images/malli/malli_0.jpeg" alt="banner"/>
+                    <img className="banner-image" src="/public/images/malli/malli_0.jpeg" alt="banner"/>
                     <BannerInner>
                         <HeadingXl>Kustomoidut ylioppilaslakit</HeadingXl>
                         <p className="paragraph">
