@@ -506,7 +506,6 @@ export const CustomizationProvider = (props) => {
   
   const [customization, setCustomization] = useState({
     badge: "fi",
-    textColor: "yellow",
     roundRibbonColor: "",
     cordColor: "black",
     embroidery: {

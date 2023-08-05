@@ -271,9 +271,7 @@ const Configurator = () => {
     } = useCustomization();
 
 
-    console.log(customization)
-    console.log(prices)
-
+    console.log(customization, prices)
 
     useEffect(() =>{
       const handleProductSet = (data) => {
@@ -346,6 +344,15 @@ const Configurator = () => {
         }));
     };
       
+    const handleEmbroideryTextColor = (value) => {
+      setCustomization((prevCustomization) => ({
+        ...prevCustomization,
+        embroidery: {
+          ...prevCustomization.embroidery,
+          embroideryTextColor: value,
+        },
+      }));
+    };
  
     const handleSizeSelection = (e) =>{
       setErrors([]); // Set the 'errors' state back to an empty array
@@ -353,8 +360,7 @@ const Configurator = () => {
       const option = e.target.querySelectorAll('option')[idx];
       const storage = option.getAttribute('data-storage');
   
-      console.log(e.target.value)
-
+    
       setCustomization({
         ...customization,
         size: e.target.value,
@@ -416,11 +422,10 @@ const Configurator = () => {
     const font = customization.embroidery.embroideryFont;
     const color = customization.embroidery.embroideryTextColor;
 
-    console.log(font, color)
+   
 
 
     const handleFontClick = (path, name) => {
-      console.log(path, name)
       const selectedFontPath = path;
 
       setCustomization((prevCustomization) => ({
@@ -559,20 +564,20 @@ const Configurator = () => {
 
             <div className="configurator__section__values">
               {graduationCapCustomizationOptions.embroideryTextFront.colors.map((item, index) => {
-                const colorName = item.name[selectedLang][0].name;
+                const embroideryTextColor = item.name[selectedLang][0].name;
                 return (
                   <div
                     key={index}
                     className={`item ${
-                      item.name["en"][0].name === color ? "item--active" : ""
+                      color === item.name["en"][0].name ? "item--active" : ""
                     }`}
-                    onClick={() => handleCustomizationChange("embroideryTextColor", item.name["en"][0].name, item.price)}
+                    onClick={() => handleEmbroideryTextColor(item.name["en"][0].name)}
                   >
                     <div
                       className="item__dot"
                       style={{ backgroundColor: item.color }}
                     />
-                    <div className="item__label">{colorName}</div>
+                    <div className="item__label">{embroideryTextColor}</div>
                   </div>
                   );
               })}
