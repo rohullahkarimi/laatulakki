@@ -513,7 +513,7 @@ export const CustomizationProvider = (props) => {
       embroideryTextColor: "gold",
       embroideryTextFront: { left: "", right: "" },
       embroideryTextBack: "",
-      embroideryFont: "/Fonts/kauno.json",
+      embroideryFont: "/public/Fonts/kauno.json",
     },
     size: "",
     quantity: 1,

@@ -13,8 +13,8 @@ import ReadMoreModal from './ReadMoreModal';
 
 
 const Fonts = [
-  { name: "Kuano", path: "/Fonts/kauno.json" },
-  { name: "Tekstaus", path: "/Fonts/tekstaus.json" },
+  { name: "Kuano", path: "/public/Fonts/kauno.json" },
+  { name: "Tekstaus", path: "/public/Fonts/tekstaus.json" },
   // Add more fonts if needed
 ];
 
