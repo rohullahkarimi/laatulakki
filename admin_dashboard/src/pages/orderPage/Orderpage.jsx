@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from "styled-components"
 import { mobile, smartPhone, tablet } from "../../responsive";
 import {Print } from "@material-ui/icons";
@@ -148,6 +149,15 @@ const Hr = styled.hr`
   height: 1px;
   @media print {
     display: none;
+  }
+`;
+
+const CustomizedOptionsDiv = styled.span`
+  display: block;
+  color: #000;
+  font-size: 14px;
+  @media print {
+    font-size: 14px;
   }
 `;
 
@@ -376,6 +386,39 @@ const Receipt = () => {
                         </ProductPriceText>
                         </Details>
                     </ProductDetail>
+
+
+                    {product.customizedProduct ? (
+                      <>
+                        <ProductDetail>
+                            <Details>
+                              <CustomizedOptionsDiv>
+                                <b>Lyyra:</b> {product?.badge}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>Koristenauha:</b> {product?.roundRibbonColor}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>Lippanauha:</b> {product.cordColor}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>Etukirjailu (vasen - oikein):</b> {product?.embroidery?.embroideryTextFront?.left} -- {product?.embroidery?.embroideryTextFront?.right} 
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>Takakirjailu:</b> {product?.embroidery?.embroideryTextBack}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>Brodeeraus väri:</b> {product?.embroidery?.embroideryTextColor}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>Brodeeraus fontti:</b> {product?.embroidery?.embroideryFont}
+                              </CustomizedOptionsDiv>
+                            </Details>
+                        </ProductDetail>
+                      </>
+                    ) :  <ProductDetail/>}
+
+
                     <PriceDetail>
                         <ProductPrice>
                           {product.discount ? (product.price - (product?.price * (product.discount / 100)).toFixed(2)) * product.quantity :  (product.price * product.quantity).toFixed(2)} €

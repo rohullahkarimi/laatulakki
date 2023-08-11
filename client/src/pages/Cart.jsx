@@ -56,7 +56,8 @@ const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
+  border: ${(props) => 
+    props.type === "filled" ? "1px solid black" : "1px solid"};
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
   color: ${(props) => props.type === "filled" && "white"};

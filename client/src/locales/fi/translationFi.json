@@ -1,5 +1,21 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    
+    "Lyre": "Lyyra",
+    "DecorativeRibbon": "Koristenauha",
+    "CordColor": "Lippanauha",
+    "FrontEmbroidery": "Etukirjailu",
+    "BackEmbroidery": "Takakirjailu",
+    "EmbroideryColor": "Brodeerausväri",
+    "EmbroideryFont": "Brodeerausfontti",
+
+    "star": "tähti",
+    "crystal": "kristalli",
+    "fi": "suomi",
+    "gold": "kulta",
+    "silver": "hopea",
+    "green": "vihreä",
+      
     "readMore": "Lue lisää",
     "3dText": "3D-mallituote – Kustomoi ja liikuta sormella!",
     "blog": "Blogi",

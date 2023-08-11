@@ -37,7 +37,13 @@
     "start:dev": "env-cmd -f .dev.env npm start",
     "build:dev": "env-cmd -f .dev.env npm run-script build",
     "start:beta": "env-cmd -f .stag.env  npm start",
-    "build:beta": "env-cmd -f .stag.env npm run build"
+    "build:beta": "env-cmd -f .stag.env npm run build",
+    "build:webpack-stag": "env-cmd -f .stag.env webpack --mode production",
+    "build:webpack-prod": "env-cmd -f .prod.env webpack --mode production",
+    "sitemap": "babel-node ./sitemap-builder.js",
+    "dev": "webpack-dev-server --env dev --mode development",
+    "stag": "webpack-dev-server --env stag --mode development",
+    "prod": "webpack-dev-server --env prod --mode development"
   },
   "eslintConfig": {
     "extends": [
@@ -56,5 +62,30 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-modules-commonjs": "^7.22.5",
+    "@babel/plugin-transform-react-jsx": "^7.22.5",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@rollup/plugin-commonjs": "^25.0.3",
+    "@types/uuid": "^8.3.4",
+    "babel-loader": "^9.1.3",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "dotenv-webpack": "^8.0.1",
+    "html-webpack-plugin": "^5.5.3",
+    "http-proxy-middleware": "^2.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^3.27.1",
+    "sass": "^1.64.2",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }

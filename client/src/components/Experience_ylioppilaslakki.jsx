@@ -14,7 +14,7 @@ const ExperienceYlioppilaslakki = () => {
 
 
   // Preload the GLTF model
-  useGLTF("/public/models/cap_version_9.gltf");
+  useGLTF("/models/cap_version_11-transformed.glb");
   return (
     <Suspense fallback={null}>
        <OrbitControls 
@@ -22,9 +22,10 @@ const ExperienceYlioppilaslakki = () => {
         enableDamping 
         dampingFactor={0.1}  
         //rotateSpeed={0.2} 
-        minDistance={2} // Set minimum distance for zooming in
+        minDistance={1} // Set minimum distance for zooming in
         maxDistance={8} // Set maximum distance for zooming out
        />
+         <pointLight position={[10, 10, 10]} />
         <Stage environment="city" intensity={0.6} castShadow={false}>
           <group>
             <Ylioppilaslakki />

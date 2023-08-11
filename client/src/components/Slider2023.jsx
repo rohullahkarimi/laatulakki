@@ -3,7 +3,7 @@ import React from 'react'; // Make sure you have this import
 import styled from "styled-components";
 import "../common/css/slider2023.css"
 import { Helmet } from "react-helmet";
-import {  tablet } from "../responsive";
+import {  laptop, smartPhone, tablet } from "../responsive";
 import { Link } from "react-router-dom";
 
 const BannerInner = styled.div`
@@ -12,6 +12,7 @@ const BannerInner = styled.div`
   align-items: flex-start;
   row-gap: 1.75rem;
   ${tablet({alignItems: "center"})}
+  ${smartPhone({paddingBottom: "6%"})}
 `
 
 
@@ -24,6 +25,31 @@ const HeadingXl = styled.h1`
   ${tablet({textAlign: "center"})}
 `
 
+const BannerImage = styled.img`
+  display: block;
+  max-width: 18rem;
+  height: auto;
+  margin-top: 2rem;
+  object-fit: cover;
+  justify-self: center;
+    
+
+  @media only screen and (min-width: 64rem) {
+    max-width: 25rem;
+    height: auto;
+    margin-right: 5rem;
+  }
+
+  @media only screen and (min-width: 42rem) {
+    order: 2;
+    max-width: 20rem;
+    height: auto;
+    object-position: "100% 0";
+  }
+  
+
+ 
+`;
 
 const Slider2023 = () => {
 
@@ -40,7 +66,7 @@ const Slider2023 = () => {
         <main className="main">
             <section className="section banner banner-section">
                 <div className="container banner-column">
-                    <img className="banner-image" src="/public/images/malli/malli_0.jpeg" alt="banner"/>
+                    <BannerImage src="/public/images/malli/malli_0.jpeg" alt="banner"/>
                     <BannerInner>
                         <HeadingXl>Kustomoidut ylioppilaslakit</HeadingXl>
                         <p className="paragraph">

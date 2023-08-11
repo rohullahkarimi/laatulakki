@@ -494,7 +494,7 @@
               <!-- START MAIN CONTENT AREA -->
               <tr>
                 <td class="full-width-image" style="background-color:#ffffff;">
-                  <img src="https://tester.laatulakki.fi/images/email_banner/banner1.jpg" max-width="600" alt="eKukka banner Image" />
+                  <img src="https://tester.laatulakki.fi/public/images/email_banner/banner1.jpg" max-width="600" alt="eKukka banner Image" />
                 </td>
               </tr>
               
@@ -582,15 +582,48 @@
                                         <div class="productDataContainer">
                                           <div class="productDataContainer_key">Tuote: </div><div class="productDataContainer_value">{{title}}</div>
                                         </div>
-                                        <div>
-                                          <div class="productDataContainer_key">Väri: </div><div class="productDataContainer_value">{{color}}</div>
-                                        </div>
+
+                                        {{#if color}}
+                                          <div>
+                                            <div class="productDataContainer_key">Väri: </div><div class="productDataContainer_value">{{color}}</div>
+                                          </div>
+                                        {{/if}}
+                                        
                                         <div>
                                           <div class="productDataContainer_key">Koko: </div><div class="productDataContainer_value">{{size}}</div>
                                         </div>
                                         <div>
                                           <div class="productDataContainer_key">Kpl: </div><div class="productDataContainer_value">{{quantity}}</div>
                                         </div>
+
+                                        {{#if customizedProduct}}
+                                          <div>
+                                            <div class="productDataContainer_key">Lyyra: </div><div class="productDataContainer_value">{{badge}}</div>
+                                          </div>
+                                          <div>
+                                            <div class="productDataContainer_key">Koristenauha: </div><div class="productDataContainer_value">{{roundRibbonColor}}</div>
+                                          </div>
+                                          <div>
+                                            <div class="productDataContainer_key">Lippanauha: </div><div class="productDataContainer_value">{{cordColor}}</div>
+                                          </div>
+                                          <div>
+                                            <div class="productDataContainer_key">Etukirjailu: </div><div class="productDataContainer_value">{{embroideryTextFrontLeft}} - {{embroideryTextFrontRight}}</div>
+                                          </div>
+                                          <div>
+                                            <div class="productDataContainer_key">Takakirjailu: </div><div class="productDataContainer_value">{{embroideryTextBack}}</div>
+                                          </div>
+                                          <div>
+                                            <div class="productDataContainer_key">Brodeerausväri: </div><div class="productDataContainer_value">{{embroideryTextColor}}</div>
+                                          </div>
+                                          <div>
+                                            <div class="productDataContainer_key">Brodeerausfontti: </div><div class="productDataContainer_value">{{embroideryFont}}</div>
+                                          </div>
+                                        {{/if}}
+
+
+
+
+
                                         <div>
                                           <div class="productDataContainer_key">ALV: </div><div class="productDataContainer_value">{{vatPercentage}} %</div>
                                         </div>

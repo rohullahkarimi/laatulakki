@@ -96,7 +96,19 @@ function sendOrderEmail(orderId){
         unitPrice: unitPrice,
         priceInTotal : (unitPrice * item.quantity).toFixed(2),
         tax: productPriceTax,
-        taxLess: productPriceTaxLess
+        taxLess: productPriceTaxLess,
+
+        customizedProduct: item.customizedProduct,
+        badge: item.badge,
+        cordColor: item.cordColor,
+        roundRibbonColor: item.roundRibbonColor,
+      
+        embroideryTextFrontLeft: item.embroidery?.embroideryTextFront?.left,
+        embroideryTextFrontRight: item.embroidery?.embroideryTextFront?.right,
+        embroideryTextBack: item.embroidery?.embroideryTextBack,
+        embroideryTextColor: item.embroidery?.embroideryTextColor,
+        embroideryFont: item.embroidery?.embroideryFont,
+
       };
       return productObject;
     })

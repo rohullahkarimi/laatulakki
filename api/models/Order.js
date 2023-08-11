@@ -39,6 +39,25 @@ const OrderSchema = new mongoose.Schema(
                 vatPercentage: {
                     type: Number,
                 },
+
+                
+
+                customizedProduct: {
+                    type: Boolean,
+                },
+                badge: {
+                    type: String,
+                },
+                roundRibbonColor: {
+                    type: String,
+                },
+                cordColor: {
+                    type: String,
+                },
+                embroidery: {
+                    type: Object,
+                },
+
             },
         ],
         billingAddress: { 

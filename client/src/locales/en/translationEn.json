@@ -1,5 +1,22 @@
 {
     "mandatory": "is a mandatory field",
+
+    "Lyre": "Lyre",
+    "DecorativeRibbon": "Decorative ribbon",
+    "CordColor": "Round ribbon",
+    "FrontEmbroidery": "Front embroidery",
+    "BackEmbroidery": "Back embroidery",
+    "EmbroideryColor": "Embroidery color",
+    "EmbroideryFont": "Embroidery font",
+
+    "star": "star",
+    "crystal": "crystal",
+    "fi": "finland",
+    "gold": "gold",
+    "silver": "silver",
+    "green": "green",
+    
+
     "readMore": "Read more",
     "3dText": "3D model product - Customize and move with your finger!",
     "blog": "Blog",

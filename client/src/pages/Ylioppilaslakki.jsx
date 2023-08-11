@@ -7,12 +7,58 @@ import Configurator from "../components/Configurator";
 import { CustomizationProvider } from "../contexts/Customization";
 import styled from "styled-components";
 import { laptop, largeLaptop, mobile, smallLaptop, smartPhone, tablet } from "../responsive";
-import { Fullscreen, FullscreenExit, ThreeDRotationOutlined } from "@mui/icons-material";
+import { ThreeDRotationOutlined, ZoomInOutlined, ZoomOutOutlined } from "@mui/icons-material";
 import Navbar from "../components/Navbar";
 import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import { t } from 'i18next';
+import $ from "jquery"
+import ReactDOM from "react-dom";
+import BounceLoader from 'react-spinners/ClipLoader';
 
+
+
+// globar variables
+var forceRerender = false;
+var fullScreenStatus = false;
+var optionsDivDisplay = "flex";
+
+const toggleFullscreen = () => {
+
+  if (optionsDivDisplay === "flex") {
+    optionsDivDisplay = "none";
+    fullScreenStatus = true;
+    forceRerender = true;
+    $("#canvasDiv canvas").removeAttr("style")
+    $("#canvasDiv canvas").attr('style', 'height: 70vh !important;display: block;');
+    $("#options-div").attr('style', 'display: none;');
+    ReactDOM.render(<ZoomOutOutlined />, document.getElementById("zoomContainer"));
+    
+
+   
+  } else {
+    ReactDOM.render(<ZoomInOutlined />, document.getElementById("zoomContainer"));
+    optionsDivDisplay = "flex";
+    fullScreenStatus = false;
+    forceRerender = true;
+    $("#options-div").attr('style', 'display: flex;');
+
+    // Check device width and set canvas height accordingly
+    if (window.innerWidth < 390) {
+      $("#canvasDiv canvas").attr('style', 'height: 240px !important; display: block;');
+    } else if (window.innerWidth < 600) {
+      $("#canvasDiv canvas").attr('style', 'height: 270px !important;display: block;');
+    } else if (window.innerWidth < 800) {
+      $("#canvasDiv canvas").attr('style', 'height: 550px !important;display: block;');
+    } else if (window.innerWidth < 950) {
+      $("#canvasDiv canvas").attr('style', 'height: 500px !important;display: block;');
+    } else if (window.innerWidth < 1200) {
+      $("#canvasDiv canvas").attr('style', 'height: 600px !important;display: block;');
+    } else if (window.innerWidth < 1800) {
+      $("#canvasDiv canvas").attr('style', 'height: 650px !important;display: block;');
+    }
+  }
+};
 
 
 const CapMainDiv = styled.div`
@@ -27,7 +73,6 @@ const MainDiv = styled.div`
     */
     
     background: #E6E6E6;
-    height: ${(props) => (props.fullHeight ? "90%" : "auto")};
     ${laptop({height: "auto"})}
     ${smallLaptop({height: "auto", flexDirection: "column"})}
     ${smartPhone({ flexDirection: "column"})}
@@ -44,35 +89,25 @@ const CanvasToMiddle = styled.div`
 `
 
 const CanvasDiv = styled.div`
-    position: relative;
-    flex: 12;
-    height: auto; 
-    width: 100%; 
+  position: relative;
+  flex: 12;
+  height: auto;
+  width: 100%;
 
-    
+  canvas {
+    max-width: 100%;
+    max-height: 100%;
+  }  
 
-    canvas {
-        /* Add a max-width to maintain the aspect ratio */
-        max-width: 100%;
-        /* Set the max-height to prevent the canvas from growing too large */
-        max-height: 100%;
-        ${largeLaptop({ height: "700px !important", width: "auto !important"})}
-        ${laptop({ height: "500px !important"})}
-        ${smallLaptop({ height: "550px !important"})}
-        ${tablet({ height: "310px !important"})}
-        ${smartPhone({ height: "280px !important"})}
-        ${mobile({ height: "260px !important"})}
-    }
-    
-    // Position sticky on mobile
-    @media (max-width: 600px) {
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        background-color: white; // Change this to match your desired background color
-        pointer-events: none;
-    }
-`
+  // Position sticky on mobile
+  @media (max-width: 600px) {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: white; // Change this to match your desired background color
+    /* pointer-events: none; */
+  }
+`;
 const OptionsDiv = styled.div`
     display: flex;
     flex-direction: column;
@@ -146,10 +181,19 @@ export const TextSlider = styled.div`
 const Ylioppilaslakki = () => {
     const [isLoading, setIsLoading] = useState(true);
     const canvasRef = useRef();
-    const [isFullscreen, setIsFullscreen] = useState(false);
-    const [optionsDivDisplay, setOptionsDivDisplay] = useState("flex");
-    const [fullHeight, setFullHeight] = useState(false);
-    
+
+
+    console.log(forceRerender)
+    useEffect(() => {
+      if (forceRerender) {
+        console.log("force rendering is on")
+        forceRerender = false;
+      }else{
+        console.log("force rendering is off")
+      }
+    }, []);
+  
+   
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -160,19 +204,7 @@ const Ylioppilaslakki = () => {
     }, []);
 
       
-    const toggleFullscreen = () => {
-        console.log(isFullscreen)
-        setIsFullscreen((prevFullscreen) => !prevFullscreen);
-        if (optionsDivDisplay === "flex") {
-          setOptionsDivDisplay("none");
-          setFullHeight(true);
-        } else {
-          setOptionsDivDisplay("flex");
-          setFullHeight(false);
-        }
-    
 
-    };
 
 
     
@@ -182,14 +214,14 @@ const Ylioppilaslakki = () => {
             <NavbarDesktop>
                 <Navbar />
             </NavbarDesktop>
-            <MainDiv fullHeight={fullHeight}>
-                <CanvasDiv>
+            <MainDiv>
+                <CanvasDiv  id="canvasDiv">
                     <NavbarMobile>
                         <Navbar />
                     </NavbarMobile>
                     {isLoading && (
                         <LoaderOverlay>
-                            <LoaderText>Loading the model...</LoaderText>
+                            <BounceLoader color="#36d7b7" size={60}/>
                         </LoaderOverlay>
                     )}
 
@@ -197,7 +229,7 @@ const Ylioppilaslakki = () => {
                     <ThreeDRotationOutlined style={{ position: "absolute", bottom: 52, left: 10, zIndex: 1, fontSize: "30px" }}/>
                     
                     <CanvasToMiddle>
-                        <Canvas  ref={canvasRef}  >
+                        <Canvas  ref={canvasRef}>
                             <color attach="background" args={["#e6e6e6"]} />
                             <fog attach="fog" args={["#e6e6e6", 10, 20]} />
                             <ExperienceYlioppilaslakki/>
@@ -208,15 +240,15 @@ const Ylioppilaslakki = () => {
                     </NavbarMobile>
 
 
-                    <FullscreenButton onClick={toggleFullscreen} style={{ position: "absolute", bottom: 55, right: 10, zIndex: 1, fontSize: "30px" }}>
-                        {isFullscreen ? <FullscreenExit/> : <Fullscreen/>}
+                    <FullscreenButton id="zoomContainer" onClick={toggleFullscreen} style={{ position: "absolute", bottom: 55, right: 10, zIndex: 1, fontSize: "30px" }}>
+                        <ZoomInOutlined/>
                     </FullscreenButton>
 
                    
                 
                 </CanvasDiv>
               
-                <OptionsDiv id="options-div" style={{ display: optionsDivDisplay }}>
+                <OptionsDiv id="options-div">
                     <Configurator/>
                 </OptionsDiv>
             </MainDiv>

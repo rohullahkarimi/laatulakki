@@ -37,6 +37,8 @@ const CartModal = (props) => {
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate()
   const { t } = useTranslation();
+
+  console.log(cart)
  
 
   

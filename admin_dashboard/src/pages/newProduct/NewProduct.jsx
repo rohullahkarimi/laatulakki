@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import "./newProduct.css";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";

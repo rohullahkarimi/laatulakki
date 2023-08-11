@@ -17,10 +17,18 @@ const Product = styled.div`
   /*${smartPhone({ flexDirection: "column" })}*/
 `;
 
-const ProductDetail = styled.div`
+const ProductDetail1 = styled.div`
   display: flex;
   align-items: center;
   padding: 10px 0;
+  /*${tablet({ flexDirection: "column", alignItems: "center" })}*/
+`;
+
+const ProductDetail2 = styled.div`
+  display: flex;
+  padding: 10px 0;
+  align-items: flex-start;
+  flex-direction: column;
   /*${tablet({ flexDirection: "column", alignItems: "center" })}*/
 `;
 
@@ -57,6 +65,12 @@ const ProductName = styled.span`
 
 
 const ProductQuantity = styled.span`
+  display: block;
+  color: #000;
+  font-size: 16px;
+`;
+
+const CustomizedOptionsDiv = styled.span`
   display: block;
   color: #000;
   font-size: 16px;
@@ -136,7 +150,18 @@ const ProductPriceText = styled.span`
 `;
 
 
+
+const Hr = styled.hr`
+  width: 80%;
+  background-color: #dad8d8;
+  border: none;
+  height: 1px;
+  text-align: center;
+  margin: auto;
+`;
+
 const CartProduct = (props) => {
+  console.log(props)
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch()
   const [cartItems, setCartItems] = useState(cart.quantity);
@@ -193,9 +218,9 @@ const CartProduct = (props) => {
  
   return (
     <div >
-      {cart.products.map((product) => (
+      {cart.products.map((product, index) => (
       <Product key={product._id+product.size}>
-        <ProductDetail>
+        <ProductDetail1>
           <ImageContainer>
             <Image src={product.img} />
           </ImageContainer>
@@ -205,17 +230,6 @@ const CartProduct = (props) => {
               <ProductName>
               {product.title}
               </ProductName>
-              {product.color && <ProductColor><b>{t("color")}:</b> {product.color}</ProductColor>}
-              <ProductSize>
-                <b>{t("size")}:</b> {product.size}
-              </ProductSize>
-              <ProductQuantity>
-               <b>{t("quantity")}:</b> {product.quantity}
-              </ProductQuantity>
-              {product.discount &&<ProductDiscount><b>{t("discount")}:</b> -{product.discount} %</ProductDiscount>}
-              <ProductPriceText>
-                <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } € 
-              </ProductPriceText>
             </Details>
           </DetailsContainer>
          
@@ -241,8 +255,48 @@ const CartProduct = (props) => {
             : <div></div>
           }
 
-        </ProductDetail>
+        </ProductDetail1>
+        <ProductDetail2>
 
+          {product.color && <CustomizedOptionsDiv><b>{t("color")}:</b> {product.color}</CustomizedOptionsDiv>}
+          <CustomizedOptionsDiv>
+            <b>{t("size")}:</b> {product.size}
+          </CustomizedOptionsDiv>
+          <CustomizedOptionsDiv>
+            <b>{t("quantity")}:</b> {product.quantity}
+          </CustomizedOptionsDiv>
+          {product.discount &&<ProductDiscount><b>{t("discount")}:</b> -{product.discount} %</ProductDiscount>}
+          <CustomizedOptionsDiv>
+            <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } € 
+          </CustomizedOptionsDiv>
+  
+        {product.customizedProduct && (
+          <>
+            <CustomizedOptionsDiv>
+            <b>{t("Lyre")}:</b> {t(product?.badge)}
+            </CustomizedOptionsDiv>
+            <CustomizedOptionsDiv>
+            <b>{t("DecorativeRibbon")}:</b> {t(product?.roundRibbonColor)}
+            </CustomizedOptionsDiv>
+            <CustomizedOptionsDiv>
+            <b>{t("CordColor")}:</b> {t(product.cordColor)}
+            </CustomizedOptionsDiv>
+            <CustomizedOptionsDiv>
+            <b>{t("FrontEmbroidery")}:</b> {product?.embroidery?.embroideryTextFront?.left} {product?.embroidery?.embroideryTextFront?.right} 
+            </CustomizedOptionsDiv>
+            <CustomizedOptionsDiv>
+            <b>{t("BackEmbroidery")}:</b> {product?.embroidery?.embroideryTextBack}
+            </CustomizedOptionsDiv>
+            <CustomizedOptionsDiv>
+            <b>{t("EmbroideryColor")}:</b> {t(product?.embroidery?.embroideryTextColor)}
+            </CustomizedOptionsDiv>
+            <CustomizedOptionsDiv>
+            <b>{t("EmbroideryFont")}:</b> {product?.embroidery?.embroideryFont}
+            </CustomizedOptionsDiv>
+          </>
+        )}
+        </ProductDetail2>
+        {index !== cart.products.length - 1 && <Hr/>}
       </Product>
     ))}
     </div>

@@ -492,6 +492,7 @@ export const graduationCapCustomizationOptions = ({
           }
         ]
       },  color: "#e8e8e8", price: 8, enabled: true, stock: 100 },
+
     ],
     price: 10, 
     enabled: true
@@ -512,11 +513,12 @@ export const CustomizationProvider = (props) => {
       embroideryTextColor: "gold",
       embroideryTextFront: { left: "", right: "" },
       embroideryTextBack: "",
-      embroideryFont: "/public/Fonts/kauno.json",
+      embroideryFont: "kauno",
     },
     size: "",
     quantity: 1,
     productStorage: "",
+    focus: "",
   });
   
   const [prices, setPrices] = useState({

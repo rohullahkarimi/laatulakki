@@ -50,7 +50,7 @@ const Product = styled.div`
 
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
+  ${tablet({ flexDirection: "column" })}
   @media print {
     font-size: 14px;
   }
@@ -69,7 +69,7 @@ const Image = styled.img`
 const ProductDetail = styled.div`
   flex: 2;
   display: flex;
-  ${tablet({ flexDirection: "column", alignItems: "center" })}
+  ${tablet({ flexDirection: "column", alignItems: "flex-start" })}
 `;
 
 
@@ -116,6 +116,19 @@ const ProductSize = styled.span`
     font-size: 14px;
   }
 `;
+
+const CustomizedOptionsDiv = styled.span`
+  display: block;
+  color: #000;
+  font-size: 14px;
+  @media print {
+    font-size: 14px;
+  }
+`;
+
+
+
+
 
 const ProductQuantity = styled.span`
   display: block;
@@ -391,6 +404,8 @@ const Receipt = () => {
     totalPriceIncludeDelivery: totalPriceIncludeDelivery
   }
 
+  console.log(order.products)
+
   const Address = (data) => (
     <>
         <DetailsInfo>
@@ -516,6 +531,40 @@ const Receipt = () => {
                         </ProductPriceText>
                         </Details>
                     </ProductDetail>
+
+
+                    {product.customizedProduct ? (
+                      <>
+                        <ProductDetail>
+                            <Details>
+                              <CustomizedOptionsDiv>
+                                <b>{t("Lyre")}:</b> {t(product?.badge)}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>{t("DecorativeRibbon")}:</b> {t(product?.roundRibbonColor)}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>{t("CordColor")}:</b> {t(product.cordColor)}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>{t("FrontEmbroidery")}:</b> {product?.embroidery?.embroideryTextFront?.left} {product?.embroidery?.embroideryTextFront?.right} 
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>{t("BackEmbroidery")}:</b> {product?.embroidery?.embroideryTextBack}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>{t("EmbroideryColor")}:</b> {t(product?.embroidery?.embroideryTextColor)}
+                              </CustomizedOptionsDiv>
+                              <CustomizedOptionsDiv>
+                                <b>{t("EmbroideryFont")}:</b> {product?.embroidery?.embroideryFont}
+                              </CustomizedOptionsDiv>
+                            </Details>
+                        </ProductDetail>
+                      </>
+                    ) :  <ProductDetail/>}
+
+
+
                     <PriceDetail>
                         <ProductPrice>
                           {product.discount ? (product.price - (product?.price * (product.discount / 100)).toFixed(2)) * product.quantity :  (product.price * product.quantity).toFixed(2)} €

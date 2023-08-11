@@ -1,5 +1,22 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+
+    
+    "Lyre": "Lyra",
+    "OrnamentRibbon": "Dekorband",
+    "CordColor": "Rundband",
+    "FrontEmbroidery": "Framstygn",
+    "BackEmbroidery": "Bakstygn",
+    "EmbroideryColor": "Broderifärg",
+    "EmbroideryFont": "Broderifont",
+
+    "star": "tähti",
+    "crystal": "kristalli",
+    "fi": "suomi",
+    "gold": "kulta",
+    "silver": "hopea",
+    "green": "vihreä",
+   
     "readMore": "Läs mer",
     "3dText": "3D-modellprodukt - Anpassa och flytta med fingret!",
     "blog": "Blogg",

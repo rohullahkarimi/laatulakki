@@ -10,11 +10,19 @@ import { useEffect, useState } from "react";
 import i18n from "../i18n";
 import $ from "jquery"
 import ReadMoreModal from './ReadMoreModal';
+import { useDispatch } from "react-redux"
+import { addProduct } from "../redux/cartRedux"
+import ReactPixel from 'react-facebook-pixel';
+import CartModal from './CartModal';
+import CapChoiceModal from "../components/CapChoiceModal"
+import CapUsageModal from "../components/CapUsageModal"
+
+ReactPixel.pageView(); // For tracking page view
 
 
 const Fonts = [
-  { name: "Kuano", path: "/public/Fonts/kauno.json" },
-  { name: "Tekstaus", path: "/public/Fonts/tekstaus.json" },
+  { name: "kauno"},
+  { name: "tekstaus" },
   // Add more fonts if needed
 ];
 
@@ -214,6 +222,21 @@ const ReadMoreButton = styled.button`
   cursor: pointer;
 `
 
+const InstructionContainer = styled.div`
+    margin-bottom: 0px;
+`
+const InstructionItem = styled.a`
+    cursor: pointer;
+    display: block;
+`
+
+const FreeRefund = styled.p`
+    padding: 10px 0;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 0;
+`
+
 const GetTotalPrice = (prices) => {
   const {
     customization
@@ -251,6 +274,46 @@ const Configurator = () => {
     })
     const [errors, setErrors] = useState([]);
     const [showReadMoreModal, setShowReadMoreModal] = useState(false);
+    const dispatch = useDispatch()
+    const [modalShow, setModalShow] = useState(false);
+    const [modalShowCapChoice, setModalShowCapChoice] = useState(false);
+    const [modalShowCapUsage, setModalShowCapUsage] = useState(false);
+    const {
+      customization,
+      setCustomization,
+      prices,
+      setPrices,
+      graduationCapCustomizationOptions,
+    } = useCustomization();
+
+
+    const getTotalPrice = (pricesObject) => {
+      let total = 0;
+    
+      // Iterate through the object properties and add their values to the total
+      for (const key in pricesObject) {
+        if (pricesObject.hasOwnProperty(key)) {
+          total += pricesObject[key];
+        }
+      }
+    
+      return total;
+    };
+
+    const totalPrice = getTotalPrice(prices);
+    //console.log(totalPrice)
+    
+  
+
+    const [customizeProduct, setCustomizeProduct] = useState({
+      title: graduationCapCustomizationOptions.title[0].fi,
+      desc: graduationCapCustomizationOptions.desc[0].fi,
+      img: graduationCapCustomizationOptions.img[2].thumbnail,
+      productId: "123456789",
+      vatPercentage: 24,
+    });
+
+
 
     // Function to toggle the Modal visibility
     const handleToggleModal = () => {
@@ -262,13 +325,19 @@ const Configurator = () => {
       handleToggleModal();
     };
 
-    const {
-        customization,
-        setCustomization,
-        prices,
-        setPrices,
-        graduationCapCustomizationOptions,
-    } = useCustomization();
+    const handleCapChoice = (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      setModalShowCapChoice(true)
+  }
+
+  const handleCapUsage = (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      setModalShowCapUsage(true)
+  }
+
+  
 
 
     console.log(customization, prices)
@@ -384,37 +453,6 @@ const Configurator = () => {
       }
     };
     
-    
-    const handleCheckOut = () =>{
-      const newErrors = [];
-      if (!customization.size) {
-        newErrors.push(t('choose') + ' ' + t('size'));
-      }
-      if (customization.size && customization.quantity > customization.productStorage) {
-        newErrors.push(t('stockExceed'));
-      }
-      setErrors(newErrors);
-
-      /*
-      let productId = product._id
-      let title = product.title[0].fi
-      let img = product.img[0].thumbnail
-      */
-  
-    
-     
-      // update cart
-      /*
-      dispatch(
-          addProduct({ ...product, title, img, quantity, color, size, productId, productStorage})
-      )
-      */
-      
-      //setModalShow(true)
-      
-      //ReactPixel.track("track", "Buy-button"); // For tracking default events. More info about standard events: https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#standard-events
-    }
-
     // 3D fonts
     const textFrontLeft = customization.embroidery.embroideryTextFront.left; 
     const textFrontRight = customization.embroidery.embroideryTextFront.right;
@@ -422,23 +460,74 @@ const Configurator = () => {
     const font = customization.embroidery.embroideryFont;
     const color = customization.embroidery.embroideryTextColor;
 
-   
+  
 
 
-    const handleFontClick = (path, name) => {
-      const selectedFontPath = path;
+    const handleFontClick = ( name) => {
+      const fontName = name;
 
       setCustomization((prevCustomization) => ({
         ...prevCustomization,
         embroidery: {
           ...prevCustomization.embroidery,
-          embroideryFont: selectedFontPath,
+          embroideryFont: fontName,
         },
       }));
     };
 
+    const getSizeStorage = (selectedSize) => {
+      const sizeInfo = graduationCapCustomizationOptions.size.find(size => size.name === selectedSize);
+      return sizeInfo ? sizeInfo.storage : 0; // Return the storage value or 0 if not found
+    };
 
+    const handleEmbroideryFocusChange = (value) => {
+      setCustomization((prevCustomization) => ({
+        ...prevCustomization,
+        focus: value,
+      }));
+    };
+
+    const handleCheckOut = () =>{
+      const newErrors = [];
+      if (!customization.size) {
+        newErrors.push(t('choose') + ' ' + t('size'));
+        setErrors(newErrors);
+        return false;
+      }
+      if (customization.size && customization.quantity > customization.productStorage) {
+        newErrors.push(t('stockExceed'));
+        setErrors(newErrors);
+        return false;
+      }
+      
     
+
+      // update cart
+      dispatch(
+        addProduct({...customizeProduct, 
+          // for customized product
+          customizedProduct: true,
+          badge: customization.badge,
+          roundRibbonColor: customization.roundRibbonColor,
+          cordColor: customization.cordColor,
+          embroidery: customization.embroidery,
+
+          price: totalPrice, 
+          size: customization.size,  
+          quantity: customization.quantity,
+          inStock: true,
+          productStorage: getSizeStorage(customization.size)
+
+        })
+      )
+      
+      setModalShow(true)
+      ReactPixel.track("track", "Buy-button"); // For tracking default events. More info about standard events: https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#standard-events
+    }
+
+ 
+  
+      
     return (
     <div className="configurator">
         <Title>{productInternationalizeDetails.title}</Title>
@@ -553,8 +642,8 @@ const Configurator = () => {
                 return (
                   <div
                     key={index}
-                    className={`item ${font === item.path ? "item--active" : ""}`}
-                    onClick={() => handleFontClick(item.path, item.name)}
+                    className={`item ${font === item.name ? "item--active" : ""}`}
+                    onClick={() => handleFontClick(item.name, item.name)}
                   >
                     <div className="item__label">{item.name}</div>
                   </div>
@@ -588,6 +677,7 @@ const Configurator = () => {
                     <div className="input-group-simple">
                         <input 
                           type='text'
+                          onFocus={() => handleEmbroideryFocusChange("frontleft")}
                           placeholder={t('firstname')}
                           value={textFrontLeft}
                           onChange={(e) =>
@@ -603,6 +693,7 @@ const Configurator = () => {
                     <div className="input-group-simple">
                         <input 
                           type='text'
+                          onFocus={() => handleEmbroideryFocusChange("frontRight")}
                           placeholder={t('lastname')}
                           value={textFrontRight}
                           onChange={(e) =>
@@ -628,6 +719,7 @@ const Configurator = () => {
                 <div className="input-group-simple">
                     <input  
                       type='text'
+                      onFocus={() => handleEmbroideryFocusChange("back")}
                       placeholder='Back'
                       value={textBack}
                       onChange={(e) =>
@@ -642,6 +734,13 @@ const Configurator = () => {
             </ValueDiv>
         </div>
 
+
+        <InstructionContainer>
+          <InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem>
+          <InstructionItem target="_blank" onClick={handleCapUsage}>{t('usageDetails')}</InstructionItem>
+          <FreeRefund>{t('FreeRefund')}</FreeRefund>
+        </InstructionContainer>
+    
         <SimpleFlexContainer>
             <SimpleFlexContainerCol>
                 <AddContainer>
@@ -685,7 +784,10 @@ const Configurator = () => {
                 <Button onClick={handleCheckOut}>Lisää ostoskoriin</Button>
             </CheckoutButton>
        </CheckoutDiv>
-
+      
+       <CartModal show={modalShow} onHide={() => setModalShow(false)} />
+       <CapChoiceModal show={modalShowCapChoice} onHide={() => setModalShowCapChoice(false)} />
+       <CapUsageModal show={modalShowCapUsage} onHide={() => setModalShowCapUsage(false)} />
     </div>
   );
 };
