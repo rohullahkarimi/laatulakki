@@ -21,7 +21,7 @@ extend({ Troika });
 
 function Ylioppilaslakki(props) {
   const { camera } = useThree();
-  const { nodes, materials } = useGLTF("/models/cap_version_11-transformed.glb");
+  const { nodes, materials } = useGLTF("/public/models/cap_version_11-transformed.glb");
   const texture = new THREE.TextureLoader().load(
     "/textures/embroidery/embroideryTexture.jpg"
   );
