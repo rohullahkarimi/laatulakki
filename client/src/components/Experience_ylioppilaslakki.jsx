@@ -14,7 +14,7 @@ const ExperienceYlioppilaslakki = () => {
 
 
   // Preload the GLTF model
-  useGLTF("/public/models/cap_version_11-transformed.glb");
+  useGLTF("/public/models/cap_version_11.gltf");
   return (
     <Suspense fallback={null}>
        <OrbitControls 
