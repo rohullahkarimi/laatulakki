@@ -16,8 +16,23 @@ import { useThree, extend } from "@react-three/fiber";
 import { gsap } from "gsap";
 import { Text as Troika } from "troika-three-text";
 import { useCustomization } from "../contexts/Customization";
+import { ErrorBoundary } from "react-error-boundary";
+
 // Register Text as a react-three-fiber element
 extend({ Troika });
+
+// Define an error boundary component
+function MyErrorBoundary({ error, componentStack }) {
+  // You can customize the error message and display
+  // based on the specific error that occurred
+  return (
+    <div>
+      <h2>An error occurred in the Troika Text component:</h2>
+      <pre>{error.message}</pre>
+      <pre>{componentStack}</pre>
+    </div>
+  );
+}
 
 function Ylioppilaslakki(props) {
   const { camera } = useThree();
@@ -110,6 +125,7 @@ function Ylioppilaslakki(props) {
 
   return (
     <group {...props} dispose={null}>
+   
 
 
       {/* decorative ribbon */}
@@ -145,121 +161,123 @@ function Ylioppilaslakki(props) {
       <mesh geometry={nodes.sloejfe.geometry} material={materials.sloejfe_m} />
       <mesh geometry={nodes.the_top_of_the_cap_.geometry} material={materials['outside white']} />
 
-       <mesh
-        geometry={nodes.the_middle_part_.geometry}
-        material={materials["outside black"]}
-      >
-        <Decal
-          position={[-0.19099999999999948, 0.36, 0.640000000000005]}
-          rotation={[0, 0, -3.14]}
-          scale={1.8}
+      <ErrorBoundary FallbackComponent={MyErrorBoundary}>
+        <mesh
+          geometry={nodes.the_middle_part_.geometry}
+          material={materials["outside black"]}
         >
-          <meshPhysicalMaterial
-            roughness={0.9}
-            transparent
-            polygonOffset
-            polygonOffsetFactor={-1}
-            position={[0, 0, 1]}
+          <Decal
+            position={[-0.19099999999999948, 0.36, 0.640000000000005]}
+            rotation={[0, 0, -3.14]}
+            scale={1.8}
           >
-            <RenderTexture width={1500} height={1500} attach='map'>
-              <PerspectiveCamera
-                makeDefault
-                manual
-                position={[0, 0, 400]}
-                rotation={[0, 0, -3.14]}
-              />
-              <ambientLight intensity={1} />
-
-              <directionalLight intensity={1} position={[0, 0, 1]} />
-              <pointLight position={[0, 0, 1]} />
-              <Environment preset='city' />
-              <troika
-                rotation={[0, 0, 0.07]}
-                text={textFrontLeft}
-                fontSize={15}
-                size={1}
-                color={color}
-                depthOffset={5}
-                anchorX='right'
-                font={font}
-                position={[15, 11, 0]}
-              >
-                <meshStandardMaterial
-                  roughness={1}
-                  metalness={0.1}
-                  attach='material'
-                  map={texture}
+            <meshPhysicalMaterial
+              roughness={0.9}
+              transparent
+              polygonOffset
+              polygonOffsetFactor={-1}
+              position={[0, 0, 1]}
+            >
+              <RenderTexture width={1500} height={1500} attach='map'>
+                <PerspectiveCamera
+                  makeDefault
+                  manual
+                  position={[0, 0, 400]}
+                  rotation={[0, 0, -3.14]}
                 />
-                
-              </troika>
-              <troika
-                rotation={[0, 0, -0.06]}
-                text={textFrontRight}
-                fontSize={15}
-                size={1}
-                color={color}
-                depthOffset={5}
-                anchor='center'
-                font={font}
-                position={[66.39999999999979, 11, 0]}
-              >
-                <meshStandardMaterial
-                  roughness={1}
-                  metalness={0.1}
-                  attach='material'
-                  map={texture}
-                />
-              </troika>
-            </RenderTexture>
-          </meshPhysicalMaterial>
-        </Decal>
+                <ambientLight intensity={1} />
 
-        <Decal
-          position={[-0.391, 0.36, -0.46]}
-          rotation={[0, -3.14, -3.14]}
-          scale={1.8}
-        >
-          <meshPhysicalMaterial
-            roughness={0.9}
-            transparent
-            polygonOffset
-            polygonOffsetFactor={-1}
-            position={[0, 0, 1]}
+                <directionalLight intensity={1} position={[0, 0, 1]} />
+                <pointLight position={[0, 0, 1]} />
+                <Environment preset='city' />
+                <troika
+                  rotation={[0, 0, 0.07]}
+                  text={textFrontLeft}
+                  fontSize={15}
+                  size={1}
+                  color={color}
+                  depthOffset={5}
+                  anchorX='right'
+                  font={font}
+                  position={[15, 11, 0]}
+                >
+                  <meshStandardMaterial
+                    roughness={1}
+                    metalness={0.1}
+                    attach='material'
+                    map={texture}
+                  />
+                  
+                </troika>
+                <troika
+                  rotation={[0, 0, -0.06]}
+                  text={textFrontRight}
+                  fontSize={15}
+                  size={1}
+                  color={color}
+                  depthOffset={5}
+                  anchor='center'
+                  font={font}
+                  position={[66.39999999999979, 11, 0]}
+                >
+                  <meshStandardMaterial
+                    roughness={1}
+                    metalness={0.1}
+                    attach='material'
+                    map={texture}
+                  />
+                </troika>
+              </RenderTexture>
+            </meshPhysicalMaterial>
+          </Decal>
+
+          <Decal
+            position={[-0.391, 0.36, -0.46]}
+            rotation={[0, -3.14, -3.14]}
+            scale={1.8}
           >
-            <RenderTexture width={1500} height={1500} attach='map'>
-              <PerspectiveCamera
-                makeDefault
-                manual
-                position={[0, 0, 400]}
-                rotation={[0, 0, -3.14]}
-              />
-              <ambientLight intensity={1} />
-
-              <directionalLight intensity={1} position={[0, 0, 1]} />
-              <pointLight position={[0, 0, 1]} />
-              <Environment preset='city' />
-              <troika
-                rotation={[0, 0, 0]}
-                text={textBack}
-                fontSize={15}
-                size={1}
-                color={color}
-                depthOffset={5}
-                anchorX='center'
-                font={font}
-                position={[-76.7, -35, 0]}
-              >
-                <meshStandardMaterial
-                  roughness={0.01}
-                  attach='material'
-                  metalness={0.01}
-                  map={texture}
+            <meshPhysicalMaterial
+              roughness={0.9}
+              transparent
+              polygonOffset
+              polygonOffsetFactor={-1}
+              position={[0, 0, 1]}
+            >
+              <RenderTexture width={1500} height={1500} attach='map'>
+                <PerspectiveCamera
+                  makeDefault
+                  manual
+                  position={[0, 0, 400]}
+                  rotation={[0, 0, -3.14]}
                 />
-              </troika>
-            </RenderTexture>
-          </meshPhysicalMaterial>
-        </Decal>
-      </mesh>
+                <ambientLight intensity={1} />
+
+                <directionalLight intensity={1} position={[0, 0, 1]} />
+                <pointLight position={[0, 0, 1]} />
+                <Environment preset='city' />
+                <troika
+                  rotation={[0, 0, 0]}
+                  text={textBack}
+                  fontSize={15}
+                  size={1}
+                  color={color}
+                  depthOffset={5}
+                  anchorX='center'
+                  font={font}
+                  position={[-76.7, -35, 0]}
+                >
+                  <meshStandardMaterial
+                    roughness={0.01}
+                    attach='material'
+                    metalness={0.01}
+                    map={texture}
+                  />
+                </troika>
+              </RenderTexture>
+            </meshPhysicalMaterial>
+          </Decal>
+        </mesh>
+      </ErrorBoundary>
 
       <mesh geometry={nodes.the_fornt_part.geometry} material={materials['outide black 1']} />
       <mesh geometry={nodes.the_white_inside.geometry} material={materials['inside white with fold']} />
@@ -301,6 +319,7 @@ function Ylioppilaslakki(props) {
         material={materials.gold}
         visible={customization.badge === "star"}
       />
+
 
     </group>
   );

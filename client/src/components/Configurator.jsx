@@ -8,7 +8,6 @@ import { BlockOutlined } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import i18n from "../i18n";
-import $ from "jquery"
 import ReadMoreModal from './ReadMoreModal';
 import { useDispatch } from "react-redux"
 import { addProduct } from "../redux/cartRedux"

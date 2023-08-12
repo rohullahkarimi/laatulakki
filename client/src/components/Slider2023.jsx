@@ -3,7 +3,7 @@ import React from 'react'; // Make sure you have this import
 import styled from "styled-components";
 import "../common/css/slider2023.css"
 import { Helmet } from "react-helmet";
-import {  laptop, smartPhone, tablet } from "../responsive";
+import {  smartPhone, tablet } from "../responsive";
 import { Link } from "react-router-dom";
 
 const BannerInner = styled.div`

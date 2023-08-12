@@ -64,11 +64,7 @@ const ProductName = styled.span`
 
 
 
-const ProductQuantity = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-`;
+
 
 const CustomizedOptionsDiv = styled.span`
   display: block;
@@ -83,22 +79,6 @@ const ProductDiscount = styled.span`
 `;
 
 
-const ProductColor = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-  background-color: ${(props) => props.color};
-  ${smartPhone({ fontSize: "14px" })}
-  ${mobile({ fontSize: "12px" })}
-`;
-
-const ProductSize = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-  ${smartPhone({ fontSize: "14px" })}
-  ${mobile({ fontSize: "12px" })}
-`;
 
 
 const ProductAmountContainer = styled.div`
@@ -139,14 +119,6 @@ const ProductPriceContainer = styled.div`
   flex: 1;
   align-items: center;
   margin-bottom: 20px;
-`;
-
-const ProductPriceText = styled.span`
-  display: block;
-  color: #000;
-  font-size: 16px;
-  ${smartPhone({ fontSize: "14px" })}
-  ${mobile({ fontSize: "12px" })}
 `;
 
 

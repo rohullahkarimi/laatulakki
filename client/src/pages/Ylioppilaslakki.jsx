@@ -6,7 +6,7 @@ import "../common/css/yolakki.css"
 import Configurator from "../components/Configurator";
 import { CustomizationProvider } from "../contexts/Customization";
 import styled from "styled-components";
-import { laptop, largeLaptop, mobile, smallLaptop, smartPhone, tablet } from "../responsive";
+import { laptop, mobile, smallLaptop, smartPhone } from "../responsive";
 import { ThreeDRotationOutlined, ZoomInOutlined, ZoomOutOutlined } from "@mui/icons-material";
 import Navbar from "../components/Navbar";
 import { useEffect, useRef, useState } from "react";
@@ -135,10 +135,7 @@ const LoaderOverlay = styled.div`
   background-color: #ffffff;
 `;
 
-const LoaderText = styled.p`
-  font-size: 24px;
-  font-weight: bold;
-`;
+
   
 const FullscreenButton = styled.div`
   display: none;
