@@ -538,25 +538,25 @@ const Receipt = () => {
                         <ProductDetail>
                             <Details>
                               <CustomizedOptionsDiv>
-                                <b>{t("Lyre")}:</b> {t(product?.badge)}
+                                <b>{t("Lyre")}:</b> {t(product?.customizationOptions.badge)} ({product?.customizationPrices.badge}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>{t("DecorativeRibbon")}:</b> {t(product?.roundRibbonColor)}
+                                <b>{t("DecorativeRibbon")}:</b> {t(product?.customizationOptions.roundRibbonColor)} ({product?.customizationPrices.roundRibbonColor}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>{t("CordColor")}:</b> {t(product.cordColor)}
+                                <b>{t("CordColor")}:</b> {t(product.customizationOptions.cordColor)} ({product?.customizationPrices.cordColor}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>{t("FrontEmbroidery")}:</b> {product?.embroidery?.embroideryTextFront?.left} {product?.embroidery?.embroideryTextFront?.right} 
+                                <b>{t("FrontEmbroidery")}:</b> {product?.customizationOptions.embroidery?.embroideryTextFront?.left} {product?.customizationOptions.embroidery?.embroideryTextFront?.right}  ({product?.customizationPrices.embroideryTextFront}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>{t("BackEmbroidery")}:</b> {product?.embroidery?.embroideryTextBack}
+                                <b>{t("BackEmbroidery")}:</b> {product?.customizationOptions.embroidery?.embroideryTextBack} ({product?.customizationPrices.embroideryTextBack}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>{t("EmbroideryColor")}:</b> {t(product?.embroidery?.embroideryTextColor)}
+                                <b>{t("EmbroideryColor")}:</b> {t(product?.customizationOptions.embroidery?.embroideryTextColor)} 
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>{t("EmbroideryFont")}:</b> {product?.embroidery?.embroideryFont}
+                                <b>{t("EmbroideryFont")}:</b> {product?.customizationOptions.embroidery?.embroideryFont} 
                               </CustomizedOptionsDiv>
                             </Details>
                         </ProductDetail>

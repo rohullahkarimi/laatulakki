@@ -507,10 +507,14 @@ const Configurator = () => {
         addProduct({...customizeProduct, 
           // for customized product
           customizedProduct: true,
-          badge: customization.badge,
-          roundRibbonColor: customization.roundRibbonColor,
-          cordColor: customization.cordColor,
-          embroidery: customization.embroidery,
+          customizationOptions: {
+            badge: customization.badge,
+            roundRibbonColor: customization.roundRibbonColor,
+            cordColor: customization.cordColor,
+            embroidery: customization.embroidery,
+          },
+          customizationPrices: prices,
+        
 
           price: totalPrice, 
           size: customization.size,  

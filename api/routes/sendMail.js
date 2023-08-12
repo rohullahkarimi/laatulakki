@@ -98,16 +98,24 @@ function sendOrderEmail(orderId){
         tax: productPriceTax,
         taxLess: productPriceTaxLess,
 
+        // other options 
         customizedProduct: item.customizedProduct,
-        badge: item.badge,
-        cordColor: item.cordColor,
-        roundRibbonColor: item.roundRibbonColor,
-      
-        embroideryTextFrontLeft: item.embroidery?.embroideryTextFront?.left,
-        embroideryTextFrontRight: item.embroidery?.embroideryTextFront?.right,
-        embroideryTextBack: item.embroidery?.embroideryTextBack,
-        embroideryTextColor: item.embroidery?.embroideryTextColor,
-        embroideryFont: item.embroidery?.embroideryFont,
+        badge: item.customizationOptions?.badge,
+        cordColor: item.customizationOptions?.cordColor,
+        roundRibbonColor: item.customizationOptions?.roundRibbonColor,
+        // embroidery 
+        embroideryTextFrontLeft: item.customizationOptions?.embroidery?.embroideryTextFront?.left,
+        embroideryTextFrontRight: item.customizationOptions?.embroidery?.embroideryTextFront?.right,
+        embroideryTextBack: item.customizationOptions?.embroidery?.embroideryTextBack,
+        embroideryTextColor: item.customizationOptions?.embroidery?.embroideryTextColor,
+        embroideryFont: item.customizationOptions?.embroidery?.embroideryFont,
+
+        // all options prices
+        badge_price: item.customizationPrices?.badge,
+        cordColor_price:  item.customizationPrices?.cordColor,
+        roundRibbonColor_price:  item.customizationPrices?.roundRibbonColor,
+        embroideryTextFront_price: item.customizationPrices?.embroideryTextFront,
+        embroideryTextBack_price: item.customizationPrices?.embroideryTextBack,
 
       };
       return productObject;

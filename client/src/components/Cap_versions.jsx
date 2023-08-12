@@ -9,24 +9,21 @@ import {
   Environment,
   RenderTexture,
   PerspectiveCamera,
-  Text3D
 } from "@react-three/drei";
 
 import * as THREE from "three";
 import { useThree, extend } from "@react-three/fiber";
 import { gsap } from "gsap";
-//import { Text as Troika } from "troika-three-text";
+import { Text as Troika } from "troika-three-text";
 import { useCustomization } from "../contexts/Customization";
 // Register Text as a react-three-fiber element
-//extend({ Troika });
+extend({ Troika });
 
 function Ylioppilaslakki(props) {
-  const [isFontLoaded, setIsFontLoaded] = useState(false);
   const { camera } = useThree();
-  const { nodes, materials } = useGLTF("/public/models/cap_version_11-transformed.glb");
-  //const { nodes, materials } = useGLTF("/public/models/cap_version_11.gltf");
+  const { nodes, materials } = useGLTF("/models/cap_version_11-transformed.glb");
   const texture = new THREE.TextureLoader().load(
-    "/public/textures/embroidery/embroideryTexture.jpg"
+    "/textures/embroidery/embroideryTexture.jpg"
   );
   const [isFromBack, setIsFromBack] = useState(false);
   texture.wrapS = THREE.RepeatWrapping;
@@ -43,17 +40,12 @@ function Ylioppilaslakki(props) {
   const focus = customization.focus;
   let font = "";
   if (fontName === "kauno") {
-    //font = "/public/Fonts/snellk.woff";
-    font = "/public/Fonts/kauno.json";
-  } else {
-    //font = "/public/Fonts/arial.woff";
     font = "/public/Fonts/snellk.woff";
+  } else {
+    font = "/public/Fonts/arial.woff";
   }
 
   console.log(color, focus)
-
-
-
 
   useEffect(() => {
     if (focus === "back") {
@@ -180,7 +172,7 @@ function Ylioppilaslakki(props) {
               <directionalLight intensity={1} position={[0, 0, 1]} />
               <pointLight position={[0, 0, 1]} />
               <Environment preset='city' />
-              <Text3D
+              <troika
                 rotation={[0, 0, 0.07]}
                 text={textFrontLeft}
                 fontSize={15}
@@ -198,8 +190,8 @@ function Ylioppilaslakki(props) {
                   map={texture}
                 />
                 
-              </Text3D>
-              <Text3D
+              </troika>
+              <troika
                 rotation={[0, 0, -0.06]}
                 text={textFrontRight}
                 fontSize={15}
@@ -216,7 +208,7 @@ function Ylioppilaslakki(props) {
                   attach='material'
                   map={texture}
                 />
-              </Text3D>
+              </troika>
             </RenderTexture>
           </meshPhysicalMaterial>
         </Decal>
@@ -245,7 +237,7 @@ function Ylioppilaslakki(props) {
               <directionalLight intensity={1} position={[0, 0, 1]} />
               <pointLight position={[0, 0, 1]} />
               <Environment preset='city' />
-              <Text3D
+              <troika
                 rotation={[0, 0, 0]}
                 text={textBack}
                 fontSize={15}
@@ -262,7 +254,7 @@ function Ylioppilaslakki(props) {
                   metalness={0.01}
                   map={texture}
                 />
-              </Text3D>
+              </troika>
             </RenderTexture>
           </meshPhysicalMaterial>
         </Decal>

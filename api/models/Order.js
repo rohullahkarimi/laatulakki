@@ -45,19 +45,12 @@ const OrderSchema = new mongoose.Schema(
                 customizedProduct: {
                     type: Boolean,
                 },
-                badge: {
-                    type: String,
-                },
-                roundRibbonColor: {
-                    type: String,
-                },
-                cordColor: {
-                    type: String,
-                },
-                embroidery: {
+                customizationOptions: {
                     type: Object,
                 },
-
+                customizationPrices: {
+                    type: Object,
+                },
             },
         ],
         billingAddress: { 
