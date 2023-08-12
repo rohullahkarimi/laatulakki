@@ -48,6 +48,8 @@ main {
   color: var(--color-white-100);
   background-color: var(--color-black-500);
   margin: 0 !important;
+  flex: 1;
+  min-height: auto !important;
 }
 main a, button {
   cursor: pointer;
