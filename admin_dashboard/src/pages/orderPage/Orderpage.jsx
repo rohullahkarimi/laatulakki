@@ -393,25 +393,25 @@ const Receipt = () => {
                         <ProductDetail>
                             <Details>
                               <CustomizedOptionsDiv>
-                                <b>Lyyra:</b> {product?.badge}
+                                <b>Lyyra:</b> {product?.customizationOptions.badge} ({product?.customizationPrices.badge}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>Koristenauha:</b> {product?.roundRibbonColor}
+                                <b>Koristenauha:</b> {product?.customizationOptions.roundRibbonColor} ({product?.customizationPrices.roundRibbonColor}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>Lippanauha:</b> {product.cordColor}
+                                <b>Lippanauha:</b> {product?.customizationOptions.cordColor}  ({product?.customizationPrices.cordColor}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>Etukirjailu (vasen - oikein):</b> {product?.embroidery?.embroideryTextFront?.left} -- {product?.embroidery?.embroideryTextFront?.right} 
+                                <b>Etukirjailu (vasen - oikein):</b> {product?.customizationOptions.embroidery?.embroideryTextFront?.left} -- {product?.customizationOptions.embroidery?.embroideryTextFront?.right}   ({product?.customizationPrices.embroideryTextFront}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>Takakirjailu:</b> {product?.embroidery?.embroideryTextBack}
+                                <b>Takakirjailu:</b> {product?.customizationOptions.embroidery?.embroideryTextBack} ({product?.customizationPrices.embroideryTextBack}€)
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>Brodeeraus väri:</b> {product?.embroidery?.embroideryTextColor}
+                                <b>Brodeeraus väri:</b> {product?.customizationOptions.embroidery?.embroideryTextColor}
                               </CustomizedOptionsDiv>
                               <CustomizedOptionsDiv>
-                                <b>Brodeeraus fontti:</b> {product?.embroidery?.embroideryFont}
+                                <b>Brodeeraus fontti:</b> {product?.customizationOptions.embroidery?.embroideryFont}
                               </CustomizedOptionsDiv>
                             </Details>
                         </ProductDetail>
