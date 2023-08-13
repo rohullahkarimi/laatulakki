@@ -160,6 +160,17 @@ img, video {
   align-items: center;
   row-gap: 3rem;
 }
+@media only screen and (max-width: 48rem) {
+  .paragraph {
+    text-align: center;
+  }
+  .bannerImageMobile{
+    height: 250px;
+    width: 100%;
+    object-position: 100% 0;
+  }
+}
+
 @media only screen and (min-width: 48rem) {
   .banner-column {
     grid-template-columns: repeat(2, minmax(0, 1fr));

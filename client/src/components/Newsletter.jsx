@@ -119,7 +119,7 @@ const Newsletter = () => {
                 <span className="formErrors">{errors.user_name?.message}</span>
             </InputContainer>
             <InputContainer>
-                <Input  className="formInput" type="email" placeholder={t('feedback_email')+" *" } {
+                <Input  type="email" placeholder={t('feedback_email')+" *" } {
                     ...register("user_email", { 
                     required: t('emailRequired') + "*", 
                     pattern: {

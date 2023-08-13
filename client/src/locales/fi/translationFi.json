@@ -1,5 +1,7 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "sliderTitle1": "Kustomoidut ylioppilaslakit",
+    "sliderDesciption": "Suomen edullisimmat kustomoidut ylioppilaslakit ilman pitkiä toimitusaikoja.",
     
     "Lyre": "Lyyra",
     "DecorativeRibbon": "Koristenauha",

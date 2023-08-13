@@ -64,62 +64,67 @@ function Ylioppilaslakki(props) {
   console.log(color, focus)
 
   useEffect(() => {
-    if (focus === "back") {
-      gsap.to(camera.rotation, {
-        y: 3.14,
-        onStart: () => {
-          gsap.fromTo(
-            camera.position,
-            { y: 1.5 },
-            {
-              z: -2,
-              x: 0,
-              y: 0,
-              duration: 2,
-            }
-          );
-        },
-        duration: 2,
-      });
-      setIsFromBack(true);
-    } else if (focus === "frontRight") {
-      gsap.to(camera.rotation, {
-        y: 0,
-        onStart: () => {
-          gsap.fromTo(
-            camera.position,
-            { y: isFromBack ? 1.2 : 0 },
-            {
-              z: 2,
-              x: 1,
-              y: 0,
-              duration: 2,
-            }
-          );
-        },
-        duration: 2,
-      });
+    try {
+      if (focus === "back") {
+        gsap.to(camera.rotation, {
+          y: 3.14,
+          onStart: () => {
+            gsap.fromTo(
+              camera.position,
+              { y: 1.5 },
+              {
+                z: -2,
+                x: 0,
+                y: 0,
+                duration: 2,
+              }
+            );
+          },
+          duration: 2,
+        });
+        setIsFromBack(true);
+      } else if (focus === "frontRight") {
+        gsap.to(camera.rotation, {
+          y: 0,
+          onStart: () => {
+            gsap.fromTo(
+              camera.position,
+              { y: isFromBack ? 1.2 : 0 },
+              {
+                z: 2,
+                x: 1,
+                y: 0,
+                duration: 2,
+              }
+            );
+          },
+          duration: 2,
+        });
 
-      setIsFromBack(false);
-    } else {
-      gsap.to(camera.rotation, {
-        y: 0,
-        onStart: () => {
-          gsap.fromTo(
-            camera.position,
-            { y: isFromBack ? 1.2 : 0 },
-            {
-              z: 2,
-              x: -1,
-              y: 0,
-              duration: 2,
-            }
-          );
-        },
+        setIsFromBack(false);
+      } else {
+        gsap.to(camera.rotation, {
+          y: 0,
+          onStart: () => {
+            gsap.fromTo(
+              camera.position,
+              { y: isFromBack ? 1.2 : 0 },
+              {
+                z: 2,
+                x: -1,
+                y: 0,
+                duration: 2,
+              }
+            );
+          },
 
-        duration: 2,
-      });
-      setIsFromBack(false);
+          duration: 2,
+        });
+        setIsFromBack(false);
+      }
+    } catch (error) {
+      console.error("An error occurred in the useEffect:", error);
+      // Handle the error, e.g., show an error message or fallback behavior
     }
   }, [focus]);
 

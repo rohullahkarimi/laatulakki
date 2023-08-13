@@ -5,6 +5,7 @@ import "../common/css/slider2023.css"
 import { Helmet } from "react-helmet";
 import {  smartPhone, tablet } from "../responsive";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const BannerInner = styled.div`
   display: flex;
@@ -52,6 +53,7 @@ const BannerImage = styled.img`
 `;
 
 const Slider2023 = () => {
+  const { t } = useTranslation();
 
 
 
@@ -66,11 +68,11 @@ const Slider2023 = () => {
         <main className="main">
             <section className="section banner banner-section">
                 <div className="container banner-column">
-                    <BannerImage src="/public/images/malli/malli_0.jpeg" alt="banner"/>
+                    <BannerImage className='bannerImageMobile' src="/public/images/malli/malli_0.jpeg" alt="banner"/>
                     <BannerInner>
-                        <HeadingXl>Kustomoidut ylioppilaslakit</HeadingXl>
+                        <HeadingXl>{t('sliderTitle1')}</HeadingXl>
                         <p className="paragraph">
-                        Suomen edullisin kustomoidut ylioppilaslakki
+                            {t('sliderDesciption')}
                         </p>
                         <Link to="/ylioppilaslakki">
                             <button className="btn-el btn-darken btn-inline">

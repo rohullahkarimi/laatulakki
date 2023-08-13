@@ -15,6 +15,7 @@ import { t } from 'i18next';
 import $ from "jquery"
 import ReactDOM from "react-dom";
 import BounceLoader from 'react-spinners/ClipLoader';
+import {Helmet} from "react-helmet";
 
 
 
@@ -207,6 +208,11 @@ const Ylioppilaslakki = () => {
     
   return (
     <CustomizationProvider>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Edulliset ja Nopeasti Toimitettavat Kustomoidut Ylioppilaslakit | LaatuLakki</title>
+        <meta name="description" content="Valitse yksilöllinen ylioppilaslakki Laatulakilta. Meillä saat parhaan laadun edulliseen hintaan ja nopealla toimituksella. Suunnittele oma uniikki lakkisi nyt!" />
+      </Helmet>
         <CapMainDiv>
             <NavbarDesktop>
                 <Navbar />
