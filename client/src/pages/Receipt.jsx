@@ -233,73 +233,6 @@ const Comment = styled.div`
 `;
 
 
-/*
-const order = {
-    "_id": "63513713575cf51e998927dd",
-    "products": [
-        {
-            "productId": "63357e153a42c60c8f62c5d4",
-            "title": "Ylioppilaslakki Musta vuori",
-            "img": "https://www.salon.fi/pictures/thumbs240b/2731062cc23b89c07e.jpg",
-            "color": "musta",
-            "size": "57 cm",
-            "quantity": 2,
-            "price": 69.9,
-            "vatPercentage": 24,
-            "_id": "63357e153a42c60c8f62c5d4"
-        },
-        {
-            "productId": "63357fda3a42c60c8f62c5dc",
-            "title": "KULTAINEN LYYRA Kiinnitetään lakkiin",
-            "img": "https://www.fredrikson.fi/wp-content/uploads/2021/03/suomalainen_yo_lyyra.jpg",
-            "color": "18K kulta",
-            "size": "16 mm",
-            "quantity": 2,
-            "price": 35.9,
-            "vatPercentage": 24,
-            "_id": "63357fda3a42c60c8f62c5dc"
-        }
-    ],
-    "billingAddress": {
-        "firstname": "Rohis",
-        "lastname": "Testaaja",
-        "streetAddress": "Kirkkarinkatu 6 A 5",
-        "postalCode": "05900",
-        "city": "Hyvinkää",
-        "country": "FI",
-        "phonenumber": "400269034",
-        "email": "rohullahahmad99@gmail.com",
-        "_id": "63513713575cf51e998927e0"
-    },
-    "deliveryAddress": {
-        "firstname": "Rohis",
-        "lastname": "Testaaja",
-        "streetAddress": "Kirkkarinkatu 6 A 5",
-        "postalCode": "05900",
-        "city": "Hyvinkää",
-        "country": "FI",
-        "phonenumber": "400269034",
-        "email": "rohullahahmad99@gmail.com",
-        "_id": "63513713575cf51e998927e1"
-    },
-    "deliverySameAsBilling": true,
-    "deliveryMethod": "delivery",
-    "deliveryPrice": 8,
-    "paid": false,
-    "emailSent": false,
-    "transactionId": "0628bdca-506e-11ed-8248-c305df701726",
-    "total": 219.60000000000002,
-    "message": "kiitos paljon! tilaus on mahtava ja super kaunis",
-    "status": "pending",
-    "createdAt": "2022-10-20T11:54:59.394Z",
-    "updatedAt": "2022-10-20T11:54:59.889Z",
-    "__v": 0
-}
-*/
-
-
-
-
 const Receipt = () => {
   const { t } = useTranslation();
   const [orderData, setOrderData] = useState({})
@@ -316,7 +249,12 @@ const Receipt = () => {
   useEffect(() =>{
     const getOrder = async ()=> {
       try{
-          const res = await publicRequest.get("/orders/getOrder/HDcSmyZpaWqR/find/" + orderId);
+          const res = await publicRequest.get(`/orders/getOrder/HDcSmyZpaWqR2023/find/${orderId}`, {
+            params: {
+                receiptHash: receiptHash
+            }
+          });
+
           setOrderData(res.data);
 
           if (orderData.receiptHash === receiptHash){

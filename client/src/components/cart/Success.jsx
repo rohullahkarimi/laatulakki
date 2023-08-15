@@ -53,6 +53,9 @@ const Success = () => {
   const queryParameters = new URLSearchParams(window.location.search)
   const checkoutStatus = queryParameters.get("checkout-status")
   const orderId = queryParameters.get("checkout-reference")
+  const transactionId = queryParameters.get("checkout-transaction-id")
+
+
   const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL //process.env.REACT_APP_API_URL,
   });
@@ -65,7 +68,12 @@ const Success = () => {
 
   const getOrderData = async (orderId) => {
     try{
-      const res = await axios.get(process.env.REACT_APP_API_URL+"/orders/getOrder/HDcSmyZpaWqR/find/"+orderId);
+      const res = await axios.get(process.env.REACT_APP_API_URL+`/orders/getOrder/HDcSmyZpaWqR2023/find/${orderId}`, {
+        params: {
+            transactionId: transactionId
+        }
+      });
+
       return res.data;
     }catch(err){
       console.log(err);
@@ -80,6 +88,7 @@ const Success = () => {
     try {
       await axiosInstance.get("/sendMail/"+orderId)
       .then((res) => {
+        console.log(re.data)
         if(res.data.status !== "ok"){
           // redirect user to cancel page
           

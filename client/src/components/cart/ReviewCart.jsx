@@ -113,7 +113,7 @@ const ReviewForm = () => {
   );
 
   const DeliveryAddressComponent = (props) => {
-    console.log(props)
+    //console.log(props)
     return (
       <>
       {props.deliverySameAsBilling !== true && <DetailsInfo><Key>{t("firstname")}</Key><Value>{props.data.firstname}</Value></DetailsInfo>}
@@ -145,7 +145,7 @@ const ReviewForm = () => {
   });
 
 
-  console.log(cart)
+  //console.log(cart)
 
   const saveOrder= async () => {
     setLoading(true)
@@ -203,17 +203,18 @@ const ReviewForm = () => {
  
 
   const HandlePayment = async (data) => {
-    console.log(data)
+    //console.log(data)
     await saveOrder()
     if(orderId){
       setTimeout(() => {
         getTransactionId()
-        console.log(orderId, transactionId)
+        //console.log(orderId, transactionId)
 
         // redirect to paytrail page
         
         setTimeout(() => {
-          if(transactionId){
+          
+          if(transactionId && cart.promoPercentage !== 100){
             setLoading(false)
 
             // enable pay button
@@ -221,6 +222,8 @@ const ReviewForm = () => {
 
             const url = "https://pay.paytrail.com/pay/"+transactionId
             window.location.href=url;
+          }else if(cart.promoPercentage === 100){
+            window.location.href="/cart/success?checkout-reference="+orderId+"&checkout-transaction-id="+transactionId+"&checkout-status=ok";
           }else{
             console.log("Data is saving...")
           }
@@ -233,7 +236,7 @@ const ReviewForm = () => {
     margin: "auto"
   };
 
-  console.log(cart)
+  //console.log(cart)
   
   return (
     <div className='container'>

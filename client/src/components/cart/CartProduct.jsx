@@ -133,7 +133,7 @@ const Hr = styled.hr`
 `;
 
 const CartProduct = (props) => {
-  console.log(props)
+  //console.log(props)
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch()
   const [cartItems, setCartItems] = useState(cart.quantity);
@@ -153,7 +153,7 @@ const CartProduct = (props) => {
         total: product.price * product.quantity,
       })
     );
-    console.log(product);
+    //console.log(product);
   }, [dispatch, cartItems]);
 
   const handleQuantityIncrease = useCallback((product) => {
@@ -178,7 +178,7 @@ const CartProduct = (props) => {
         discount: product.discount
       })
     );
-    console.log(product);
+    //console.log(product);
   }, [dispatch]);
 
 

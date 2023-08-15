@@ -255,7 +255,12 @@ const Cart = () => {
     }
 
 
-    const deliveryPrice = cart.deliveryPrice
+    let deliveryPrice = cart.deliveryPrice
+    if(cart.promoPercentage === 100){
+      deliveryPrice = 0;
+    }
+
+
     var cartSubtotal = cart.total
     var cartTotal = cart.total - cart.discountAmount;
     //console.log(cartTotal)
@@ -263,7 +268,7 @@ const Cart = () => {
     cartTotal = Math.ceil(cartTotal * 100) / 100; 
 
     //console.log(cartTotal)
-    if(cart.deliveryPrice > 0){
+    if(cart.deliveryPrice > 0 && cart.promoPercentage !== 100){
       cartTotal += cart.deliveryPrice
       
     }
@@ -418,7 +423,12 @@ const Cart = () => {
                 )}
 
                 
-                { cart.deliveryPrice !== null && <SummaryItem><SummaryItemText>{t('deliveryFee')}</SummaryItemText><SummaryItemPrice>{ cartTotalBeforeDelivery - cart.discountAmount < 90 ? deliveryPrice?.toFixed(2) : "0.00" } €</SummaryItemPrice></SummaryItem>}
+                { cart.deliveryPrice !== null && 
+                  <SummaryItem>
+                    <SummaryItemText>{t('deliveryFee')}</SummaryItemText>
+                    <SummaryItemPrice>{ cartTotalBeforeDelivery - cart.discountAmount < 90 ? deliveryPrice?.toFixed(2) : "0.00" } €</SummaryItemPrice>
+                  </SummaryItem>
+                }
                   
                 <SummaryItem type="total">
                   <SummaryItemText>{t("total")}</SummaryItemText>

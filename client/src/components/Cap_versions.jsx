@@ -21,6 +21,9 @@ import { ErrorBoundary } from "react-error-boundary";
 // Register Text as a react-three-fiber element
 extend({ Troika });
 
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const dimension = isIOS ? 700 : 1500;
+
 // Define an error boundary component
 function MyErrorBoundary({ error, componentStack }) {
   // You can customize the error message and display
@@ -183,7 +186,7 @@ function Ylioppilaslakki(props) {
               polygonOffsetFactor={-1}
               position={[0, 0, 1]}
             >
-              <RenderTexture width={1500} height={1500} attach='map'>
+              <RenderTexture width={dimension} height={dimension} attach='map'>
                 <PerspectiveCamera
                   makeDefault
                   manual
@@ -248,7 +251,7 @@ function Ylioppilaslakki(props) {
               polygonOffsetFactor={-1}
               position={[0, 0, 1]}
             >
-              <RenderTexture width={1500} height={1500} attach='map'>
+              <RenderTexture width={dimension} height={dimension} attach='map'>
                 <PerspectiveCamera
                   makeDefault
                   manual

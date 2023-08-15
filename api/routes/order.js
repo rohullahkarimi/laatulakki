@@ -8,17 +8,41 @@ const {CheckoutClient} = require('checkout-finland/lib/Checkout');
 const CHECKOUT_MERCHANT_ID = process.env.PAYTRAIL_MERCHANT_ID
 const CHECKOUT_SECRET = process.env.PAYTRAIL_SECRET
 const client = new CheckoutClient(CHECKOUT_MERCHANT_ID, CHECKOUT_SECRET)
+
+
 require("../components/emailSender.js")();
+
 
 
 
 
 // GET ORDER Full data
 router.get("/getOrder/HDcSmyZpaWqR/find/:id", async (req, res) => {
-    // password: HDcSmyZpaWqR
+    const orderId = req.params.id;
     try {
-        const order = await Order.findById(req.params.id);
+        const order = await Order.findById(orderId);
         res.status(200).json(order);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get("/getOrder/HDcSmyZpaWqR2023/find/:id", async (req, res) => {
+    const orderId = req.params.id;
+    const receiptHash = req.query.receiptHash;
+    const transactionId = req.query.transactionId;
+
+    try {
+        const order = await Order.findById(orderId);
+
+        // Check if the receipt hash matches the order's receipt hash
+        if (order && order.receiptHash === receiptHash) {
+            res.status(200).json(order);
+        } else if(order && order.transactionId === transactionId){
+            res.status(200).json(order);
+        } else {
+            res.status(400).json({ error: "Invalid receipt hash" });
+        }
     } catch (err) {
         res.status(500).json(err);
     }
@@ -75,9 +99,13 @@ router.post("/", async (req, res)=>{
         const savedOrder = await newOrder.save();
         var savedOrderId = savedOrder._id.valueOf()
         
-        // save transaction ID
-        saveTransactionId(savedOrderId, savedOrder, clientLanguage)
-        //console.log(savedOrderId, savedOrder)
+        if (savedOrder.promoPercentage === 100) {
+            await paidOrderFor100Discount(savedOrderId);
+        } else {
+            await saveTransactionId(savedOrderId, savedOrder, clientLanguage);
+        }
+    
+        // Respond with the saved order
         res.status(200).send(savedOrder);
         
     }catch(err){
@@ -85,6 +113,24 @@ router.post("/", async (req, res)=>{
     }
   
 });
+
+const paidOrderFor100Discount = async (getSavedOrderId) => {
+    try {
+        await Order.findByIdAndUpdate(
+            getSavedOrderId, 
+            { paid: true }, 
+            { new: true } 
+        );
+
+        // send mail 
+        sendOrderEmail(getSavedOrderId);
+
+        //res.status(200).json(updatedOrder);
+ 
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
 
 // save transaction ID
 const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) => {

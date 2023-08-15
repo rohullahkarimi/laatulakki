@@ -54,7 +54,7 @@ const DeliveryMethod = ({navigation}) => {
   
   // check delivery price
   const checkDeliveryCost = () => {
-    if((cart.total - cart.discountAmount) >= 90){
+    if((cart.total - cart.discountAmount) >= 90 || cart.promoPercentage === 100){
       //console.log("> 90, yes free")
       freeDelivery.current = true;
     }else if(setting.status === true){
@@ -98,7 +98,7 @@ const DeliveryMethod = ({navigation}) => {
 
 
 
-  console.log(freeDelivery.current)
+  //console.log(freeDelivery.current)
   return (
     <div className='container'>
     <div className="customer_information_form">
