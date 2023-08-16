@@ -187,6 +187,12 @@ const CartProduct = (props) => {
     //console.log(cartItems)
     cartItems === 0 && navigate("/") 
   }, [cartItems, navigate]);
+
+  const capitalizeFirstLowercaseRest = str => {
+    return (
+      str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
+    );
+  };
  
   return (
     <div >
@@ -245,13 +251,13 @@ const CartProduct = (props) => {
         {product.customizedProduct && (
           <>
             <CustomizedOptionsDiv>
-            <b>{t("Lyre")}:</b> {t(product?.customizationOptions.badge)}
+            <b>{t("Lyre")}:</b> {capitalizeFirstLowercaseRest(t(product?.customizationOptions.badge))}
             </CustomizedOptionsDiv>
             <CustomizedOptionsDiv>
-            <b>{t("DecorativeRibbon")}:</b> {t(product?.customizationOptions.roundRibbonColor)}
+            <b>{t("DecorativeRibbon")}:</b> {capitalizeFirstLowercaseRest(t(product?.customizationOptions.roundRibbonColor))}
             </CustomizedOptionsDiv>
             <CustomizedOptionsDiv>
-            <b>{t("CordColor")}:</b> {t(product.customizationOptions.cordColor)}
+            <b>{t("CordColor")}:</b> {capitalizeFirstLowercaseRest(t(product.customizationOptions.cordColor))}
             </CustomizedOptionsDiv>
             <CustomizedOptionsDiv>
             <b>{t("FrontEmbroidery")}:</b> {product?.customizationOptions.embroidery?.embroideryTextFront?.left} {product?.customizationOptions.embroidery?.embroideryTextFront?.right} 
@@ -260,10 +266,10 @@ const CartProduct = (props) => {
             <b>{t("BackEmbroidery")}:</b> {product?.customizationOptions.embroidery?.embroideryTextBack}
             </CustomizedOptionsDiv>
             <CustomizedOptionsDiv>
-            <b>{t("EmbroideryColor")}:</b> {t(product?.customizationOptions.embroidery?.embroideryTextColor)}
+            <b>{t("EmbroideryColor")}:</b> {capitalizeFirstLowercaseRest(t(product?.customizationOptions.embroidery?.embroideryTextColor))}
             </CustomizedOptionsDiv>
             <CustomizedOptionsDiv>
-            <b>{t("EmbroideryFont")}:</b> {product?.customizationOptions.embroidery?.embroideryFont}
+            <b>{t("EmbroideryFont")}:</b> {capitalizeFirstLowercaseRest(product?.customizationOptions.embroidery?.embroideryFont)}
             </CustomizedOptionsDiv>
           </>
         )}

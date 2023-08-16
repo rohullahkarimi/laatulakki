@@ -743,7 +743,7 @@ const Configurator = () => {
                       onChange={(e) =>
                         handleEmbroideryTextBackChange(e.target.value, 10)
                       }
-                      maxLength={30}
+                      maxLength={25}
                     />
                     <label htmlFor="back">{t('exampleYearText')}
                     </label>
