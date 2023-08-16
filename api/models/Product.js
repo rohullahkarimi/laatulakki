@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const ProductSchema = new mongoose.Schema(
     {
         title:{ type: Object, required:true, unique:false},
-        desc:{ type: Object, required:true, unique:true},
+        desc:{ type: Object, required:true, unique:false},
         img:{ type: Array, required: true},
         categories:{ type: Array},
         sizeFilter:{ type: Array},
@@ -16,6 +16,11 @@ const ProductSchema = new mongoose.Schema(
         vatPercentage: {type: Number, default: 24, required: true},
         inStock: {type: Boolean, default: true},
         visibility: {type: Boolean, default: true},
+
+        productId: { type: String},
+        customizedProduct: {type: Boolean, default: false},
+        customizationOptions: { type: Object},
+
     },
     { timestamps: true}
 )

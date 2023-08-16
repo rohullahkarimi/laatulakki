@@ -15,6 +15,7 @@ import ReactPixel from 'react-facebook-pixel';
 import CartModal from './CartModal';
 import CapChoiceModal from "../components/CapChoiceModal"
 import CapUsageModal from "../components/CapUsageModal"
+import { publicRequest } from '../requestMethods';
 
 ReactPixel.pageView(); // For tracking page view
 
@@ -215,8 +216,8 @@ const GeneralError = styled.div`
 
 
 const ReadMoreButton = styled.button`
-  font-weight: 500;
-  text-decoration: none;
+  font-weight: 600;
+  text-decoration: underline;
   color: rgb(10, 11, 10);
   cursor: pointer;
 `
@@ -236,11 +237,11 @@ const FreeRefund = styled.p`
     margin-bottom: 0;
 `
 
-const GetTotalPrice = (prices) => {
+const GetTotalPrice = (prices, cap_base_price) => {
   const {
     customization
   } = useCustomization();
-  let totalPrice = prices.cap_base_price;
+  let totalPrice = cap_base_price;
 
   // Add the price of the selected badge
   totalPrice += prices.badge;
@@ -277,40 +278,71 @@ const Configurator = () => {
     const [modalShow, setModalShow] = useState(false);
     const [modalShowCapChoice, setModalShowCapChoice] = useState(false);
     const [modalShowCapUsage, setModalShowCapUsage] = useState(false);
+    const [graduationCapCustomizationOptions, setGraduationCapCustomizationOptions] = useState({});
+    const [customizeProduct, setCustomizeProduct] = useState({})
+
     const {
       customization,
       setCustomization,
       prices,
       setPrices,
-      graduationCapCustomizationOptions,
     } = useCustomization();
 
+    useEffect(() =>{
+      const productId = "123456789"
+      const getProduct = async ()=> {
+        try {
+            const res = await publicRequest.get("/products/findCustomProduct/" + productId);
+            //console.log(res.data); // Log the response data
+            setGraduationCapCustomizationOptions(res.data);
 
-    const getTotalPrice = (pricesObject) => {
-      let total = 0;
-    
-      // Iterate through the object properties and add their values to the total
-      for (const key in pricesObject) {
-        if (pricesObject.hasOwnProperty(key)) {
-          total += pricesObject[key];
+
+            setCustomizeProduct({
+              title: res.data.title[0].fi,
+              desc: res.data.desc[0].fi,
+              img: res.data.img[2].thumbnail,
+              productId: "123456789",
+              vatPercentage: 24,
+            });
+
+          
+            const handleProductSet = (data) => {
+              let title = ""
+              let desc = ""
+          
+              if(selectedLang === "se"){
+                  title = data.title[0].se
+                  desc = data.desc[0].se
+              }else if(selectedLang === "en"){
+                  title = data.title[0].en
+                  desc = data.desc[0].en
+              }else{
+                  title = data.title[0].fi
+                  desc = data.desc[0].fi
+              }
+              setProductInternationalizeDetails(previousInputs => ({ ...previousInputs, title: title }))
+              setProductInternationalizeDetails(previousInputs => ({ ...previousInputs, desc: desc }))
+            }
+            handleProductSet(res.data)
+
+        } catch (err) {
+            console.log(err);
         }
+      
       }
+      getProduct()
+    }, []);
     
-      return total;
-    };
+    //console.log(graduationCapCustomizationOptions)
 
-    const totalPrice = getTotalPrice(prices);
+  
+
+    const totalPrice = GetTotalPrice(prices, graduationCapCustomizationOptions.price);
     //console.log(totalPrice)
     
   
 
-    const [customizeProduct, setCustomizeProduct] = useState({
-      title: graduationCapCustomizationOptions.title[0].fi,
-      desc: graduationCapCustomizationOptions.desc[0].fi,
-      img: graduationCapCustomizationOptions.img[2].thumbnail,
-      productId: "123456789",
-      vatPercentage: 24,
-    });
+   
 
 
 
@@ -339,28 +371,12 @@ const Configurator = () => {
   
 
 
-    console.log(customization, prices)
+    //console.log(customization, prices)
 
-    useEffect(() =>{
-      const handleProductSet = (data) => {
-          let title = ""
-          let desc = ""
-      
-          if(selectedLang === "se"){
-              title = data.title[0].se
-              desc = data.desc[0].se
-          }else if(selectedLang === "en"){
-              title = data.title[0].en
-              desc = data.desc[0].en
-          }else{
-              title = data.title[0].fi
-              desc = data.desc[0].fi
-          }
-          setProductInternationalizeDetails(previousInputs => ({ ...previousInputs, title: title }))
-          setProductInternationalizeDetails(previousInputs => ({ ...previousInputs, desc: desc }))
-      }
-      handleProductSet(graduationCapCustomizationOptions);
-  }, [selectedLang, graduationCapCustomizationOptions]);
+
+    
+  
+ 
 
 
     const handleCustomizationChange = (optionName, optionValue, optionPrices) => {
@@ -539,13 +555,13 @@ const Configurator = () => {
           <ReadMoreModal title={productInternationalizeDetails.title} text={productInternationalizeDetails.desc} show={showReadMoreModal} handleClose={handleToggleModal} />
         </div>
 
-        <div style={{ display: graduationCapCustomizationOptions.onOff.badge ? 'block' : 'none' }} id="customization_section_1"  className="configurator__section">
+        <div style={{ display: graduationCapCustomizationOptions.customizationOptions?.onOff?.badge ? 'block' : 'none' }} id="customization_section_1"  className="configurator__section">
           <OptionTitlesContainer>
             <OptionTitle className="configurator__section__title">{t('badge')}</OptionTitle>
             {prices.badge > 0 && <OptionPrice>+{prices.badge} €</OptionPrice>}
           </OptionTitlesContainer>
           <div className="configurator__section__values">
-            {graduationCapCustomizationOptions.badge.map((item, index) => {
+            {graduationCapCustomizationOptions.customizationOptions?.badge?.map((item, index) => {
               // Get the badge name based on the selected language (selectedLang)
               const badgeName = item.name[selectedLang][0].name;
 
@@ -562,10 +578,9 @@ const Configurator = () => {
             })}
           </div>
         </div>
+    
 
-
-
-      <div style={{ display: graduationCapCustomizationOptions.onOff.roundRibbonColor ? 'block' : 'none' }} id="customization_section_2" className="configurator__section">
+      <div style={{ display: graduationCapCustomizationOptions.customizationOptions?.onOff?.roundRibbonColor ? 'block' : 'none' }} id="customization_section_2" className="configurator__section">
         <OptionTitlesContainer>
                 <OptionTitle className="configurator__section__title">{t('decorative_band')}</OptionTitle>
                 {prices.roundRibbonColor > 0 && <OptionPrice>+{prices.roundRibbonColor} €</OptionPrice>}
@@ -578,7 +593,7 @@ const Configurator = () => {
             </div>
 
 
-          {graduationCapCustomizationOptions.roundRibbonColor.map((item, index) => {
+          {graduationCapCustomizationOptions.customizationOptions?.roundRibbonColor?.map((item, index) => {
             // Get the badge name based on the selected language (selectedLang)
             const badgeName = item.name[selectedLang][0].name;
 
@@ -602,14 +617,14 @@ const Configurator = () => {
         </div>
       </div>
 
-      <div style={{ display: graduationCapCustomizationOptions.onOff.cordColor ? 'block' : 'none' }} id="customization_section_3" className="configurator__section">
+      <div style={{ display: graduationCapCustomizationOptions.customizationOptions?.onOff?.cordColor ? 'block' : 'none' }} id="customization_section_3" className="configurator__section">
         <OptionTitlesContainer>
             <OptionTitle className="configurator__section__title">{t('cap_cord')}</OptionTitle>
             {prices.cordColor > 0 &&  <OptionPrice>+{prices.cordColor} €</OptionPrice>}
         </OptionTitlesContainer>
         <div className="configurator__section__values">
 
-          {graduationCapCustomizationOptions.cordColor.map((item, index) => {
+          {graduationCapCustomizationOptions.customizationOptions?.cordColor?.map((item, index) => {
 
             // Get the badge name based on the selected language (selectedLang)
             const badgeName = item.name[selectedLang][0].name;
@@ -634,7 +649,7 @@ const Configurator = () => {
         </div>
       </div>
 
-        <div style={{ display: graduationCapCustomizationOptions.onOff.embroideryTextFront ? 'block' : 'none' }} id="customization_section_4" className="configurator__section">
+        <div style={{ display: graduationCapCustomizationOptions.customizationOptions?.onOff?.embroideryTextFront ? 'block' : 'none' }} id="customization_section_4" className="configurator__section">
             <OptionTitlesContainer>
                 <OptionTitle className="configurator__section__title">{t('front_text')}</OptionTitle>
                 {prices.embroideryTextFront > 0 &&  <OptionPrice>+{prices.embroideryTextFront} €</OptionPrice>}
@@ -655,7 +670,7 @@ const Configurator = () => {
             </div>
 
             <div className="configurator__section__values">
-              {graduationCapCustomizationOptions.embroideryTextFront.colors.map((item, index) => {
+              {graduationCapCustomizationOptions.customizationOptions?.embroideryTextFront?.colors.map((item, index) => {
                 const embroideryTextColor = item.name[selectedLang][0].name;
                 return (
                   <div
@@ -713,7 +728,7 @@ const Configurator = () => {
 
         </div>
 
-        <div style={{ display: graduationCapCustomizationOptions.onOff.embroideryTextBack ? 'block' : 'none' }} id="customization_section_4" className="configurator__section">
+        <div style={{ display: graduationCapCustomizationOptions.customizationOptions?.onOff?.embroideryTextBack ? 'block' : 'none' }} id="customization_section_4" className="configurator__section">
             <OptionTitlesContainer>
                 <OptionTitle className="configurator__section__title">{t('back_text')}</OptionTitle>
                 {prices.embroideryTextBack > 0 &&  <OptionPrice>+{prices.embroideryTextBack} €</OptionPrice>}
@@ -781,7 +796,7 @@ const Configurator = () => {
         <CheckoutDiv>
             <CheckoutPrice>
                 <CheckoutPriceCol size="16px">{t('total').toUpperCase()}</CheckoutPriceCol>
-                <CheckoutPriceCol size="22px">{GetTotalPrice(prices).toFixed(2)} €</CheckoutPriceCol>
+                <CheckoutPriceCol size="22px">{GetTotalPrice(prices, graduationCapCustomizationOptions.price).toFixed(2)} €</CheckoutPriceCol>
             </CheckoutPrice>
             <CheckoutButton>
                 <Button onClick={handleCheckOut}>Lisää ostoskoriin</Button>

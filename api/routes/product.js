@@ -53,6 +53,22 @@ router.get("/find/:id", async (req, res) => {
     }
 });
 
+// GET CUSTOM PRODUCT
+router.get("/findCustomProduct/:productId", async (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    try {
+        const product = await Product.findOne({ productId: req.params.productId });
+        if (!product) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+        res.status(200).json(product);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+
+
 
 // GET ALL PRODUCTS
 router.get("/", async (req, res) => {
@@ -68,9 +84,10 @@ router.get("/", async (req, res) => {
                 categories: {
                   $in: [query_category],
                 },
+                customizedProduct: { $ne: true }, // Exclude customized products
             });
         }else{
-            products = await Product.find();
+            products = await Product.find({ customizedProduct: { $ne: true } }); // Exclude customized products
         }
         
         res.status(200).json(products);

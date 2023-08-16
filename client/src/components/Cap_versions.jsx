@@ -64,7 +64,7 @@ function Ylioppilaslakki(props) {
     font = "/public/Fonts/arial.woff";
   }
 
-  console.log(color, focus)
+  //console.log(color, focus)
 
   useEffect(() => {
     try {

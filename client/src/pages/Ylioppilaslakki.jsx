@@ -16,6 +16,9 @@ import $ from "jquery"
 import ReactDOM from "react-dom";
 import BounceLoader from 'react-spinners/ClipLoader';
 import {Helmet} from "react-helmet";
+import { brandColor } from '../theme';
+import RealPictureModal from "../components/RealPictureModal"
+
 
 
 
@@ -176,12 +179,21 @@ export const TextSlider = styled.div`
     ${smartPhone({fontSize: "14px"})}
 `;
 
+const RealPictures = styled.div`
+  position: absolute;
+  bottom: 52px;
+  left: 60px;
+  z-index: 1;
+  font-size: 16px;
+  cursor: pointer;
+  border-bottom: 2px solid #${brandColor};
+`;
+
 const Ylioppilaslakki = () => {
     const [isLoading, setIsLoading] = useState(true);
     const canvasRef = useRef();
-
-
-    console.log(forceRerender)
+    const [realPictureModalShow, setRrealPictureModalShow] = useState(false);
+  
     useEffect(() => {
       if (forceRerender) {
         console.log("force rendering is on")
@@ -203,7 +215,11 @@ const Ylioppilaslakki = () => {
 
       
 
-
+    const handleRealPictureModal = (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      setRrealPictureModalShow(true)
+    }
 
     
   return (
@@ -230,6 +246,7 @@ const Ylioppilaslakki = () => {
 
             
                     <ThreeDRotationOutlined style={{ position: "absolute", bottom: 52, left: 10, zIndex: 1, fontSize: "30px" }}/>
+                    <RealPictures  onClick={handleRealPictureModal}>{t("images")}</RealPictures>
                     
                     <CanvasToMiddle>
                         <Canvas  ref={canvasRef}>
@@ -258,6 +275,7 @@ const Ylioppilaslakki = () => {
       
             <Footer/>
             
+            <RealPictureModal show={realPictureModalShow} onHide={() => setRrealPictureModalShow(false)} />
         </CapMainDiv>
     </CustomizationProvider>
   )
