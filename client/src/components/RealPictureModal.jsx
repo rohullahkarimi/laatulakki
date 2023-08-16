@@ -1,10 +1,10 @@
-import React from 'react'; // Make sure you have this import
+import React, { useEffect, useState } from 'react'; // Make sure you have this import
 import styled from "styled-components";
 import Container from 'react-bootstrap/Container';
 import Modal from 'react-bootstrap/Modal';
 import { useTranslation } from "react-i18next";
-import { useCustomization } from "../contexts/Customization";
 import ImageGallery from 'react-image-gallery';
+import { publicRequest } from '../requestMethods';
 
 
 
@@ -25,9 +25,22 @@ const PlatformButton = styled.button`
 
 const DeliveryTermsModal = (props) => {
   const { t } = useTranslation();
-  const {
-    graduationCapCustomizationOptions,
-  } = useCustomization();
+  const [graduationCapCustomizationOptions, setGraduationCapCustomizationOptions] = useState({});
+
+  useEffect(() =>{
+    const productId = "123456789"
+    const getProduct = async ()=> {
+      try {
+          const res = await publicRequest.get("/products/findCustomProduct/" + productId);
+          setGraduationCapCustomizationOptions(res.data);
+
+      } catch (err) {
+          console.log(err);
+      }
+    
+    }
+    getProduct()
+  }, []);
 
   return (
     <>

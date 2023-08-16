@@ -331,7 +331,7 @@ const Configurator = () => {
       
       }
       getProduct()
-    }, []);
+    }, [selectedLang]);
     
     //console.log(graduationCapCustomizationOptions)
 
