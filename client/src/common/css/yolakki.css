@@ -4,6 +4,15 @@ html, body, #root {
     height: 100vh;
 }
 
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
 
 /* full screen button */
 .css-gre8e6 .renderer-fullscreen-button {

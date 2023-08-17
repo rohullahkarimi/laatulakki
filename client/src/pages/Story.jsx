@@ -43,7 +43,7 @@ const InputContainer = styled.div`
 const Button = styled.button`
     flex: 8;
     border: none;
-    width: 25%;
+    width: 35%;
     background-color: #${buttonColor};
     color: white;
     font-size: 18px;
@@ -149,8 +149,8 @@ const Story = () => {
 
 
                     <InputContainer>
-                        <Button onClick={()=>navigate("/product/perinteinen-suomalainen-ylioppilaslakki/"+process.env.REACT_APP_PRODUCT_PAGE)}>
-                            {t('buy')}
+                        <Button onClick={()=>navigate("/ylioppilaslakki")}>
+                            {t('designYours')}
                         </Button>
                     </InputContainer>
 

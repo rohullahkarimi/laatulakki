@@ -19,6 +19,13 @@ import {Helmet} from "react-helmet";
 import { brandColor } from '../theme';
 import RealPictureModal from "../components/RealPictureModal"
 
+import { hotjar } from 'react-hotjar';
+import {getCookie} from "../common/js/common.js";
+import ReactGA from "react-ga4";
+
+
+
+
 
 
 
@@ -221,6 +228,14 @@ const Ylioppilaslakki = () => {
       setRrealPictureModalShow(true)
     }
 
+  // call hotjar if user accepted preferences cookie
+  if(getCookie("rcl_preferences_consent") === "true"){
+    hotjar.initialize(3220042, 6)
+    hotjar.identify('USER_ID', { userProperty: 'value' });
+
+    // Send pageview with a custom path
+    ReactGA.send({ hitType: "pageview", page: "/ylioppilaslakki" });
+  } 
     
   return (
     <CustomizationProvider>

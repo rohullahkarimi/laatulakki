@@ -76,7 +76,7 @@ const Slider2023 = () => {
                         </p>
                         <Link to="/ylioppilaslakki">
                             <button className="btn-el btn-darken btn-inline">
-                            SUUNNITTELE OMASI<i className="bx bx-right-arrow-alt"></i>
+                           {t('designYours')}<i className="bx bx-right-arrow-alt"></i>
                             </button>
                         </Link>
                     </BannerInner>

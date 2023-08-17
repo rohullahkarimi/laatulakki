@@ -16,6 +16,7 @@ import CartModal from './CartModal';
 import CapChoiceModal from "../components/CapChoiceModal"
 import CapUsageModal from "../components/CapUsageModal"
 import { publicRequest } from '../requestMethods';
+import $ from 'jquery'
 
 ReactPixel.pageView(); // For tracking page view
 
@@ -210,8 +211,12 @@ const LeftAmount = styled.p`
 `
 
 const GeneralError = styled.div`
-    color: tomato;
-    font-size: 18px;
+    color: #dd2d0d;
+    font-size: 16px;
+    font-weight: 600;
+    display: list-item;
+    list-style-type: square;
+    list-style-position: inside;
 `
 
 
@@ -237,7 +242,7 @@ const FreeRefund = styled.p`
     margin-bottom: 0;
 `
 
-const GetTotalPrice = (prices, cap_base_price) => {
+const GetTotalPriceOfOneProduct = (prices, cap_base_price) => {
   const {
     customization
   } = useCustomization();
@@ -259,7 +264,7 @@ const GetTotalPrice = (prices, cap_base_price) => {
   totalPrice += prices.embroideryTextBack;
 
   // Add the price of the quantity
-  totalPrice = totalPrice * customization.quantity;
+  totalPrice = totalPrice;
 
   return totalPrice;
 };
@@ -337,7 +342,7 @@ const Configurator = () => {
 
   
 
-    const totalPrice = GetTotalPrice(prices, graduationCapCustomizationOptions.price);
+    const totalPrice = GetTotalPriceOfOneProduct(prices, graduationCapCustomizationOptions.price);
     //console.log(totalPrice)
     
   
@@ -507,14 +512,27 @@ const Configurator = () => {
       if (!customization.size) {
         newErrors.push(t('choose') + ' ' + t('size'));
         setErrors(newErrors);
+        $('.errorsText').addClass('blink_me');
+
+        setTimeout(function() {
+          $('.errorsText').removeClass('blink_me'); 
+        }, 1000); 
+        
         return false;
       }
       if (customization.size && customization.quantity > customization.productStorage) {
         newErrors.push(t('stockExceed'));
         setErrors(newErrors);
+        $('.errorsText').addClass('blink_me');
+
+        setTimeout(function() {
+          $('.errorsText').removeClass('blink_me'); 
+        }, 1000); 
+
         return false;
       }
       
+
     
 
       // update cart
@@ -788,7 +806,7 @@ const Configurator = () => {
         {errors.length > 0 && (
           <div>
             {errors.map((error, index) => (
-              <GeneralError key={index}>{error}</GeneralError>
+              <GeneralError className="errorsText" key={index}>{error}</GeneralError>
             ))}
           </div>
         )}
@@ -796,7 +814,7 @@ const Configurator = () => {
         <CheckoutDiv>
             <CheckoutPrice>
                 <CheckoutPriceCol size="16px">{t('total').toUpperCase()}</CheckoutPriceCol>
-                <CheckoutPriceCol size="22px">{GetTotalPrice(prices, graduationCapCustomizationOptions.price).toFixed(2)} €</CheckoutPriceCol>
+                <CheckoutPriceCol size="22px">{(GetTotalPriceOfOneProduct(prices, graduationCapCustomizationOptions.price) * customization.quantity).toFixed(2)} €</CheckoutPriceCol>
             </CheckoutPrice>
             <CheckoutButton>
                 <Button onClick={handleCheckOut}>Lisää ostoskoriin</Button>
