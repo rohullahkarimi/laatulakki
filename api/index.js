@@ -34,8 +34,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
-
-app.use("/api/productscsv", express.static(__dirname + "/public/exportData/products.csv"))
+app.use("/api/products/csv", productRoute);
 
 app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);

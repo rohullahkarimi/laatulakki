@@ -127,7 +127,7 @@ router.get("/csv", async (req, res) => {
 
         // Create CSV writer and specify headings
         const csvWriter = createObjectCsvWriter({
-            path: '/public/exportData/products.csv',
+            path: 'products.csv',
             header: [
                 { id: 'id', title: 'id' },
                 { id: 'title', title: 'title' },
@@ -146,7 +146,7 @@ router.get("/csv", async (req, res) => {
         csvWriter.writeRecords(modifiedProducts)
             .then(() => {
                 console.log('CSV file created successfully');
-                res.download('/public/exportData/products.csv'); // Download the generated CSV file
+                res.download('products.csv'); // Download the generated CSV file
             });
 
     } catch (err) {
