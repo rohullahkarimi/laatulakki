@@ -125,9 +125,12 @@ router.get("/csv", async (req, res) => {
             };
         });
 
+        const csvDirectory = path.join(__dirname, 'csv_files'); // Change 'csv_files' to your desired directory name
+        const csvFilePath = path.join(csvDirectory, 'products.csv');
+
         // Create CSV writer and specify headings
         const csvWriter = createObjectCsvWriter({
-            path: 'products.csv',
+            path: csvFilePath,
             header: [
                 { id: 'id', title: 'id' },
                 { id: 'title', title: 'title' },
