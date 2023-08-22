@@ -1,4 +1,3 @@
-const path = require("path");
 const Product = require("../models/Product");
 const { verifyTokenAndAdmin, verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
 const { createObjectCsvWriter } = require('csv-writer');
@@ -126,12 +125,9 @@ router.get("/csv", async (req, res) => {
             };
         });
 
-        const csvDirectory = path.join(__dirname, 'csv_files'); // Change 'csv_files' to your desired directory name
-        const csvFilePath = path.join(csvDirectory, 'products.csv');
-
         // Create CSV writer and specify headings
         const csvWriter = createObjectCsvWriter({
-            path: csvFilePath,
+            path: '/public/exportData/products.csv',
             header: [
                 { id: 'id', title: 'id' },
                 { id: 'title', title: 'title' },
@@ -150,7 +146,7 @@ router.get("/csv", async (req, res) => {
         csvWriter.writeRecords(modifiedProducts)
             .then(() => {
                 console.log('CSV file created successfully');
-                res.download('products.csv'); // Download the generated CSV file
+                res.download('/public/exportData/products.csv'); // Download the generated CSV file
             });
 
     } catch (err) {
