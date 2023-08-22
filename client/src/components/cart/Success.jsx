@@ -94,7 +94,7 @@ const Success = () => {
           
         }else if(res.data.status === "ok"){
           console.log("order paid and email send")
-          //dispatch(emptyCart());
+          dispatch(emptyCart());
         }
       });
     } catch(error) {

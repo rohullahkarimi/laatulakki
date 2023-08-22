@@ -24,6 +24,7 @@ import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
 import ReactGA from "react-ga4";
 import {Helmet} from "react-helmet";
+import GoogleReviews from '../components/GoogleReviews';
 ReactPixel.pageView(); // For tracking page view
 
 
@@ -490,7 +491,7 @@ const Product = () => {
             </InfoContainer>
         </Wrapper>
 
-        <div className="commonninja_component pid-5f13afcd-6d5d-46d5-b13e-04033b8c7ede"></div>
+        <GoogleReviews/>
 
         <YouMightLike>{t('packingDesc')}</YouMightLike>
         <PackingDiv>

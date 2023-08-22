@@ -57,7 +57,7 @@ module.exports = (env) => {
         crypto: require.resolve('crypto-browserify'),
         stream: require.resolve('stream-browserify'), // Fixed the quotes here
       },
-      extensions: ['.js', '.jsx'], // Add other extensions you might use (e.g., '.mjs')
+      extensions: ['.js', '.jsx', '.ts', '.json'], // Add other extensions you might use (e.g., '.mjs')
     },
     devServer: {
       static: path.join(__dirname, 'public'), // Serve content from the 'dist' directory

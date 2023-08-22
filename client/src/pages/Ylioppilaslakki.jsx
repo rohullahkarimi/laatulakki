@@ -22,6 +22,7 @@ import RealPictureModal from "../components/RealPictureModal"
 import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
 import ReactGA from "react-ga4";
+import GoogleReviews from '../components/GoogleReviews';
 
 
 
@@ -196,6 +197,8 @@ const RealPictures = styled.div`
   border-bottom: 2px solid #${brandColor};
 `;
 
+
+
 const Ylioppilaslakki = () => {
     const [isLoading, setIsLoading] = useState(true);
     const canvasRef = useRef();
@@ -287,7 +290,8 @@ const Ylioppilaslakki = () => {
                     <Configurator/>
                 </OptionsDiv>
             </MainDiv>
-      
+
+            <GoogleReviews/>
             <Footer/>
             
             <RealPictureModal show={realPictureModalShow} onHide={() => setRrealPictureModalShow(false)} />

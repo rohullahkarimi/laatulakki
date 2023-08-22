@@ -1,5 +1,6 @@
 const Product = require("../models/Product");
 const { verifyTokenAndAdmin, verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
+const { createObjectCsvWriter } = require('csv-writer');
 
 const router = require("express").Router();
 
@@ -95,5 +96,64 @@ router.get("/", async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+
+
+// GET ALL PRODUCTS in CSV format
+router.get("/csv", async (req, res) => {
+    res.set('Content-Type', 'text/csv');
+    res.set('Content-Disposition', 'attachment; filename=products.csv');
+
+    try {
+  
+        let products;
+    
+        products = await Product.find();
+     
+        // Modify products array to include extracted title and description in "fi" language
+        const modifiedProducts = products.map(product => {
+            return {
+                id: product.id,
+                title: product.title[0].fi,
+                price: product.price,
+                link: product.customizedProduct === true ? 'https://www.laatulakki.fi/ylioppilaslakki' :  "https://www.laatulakki.fi/product/"+ product.id,
+                additional_image_link: product.img[1]?.original,
+                image_link: product.img[0]?.original,
+                brand: "LAATULAKKI",
+                description: product.desc[0].fi,
+                availability: product.visibility ? 'in_stock' : 'out_of_stock'
+            };
+        });
+
+        // Create CSV writer and specify headings
+        const csvWriter = createObjectCsvWriter({
+            path: 'products.csv',
+            header: [
+                { id: 'id', title: 'id' },
+                { id: 'title', title: 'title' },
+                { id: 'price', title: 'price' },
+                { id: 'link', title: 'link' },
+                { id: 'additional_image_link', title: 'additional_image_link' },
+                { id: 'title', title: 'title' },
+                { id: 'image_link', title: 'image_link' },
+                { id: 'brand', title: 'brand' },
+                { id: 'description', title: 'description' },
+                { id: 'availability', title: 'availability' },
+            ],
+        });
+
+        // Write modified products to CSV
+        csvWriter.writeRecords(modifiedProducts)
+            .then(() => {
+                console.log('CSV file created successfully');
+                res.download('products.csv'); // Download the generated CSV file
+            });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
+
 
 module.exports = router;

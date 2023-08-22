@@ -10,6 +10,7 @@ import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
 import ReactGA from "react-ga4";
 import Slider2023 from '../components/Slider2023'
+import GoogleReviews from '../components/GoogleReviews';
 
 // page view
 ReactPixel.pageView(); // For tracking page view
@@ -43,7 +44,7 @@ const Home = () => {
       ReactGA.send({ hitType: "pageview", page: "/home" });
     
   }
-  // <div className="commonninja_component pid-5f13afcd-6d5d-46d5-b13e-04033b8c7ede"></div>
+
   return (
     <div>
         <Announcement/>
@@ -51,7 +52,7 @@ const Home = () => {
         <Slider2023/>
         
         <Products/>
-
+        <GoogleReviews/>
         <Newsletter/>
         <Footer/>
     </div>
