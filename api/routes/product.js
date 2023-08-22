@@ -1,6 +1,7 @@
 const Product = require("../models/Product");
 const { verifyTokenAndAdmin, verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
-const { createObjectCsvWriter } = require('csv-writer');
+const { Readable } = require('stream');
+const csv = require('fast-csv');
 
 const router = require("express").Router();
 
@@ -105,9 +106,7 @@ router.get("/csv", async (req, res) => {
     res.set('Content-Disposition', 'attachment; filename=products.csv');
 
     try {
-  
         let products;
-    
         products = await Product.find();
      
         // Modify products array to include extracted title and description in "fi" language
@@ -125,29 +124,11 @@ router.get("/csv", async (req, res) => {
             };
         });
 
-        // Create CSV writer and specify headings
-        const csvWriter = createObjectCsvWriter({
-            path: 'products.csv',
-            header: [
-                { id: 'id', title: 'id' },
-                { id: 'title', title: 'title' },
-                { id: 'price', title: 'price' },
-                { id: 'link', title: 'link' },
-                { id: 'additional_image_link', title: 'additional_image_link' },
-                { id: 'title', title: 'title' },
-                { id: 'image_link', title: 'image_link' },
-                { id: 'brand', title: 'brand' },
-                { id: 'description', title: 'description' },
-                { id: 'availability', title: 'availability' },
-            ],
-        });
-
-        // Write modified products to CSV
-        csvWriter.writeRecords(modifiedProducts)
-            .then(() => {
-                console.log('CSV file created successfully');
-                res.download('products.csv'); // Download the generated CSV file
-            });
+        // Create a Readable stream to generate CSV data
+        const readableStream = new Readable({ objectMode: true });
+        
+        // Pipe the stream to the response
+        csv.writeToStream(res, modifiedProducts, { headers: true });
 
     } catch (err) {
         console.error(err);
