@@ -121,7 +121,8 @@ router.get("/csv", async (req, res) => {
                 brand: "LAATULAKKI",
                 description: product.desc[0].fi,
                 availability: product.visibility ? 'in_stock' : 'out_of_stock',
-                condition: 'new'
+                condition: 'new',
+                google_product_category: 173
             };
         });
 
