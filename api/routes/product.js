@@ -114,13 +114,14 @@ router.get("/csv", async (req, res) => {
             return {
                 id: product.id,
                 title: product.title[0].fi,
-                price: product.price,
+                price: product.price+' EUR',
                 link: product.customizedProduct === true ? 'https://www.laatulakki.fi/ylioppilaslakki' :  "https://www.laatulakki.fi/product/"+ product.id,
                 additional_image_link: product.img[1]?.original,
                 image_link: product.img[0]?.original,
                 brand: "LAATULAKKI",
                 description: product.desc[0].fi,
-                availability: product.visibility ? 'in_stock' : 'out_of_stock'
+                availability: product.visibility ? 'in_stock' : 'out_of_stock',
+                condition: 'new'
             };
         });
 
