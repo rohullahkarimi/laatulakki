@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import Container from "../../../../components/container";
 //import { notFound } from "next/navigation";
@@ -11,7 +11,13 @@ import AuthorCard from "../../../../components/blog/authorCard";
 import { MyLoader } from "../../../../utils/all";
 import Footer from "../../../../components/footer";
 import Navbar from "../../../../components/navbar";
-
+import { dataset, projectId } from "../../../../lib/sanity/config";
+import sanityClient  from "@sanity/client"; //from "next-sanity";
+const client = sanityClient({
+  projectId: projectId, // find this at manage.sanity.io, run `sanity init` to initialize
+  dataset: dataset, // this is from when we answered those question from 'sanity init'
+  useCdn: true,
+});
 
 function NotFound() {
   return (
@@ -22,6 +28,31 @@ function NotFound() {
 
 export default function Post(props) {
   const { loading, post } = props;
+  const [imagesInBody, setImagesInBody] = useState([]);
+  useEffect(() => {
+    if (post.body) {
+      const fetchImages = async () => {
+        const images = [];
+
+        for (const block of post.body) {
+          if (block._type === "image" && block.asset && block.asset._ref) {
+            try {
+              const asset = await client.fetch(`*[_id == $id][0]`, { id: block.asset._ref });
+              if (asset && asset.url) {
+                images.push(asset.url);
+              }
+            } catch (error) {
+              console.error("Error fetching asset:", error);
+            }
+          }
+        }
+
+        setImagesInBody(images);
+      };
+
+      fetchImages();
+    }
+  }, [post.body]);
 
   //console.log(props)
   const slug = post?.slug;
@@ -39,6 +70,11 @@ export default function Post(props) {
     ? urlForImage(post.author.image)
     : null;
   
+
+
+
+  const filteredBlocks = post.body
+
   return (
     <>
       <Navbar/>
@@ -105,9 +141,26 @@ export default function Post(props) {
 
       <Container>
         <article className="mx-auto max-w-screen-md ">
+
+          
+
+         
           <div className="prose mx-auto my-3 dark:prose-invert prose-a:text-blue-600">
-            {post.body && <PortableText blocks={post.body} />}
+            {filteredBlocks.map((block, index) => {
+              if (block._type === "image") {
+                return (
+                  <div key={index}>
+                  {imagesInBody.map((imageUrl, index) => (
+                    <img key={index} src={imageUrl} alt={`laatulakki ${index}`} />
+                  ))}
+                  </div>
+                );
+              } else {
+                return <PortableText key={index} blocks={[block]} projectId={projectId} dataset={dataset} />;
+              }
+            })}
           </div>
+
           <div className="mb-7 mt-7 flex justify-center">
             <a
               href="/"
