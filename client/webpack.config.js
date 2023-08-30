@@ -6,15 +6,19 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = (env) => {
   // Determine the environment mode based on the flag passed
   // Determine the environment mode based on the flag passed
-  const isDevelopment = env && env.dev;
-  const isStaging = env && env.stag;
-  const isProduction = env && env.prod;
-
-  console.log(isDevelopment, isStaging, isProduction);
+  var envFilePath = ".dev.env";
 
   console.log(`Environment Build: ${env.build}`);
-  
 
+  switch (env.build) {
+    case "prod":
+      envFilePath = ".prod.env";
+    case "stag":
+      envFilePath = ".stag.env";
+    default:
+      envFilePath = ".dev.env";
+      break;
+  }
 
 
   return {
@@ -74,7 +78,7 @@ module.exports = (env) => {
       }),
       // Load environment-specific .env files
       new Dotenv({
-        path: isDevelopment ? './.dev.env' : isStaging ? './.stag.env' : './.prod.env',
+        path: envFilePath,
       }),
       new CopyWebpackPlugin({
         patterns: [
