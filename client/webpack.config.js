@@ -3,11 +3,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = (env, argv) => {
-  const isDevelopment = argv.mode === 'development';
-  const isProduction = argv.mode === 'production';
+module.exports = (env) => {
+  // Determine the environment mode based on the flag passed
+  // Determine the environment mode based on the flag passed
+  const isDevelopment = env && env.dev;
+  const isStaging = env && env.stag;
+  const isProduction = env && env.prod;
 
-  console.log(isDevelopment, isProduction);
+  console.log(isDevelopment, isStaging, isProduction);
+
 
 
   return {
@@ -50,8 +54,8 @@ module.exports = (env, argv) => {
     },
     resolve: {
       fallback: {
-        "crypto": require.resolve('crypto-browserify'),
-        "stream": require.resolve('stream-browserify'), // Fixed the quotes here
+        crypto: require.resolve('crypto-browserify'),
+        stream: require.resolve('stream-browserify'), // Fixed the quotes here
       },
       extensions: ['.js', '.jsx', '.ts', '.json'], // Add other extensions you might use (e.g., '.mjs')
     },
@@ -67,7 +71,7 @@ module.exports = (env, argv) => {
       }),
       // Load environment-specific .env files
       new Dotenv({
-        path: isDevelopment ? './.dev.env' : isProduction ? './.prod.env' : './.stag.env',
+        path: isDevelopment ? './.dev.env' : isStaging ? './.stag.env' : './.prod.env',
       }),
       new CopyWebpackPlugin({
         patterns: [
