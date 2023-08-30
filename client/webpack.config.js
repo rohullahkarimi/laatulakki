@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = (env) => {
   // Determine the environment mode based on the flag passed
   // Determine the environment mode based on the flag passed
-  var envFilePath = ".dev.env";
+  var envFilePath = ".stag.env";
 
  
 
@@ -15,8 +15,10 @@ module.exports = (env) => {
       envFilePath = ".prod.env";
     case "stag":
       envFilePath = ".stag.env";
-    default:
+    case "dev":
       envFilePath = ".dev.env";
+    default:
+      envFilePath = ".stag.env";
       break;
   }
 
