@@ -13,10 +13,13 @@ module.exports = (env) => {
   switch (env.build) {
     case "prod":
       envFilePath = ".prod.env";
+      break;
     case "stag":
       envFilePath = ".stag.env";
+      break;
     case "dev":
       envFilePath = ".dev.env";
+      break;
     default:
       envFilePath = ".stag.env";
       break;
