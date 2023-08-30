@@ -50,9 +50,6 @@ module.exports = (env, argv) => {
     },
     resolve: {
       fallback: {
-        "buffer": require.resolve("buffer/"),
-        "events": require.resolve("events/"),
-        "string_decoder": require.resolve("string_decoder/"),
         "crypto": require.resolve('crypto-browserify'),
         "stream": require.resolve('stream-browserify'), // Fixed the quotes here
       },
