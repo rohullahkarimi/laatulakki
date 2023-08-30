@@ -6,9 +6,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = (env) => {
   // Determine the environment mode based on the flag passed
   // Determine the environment mode based on the flag passed
-  const isDevelopment = env && env.mode === "development";
+  const isDevelopment = env && env.dev;
+  const isStaging = env && env.stag;
+  const isProduction = env && env.prod;
 
-  console.log(isDevelopment);
+  console.log(isDevelopment, isStaging, isProduction);
+
+  console.log(isDevelopment, isStaging, isProduction)
 
   return {
     entry: './src/index.js', // Replace with your entry file
@@ -67,7 +71,7 @@ module.exports = (env) => {
       }),
       // Load environment-specific .env files
       new Dotenv({
-        path: isDevelopment ? './.dev.env'  : './.prod.env',
+        path: isDevelopment ? './.dev.env' : isStaging ? './.stag.env' : './.prod.env',
       }),
       new CopyWebpackPlugin({
         patterns: [
