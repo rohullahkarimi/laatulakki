@@ -1,8 +1,8 @@
 echo "Switching to branch master"
 git checkout master
 
-# Build the app using env-cmd (no sudo)
-if env-cmd -f .stag.env webpack --mode development; then
+echo "Building app..."
+if sudo npm run build:webpack-stag --clear-cache; then
   echo "Build successful. Removing existing files in 'client' directory..."
   sudo rm -rf /var/www/laatulakki/stage/client/*
 
