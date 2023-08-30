@@ -1,13 +1,8 @@
 echo "Switching to branch master"
 git checkout master
 
-# Find the path to env-cmd using 'npm bin'
-ENV_CMD_PATH="$(npm bin)/env-cmd"
-
-echo "Building app..."
-echo "ENV_CMD_PATH: $ENV_CMD_PATH"
-
-if sudo -E $ENV_CMD_PATH -f .stag.env webpack --mode development; then
+# Build the app using env-cmd (no sudo)
+if env-cmd -f .stag.env webpack --mode development; then
   echo "Build successful. Removing existing files in 'client' directory..."
   sudo rm -rf /var/www/laatulakki/stage/client/*
 
