@@ -67,7 +67,7 @@ module.exports = (env) => {
       }),
       // Load environment-specific .env files
       new Dotenv({
-        path: isDevelopment ? './.dev.env' : isStaging ? './.stag.env' : './.prod.env',
+        path: isDevelopment ? './.dev.env'  : './.prod.env',
       }),
       new CopyWebpackPlugin({
         patterns: [
