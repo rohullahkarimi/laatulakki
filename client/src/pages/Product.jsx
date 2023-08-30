@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar"
 import CartModal from "../components/CartModal"
 import { useTranslation } from "react-i18next";
 import { laptop, mobile, smallLaptop, smartPhone } from "../responsive"
-import { useLocation } from "react-router-dom"
+import {  useLocation, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { publicRequest } from "../requestMethods"
 import { addProduct } from "../redux/cartRedux"
@@ -254,6 +254,7 @@ const Product = () => {
   const selectedLang = i18n.language
   const location = useLocation();
   const id = location.pathname.split("/")[3]
+  const navigate = useNavigate()
   //console.log(id);
 
 
@@ -402,9 +403,13 @@ const Product = () => {
         setModalShowCapUsage(true)
     }
 
+    const goTo3DPage = () =>{
+        navigate('/ylioppilaslakki');
+    } 
+
     let instructionElements;
     if (product.categories?.includes('lakki')) {
-        instructionElements = <InstructionContainer><InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem><InstructionItem target="_blank" onClick={handleCapUsage}>{t('usageDetails')}</InstructionItem><FreeRefund>{t('FreeRefund')}</FreeRefund></InstructionContainer>
+        instructionElements = <InstructionContainer><InstructionItem  target="_blank" onClick={goTo3DPage}>{t('wantToCustomizeCap')}</InstructionItem><InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem><InstructionItem target="_blank" onClick={handleCapUsage}>{t('usageDetails')}</InstructionItem><FreeRefund>{t('FreeRefund')}</FreeRefund></InstructionContainer>
     }
 
     const checkTotalProductSizeAmount = () => {

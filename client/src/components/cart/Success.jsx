@@ -88,7 +88,7 @@ const Success = () => {
     try {
       await axiosInstance.get("/sendMail/"+orderId)
       .then((res) => {
-        console.log(re.data)
+        console.log(res.data)
         if(res.data.status !== "ok"){
           // redirect user to cancel page
           

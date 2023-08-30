@@ -93,6 +93,7 @@ export default function WidgetLg() {
             <th className="widgetLgTh">Status</th>
             <th className="widgetLgTh">Customer</th>
             <th className="widgetLgTh">Date</th>
+            <th className="widgetLgTh">Discount (%)/ Code</th>
             <th className="widgetLgTh">Amount</th>
           </tr>
         </thead>
@@ -124,7 +125,8 @@ export default function WidgetLg() {
                 <span className="widgetLgName">{order.billingAddress.firstname} {order.billingAddress.lastname}</span>
               </td>
               <td className="widgetLgDate">{format(new Date(order.createdAt), 'dd.MM.yyyy HH:mm')}</td>
-              <td className="widgetLgAmount">{order.total.toFixed(2)} €</td>
+              <td className="widgetLgAmount">{order.promoPercentage} / {order.promoCode}</td>
+              <td className="widgetLgAmount">{order.promoPercentage === 100 ? 0.00 : order.total.toFixed(2)} €</td>
             </tr>
          
          ))}

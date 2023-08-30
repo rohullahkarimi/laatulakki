@@ -6,8 +6,9 @@ import { mobile, smartPhone, tablet } from "../../responsive";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increaseProduct, decreaseProduct, deleteProduct } from '../../redux/cartRedux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ProductSlider from '../ProductSlider';
 
 const Product = styled.div`
   display: flex;
@@ -139,10 +140,24 @@ const CartProduct = (props) => {
   const [cartItems, setCartItems] = useState(cart.quantity);
   const navigate = useNavigate()
   const { t } = useTranslation();
+  const [cartProductId, setCartProductIds] = useState([]);
+  const location = useLocation();
+  const isCartPage = location.pathname === '/cart';
+
+  //console.log(cart.products)
+
+  // Function to extract _id values from products and update state
+  const updateProductIds = () => {
+    const newProductIds = cart.products.map(product => product._id);
+    setCartProductIds(newProductIds);
+  };
+
+
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+    updateProductIds()
+  }, [cart.products])
 
   
   const handleDelete = useCallback((product) => {
@@ -275,8 +290,13 @@ const CartProduct = (props) => {
         )}
         </ProductDetail2>
         {index !== cart.products.length - 1 && <Hr/>}
+
+    
       </Product>
     ))}
+
+    <Hr/>
+    {isCartPage && <ProductSlider cartProductId={cartProductId}/>}
     </div>
   );
 };

@@ -466,7 +466,7 @@ const Receipt = () => {
                       <Value>{order.totalPriceIncludeDelivery_taxLess} € </Value>
                       <Value>{order.totalPriceIncludeDelivery_tax} € </Value>
                       <Value>24 </Value>
-                      <Value>{order.totalPriceIncludeDelivery} € </Value>
+                      <Value>{orderData.promoPercentage === 100 ? 0.00 : order.totalPriceIncludeDelivery} € </Value>
                     </DetailsInfo>
                 </BillingAddress>
             </CustomerDetails>

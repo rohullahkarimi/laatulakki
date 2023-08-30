@@ -23,7 +23,8 @@ const ExperienceYlioppilaslakki = () => {
         //autoRotate 
         enableDamping 
         dampingFactor={0.1}  
-        //rotateSpeed={0.2} 
+        rotateSpeed={0.3} 
+        zoomSpeed={0.4}
         minDistance={1} // Set minimum distance for zooming in
         maxDistance={8} // Set maximum distance for zooming out
        />

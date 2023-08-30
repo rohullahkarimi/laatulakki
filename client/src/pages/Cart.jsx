@@ -6,7 +6,7 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import "../css/Cart.css"
-import { mobile, smartPhone, tablet } from "../responsive";
+import { laptop, mobile, smartPhone, tablet } from "../responsive";
 import {  emptyCart } from '../redux/cartRedux';
 import { useStep } from '@flywire/react-hooks';
 import CustomerInformationForm from '../components/cart/CustomerInformationForm';
@@ -27,6 +27,7 @@ import {
 } from 'react-bootstrap';
 import { useTranslation } from "react-i18next";
 import ReactPixel from 'react-facebook-pixel';
+
 
 
 ReactPixel.pageView(); // For tracking page view
@@ -95,6 +96,7 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  ${laptop({ flexDirection: "column"})}
   ${tablet({ flexDirection: "column"})}
   ${smartPhone({ flexDirection: "column" })}
   ${mobile({ flexDirection: "column" })}
@@ -363,8 +365,9 @@ const Cart = () => {
     };
 
 
+    // For testing 
+    //console.log(cart)
 
-    console.log(cart)
     return (
       <div>
         <Helmet>
@@ -383,6 +386,8 @@ const Cart = () => {
               <Li className={step.id === "deliveryMethod" ? "bc_item bc_complete" : "bc_item"}>{t("deliveryMethod")}</Li>
               <Li className={step.id === "cart_review" ? "bc_item bc_complete" : "bc_item"}>{t("summary")}</Li>
             </Ul>
+
+           
             <Bottom>
               <Info>
                   <div className="app w3-card-4">

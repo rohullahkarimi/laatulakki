@@ -106,10 +106,19 @@ const CanvasDiv = styled.div`
   height: auto;
   width: 100%;
 
+
   canvas {
     max-width: 100%;
     max-height: 100%;
+    touch-action: none;
+    cursor: grab;
+    pointer-events: all !important;
+    border-bottom: solid 1px #ffcbcb;
   }  
+
+  canvas:active {cursor: grab;}
+
+
 
   // Position sticky on mobile
   @media (max-width: 600px) {

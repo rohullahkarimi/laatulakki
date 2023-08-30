@@ -54,6 +54,7 @@ ReactGA.initialize("G-D2D2QPJM81");
 const App = () => {
   const { t } = useTranslation();
   const user = useSelector((state)=> state.user.currentUser);
+  const currentPath = window.location.pathname; // Get the current path
 
   useEffect(() => {
     if($('.react-cookie-law-dialog').length){
@@ -63,45 +64,12 @@ const App = () => {
   });
   
 
-  return (
-    <Router>
-      <ScrollToTop/>
-      <Routes>
-        <Route index path="/" element={<Home />} />
-        <Route path="/products/:category" element={<ProductList />} />
-        <Route path="/product/:name/:id" element={<Product />} />
-        <Route path="/product/6372439cd4925b8f3d5be3ae" element={ <Navigate to="/product/perinteinen-suomalainen-ylioppilaslakki/6372439cd4925b8f3d5be3ae" /> }/>
+  const renderCookieBanner = () => {
+    if (currentPath === '/ylioppilaslakki') {
+      return null; // Don't render anything for this route
+    }
 
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/success" element={<Success />} />
-
-        <Route path="/login" element={
-          user ? <Navigate to="/" />: <Login/>
-        }/>
-        <Route path="/register" element={
-          user ? <Navigate to="/" />: <Register/>
-        }/>
-
-        <Route path="/pay" element={<Paytrail />} />
-        <Route path="/terms_and_condition" element={<Terms />} />
-        <Route path="/registration_statement" element={<RegistrationStatement />} />
-        <Route path="/change_and_refund" element={<ChangeAndRefund />} />
-        <Route path="/cart/success" element={<PaymentPage/>} />
-        <Route path="/cart/cancel" element={<PaymentPage/>} />
-        <Route path="/terms_of_delivery" element={<TermsOfDelivery/>} />
-        <Route path="/cap_choice" element={<CapChoice/>} />
-        <Route path="/cap_usage" element={<CapUsage/>} />
-        <Route path="/receipt" element={<Receipt/>} />
-        <Route path="/our_story" element={<Story/>} />
-        <Route path="/faq" element={<FAQ/>} />
-        <Route path="/instagram" element={<Instagram/>} />
-        <Route path="/ylioppilaslakki" element={<Ylioppilaslakki/>} />
-  
-        
-
-    
-
-      </Routes>
+    return (
       <div className="cookies_container">
         <CookieBanner
           message={t('cookies_Message')}
@@ -197,7 +165,48 @@ const App = () => {
           
           }}
         />
-      </div>
+    </div>
+    );
+  };
+
+  return (
+    <Router>
+      <ScrollToTop/>
+      <Routes>
+        <Route index path="/" element={<Home />} />
+        <Route path="/products/:category" element={<ProductList />} />
+        <Route path="/product/:name/:id" element={<Product />} />
+        <Route path="/product/6372439cd4925b8f3d5be3ae" element={ <Navigate to="/product/perinteinen-suomalainen-ylioppilaslakki/6372439cd4925b8f3d5be3ae" /> }/>
+
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/success" element={<Success />} />
+
+        <Route path="/login" element={
+          user ? <Navigate to="/" />: <Login/>
+        }/>
+        <Route path="/register" element={
+          user ? <Navigate to="/" />: <Register/>
+        }/>
+
+        <Route path="/pay" element={<Paytrail />} />
+        <Route path="/terms_and_condition" element={<Terms />} />
+        <Route path="/registration_statement" element={<RegistrationStatement />} />
+        <Route path="/change_and_refund" element={<ChangeAndRefund />} />
+        <Route path="/cart/success" element={<PaymentPage/>} />
+        <Route path="/cart/cancel" element={<PaymentPage/>} />
+        <Route path="/terms_of_delivery" element={<TermsOfDelivery/>} />
+        <Route path="/cap_choice" element={<CapChoice/>} />
+        <Route path="/cap_usage" element={<CapUsage/>} />
+        <Route path="/receipt" element={<Receipt/>} />
+        <Route path="/our_story" element={<Story/>} />
+        <Route path="/faq" element={<FAQ/>} />
+        <Route path="/instagram" element={<Instagram/>} />
+        <Route path="/ylioppilaslakki" element={<Ylioppilaslakki/>} />
+  
+      </Routes>
+
+      {renderCookieBanner()}
+     
     </Router>
   );
 };
