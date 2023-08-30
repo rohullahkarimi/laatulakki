@@ -53,11 +53,11 @@ module.exports = (env) => {
     },
     resolve: {
       fallback: {
-        buffer: require.resolve("buffer/"),
-        events: require.resolve("events/"),
-        string_decoder: require.resolve("string_decoder/"),
-        crypto: require.resolve('crypto-browserify'),
-        stream: require.resolve('stream-browserify'), // Fixed the quotes here
+        "buffer": require.resolve("buffer/"),
+        "events": require.resolve("events/"),
+        "string_decoder": require.resolve("string_decoder/"),
+        "crypto": require.resolve('crypto-browserify'),
+        "stream": require.resolve('stream-browserify'), // Fixed the quotes here
       },
       extensions: ['.js', '.jsx', '.ts', '.json'], // Add other extensions you might use (e.g., '.mjs')
     },
