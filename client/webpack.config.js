@@ -6,6 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = (env) => {
   // Determine the environment mode based on the flag passed
   // Determine the environment mode based on the flag passed
+  const isDevelopmentTrue = env && env.mode === "development";
+
   const isDevelopment = env && env.dev;
   const isStaging = env && env.stag;
   const isProduction = env && env.prod;
@@ -13,6 +15,7 @@ module.exports = (env) => {
   console.log(isDevelopment, isStaging, isProduction);
 
   console.log(isDevelopment, isStaging, isProduction)
+  console.log(isDevelopmentTrue)
 
   return {
     entry: './src/index.js', // Replace with your entry file
