@@ -22,7 +22,7 @@ import RealPictureModal from "../components/RealPictureModal"
 import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
 import ReactGA from "react-ga4";
-import GoogleReviews from '../components/GoogleReviews';
+
 
 
 
@@ -300,7 +300,7 @@ const Ylioppilaslakki = () => {
                 </OptionsDiv>
             </MainDiv>
 
-            <GoogleReviews/>
+       
             <Footer/>
             
             <RealPictureModal show={realPictureModalShow} onHide={() => setRrealPictureModalShow(false)} />

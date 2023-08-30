@@ -24,7 +24,7 @@ import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
 import ReactGA from "react-ga4";
 import {Helmet} from "react-helmet";
-import GoogleReviews from '../components/GoogleReviews';
+
 ReactPixel.pageView(); // For tracking page view
 
 
@@ -496,7 +496,7 @@ const Product = () => {
             </InfoContainer>
         </Wrapper>
 
-        <GoogleReviews/>
+   
 
         <YouMightLike>{t('packingDesc')}</YouMightLike>
         <PackingDiv>
