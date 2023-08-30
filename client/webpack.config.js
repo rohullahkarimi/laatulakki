@@ -8,7 +8,7 @@ module.exports = (env) => {
   // Determine the environment mode based on the flag passed
   var envFilePath = ".dev.env";
 
-  console.log(`Environment Build: ${env.build}`);
+ 
 
   switch (env.build) {
     case "prod":
@@ -19,6 +19,8 @@ module.exports = (env) => {
       envFilePath = ".dev.env";
       break;
   }
+
+  console.log(`Environment Build: ${env.build} file: ${envFilePath}`);
 
 
   return {
