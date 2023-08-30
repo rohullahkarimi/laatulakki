@@ -7,7 +7,7 @@ module.exports = (env, argv) => {
   const isDevelopment = argv.mode === 'development';
   const isProduction = argv.mode === 'production';
 
-  console.log(isDevelopment, isStaging, isProduction);
+  console.log(isDevelopment, isProduction);
 
 
   return {
