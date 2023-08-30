@@ -7,7 +7,7 @@ ENV_CMD_PATH="$(npm bin)/env-cmd"
 echo "Building app..."
 echo "ENV_CMD_PATH: $ENV_CMD_PATH"
 
-if sudo $ENV_CMD_PATH -f .stag.env npm run build:webpack-stag; then
+if sudo -E $ENV_CMD_PATH -f .stag.env webpack --mode development; then
   echo "Build successful. Removing existing files in 'client' directory..."
   sudo rm -rf /var/www/laatulakki/stage/client/*
 
