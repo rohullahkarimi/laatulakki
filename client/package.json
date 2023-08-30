@@ -97,7 +97,7 @@
     "build:webpack-stag": "env-cmd -f .stag.env webpack --mode=development",
     "build:webpack-prod": "env-cmd -f .prod.env webpack --mode=production",
     "sitemap": "babel-node ./sitemap-builder.js",
-    "dev": "webpack-dev-server --env dev --mode development",
+    "dev": "webpack-dev-server --env dev --mode development ",
     "stag": "webpack-dev-server --env stag --mode development",
     "prod": "webpack-dev-server --env prod --mode development"
   },
