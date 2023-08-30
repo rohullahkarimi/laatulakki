@@ -2,10 +2,10 @@ echo "Switching to branch master"
 git checkout master
 
 # Find the path to env-cmd using 'npm bin'
-ENV_CMD_PATH=$(npm bin)/env-cmd
+ENV_CMD_PATH="$(npm bin)/env-cmd"
 
 echo "Building app..."
-echo "ENV_CMD_PATH: $ENV_CMD_PATH"  # Add this line for debugging
+echo "ENV_CMD_PATH: $ENV_CMD_PATH"
 
 if sudo $ENV_CMD_PATH -f .stag.env npm run build:webpack-stag; then
   echo "Build successful. Removing existing files in 'client' directory..."
