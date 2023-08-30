@@ -3,12 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = (env) => {
-  // Determine the environment mode based on the flag passed
-  // Determine the environment mode based on the flag passed
-  const isDevelopment = env && env.dev;
-  const isStaging = env && env.stag;
-  const isProduction = env && env.prod;
+module.exports = (env, argv) => {
+  const isDevelopment = argv.mode === 'development';
+  const isProduction = argv.mode === 'production';
 
   console.log(isDevelopment, isStaging, isProduction);
 
@@ -73,7 +70,7 @@ module.exports = (env) => {
       }),
       // Load environment-specific .env files
       new Dotenv({
-        path: isDevelopment ? './.dev.env' : isStaging ? './.stag.env' : './.prod.env',
+        path: isDevelopment ? './.dev.env' : isProduction ? './.prod.env' : './.stag.env',
       }),
       new CopyWebpackPlugin({
         patterns: [
