@@ -12,6 +12,9 @@ module.exports = (env) => {
 
   console.log(isDevelopment, isStaging, isProduction);
 
+  console.log(`Environment Build: ${env.build}`);
+  
+
 
 
   return {
