@@ -93,7 +93,9 @@ const ProductSlider = ({cat, cartProductId}) => {
         ) : (
           <Slider {...settings}>
           {
-            filteredProducts.map((item, index) => <div key={index}><ProductCard   imgSrc={item.img[0].thumbnail} imgAlt={item.img[0].thumbnailAlt} title={item.title[0][selectedLang]} desc={item.desc[0][selectedLang]}  price={item.price} productid={item._id}/></div>)
+            filteredProducts
+              .slice(0, 4)
+              .map((item, index) => <div key={index}><ProductCard   imgSrc={item.img[0].thumbnail} imgAlt={item.img[0].thumbnailAlt} title={item.title[0][selectedLang]} desc={item.desc[0][selectedLang]}  price={item.price} productid={item._id}/></div>)
           }
           </Slider>
         )}
