@@ -23,7 +23,7 @@ const ProductCard = props => {
 
   return (
     <Link to={`/product/${productTitleForUrl}/${props.productid}`}>
-      <Card style={{ width: "inherit", minHeight: "270px" }}>
+      <Card style={{ width: "100%", minHeight: "270px" }}>
         <Card.Img variant="top" src={props.imgSrc} alt={props.imgAlt} height="400" width="600" />
         <Card.Body>
           <Title>
