@@ -90,6 +90,7 @@ const Products = ({cat, filters, sort, selectedProduct, cartProductId}) => {
     } 
   }, [sort]);
 
+  console.log(products)
   return (
     <Container>
       {cat

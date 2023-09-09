@@ -296,7 +296,7 @@ const CartProduct = (props) => {
     ))}
 
     <Hr/>
-    {isCartPage && <ProductSlider cartProductId={cartProductId}/>}
+    {isCartPage && <ProductSlider cat="topup" cartProductId={cartProductId}/>}
     </div>
   );
 };
