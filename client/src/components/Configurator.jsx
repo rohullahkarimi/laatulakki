@@ -242,6 +242,15 @@ const FreeRefund = styled.p`
     margin-bottom: 0;
 `
 
+const FreeLable = styled.p`
+  background: linear-gradient(45deg, #FF6B6B, #FFD700); /* Gradient background */
+  color: #fff; /* White text color */
+  padding: 6px 12px; /* Padding around the label text */
+  border-radius: 25px; /* Rounded corners */
+  font-weight: bold; /* Bold text */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow */
+`
+
 const GetTotalPriceOfOneProduct = (prices, cap_base_price) => {
   const {
     customization
@@ -564,7 +573,7 @@ const Configurator = () => {
 
  
   
-      
+
     return (
     <div className="configurator">
         <Title>{productInternationalizeDetails.title}</Title>
@@ -590,7 +599,7 @@ const Configurator = () => {
                   className={`item ${customization.badge === item.name["en"][0].name ? "item--active" : ""}`}
                   onClick={() => handleCustomizationChange("badge", item.name["en"][0].name, item.price)}
                 >
-                  <div className="item__label">{badgeName}</div>
+                  <div className="item__label badgeButtons">{badgeName}</div>
                 </div>
               );
             })}
@@ -670,7 +679,7 @@ const Configurator = () => {
         <div style={{ display: graduationCapCustomizationOptions.customizationOptions?.onOff?.embroideryTextFront ? 'block' : 'none' }} id="customization_section_4" className="configurator__section">
             <OptionTitlesContainer>
                 <OptionTitle className="configurator__section__title">{t('front_text')}</OptionTitle>
-                {prices.embroideryTextFront > 0 &&  <OptionPrice>+{prices.embroideryTextFront} €</OptionPrice>}
+                {prices.embroideryTextFront === 0 ? <FreeLable>{t('free')}</FreeLable> : <OptionPrice>+{prices.embroideryTextFront} €</OptionPrice>}
             </OptionTitlesContainer>
 
             <div className="configurator__section__values">
@@ -717,7 +726,7 @@ const Configurator = () => {
                           placeholder={t('firstname')}
                           value={textFrontLeft}
                           onChange={(e) =>
-                            handleEmbroideryFrontTextChange("left", e.target.value, 8)
+                            handleEmbroideryFrontTextChange("left", e.target.value, graduationCapCustomizationOptions.customizationOptions?.embroideryTextFront.price)
                           }
                           maxLength={13}
                         />
@@ -733,7 +742,7 @@ const Configurator = () => {
                           placeholder={t('lastname')}
                           value={textFrontRight}
                           onChange={(e) =>
-                            handleEmbroideryFrontTextChange("right", e.target.value, 8)
+                            handleEmbroideryFrontTextChange("right", e.target.value, graduationCapCustomizationOptions.customizationOptions?.embroideryTextFront.price)
                           }
                           max={13}
                           maxLength={13}
@@ -749,7 +758,7 @@ const Configurator = () => {
         <div style={{ display: graduationCapCustomizationOptions.customizationOptions?.onOff?.embroideryTextBack ? 'block' : 'none' }} id="customization_section_4" className="configurator__section">
             <OptionTitlesContainer>
                 <OptionTitle className="configurator__section__title">{t('back_text')}</OptionTitle>
-                {prices.embroideryTextBack > 0 &&  <OptionPrice>+{prices.embroideryTextBack} €</OptionPrice>}
+                {prices.embroideryTextBack === 0 ? <FreeLable>{t('free')}</FreeLable> : <OptionPrice>+{prices.embroideryTextBack} €</OptionPrice>}
             </OptionTitlesContainer>
             <ValueDiv>
                 <div className="input-group-simple">
@@ -759,7 +768,7 @@ const Configurator = () => {
                       placeholder='Back'
                       value={textBack}
                       onChange={(e) =>
-                        handleEmbroideryTextBackChange(e.target.value, 10)
+                        handleEmbroideryTextBackChange(e.target.value, graduationCapCustomizationOptions.customizationOptions?.embroideryTextBack.price)
                       }
                       maxLength={25}
                     />

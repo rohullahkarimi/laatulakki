@@ -22,6 +22,8 @@ import RealPictureModal from "../components/RealPictureModal"
 import { hotjar } from 'react-hotjar';
 import {getCookie} from "../common/js/common.js";
 import ReactGA from "react-ga4";
+import { publicRequest } from '../requestMethods';
+import i18n from '../i18n';
 
 
 
@@ -177,23 +179,33 @@ const NavbarMobile = styled.div`
     display: block;
   }
 `;
+const AnnouncementMobile = styled.div`
+  display: none;
+  background-color: #1b1b1b;
+  @media (max-width: 600px) {
+    display: block;
+  }
+`;
 
 export const TextSlider = styled.div`
     position: sticky;
     bottom: 0;
     z-index: 2;
-    background-color: white; // Change this to match your desired background color
-    padding: 16px;
+    background-color: white;
+    padding: 5px;
     text-align: center;
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 400;
     height: 45px;
     border: 2px solid #f7f7f7; 
     /* Add flexbox properties for vertical centering */
     display: flex;
     align-items: center;
     justify-content: center;
-    ${smartPhone({fontSize: "14px"})}
+    background: #1b1b1b;
+    color: white;
+    border: none;
+    ${smartPhone({fontSize: "16px"})}
 `;
 
 const RealPictures = styled.div`
@@ -212,6 +224,12 @@ const Ylioppilaslakki = () => {
     const [isLoading, setIsLoading] = useState(true);
     const canvasRef = useRef();
     const [realPictureModalShow, setRrealPictureModalShow] = useState(false);
+    const selectedLang = i18n.language
+    const [setting, setSetting] = useState({
+      "status": false,
+      "title": "",
+      "desc": "",
+    })
   
     useEffect(() => {
       if (forceRerender) {
@@ -232,8 +250,40 @@ const Ylioppilaslakki = () => {
         return () => clearTimeout(timer);
     }, []);
 
+    useEffect(() => {
+      // get setting data
+      const getSetting = async () => {
+        try {
+          const res = await publicRequest.get("/setting");
+          console.log(res.data);
+          let updatedValue = {};
+    
       
-
+    
+          const titleArray = res.data[0].offer.title;
+          const descArray = res.data[0].offer.desc;
+    
+          // Find the object in the array that matches the selectedLang
+          const titleObj = titleArray.find((item) => item[selectedLang]);
+          const descObj = descArray.find((item) => item[selectedLang]);
+    
+          updatedValue = {
+            status: res.data[0].offer.status,
+            title: titleObj ? titleObj[selectedLang] : "",
+            desc: descObj ? descObj[selectedLang] : "",
+          };
+    
+          setSetting((setting) => ({
+            ...setting,
+            ...updatedValue,
+          }));
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getSetting();
+    }, [selectedLang]);
+    
     const handleRealPictureModal = (event) => {
       event.stopPropagation();
       event.preventDefault();
@@ -282,9 +332,9 @@ const Ylioppilaslakki = () => {
                             <ExperienceYlioppilaslakki/>
                         </Canvas>
                     </CanvasToMiddle>
-                    <NavbarMobile>
-                        <TextSlider>{t('3dText')}</TextSlider>
-                    </NavbarMobile>
+                    <AnnouncementMobile>
+                        <TextSlider className='move-text'>{setting.desc.toUpperCase()}</TextSlider>
+                    </AnnouncementMobile>
 
 
                     <FullscreenButton id="zoomContainer" onClick={toggleFullscreen} style={{ position: "absolute", bottom: 55, right: 10, zIndex: 1, fontSize: "30px" }}>

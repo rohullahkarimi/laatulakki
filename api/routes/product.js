@@ -122,7 +122,8 @@ router.get("/csv", async (req, res) => {
                 description: product.desc[0].fi,
                 availability: product.visibility ? 'in_stock' : 'out_of_stock',
                 condition: 'new',
-                google_product_category: 173
+                google_product_category: 173,
+                category: "Naisten vaatteet ja asusteet > Naisten hatut, huivit ja asusteet > Laatulakki, ylioppilaslakki"
             };
         });
 
