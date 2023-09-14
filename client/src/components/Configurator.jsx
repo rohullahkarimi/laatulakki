@@ -1,6 +1,6 @@
 import React from 'react'; // Make sure you have this import
 import styled from "styled-components";
-import { Add, Remove } from "@mui/icons-material"
+import { Add, ImageOutlined, Remove } from "@mui/icons-material"
 import "../common/css/yolakki.css";
 import { useCustomization } from "../contexts/Customization";
 import { laptop, mobile } from "../responsive";
@@ -17,6 +17,7 @@ import CapChoiceModal from "../components/CapChoiceModal"
 import CapUsageModal from "../components/CapUsageModal"
 import { publicRequest } from '../requestMethods';
 import $ from 'jquery'
+import RealPictureModal from "../components/RealPictureModal"
 
 ReactPixel.pageView(); // For tracking page view
 
@@ -233,6 +234,8 @@ const InstructionContainer = styled.div`
 const InstructionItem = styled.a`
     cursor: pointer;
     display: block;
+    padding: 5px 0;
+    text-decoration: underline !important;
 `
 
 const FreeRefund = styled.p`
@@ -294,6 +297,7 @@ const Configurator = () => {
     const [modalShowCapUsage, setModalShowCapUsage] = useState(false);
     const [graduationCapCustomizationOptions, setGraduationCapCustomizationOptions] = useState({});
     const [customizeProduct, setCustomizeProduct] = useState({})
+
 
     const {
       customization,
@@ -571,8 +575,12 @@ const Configurator = () => {
       ReactPixel.track("track", "Buy-button"); // For tracking default events. More info about standard events: https://developers.facebook.com/docs/facebook-pixel/implementation/conversion-tracking#standard-events
     }
 
- 
-  
+    const [realPictureModalShow, setRrealPictureModalShow] = useState(false);
+    const handleRealPictureModal = (event) => {
+      event.stopPropagation();
+      event.preventDefault();
+      setRrealPictureModalShow(true)
+    }
 
     return (
     <div className="configurator">
@@ -781,6 +789,7 @@ const Configurator = () => {
 
 
         <InstructionContainer>
+          <InstructionItem target="_blank" onClick={handleRealPictureModal}>{t('images')}<ImageOutlined/></InstructionItem>
           <InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem>
           <InstructionItem target="_blank" onClick={handleCapUsage}>{t('usageDetails')}</InstructionItem>
           <FreeRefund>{t('FreeRefund')}</FreeRefund>
@@ -833,6 +842,7 @@ const Configurator = () => {
        <CartModal show={modalShow} onHide={() => setModalShow(false)} />
        <CapChoiceModal show={modalShowCapChoice} onHide={() => setModalShowCapChoice(false)} />
        <CapUsageModal show={modalShowCapUsage} onHide={() => setModalShowCapUsage(false)} />
+       <RealPictureModal show={realPictureModalShow} onHide={() => setRrealPictureModalShow(false)} />
     </div>
   );
 };
