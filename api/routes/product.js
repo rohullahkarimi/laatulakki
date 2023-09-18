@@ -2,6 +2,7 @@ const Product = require("../models/Product");
 const { verifyTokenAndAdmin, verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
 const { Readable } = require('stream');
 const csv = require('fast-csv');
+const fs = require('fs');
 
 const router = require("express").Router();
 
@@ -138,6 +139,51 @@ router.get("/csv", async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+
+// GET ALL PRODUCTS in TXT format
+router.get("/txt", async (req, res) => {
+    try {
+      const products = await Product.find();
+      const formattedProducts = [];
+  
+      // Iterate through the products and format them for Google Merchant Center TXT
+      products.forEach((product) => {
+        formattedProducts.push({
+          id: product.id,
+          title: product.title[0].fi,
+          description: product.desc[0].fi,
+          google_product_category: "Electronics > Video > Televisions > Flat Panel Televisions",
+          product_type: "Consumer Electronics > TVs > Flat Panel TVs",
+          link: product.customizedProduct === true ? "https://www.laatulakki.fi/ylioppilaslakki" : `https://www.laatulakki.fi/product/${product.id}`,
+          image_link: product.img[0]?.original,
+          condition: "new",
+          availability: product.visibility ? "in_stock" : "out_of_stock",
+          price: `${product.price} EUR`,
+          // Add other attributes here...
+        });
+      });
+  
+      // Create a header for the TXT file
+      const header = "id\ttitle\tdescription\tgoogle product category\tproduct type\tlink\timage link\tcondition\tavailability\tprice";
+  
+      // Create the TXT content
+      const txtContent = `${header}\n${formattedProducts.map((product) =>
+        `${product.id}\t"${product.title}"\t"${product.description}"\t"${product.google_product_category}"\t"${product.product_type}"\t${product.link}\t${product.image_link}\t${product.condition}\t${product.availability}\t${product.price}`
+      ).join('\n')}`;
+  
+      // Set the appropriate headers for downloading
+      res.setHeader('Content-Type', 'text/plain');
+      res.setHeader('Content-Disposition', 'attachment; filename=products.txt');
+  
+      // Send the TXT content as the response
+      res.send(txtContent);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+});
+
 
 
 module.exports = router;
