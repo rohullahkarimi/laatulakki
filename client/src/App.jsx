@@ -66,7 +66,7 @@ const App = () => {
 
   const renderCookieBanner = () => {
     if (currentPath === '/ylioppilaslakki') {
-      return null; // Don't render anything for this route
+      //return null; // Don't render anything for this route
     }
 
     return (

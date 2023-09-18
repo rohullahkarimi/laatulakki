@@ -255,7 +255,7 @@ const Ylioppilaslakki = () => {
       const getSetting = async () => {
         try {
           const res = await publicRequest.get("/setting");
-          console.log(res.data);
+          //console.log(res.data);
           let updatedValue = {};
     
       
