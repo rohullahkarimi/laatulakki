@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Add, ImageOutlined, Remove } from "@mui/icons-material"
 import "../common/css/yolakki.css";
 import { useCustomization } from "../contexts/Customization";
-import { laptop, mobile } from "../responsive";
+import { laptop, mobile, smartPhone } from "../responsive";
 import { BlockOutlined } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
@@ -50,6 +50,13 @@ const CheckoutDiv = styled.div`
 const ValueDiv = styled.div`
     padding: 16px 0;
     width: 100%;
+`
+
+
+const ConfiguratorDiv = styled.div`
+    height: 100vh;
+    overflow: auto;
+    ${smartPhone({height: "100%", overflow: "hidden"})}
 `
 
 const InputDiv = styled.div`
@@ -318,7 +325,7 @@ const Configurator = () => {
             setCustomizeProduct({
               title: res.data.title[0].fi,
               desc: res.data.desc[0].fi,
-              img: res.data.img[2].thumbnail,
+              img: "https://www.laatulakki.fi/public/images/graduation_cap/KUSTOMOITU.jpg", //res.data.img[2].thumbnail,
               productId: "123456789",
               vatPercentage: 24,
             });
@@ -351,7 +358,8 @@ const Configurator = () => {
       getProduct()
     }, [selectedLang]);
     
-    //console.log(graduationCapCustomizationOptions)
+    console.log(graduationCapCustomizationOptions.customizationOptions)
+    console.log(graduationCapCustomizationOptions?.customizationOptions?.embroideryTextBack?.price)
 
   
 
@@ -583,7 +591,7 @@ const Configurator = () => {
     }
 
     return (
-    <div className="configurator">
+    <ConfiguratorDiv className="configurator">
         <Title>{productInternationalizeDetails.title}</Title>
         <div>
           <Desc>{productInternationalizeDetails.desc.substring(0, productInternationalizeDetails.desc.indexOf('.', productInternationalizeDetails.desc.indexOf('.') + 1) + 1)} <ReadMoreButton onClick={handleReadMore}>{t('readMore')}</ReadMoreButton></Desc>
@@ -687,7 +695,8 @@ const Configurator = () => {
         <div style={{ display: graduationCapCustomizationOptions.customizationOptions?.onOff?.embroideryTextFront ? 'block' : 'none' }} id="customization_section_4" className="configurator__section">
             <OptionTitlesContainer>
                 <OptionTitle className="configurator__section__title">{t('front_text')}</OptionTitle>
-                {prices.embroideryTextFront === 0 ? <FreeLable>{t('free')}</FreeLable> : <OptionPrice>+{prices.embroideryTextFront} €</OptionPrice>}
+                {graduationCapCustomizationOptions?.customizationOptions?.embroideryTextFront?.price === 0 && <FreeLable>{t('free')}</FreeLable>}
+                {prices.embroideryTextFront !== 0 && <OptionPrice>+{prices.embroideryTextFront} €</OptionPrice>}
             </OptionTitlesContainer>
 
             <div className="configurator__section__values">
@@ -766,7 +775,8 @@ const Configurator = () => {
         <div style={{ display: graduationCapCustomizationOptions.customizationOptions?.onOff?.embroideryTextBack ? 'block' : 'none' }} id="customization_section_4" className="configurator__section">
             <OptionTitlesContainer>
                 <OptionTitle className="configurator__section__title">{t('back_text')}</OptionTitle>
-                {prices.embroideryTextBack === 0 ? <FreeLable>{t('free')}</FreeLable> : <OptionPrice>+{prices.embroideryTextBack} €</OptionPrice>}
+                {graduationCapCustomizationOptions?.customizationOptions?.embroideryTextBack?.price === 0 && <FreeLable>{t('free')}</FreeLable> }
+                {prices.embroideryTextBack !== 0 && <OptionPrice>+{prices.embroideryTextBack} €</OptionPrice>}
             </OptionTitlesContainer>
             <ValueDiv>
                 <div className="input-group-simple">
@@ -843,7 +853,7 @@ const Configurator = () => {
        <CapChoiceModal show={modalShowCapChoice} onHide={() => setModalShowCapChoice(false)} />
        <CapUsageModal show={modalShowCapUsage} onHide={() => setModalShowCapUsage(false)} />
        <RealPictureModal show={realPictureModalShow} onHide={() => setRrealPictureModalShow(false)} />
-    </div>
+    </ConfiguratorDiv>
   );
 };
 

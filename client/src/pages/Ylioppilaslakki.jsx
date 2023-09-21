@@ -333,7 +333,7 @@ const Ylioppilaslakki = () => {
                         </Canvas>
                     </CanvasToMiddle>
                     <AnnouncementMobile>
-                        <TextSlider className='move-text'>{setting.desc.toUpperCase()}</TextSlider>
+                        <TextSlider className='move-text'>{setting.status ? setting.desc.toUpperCase() : t('3dText')}</TextSlider>
                     </AnnouncementMobile>
 
 

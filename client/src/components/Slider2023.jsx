@@ -35,11 +35,6 @@ const BannerImage = styled.img`
   justify-self: center;
     
 
-  @media only screen and (min-width: 64rem) {
-    max-width: 25rem;
-    height: auto;
-    margin-right: 5rem;
-  }
 
   @media only screen and (min-width: 42rem) {
     order: 2;
@@ -47,6 +42,13 @@ const BannerImage = styled.img`
     height: auto;
     object-position: "100% 0";
   }
+
+  @media only screen and (min-width: 64rem) {
+    max-width: 35rem;
+    height: auto;
+    margin-right: 5rem;
+  }
+
   
 
  
@@ -68,7 +70,7 @@ const Slider2023 = () => {
         <main className="main">
             <section className="section banner banner-section">
                 <div className="container banner-column">
-                    <BannerImage className='bannerImageMobile' src="/public/images/malli/malli_0.jpeg" alt="banner"/>
+                    <BannerImage className='bannerImageMobile' src="/public/images/graduation_cap/v23/800/ylioppilaslakki_15.jpg" alt="banner"/>
                     <BannerInner>
                         <HeadingXl>{t('sliderTitle1')}</HeadingXl>
                         <p className="paragraph">
