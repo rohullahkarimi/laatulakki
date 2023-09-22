@@ -323,6 +323,7 @@ const Configurator = () => {
 
 
             setCustomizeProduct({
+              _id: res.data._id,
               title: res.data.title[0].fi,
               desc: res.data.desc[0].fi,
               img: "https://www.laatulakki.fi/public/images/graduation_cap/KUSTOMOITU.jpg", //res.data.img[2].thumbnail,
@@ -358,9 +359,6 @@ const Configurator = () => {
       getProduct()
     }, [selectedLang]);
     
-    console.log(graduationCapCustomizationOptions.customizationOptions)
-    console.log(graduationCapCustomizationOptions?.customizationOptions?.embroideryTextBack?.price)
-
   
 
     const totalPrice = GetTotalPriceOfOneProduct(prices, graduationCapCustomizationOptions.price);

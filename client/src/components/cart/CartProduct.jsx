@@ -177,6 +177,7 @@ const CartProduct = (props) => {
         increaseProduct({
           id: product._id,
           price: product.price,
+          size: product.size,
           discount: product.discount
         })
       );

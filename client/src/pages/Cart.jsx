@@ -366,7 +366,7 @@ const Cart = () => {
 
 
     // For testing 
-    console.log(cart)
+    //console.log(cart)
 
     return (
       <div>

@@ -137,23 +137,44 @@ const cartSlice = createSlice({
            
         },
         increaseProduct: (state, action) => {
-            state.products.findIndex((i) => 
-                i._id === action.payload.id
-                ? i.quantity += 1
-                : console.log("Product not found!")
-            )
 
-            // update discount amount and total
-            cartSlice.caseReducers.discountAndTotalAmountBasedOnProducts(state, action); 
+          state.products.findIndex((product) => {
+            if (action.payload.size) {
+              // Check both id and size if size exists in the payload
+              if (product._id === action.payload.id && product.size === action.payload.size) {
+                product.quantity += 1;
+              }
+            } else {
+              // Check only id if size doesn't exist in the payload
+              if (product._id === action.payload.id) {
+                product.quantity += 1;
+              }
+            }
+          });
+
+          // update discount amount and total
+          cartSlice.caseReducers.discountAndTotalAmountBasedOnProducts(state, action); 
            
         },
         decreaseProduct: (state, action) => {
-            const item = state.products.find((item) => item._id === action.payload.id);
-            if (item.quantity === 1) {
-              item.quantity = 1
+          state.products.findIndex((product) => {
+            if (action.payload.size) {
+              // Check both id and size if size exists in the payload
+              if (product._id === action.payload.id && product.size === action.payload.size) {
+                if (product.quantity > 1) {
+                  product.quantity -= 1;
+                }
+              }
             } else {
-              item.quantity--;
+              // Check only id if size doesn't exist in the payload
+              if (product._id === action.payload.id) {
+                if (product.quantity > 1) {
+                  product.quantity -= 1;
+                }
+              }
             }
+          });
+
 
             // update discount amount and total
             cartSlice.caseReducers.discountAndTotalAmountBasedOnProducts(state, action); 
