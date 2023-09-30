@@ -93,7 +93,7 @@ const CategoryItem = () => {
             <Link to={`/products/lyyra`}>
                 <Image src="/public/images/categories/badges.jpg"/>
                 <Info>
-                    <Title>{t("graduationCap").toUpperCase()}</Title>
+                    <Title>{t("lyyratText").toUpperCase()}</Title>
                     <Button  buttonColor="white">{t("buy_now").toUpperCase()}</Button>
                 </Info>
             </Link>
