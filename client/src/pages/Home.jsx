@@ -11,6 +11,7 @@ import {getCookie} from "../common/js/common.js";
 import ReactGA from "react-ga4";
 import Slider2023 from '../components/Slider2023'
 import GoogleReviews from '../components/GoogleReviews';
+import Categories from '../components/Categories';
 
 // page view
 ReactPixel.pageView(); // For tracking page view
@@ -50,7 +51,7 @@ const Home = () => {
         <Announcement/>
         <Navbar/>
         <Slider2023/>
-        
+        <Categories/>
         <Products/>
         <GoogleReviews/>
         <Newsletter/>

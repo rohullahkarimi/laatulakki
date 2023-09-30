@@ -21,7 +21,7 @@ const Title = styled.h1`
 `
 
 const FilterContainer = styled.div`
-    display: flex;
+    display: none; // flex
     justify-content: space-between;
 `
 

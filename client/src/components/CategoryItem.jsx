@@ -1,5 +1,6 @@
+import React from 'react'; // Make sure you have this import
 import styled from 'styled-components'
-import { mobile, smartPhone } from '../responsive'
+import { laptop, mobile, smartPhone, tablet } from '../responsive'
 import {
     Link
   } from "react-router-dom";
@@ -8,7 +9,7 @@ import { useTranslation } from "react-i18next";
 const Container = styled.div`
     flex: 1;
     margin: 5px;
-    height: 70vh; 
+    height: 400px; 
     position: relative;
 `
 
@@ -35,33 +36,44 @@ const Info = styled.div`
 
 const Title = styled.h1`
     color: #009291;
-    margin-bottom: 80%;
+    margin-bottom: 35%;
     font-size: 22px;
     backdrop-filter: blur(6px);
-    ${smartPhone({marginBottom: "50%"})}
-    ${mobile({marginBottom: "60%"})}
+    ${laptop({marginBottom: "65%"})}
+    ${tablet({marginBottom: "50%"})}
+    ${smartPhone({marginBottom: "45%"})}
+    ${mobile({marginBottom: "40%"})}
 `
 
 
 const Button = styled.button`
     border: none;
-    padding: 10px;
-    background-color: white;
-    color: gray;
+    padding: 10px 20px;
+    background-color: ${(props) => (props.buttonColor === 'black' ? 'black' : 'white')};
+    color: ${(props) => (props.buttonColor === 'black' ? 'white' : 'black')};
     cursor: pointer;
     font-weight: 600;
-`
+    border: 2px solid ${(props) => (props.buttonColor === 'black' ? 'black' : 'white')};
+    border-radius: 0px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: ${(props) => (props.buttonColor === 'black' ? 'white' : 'black')};
+        color: ${(props) => (props.buttonColor === 'black' ? 'black' : 'white')};
+    }
+    ${smartPhone({padding: "5px 10px"})}
+`;
 
 const CategoryItem = () => {
   const { t } = useTranslation();
   return (
     <>
     <Container>
-        <Link to={`/products/ylioppilaslakki`}>
-            <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/ylioppilaslakit.jpg"/>
+        <Link to={`/ylioppilaslakki`}>
+            <Image src="/public/images/categories/customized.jpg"/>
             <Info>
-                <Title>{t("highSchoolCap").toUpperCase()}</Title>
-                <Button>{t("buy_now").toUpperCase()}</Button>
+                <Title>{t("sliderTitle1").toUpperCase()}</Title>
+                <Button buttonColor="white">{t("buy_now").toUpperCase()}</Button>
             </Info>
         </Link>
     </Container>
@@ -69,20 +81,20 @@ const CategoryItem = () => {
     
     <Container className="hide_in_mobile">
             <Link to={`/products/ylioppilaslakki`}>
-                <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/ammattilakki-lr.jpg"/>
+                <Image src="/public/images/categories/classic.jpg"/>
                 <Info>
-                    <Title>{t("engineerCap").toUpperCase()}</Title>
+                    <Title>{t("highSchoolCap").toUpperCase()}</Title>
                     <Button>{t("buy_now").toUpperCase()}</Button>
                 </Info>
             </Link>
     </Container>
 
     <Container className="hide_in_mobile">
-            <Link to={`/products/ylioppilaslakki`}>
-                <Image src="https://www.fredrikson.fi/wp-content/uploads/2021/03/valmistujaislakit.jpg"/>
+            <Link to={`/products/lyyra`}>
+                <Image src="/public/images/categories/badges.jpg"/>
                 <Info>
                     <Title>{t("graduationCap").toUpperCase()}</Title>
-                    <Button>{t("buy_now").toUpperCase()}</Button>
+                    <Button  buttonColor="white">{t("buy_now").toUpperCase()}</Button>
                 </Info>
             </Link>
     </Container>

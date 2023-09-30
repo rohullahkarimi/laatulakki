@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from "styled-components"
 import CategoryItem from './CategoryItem'
 import { mobile, smartPhone, tablet } from '../responsive'
