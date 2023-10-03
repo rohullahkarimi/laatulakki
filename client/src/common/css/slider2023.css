@@ -70,7 +70,7 @@ img, video {
 }
 .section {
   margin: 0 auto;
-  padding: 1rem 0 1rem;
+  padding: 2rem 0 2rem;
 }
 .container {
   max-width: 75rem;
@@ -181,7 +181,7 @@ img, video {
   .banner-column {
     grid-template-columns: 1fr max-content;
     column-gap: 4rem;
-    margin-top: 3rem;
+    /* margin-top: 3rem; */
   }
 }
 
