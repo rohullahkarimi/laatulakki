@@ -84,7 +84,7 @@ const CategoryItem = () => {
     
     <Container>
             <Link to={`/products/ylioppilaslakki`}>
-                <Image src="/public/images/categories/classic.jpg"/>
+                <Image src="/public/images/graduation_cap/v23/800/ylioppilaslakki_12.jpg"/>
                 <Info>
                     <Title>{t("highSchoolCap").toUpperCase()}</Title>
                     <Button>{t("buy_now").toUpperCase()}</Button>
