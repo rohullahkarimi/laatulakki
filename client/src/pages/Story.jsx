@@ -128,7 +128,7 @@ const Story = () => {
 
                         <div className="row justify-content-center no-gutters mb-5 mb-lg-0">
                             <div className="col-lg-6 text-center">
-                            <iframe width="427" height="759" src="https://www.youtube.com/embed/OIgnSis_tcU" title="Pakataan tilaus yhdessä 🫶Tilausten pakkaaminen on suosikki osani koko prosessista. 😍" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                            <iframe width="350" height="759" src="https://www.youtube.com/embed/OIgnSis_tcU" title="Pakataan tilaus yhdessä 🫶Tilausten pakkaaminen on suosikki osani koko prosessista. 😍" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                             </div>
                             <div className="col-lg-6">
                             <div className="bg-black text-center h-100 project">

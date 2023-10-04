@@ -66,6 +66,9 @@ const Button = styled.button`
 
 const CategoryItem = () => {
   const { t } = useTranslation();
+
+
+  // className="hide_in_mobile"
   return (
     <>
     <Container>
@@ -79,7 +82,7 @@ const CategoryItem = () => {
     </Container>
 
     
-    <Container className="hide_in_mobile">
+    <Container>
             <Link to={`/products/ylioppilaslakki`}>
                 <Image src="/public/images/categories/classic.jpg"/>
                 <Info>
@@ -89,7 +92,7 @@ const CategoryItem = () => {
             </Link>
     </Container>
 
-    <Container className="hide_in_mobile">
+    <Container>
             <Link to={`/products/lyyra`}>
                 <Image src="/public/images/categories/badges.jpg"/>
                 <Info>

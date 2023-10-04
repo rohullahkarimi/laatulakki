@@ -130,8 +130,8 @@ const Navbar = () => {
     navigate('/');
   };
 
-  const goToStoryPage = () => {
-    navigate('/our_story');
+  const goTo3dPage = () => {
+    navigate('/ylioppilaslakki');
   };
 
   
@@ -162,8 +162,8 @@ const Navbar = () => {
     <Container>
         <Wrapper>
             <Left>
-                <StoryDiv onClick={goToStoryPage}>
-                    {t('footer0')} 
+                <StoryDiv onClick={goTo3dPage}>
+                    {t('highSchoolCap')} 
                 </StoryDiv>
             </Left>
             <Center><Logo onClick={goToHomePage} src={logo}/></Center>
