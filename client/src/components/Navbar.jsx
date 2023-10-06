@@ -1,5 +1,5 @@
 import React from 'react'; // Make sure you have this import
-import { ShoppingCartOutlined } from '@mui/icons-material';
+import { MenuOutlined, ShoppingCartOutlined } from '@mui/icons-material';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { Badge } from '@mui/material';
 //import React from 'react'
@@ -9,6 +9,7 @@ import {useSelector} from "react-redux"
 import {  useNavigate } from "react-router-dom"
 import CartModal from "../components/CartModal"
 import logo from "../images/laatulakki_long_logo.jpg"
+import Dropdown from './Dropdown';
 
 
 // multi language
@@ -44,6 +45,7 @@ const Left = styled.div`
     flex: 1;
     display: flix;
     align-items: center;
+    margin-left: 0;
 `;
 
 const Language = styled.select`
@@ -57,6 +59,18 @@ const Language = styled.select`
 
 
 `
+const LogoHiderL = styled.div`
+  display: block;
+  ${tablet({display: "none"})}
+`;
+
+const LogoHiderC = styled.div`
+  display: none;
+  ${tablet({display: "block"})}
+`;
+
+
+
 
 const LanguageOption = styled.option`
 `
@@ -94,13 +108,15 @@ const LangDiv = styled.div`
     display: flex;
 `;
 
-const StoryDiv = styled.div`
-    display: flex;
-    border-bottom: 2px solid rgb(52, 231, 228);
-    font-size: 16px;
-    cursor: pointer;
-    ${mobile({fontSize: "12px", marginLeft: "15px"})}
+
+const Hamburger = styled.div`
+  font-size: 16px;
+  cursor: pointer;
+  display: none; /* Initially hide the hamburger menu on larger screens */
+  ${tablet({ display: "block" })} /* Show it on mobile */
+  ${mobile({ marginLeft: "15px" })} /* Show it on mobile */
 `;
+
 
 
 
@@ -115,25 +131,18 @@ const Navbar = () => {
   const navigate = useNavigate();
   const selectedLang = i18n.language
   const [modalShow, setModalShow] = useState(false);
-  //console.log(selectedLang)
-  //console.log(quantity)
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const items = [
+    { text: t('sliderTitle1'), url: '/ylioppilaslakki' },
+    { text: t('lyyratText'), url: '/products/lyyra' },
+    { text: t('topups'), url: '/products/topup' },
+    { text: t('footer0'), url: '/our_story' },
+    { text: t('blog'), url: 'https://blog.laatulakki.fi/' },
+  ];
 
-  /*
-  const navigateLogin = () => {
-    navigate('/login');
-  };
-  const navigateLoginOut = () => {
-    navigate('/login');
-  };
-  */
   const goToHomePage = () => {
     navigate('/');
   };
-
-  const goTo3dPage = () => {
-    navigate('/ylioppilaslakki');
-  };
-
   
 
   const handleEmptyCart = (() => {
@@ -151,22 +160,34 @@ const Navbar = () => {
         { lang: "en", country: "gb" },
     ]
 
-    /*
-    {user ? (
-        <MenuItem onClick={navigateLogin}>{t('logOut')}</MenuItem>
-    ) : (
-        <MenuItem onClick={navigateLoginOut}>{t('login')}</MenuItem>
-    )}
-    */
+    const toggleDropdown = () => {
+        setDropdownOpen(!isDropdownOpen);
+    };
+
+    const closeDropdown = () => {
+        setDropdownOpen(false);
+    };
+
   return (
     <Container>
         <Wrapper>
             <Left>
-                <StoryDiv onClick={goTo3dPage}>
-                    {t('highSchoolCap')} 
-                </StoryDiv>
+          
+                <LogoHiderL>
+                    <Logo onClick={goToHomePage} src={logo}/>
+                </LogoHiderL>
+         
+                {/* Add a hamburger menu */}
+                <Hamburger onClick={toggleDropdown}>
+                    <MenuOutlined/>
+                </Hamburger>
+                <Dropdown isOpen={isDropdownOpen} onClose={closeDropdown} items={items} logoSrc={logo} categoryImageUrl={"/public/images/categories/customized_500x334.jpg"} />
             </Left>
-            <Center><Logo onClick={goToHomePage} src={logo}/></Center>
+            <Center>
+                <LogoHiderC>
+                    <Logo onClick={goToHomePage} src={logo}/>
+                </LogoHiderC>
+            </Center>
             <Right>
                 <LangDiv>
                     <Language name="language" onChange={onChange} defaultValue={selectedLang}>
