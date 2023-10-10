@@ -697,41 +697,6 @@ const Configurator = () => {
                 {prices.embroideryTextFront !== 0 && <OptionPrice>+{prices.embroideryTextFront} €</OptionPrice>}
             </OptionTitlesContainer>
 
-            <div className="configurator__section__values">
-              {Fonts.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={`item ${font === item.name ? "item--active" : ""}`}
-                    onClick={() => handleFontClick(item.name, item.name)}
-                  >
-                    <div className="item__label">{item.name}</div>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="configurator__section__values">
-              {graduationCapCustomizationOptions.customizationOptions?.embroideryTextFront?.colors.map((item, index) => {
-                const embroideryTextColor = item.name[selectedLang][0].name;
-                return (
-                  <div
-                    key={index}
-                    className={`item ${
-                      color === item.name["en"][0].name ? "item--active" : ""
-                    }`}
-                    onClick={() => handleEmbroideryTextColor(item.name["en"][0].name)}
-                  >
-                    <div
-                      className="item__dot"
-                      style={{ backgroundColor: item.color }}
-                    />
-                    <div className="item__label">{embroideryTextColor}</div>
-                  </div>
-                  );
-              })}
-            </div>
-          
             <InputDiv>
                 <InputDivCol1>  
                     <div className="input-group-simple">
@@ -767,6 +732,42 @@ const Configurator = () => {
                     </div>
                 </InputDivCol2>
             </InputDiv>
+
+            <div className="configurator__section__values">
+              {Fonts.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    className={`item ${font === item.name ? "item--active" : ""}`}
+                    onClick={() => handleFontClick(item.name, item.name)}
+                  >
+                    <div className="item__label">{item.name}</div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="configurator__section__values">
+              {graduationCapCustomizationOptions.customizationOptions?.embroideryTextFront?.colors.map((item, index) => {
+                const embroideryTextColor = item.name[selectedLang][0].name;
+                return (
+                  <div
+                    key={index}
+                    className={`item ${
+                      color === item.name["en"][0].name ? "item--active" : ""
+                    }`}
+                    onClick={() => handleEmbroideryTextColor(item.name["en"][0].name)}
+                  >
+                    <div
+                      className="item__dot"
+                      style={{ backgroundColor: item.color }}
+                    />
+                    <div className="item__label">{embroideryTextColor}</div>
+                  </div>
+                  );
+              })}
+            </div>
+          
 
         </div>
 

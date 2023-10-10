@@ -23,9 +23,6 @@ html, body, #root {
   0% {
       transform: translateX(100%); /* Start off-screen to the right */
   }
-  50% {
-      transform: translateX(0); /* Move to the center */
-  }
   100% {
       transform: translateX(-100%); /* Move to the left */
   }
@@ -33,6 +30,13 @@ html, body, #root {
 
 .move-text {
   animation: moveRightToLeft 10s linear infinite; /* Adjust animation duration as needed */
+}
+
+
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
 }
 
 @keyframes blinker {

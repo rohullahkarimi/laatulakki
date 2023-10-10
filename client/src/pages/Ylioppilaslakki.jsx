@@ -181,11 +181,15 @@ const NavbarMobile = styled.div`
 `;
 const AnnouncementMobile = styled.div`
   display: none;
+  width: 100%;
+  max-width: 600px;
   background-color: #1b1b1b;
   @media (max-width: 600px) {
     display: block;
   }
 `;
+
+
 
 export const TextSlider = styled.div`
     position: sticky;
