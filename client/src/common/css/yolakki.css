@@ -19,18 +19,6 @@ html, body, #root {
   padding: 5px 10px;
 }
 
-@keyframes moveRightToLeft {
-  0% {
-      transform: translateX(100%); /* Start off-screen to the right */
-  }
-  100% {
-      transform: translateX(-100%); /* Move to the left */
-  }
-}
-
-.move-text {
-  animation: moveRightToLeft 10s linear infinite; /* Adjust animation duration as needed */
-}
 
 
 @media (max-width: 600px) {

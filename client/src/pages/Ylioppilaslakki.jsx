@@ -182,8 +182,10 @@ const NavbarMobile = styled.div`
 const AnnouncementMobile = styled.div`
   display: none;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px; /* Set a maximum width for the mobile view */
   background-color: #1b1b1b;
+  overflow: hidden; /* Hide anything that overflows */
+  
   @media (max-width: 600px) {
     display: block;
   }
@@ -192,24 +194,35 @@ const AnnouncementMobile = styled.div`
 
 
 export const TextSlider = styled.div`
-    position: sticky;
-    bottom: 0;
-    z-index: 2;
-    background-color: white;
-    padding: 5px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    height: 45px;
-    border: 2px solid #f7f7f7; 
-    /* Add flexbox properties for vertical centering */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #1b1b1b;
-    color: white;
-    border: none;
-    ${smartPhone({fontSize: "16px"})}
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  background-color: white;
+  padding: 5px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  height: 45px;
+  border: 2px solid #f7f7f7; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1b1b1b;
+  color: white;
+  border: none;
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  transform: translateX(-100%); /* Initially off-screen to the left */
+  animation: moveLeftToRight 10s linear infinite; /* Adjust animation duration as needed */
+  
+  /* Keyframes for the animation */
+  @keyframes moveLeftToRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%); /* Adjust the percentage to control how far it moves */
+    }
+  }
 `;
 
 const RealPictures = styled.div`
@@ -302,6 +315,15 @@ const Ylioppilaslakki = () => {
     // Send pageview with a custom path
     ReactGA.send({ hitType: "pageview", page: "/ylioppilaslakki" });
   } 
+
+  useEffect(() => {
+    const slider = document.querySelector('.move-text');
+    if (slider) {
+      setTimeout(() => {
+        slider.style.transform = 'translateX(0)'; // Animate into view
+      }, 1000); // Adjust the delay as needed
+    }
+  }, []);
     
   return (
     <CustomizationProvider>
