@@ -6,7 +6,7 @@ import "../common/css/yolakki.css"
 import Configurator from "../components/Configurator";
 import { CustomizationProvider } from "../contexts/Customization";
 import styled from "styled-components";
-import { laptop, mobile, smallLaptop, smartPhone } from "../responsive";
+import { laptop, mobile, smallLaptop, smartPhone, tablet } from "../responsive";
 import { ThreeDRotationOutlined, ZoomInOutlined, ZoomOutOutlined } from "@mui/icons-material";
 import Navbar from "../components/Navbar";
 import { useEffect, useRef, useState } from "react";
@@ -235,6 +235,27 @@ const RealPictures = styled.div`
   border-bottom: 2px solid #${brandColor};
 `;
 
+const FinnishServiceLogo = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  z-index: 1;
+  cursor: pointer;
+  ${tablet({top: "55px"})}
+  ${smartPhone({top: "70px"})}
+`;
+
+const Avainlippu = styled.img`
+    width: auto;
+    height: 30px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0 10px;
+    ${tablet({height:"30px", padding: "0 5px"})}
+`
+
+
+
 
 
 const Ylioppilaslakki = () => {
@@ -347,7 +368,10 @@ const Ylioppilaslakki = () => {
                         </LoaderOverlay>
                     )}
 
-            
+                      
+                    <FinnishServiceLogo>
+                      <Avainlippu src="/public/images/common/avainlippu_47x30.png"/>
+                    </FinnishServiceLogo>
                     <ThreeDRotationOutlined style={{ position: "absolute", bottom: 52, left: 10, zIndex: 1, fontSize: "30px" }}/>
                     <RealPictures  onClick={handleRealPictureModal}>{t("images")}</RealPictures>
                     

@@ -116,6 +116,28 @@ const Payment = styled.img`
  
 `
 
+const AvainlippuContainer = styled.div`
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 20px;
+    cursor: pointer;
+`
+const Avainlippu = styled.img`
+    width: auto;
+    height: 30px;
+    cursor: pointer;
+    margin: 0;
+    padding-right: 5px;
+    ${tablet({height:"30px", padding: "0 5px"})}
+`
+
+const FinnishService = styled.div`
+    font-size: 16px;
+    font-weight: 600;
+    ${laptop({fontSize:"14px"})}
+    ${tablet({fontSize:"12px"})}
+`
+
 const Footer = () => {
   const {t} = useTranslation()
   const navigate = useNavigate()
@@ -177,6 +199,12 @@ const Footer = () => {
             05460 Hyvinkää, Finland</ContactItem>
             <ContactItem><Phone style={{marginRight:"10px"}}/> +358400269034</ContactItem>
             <ContactItem><MailOutlined style={{marginRight:"10px"}}/> info@laatulakki.fi</ContactItem>
+
+            <AvainlippuContainer>
+              <Avainlippu src="/public/images/common/avainlippu_47x30.png"/>
+              <FinnishService>{t('finnishService')}</FinnishService>
+            </AvainlippuContainer>
+          
             <SocialContainer>
                 <SocialIcon color="E4405F" onClick={()=> goToLink("https://www.instagram.com/laatulakki/")}>
                     <Instagram />

@@ -4,7 +4,7 @@ import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { Badge } from '@mui/material';
 //import React from 'react'
 import styled from 'styled-components'
-import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
+import { mobile, smartPhone, tablet, laptop, largeLaptop, smallLaptop } from "../responsive"
 import {useSelector} from "react-redux"
 import {  useNavigate } from "react-router-dom"
 import CartModal from "../components/CartModal"
@@ -88,6 +88,34 @@ const Logo = styled.img`
     ${smartPhone({width:"120px"})}
     ${mobile({width:"93px"})}
 `
+
+const AvainlippuContainer = styled.div`
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    cursor: pointer;
+`
+const Avainlippu = styled.img`
+    width: auto;
+    height: 30px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0 10px;
+    ${tablet({height:"30px", padding: "0 5px"})}
+`
+
+const FinnishService = styled.div`
+    font-size: 18px;
+    font-weight: 600;
+    ${laptop({fontSize:"14px"})}
+    ${tablet({fontSize:"12px"})}
+`
+
+
+
+
+
+
 
 const Right = styled.div`
     flex: 1;
@@ -184,6 +212,12 @@ const Navbar = () => {
                 <Dropdown isOpen={isDropdownOpen} onClose={closeDropdown} items={items} logoSrc={logo} categoryImageUrl={"/public/images/categories/customized_500x334.jpg"} />
             </Left>
             <Center>
+                <LogoHiderL>
+                    <AvainlippuContainer onClick={goToHomePage}>
+                        <Avainlippu src="/public/images/common/avainlippu_47x30.png"/>
+                        <FinnishService>{t('finnishService')}</FinnishService>
+                    </AvainlippuContainer>
+                </LogoHiderL>
                 <LogoHiderC>
                     <Logo onClick={goToHomePage} src={logo}/>
                 </LogoHiderC>
