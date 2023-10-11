@@ -370,7 +370,7 @@ const Ylioppilaslakki = () => {
 
                       
                     <FinnishServiceLogo>
-                      <Avainlippu src="/public/images/common/avainlippu_47x30.png"/>
+                      <Avainlippu src="/public/images/common/avainlippu_1_x100.png"/>
                     </FinnishServiceLogo>
                     <ThreeDRotationOutlined style={{ position: "absolute", bottom: 52, left: 10, zIndex: 1, fontSize: "30px" }}/>
                     <RealPictures  onClick={handleRealPictureModal}>{t("images")}</RealPictures>

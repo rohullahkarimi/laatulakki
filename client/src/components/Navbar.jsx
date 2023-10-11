@@ -214,7 +214,7 @@ const Navbar = () => {
             <Center>
                 <LogoHiderL>
                     <AvainlippuContainer onClick={goToHomePage}>
-                        <Avainlippu src="/public/images/common/avainlippu_47x30.png"/>
+                        <Avainlippu src="/public/images/common/avainlippu_1_x100.png"/>
                         <FinnishService>{t('finnishService')}</FinnishService>
                     </AvainlippuContainer>
                 </LogoHiderL>
