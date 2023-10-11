@@ -118,7 +118,7 @@ canvas{
 .configurator__section__values {
   display: flex;
   flex-direction: row;
-  gap: 32px;
+  gap: 35px;
   align-items: center;
   flex-wrap: wrap;
   padding: 16px 0;
@@ -152,7 +152,7 @@ canvas{
 .item__label {
   text-align: center;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
   color: #aaa;
   text-transform: capitalize;
 }

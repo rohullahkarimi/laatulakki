@@ -55,6 +55,13 @@ const BannerImage = styled.img`
  
 `;
 
+const Avainlippu = styled.img`
+  width: 80px; 
+  display: none; 
+  ${smartPhone({display: "block", position: "absolute", top: "10px", left: "21px"})}
+`;
+
+
 const Slider2023 = () => {
   const { t } = useTranslation();
   const selectedLang = i18n.language
@@ -111,7 +118,10 @@ const Slider2023 = () => {
         <main className="main">
             <section className="section banner banner-section">
                 <div className="container banner-column">
+                    
+                    <Avainlippu src="/public/images/common/avainlippu_1_x100.png"/>
                     <BannerImage className='bannerImageMobile' src="/public/images/graduation_cap/v23/800/ylioppilaslakki_15.jpg" alt="banner"/>
+                    
                     <BannerInner>
                         <HeadingXl>{setting.status ? setting.title.toUpperCase() : t('sliderTitle1')}</HeadingXl>
                         <p className="paragraph">
