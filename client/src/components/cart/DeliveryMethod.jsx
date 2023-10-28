@@ -22,7 +22,7 @@ const DeliveryMethod = ({navigation}) => {
   })
 
   //console.log(setting)
-  console.log(customerPaymentMethodError)
+  //console.log(customerPaymentMethodError)
 
   useEffect(() => {
     // get setting data
@@ -84,12 +84,12 @@ const DeliveryMethod = ({navigation}) => {
       deliveryPriceSet = Number(parseFloat(data.deliveryPrice, 10).toFixed(2))
     }
 
-    console.log(deliveryPriceSet)
+    //console.log(deliveryPriceSet)
     const deliveryMethodConst = {
       deliveryMethod: data.deliveryMethod,
       deliveryPrice: deliveryPriceSet
     }
-    console.log(deliveryMethodConst)
+    //console.log(deliveryMethodConst)
     dispatch(saveDeliveryMethod(deliveryMethodConst));
     navigation.next()
   }

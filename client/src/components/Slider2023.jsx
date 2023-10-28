@@ -25,6 +25,7 @@ const HeadingXl = styled.h1`
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -1px;
+    color: white;
   ${tablet({textAlign: "center"})}
 `
 
@@ -123,12 +124,14 @@ const Slider2023 = () => {
                     <BannerImage className='bannerImageMobile' src="/public/images/graduation_cap/v23/800/ylioppilaslakki_15.jpg" alt="banner"/>
                     
                     <BannerInner>
-                        <HeadingXl>{setting.status ? setting.title.toUpperCase() : t('sliderTitle1')}</HeadingXl>
-                        <p className="paragraph">
-                          {setting.status ? setting.desc.toUpperCase() : t('sliderDesciption')}
-                        </p>
                         <Link to="/ylioppilaslakki">
-                            <button className="btn-el btn-darken btn-inline">
+                          <HeadingXl>{setting.status ? setting.title.toUpperCase() : t('sliderTitle1')}</HeadingXl>
+                        </Link>
+                          <p className="paragraph">
+                            {setting.status ? setting.desc.toUpperCase() : t('sliderDesciption')}
+                          </p>
+                        <Link to="/ylioppilaslakki">
+                           <button className="btn-el btn-darken btn-inline">
                            {t('designYours')}<i className="bx bx-right-arrow-alt"></i>
                             </button>
                         </Link>

@@ -142,9 +142,10 @@ const CartProduct = (props) => {
   const { t } = useTranslation();
   const [cartProductId, setCartProductIds] = useState([]);
   const location = useLocation();
+
   const isCartPage = location.pathname === '/cart';
 
-  //console.log(cart.products)
+  //console.log(props)
 
   // Function to extract _id values from products and update state
   const updateProductIds = () => {
@@ -297,7 +298,7 @@ const CartProduct = (props) => {
     ))}
 
     <Hr/>
-    {isCartPage && <ProductSlider cat="topup" cartProductId={cartProductId}/>}
+    {isCartPage && props.page !== "review" && <ProductSlider cat="topup" cartProductId={cartProductId}/>}
     </div>
   );
 };
