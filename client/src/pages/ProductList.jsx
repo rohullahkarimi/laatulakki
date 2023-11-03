@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar"
 import Newsletter from "../components/Newsletter"
 import Products from "../components/Products"
 import { mobile } from "../responsive"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { hotjar } from 'react-hotjar';
 import {Helmet} from "react-helmet";
@@ -52,10 +52,17 @@ const ProductList = () => {
     const cat = location.pathname.split("/")[2]
     const [filters, setFilters] = useState({})
     const [sort, setSort] = useState("")
+    const navigate = useNavigate()
 
     useEffect(() => {
         hotjar.initialize(Number(String(process.env.REACT_APP_HOTJAR_HJID)), Number(String(process.env.REACT_APP_HOTJAR_HJSV)))
-    }, [])
+
+        if (cat === ":category") {
+            // Redirect to the homepage if the category is not defined
+            navigate('/');
+        }
+
+    }, [cat])
 
     const handleFilters = (e) =>{
         const value = e.target.value;
@@ -65,6 +72,8 @@ const ProductList = () => {
         });
     };
 
+    
+   
 
     return (
     <Container>

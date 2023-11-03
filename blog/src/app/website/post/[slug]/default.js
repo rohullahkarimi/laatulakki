@@ -13,6 +13,7 @@ import Footer from "../../../../components/footer";
 import Navbar from "../../../../components/navbar";
 import { dataset, projectId } from "../../../../lib/sanity/config";
 import sanityClient  from "@sanity/client"; //from "next-sanity";
+import CallToActionButton from "../../../../components/callToAction";
 const client = sanityClient({
   projectId: projectId, // find this at manage.sanity.io, run `sanity init` to initialize
   dataset: dataset, // this is from when we answered those question from 'sanity init'
@@ -168,6 +169,10 @@ export default function Post(props) {
               ← Näytä kaikki artikkelit
             </a>
           </div>
+
+          <CallToActionButton/>
+
+
           {post.author && <AuthorCard author={post.author} />}
         </article>
         <Footer/>
