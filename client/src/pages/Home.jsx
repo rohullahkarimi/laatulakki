@@ -52,7 +52,7 @@ const Home = () => {
         <Navbar/>
         <Slider2023/>
         <Categories/>
-        <Products/>
+        <Products used={false}/>
         <GoogleReviews/>
         <Newsletter/>
         <Footer/>

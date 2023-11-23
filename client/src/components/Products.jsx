@@ -13,19 +13,22 @@ const Container = styled.div`
     justify-content: space-between;
 `
 
-const Products = ({cat, filters, sort, selectedProduct, cartProductId}) => {
+const Products = ({used, cat, filters, selectedProduct, cartProductId}) => {
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
 
 
+  
 
   useEffect(() =>{
     const getProducts = async ()=>{
       try{
         const res = await axios.get(
-          cat 
-            ? process.env.REACT_APP_API_URL+`/products?category=${cat}` 
-            : process.env.REACT_APP_API_URL+`/products`
+          used 
+            ?  process.env.REACT_APP_API_URL+`/products?category=used`
+            : cat 
+              ? process.env.REACT_APP_API_URL+`/products?category=${cat}` 
+              : process.env.REACT_APP_API_URL+`/products`
         );
         setProducts(res.data);
       }catch(err){
@@ -36,68 +39,73 @@ const Products = ({cat, filters, sort, selectedProduct, cartProductId}) => {
   },[cat]);
 
 
-
-  /*
-  useEffect(()=>{
-    cat && 
-    setFilteredProducts(
-      products.filter((item)=> {
-        //console.log(item)
-
-        var productSizes = []; 
-        item.size.map((size)=>{
-          console.log(size.name)
-          productSizes.push(size.name)
-        })
-        console.log(productSizes)
-
-
-        Object.entries(filters).every(([key, value])=>{
-          //console.log(item[key][0].name)
-          //console.log(value)
-          item[key].includes(value)
-        })  
-      })
-    ); 
-  },[products, cat, filters]);
-  */
-  
-  useEffect(()=>{
-    cat && 
-    setFilteredProducts(
-      products.filter(item=>
-        Object.entries(filters).every(([key, value])=>
-          item[key].includes(value)
-        )  
-      )
-    ); 
-  },[products, cat, filters]);
-  
-
   useEffect(() => {
-    if (sort === "newest") {
-      setFilteredProducts((prev) =>
-        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+    if (cat || filters && Object.keys(filters).length > 0) {
+      setFilteredProducts(
+        products.filter((item) => {
+          //const productSizes = item.size.map((size) => size.name);
+  
+          // Check if the selected size has storage greater than 0
+          const selectedSizeHasStorage = filters.size && item.size.find((size) => size.name === filters.size)?.storage > 0;
+  
+          // Check other filter conditions (you can add more conditions as needed)
+          const otherFiltersPassed = Object.entries(filters).every(
+            ([key, value]) => {
+              if (key === 'size') {
+                // Skip the size filter condition here since it's already checked
+                return true;
+              }
+              if (key === 'brand') {
+                // Check if the selected brand is included in the product's categories
+                return item.categories.includes(value);
+              }
+              if (Array.isArray(item[key])) {
+                // Check if item[key] is an array before using the includes method
+                return item[key].includes(value);
+              }
+              // Handle other cases where item[key] is not an array
+              return item[key] === value;
+            }
+          );
+  
+          // Return true if all filter conditions are met, including size, storage, and other conditions
+          return (selectedSizeHasStorage || !filters.size) && otherFiltersPassed;
+        })
       );
-    } else if (sort === "cheapest") {
-      setFilteredProducts((prev) =>
-        [...prev].sort((a, b) => a.price - b.price)
-      );
-    } else if(sort === "most_expensive") {
-      setFilteredProducts((prev) =>
-        [...prev].sort((a, b) => b.price - a.price)
-      );
-    } 
-  }, [sort]);
+    }
+  }, [products, cat, filters]);
+  
+  
+  
+  /*
+  useEffect(() => {
+    if (filters) {
+      if (filters.sort === "newest") {
+        setFilteredProducts((prev) =>
+          [...prev].sort((a, b) => a.createdAt - b.createdAt)
+        );
+      } else if (filters.sort === "cheapest") {
+        setFilteredProducts((prev) =>
+          [...prev].sort((a, b) => a.price - b.price)
+        );
+      } else if(filters.sort === "most_expensive") {
+        setFilteredProducts((prev) =>
+          [...prev].sort((a, b) => b.price - a.price)
+        );
+      } 
+    }
+  }, [filters]);
+  */
 
-  //console.log(products)
+
   return (
     <Container>
-      {cat
-        ? filteredProducts.map((item) => <Product item={item} key={item._id} />)
-        : products
-            .slice(0, 8)
-            .map((item) => item.visibility === true && item._id !== selectedProduct && <Product item={item} key={item._id} />)}
+    {(cat || filters && Object.keys(filters).length > 0)  // Check if cat or filters exist
+      ? filteredProducts.map((item) => <Product used={used} item={item} key={item._id} />)
+      : products
+          .slice(0, 8)
+          .filter((item) => used || !item.categories.includes("used")) // Exclude used products when used is false
+          .map((item) => item.visibility === true && item._id !== selectedProduct && <Product used={used} item={item} key={item._id} />)}
     </Container>
   );
 }

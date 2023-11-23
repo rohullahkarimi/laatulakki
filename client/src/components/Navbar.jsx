@@ -26,6 +26,8 @@ const Container = styled.div`
     height: 60px;
     padding: 0 15%;
     border-bottom: 1px solid #e9e8e8;
+    position: relative; /* Add this line */
+    z-index: 10; /* Add this line */
     ${largeLaptop({padding: "0px 10%"})}
     ${laptop({padding: "0px 5%"})}
     ${tablet({padding: "0px"})}
@@ -145,8 +147,77 @@ const Hamburger = styled.div`
   ${mobile({ marginLeft: "15px" })} /* Show it on mobile */
 `;
 
+const ItemsListContainerDesktop = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    border-bottom: 1px solid #e9e8e8;
+    padding: 0; /* Reset padding to 0 */
+    margin: 0; /* Reset margin to 0 */
+    ${tablet({ display: "none" })} /* Show it on mobile */
+   
+`;
 
+// ItemList component
+const ItemList = ({ items, navigate }) => {
+    const { t } = useTranslation();
+    const ItemListContainer = styled.div`
+        display: flex;
+        justify-content: center;
+    `;
 
+    const Item = styled.div`
+        font-size: 16px;
+        cursor: pointer;
+        margin: 10px;
+        font-weight: 400;
+        position: relative;
+        &:not(:last-child) {
+            margin-right: 7px; /* Add a gap between the menus */
+        }
+        &.active::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #${brandColor}; /* Add a green line under the active menu */
+        }
+    `;
+
+    return (
+        <ItemListContainer>
+            <Item
+                className={window.location.pathname === "/" ? "active" : ""}
+                onClick={() => navigate("/")}
+            >
+                {t('homepage')}
+            </Item>
+            {items.map((item, index) => (
+                <Item
+                    key={index}
+                    className={
+                        window.location.pathname === item.url ? "active" : ""
+                    }
+                    onClick={() =>
+                        item.url.startsWith("http")
+                            ? window.open(item.url, "_blank")
+                            : navigate(item.url)
+                    }
+                >
+                    {item.text}
+                </Item>
+            ))}
+        </ItemListContainer>
+    );
+};
+
+  
+
+  
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -162,6 +233,7 @@ const Navbar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const items = [
     { text: t('sliderTitle1'), url: '/ylioppilaslakki' },
+    { text: t('usedGraduationCap'), url: '/marketplace' },
     { text: t('lyyratText'), url: '/products/lyyra' },
     { text: t('topups'), url: '/products/topup' },
     { text: t('footer0'), url: '/our_story' },
@@ -196,7 +268,10 @@ const Navbar = () => {
         setDropdownOpen(false);
     };
 
+
+
   return (
+    <>
     <Container>
         <Wrapper>
             <Left>
@@ -245,6 +320,13 @@ const Navbar = () => {
         </Wrapper>
         <CartModal show={modalShow} onHide={() => setModalShow(false)} />
     </Container>
+  
+    <ItemsListContainerDesktop>
+        <ItemList items={items} navigate={navigate} />
+    </ItemsListContainerDesktop>
+
+    </>
+    
   )
 }
 

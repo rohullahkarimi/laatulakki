@@ -10,6 +10,27 @@
     "free": "ilmainen tarjous",
     "topups": "Oheistuotteet",
     "finnishService": "SUOMALAISTA PALVELUA",
+    "usedPtitle": "Haluatko kustomoida tämän käytetyn ylioppilaslakin?",
+    "usedPsubtitle": "Käytetty ylioppilaslakki voidaan kustomoida toiveidesi mukaisesti. Ota yhteyttä suoraan sähköpostitse osoitteeseen",
+    "used": "Käytetty",
+    "usedGraduationCap": "Käytetty ylioppilaslakit",
+    "sell": "Myy",
+    "marketplaceText": "Tarjoamme laadukkaita käytettyjä ylioppilaslakkeja, jotka ovat täydellinen valinta ympäristötietoisille ostajille. Ostaessasi käytetyn ylioppilaslakin edistät kestävää kehitystä ja osallistut kestävään kulutukseen. Tutustu valikoimaamme ja löydä täydellinen ylioppilaslakki muistoksi tärkeästä päivästäsi.",
+    "brandName": "Tuotemerkit",
+    
+    "sellPageTitle": "Myy ylioppilaslakki tai muita ammattilakkeja meille!",
+    "sellPage1": "Haluamme tehdä prosessista mahdollisimman helpon ja kannattavan sinulle. Alla on ohjeet siitä, miten voit myydä lakkisi meille.",
+    "sellPage2": "Vaihe 1: Lähetä Kuva Lakkisi Kanssa",
+    "sellPage3": "Lähetä meille sähköpostitse kuva lakkisi kanssa. Voit ottaa selkeän kuvan lakkisi etu- ja takapuolesta. Lähetä kuva osoitteeseen info@laatulakki.fi. Tämä auttaa meitä arvioimaan lakkisi kunnon ja arvon.",
+    "sellPage4": "Vaihe 2: Saat Hintaarvion",
+    "sellPage5": "Kun olemme vastaanottaneet kuvan lakkisi kanssa, arvioimme sen kunnon ja määrittelemme sen arvon. Lähetämme sinulle hinta-arvion sähköpostitse. Voit tarkastella tarjoustamme ja päättää, haluatko myydä lakkisi meille vai ei.",
+    "sellPage6": "Vaihe 3: Maksu ja Postitusohjeet",
+    "sellPage7": "Jos hyväksyt tarjouksemme, maksamme sovitun summan tilillesi. Samalla lähetämme sinulle yksityiskohtaiset ohjeet siitä, miten voit postittaa lakkisi meille turvallisesti ja kätevästi.",
+    "sellPage8": "Kannattava ja Ilmastoystävällinen Ratkaisu",
+    "sellPage9": "Myymällä lakkisi meille teet kannattavan päätöksen. Saat rahaa käyttämättömästä lakkistasi, ja samalla voimme tarjota laadukkaita lakkeja edulliseen hintaan niille, jotka tarvitsevat niitä. Tämä auttaa vähentämään lakkien hukkaamista ja on ympäristön kannalta kestävä valinta.",
+    "sellPage10": "Odotamme innolla yhteistyötä kanssasi ja toivotamme sinut tervetulleeksi myymään lakkisi meille! Jos sinulla on kysyttävää tai tarvitset lisätietoja, älä epäröi ottaa yhteyttä osoitteeseen info@laatuakki.fi.",
+    "sellPage11": "Kiitos, että autat meitä tekemään maailmasta kestävämmän paikan yhdessä!",
+
 
     
     "Lyre": "Lyyra",

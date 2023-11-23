@@ -2,6 +2,8 @@ import React from 'react'; // Make sure you have this import
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import i18n from "../i18n"
+import { Recycling } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 const Info = styled.div`
     opacity: 0; 
@@ -76,11 +78,38 @@ const PriceDiscount = styled.div`
     font-size: 15px;
 `
 
+const UsedLabel = styled.div`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #009300;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    z-index: 4;
+    font-size: 12px;
+`;
 
+const SoldOutLabel = styled.div`
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    background-color: #ce8787;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    z-index: 4;
+`;
 
-const Product = ({item}) => {
+const Product = ({used, item}) => {
+    const { t } = useTranslation();
     const navigate = useNavigate();
-    const selectedLang = i18n.language
+    const selectedLang = i18n.language;
+    const isSoldOut = item.size.every((size) => size.storage === 0);
  
     let title = ""
     if(selectedLang === "se"){
@@ -90,6 +119,8 @@ const Product = ({item}) => {
     }else{
         title = item.title[0].fi
     }
+
+    
   
 
 
@@ -98,9 +129,22 @@ const Product = ({item}) => {
     navigate(`/product/${productTitleForUrl}/${item._id}`)
   }
 
-  //console.log(item)
+
   return (
     <Container onClick={navigateToProductPage}>
+        {used && (
+            <UsedLabel>
+                <Recycling style={{ fontSize: 16, marginRight: 5 }} />
+                {t('used')}  
+            </UsedLabel>
+        )}
+
+        {isSoldOut && (
+            <SoldOutLabel>
+                {t('soldOut')}
+            </SoldOutLabel>
+        )}
+
         {item.discount &&<span className="flag-discount-productList">-{item.discount}%</span>}
         <Image loading="lazy" alt="product image" src={item.img[0].original}/>
         <Info>

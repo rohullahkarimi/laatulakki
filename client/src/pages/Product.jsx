@@ -1,5 +1,5 @@
 import React from 'react'; // Make sure you have this import
-import { Add, Remove } from "@mui/icons-material"
+import { Add, Recycling, Remove } from "@mui/icons-material"
 import styled from "styled-components"
 import Announcement from "../components/Announcement"
 import Footer from "../components/Footer"
@@ -41,6 +41,7 @@ const Wrapper = styled.div`
 `
 
 const ImageContainer = styled.div`
+    position: relative;
     flex: 1;
 `
 /*
@@ -249,6 +250,20 @@ const Col3 = styled.div`
     ${laptop({display: "none"})}
 `
 
+const UsedLabel = styled.div`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #009300;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    z-index: 4;
+    font-size: 12px;
+`;
+
 const Product = () => {
   const { t } = useTranslation();
   const selectedLang = i18n.language
@@ -412,6 +427,15 @@ const Product = () => {
         instructionElements = <InstructionContainer><InstructionItem  target="_blank" onClick={goTo3DPage}>{t('wantToCustomizeCap')}</InstructionItem><InstructionItem  target="_blank" onClick={handleCapChoice}>{t('sizeInstruction')}</InstructionItem><InstructionItem target="_blank" onClick={handleCapUsage}>{t('usageDetails')}</InstructionItem><FreeRefund>{t('FreeRefund')}</FreeRefund></InstructionContainer>
     }
 
+    const UsedCapCustomization = () => {
+        return (
+            <DetailsPartContainer>
+                <h4>{t('usedPtitle')}</h4>
+                <DetailsPart>{t('usedPsubtitle')} <a href="mailto:info@laatulakki.fi">info@laatulakki.fi</a>.</DetailsPart>
+            </DetailsPartContainer>
+        );
+    }
+
     const checkTotalProductSizeAmount = () => {
         let productSizeQuantity = 0
         product.size?.map((productSize, j) => productSizeQuantity += productSize.storage)
@@ -435,6 +459,12 @@ const Product = () => {
            
             <ImageContainer>
                 {product.discount &&<span className="flag-discount">-{product.discount}%</span>}
+                {product.categories?.includes('used') && (
+                    <UsedLabel>
+                        <Recycling style={{ fontSize: 16, marginRight: 5 }} />
+                        {t('used')} 
+                    </UsedLabel>
+                )}
                 {product?.img && <ImageGallery  items={product?.img}  showFullscreenButton={false} showPlayButton={false} showBullets={true} loading="lazy"/>}
             </ImageContainer>
             <InfoContainer>
@@ -449,6 +479,9 @@ const Product = () => {
                         return(<DetailsPart key={j}><b>{detailsName.name}</b>: {detailsName.desc}</DetailsPart>)
                     })}
                 </DetailsPartContainer>
+
+              
+                {product.categories?.includes('used') && UsedCapCustomization()}
                
 
                 {instructionElements}

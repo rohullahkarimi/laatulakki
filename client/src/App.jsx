@@ -24,6 +24,10 @@ import { CookieBanner } from "@palmabit/react-cookie-law";
 import { useTranslation } from 'react-i18next';
 import $ from "jquery"
 import Ylioppilaslakki from "./pages/Ylioppilaslakki";
+import Marketplace from "./pages/Marketplace";
+import MarketplaceSell from "./pages/MarketplaceSell";
+
+
 
 
 import {
@@ -202,6 +206,8 @@ const App = () => {
         <Route path="/faq" element={<FAQ/>} />
         <Route path="/instagram" element={<Instagram/>} />
         <Route path="/ylioppilaslakki" element={<Ylioppilaslakki/>} />
+        <Route path="/marketplace" element={<Marketplace/>} />
+        <Route path="/marketplace/sell" element={<MarketplaceSell/>} />
   
       </Routes>
 
