@@ -1,5 +1,3 @@
-// CallToActionButton.jsx
-
 import React from 'react';
 import '../common/css/CallToAction.css'; // Import the CSS file
 
