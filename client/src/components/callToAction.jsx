@@ -1,7 +1,9 @@
 import React from 'react';
 import '../common/css/callToAction.css'; // Import the CSS file
+import { useTranslation } from 'react-i18next';
 
 const CallToActionButton = () => {
+  const { t } = useTranslation();
 
     const goToShopPage = () => {
         window.location.replace('https://www.laatulakki.fi/ylioppilaslakki');
@@ -10,9 +12,9 @@ const CallToActionButton = () => {
       
   return (
     <div className="CTAContainer">
-      <h2 className="CTAButtonTitle">Et löytänyt sopivaa käytettyä ylioppilaslakkia?</h2>
-      <p className="CTAButtonSubtitle">Voit tilata meiltä perinteisen tai kustomoitu ylioppilaslakin</p>
-      <button className="CTAButton" onClick={goToShopPage}>Osta nyt</button>
+      <h2 className="CTAButtonTitle">{t('usedTitle')}</h2>
+      <p className="CTAButtonSubtitle">{t('usedP')}</p>
+      <button className="CTAButton" onClick={goToShopPage}>{t('buy_now')}</button>
     </div>
 
   );

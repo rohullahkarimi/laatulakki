@@ -414,28 +414,40 @@ const Configurator = () => {
         }));
     };
 
-
+    console.log(customization.embroidery.embroideryTextFront.left, customization.embroidery.embroideryTextFront.right)
+   
     const handleEmbroideryFrontTextChange = (textType, textValue, textPrice) => {
-        setCustomization((prevCustomization) => ({
-          ...prevCustomization,
-          embroidery: {
-            ...prevCustomization.embroidery,
-            embroideryTextFront: {
-              ...prevCustomization.embroidery.embroideryTextFront,
-              [textType]: textValue,
-            },
-          },
-        }));
 
-        setPrices((prevPrices) => ({
-          ...prevPrices,
-          embroideryTextFront: textPrice,
-        }));
+      setCustomization((prevCustomization) => ({
+        ...prevCustomization,
+        embroidery: {
+          ...prevCustomization.embroidery,
+          embroideryTextFront: {
+            ...prevCustomization.embroidery.embroideryTextFront,
+            [textType]: textValue,
+          },
+        },
+      }));
+
+      // Check if both embroideryTextFront.left and embroideryTextFront.right are empty
+      const isFrontTextEmpty =
+      !customization.embroidery.embroideryTextFront.left.trim() &&
+      !customization.embroidery.embroideryTextFront.right.trim();
+
+      console.log(typeof customization.embroidery.embroideryTextFront.left, typeof customization.embroidery.embroideryTextFront.right,typeof textValue)
+
+       // Calculate the price based on the length of the text
+      let textPriceNew = isFrontTextEmpty ? 0 : textPrice;
+
+      setPrices((prevPrices) => ({
+        ...prevPrices,
+        embroideryTextFront: textPriceNew,
+      }));
     };
 
     const handleEmbroideryTextBackChange = (value, price) => {
         // Calculate the price based on the length of the text
-        let textPrice = price; // Replace this with your actual pricing logic
+        let textPrice = value ? price : 0;
      
 
         setCustomization((prevCustomization) => ({

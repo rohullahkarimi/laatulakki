@@ -106,8 +106,8 @@ const ProductList = () => {
     <Container>
         <Helmet>
             <meta charSet="utf-8" />
-            <title> TUOTTEET -  LAATULAKKI - YLIOPPILASLAKKI</title>
-            <meta name="description" content="Tilaa perinteinen suomalainen ylioppilaslakki sinivalkoisella vuorilla ja paljon muita helposti Laatulakin verkkokaupasta. Toimitusaika 2-4 arkipäivää." />
+            <title> Käytetty Ylioppilaslakit </title>
+            <meta name="description" content="Tarjoamme laadukkaita käytettyjä ylioppilaslakkeja, jotka ovat täydellinen valinta ympäristötietoisille ostajille. Ostaessasi käytetyn ylioppilaslakin edistät kestävää kehitystä ja osallistut kestävään kulutukseen. Tutustu valikoimaamme ja löydä täydellinen ylioppilaslakki muistoksi tärkeästä päivästäsi." />
         </Helmet>
         <Announcement/>
         <Navbar/>

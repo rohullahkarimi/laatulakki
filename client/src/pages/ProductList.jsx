@@ -53,6 +53,7 @@ const ProductList = () => {
     const [filters, setFilters] = useState({})
     const [sort, setSort] = useState("")
     const navigate = useNavigate()
+    const categoryName = cat;
 
     useEffect(() => {
         hotjar.initialize(Number(String(process.env.REACT_APP_HOTJAR_HJID)), Number(String(process.env.REACT_APP_HOTJAR_HJSV)))
@@ -74,7 +75,8 @@ const ProductList = () => {
 
     
    
-
+  
+   
     return (
     <Container>
         <Helmet>
@@ -84,7 +86,7 @@ const ProductList = () => {
         </Helmet>
         <Navbar/>
         <Announcement/>
-        <Title>{cat.charAt(0).toUpperCase() + cat.slice(1)}</Title>
+        <Title>{categoryName === "topup" ? t('topupTransalte') : categoryName.toUpperCase()}</Title>
         <FilterContainer>
             <Filter>
                 <FilterText>{t("filter_product")}:</FilterText>

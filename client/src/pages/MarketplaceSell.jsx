@@ -81,8 +81,8 @@ const CapChoice = () => {
     <ContainerDiv>
         <Helmet>
             <meta charSet="utf-8" />
-            <title>{t('usedGraduationCap')}</title>
-            <meta name="description" content="Oikean yo-lakin valinta - LaatuLakki - Ylioppilaslakki" />
+            <title>Myy ylioppilaslakki tai muita ammattilakkeja meille</title>
+            <meta name="description" content="Tarjoamme laadukkaita käytettyjä ylioppilaslakkeja, jotka ovat täydellinen valinta ympäristötietoisille ostajille. Ostaessasi käytetyn ylioppilaslakin edistät kestävää kehitystä ja osallistut kestävään kulutukseen. Tutustu valikoimaamme ja löydä täydellinen ylioppilaslakki muistoksi tärkeästä päivästäsi." />
         </Helmet>
         <Navbar/>
             <Container id="starter" style={{padding: "2% 0px 5% 0"}}>
