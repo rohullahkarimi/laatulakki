@@ -171,7 +171,7 @@ const ItemList = ({ items, navigate }) => {
     const Item = styled.div`
         font-size: 16px;
         cursor: pointer;
-        margin: 10px;
+        margin: 10px 15px;
         font-weight: 400;
         position: relative;
         &:not(:last-child) {
@@ -233,11 +233,12 @@ const Navbar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const items = [
     { text: t('sliderTitle1'), url: '/ylioppilaslakki' },
+    { text: t('highSchoolCap'), url: '/products/ylioppilaslakki' },
     { text: t('usedGraduationCap'), url: '/marketplace' },
+    { text: t('packages'), url:  '/products/paketit' },
     { text: t('lyyratText'), url: '/products/lyyra' },
     { text: t('topups'), url: '/products/topup' },
-    { text: t('footer0'), url: '/our_story' },
-    { text: t('blog'), url: 'https://blog.laatulakki.fi/' },
+    { text: t('footer0'), url: '/our_story' }
   ];
 
   const goToHomePage = () => {

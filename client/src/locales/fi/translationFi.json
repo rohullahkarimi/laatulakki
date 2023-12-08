@@ -1,5 +1,7 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "packages": "ALE paketit",
+    "packagetitle": "Pakettiin sisältyy seuraavat tuotteet",
     "usedTitle": "Etkö löytänyt sopivaa käytettyä ylioppilaslakkia?",
     "usedP":"Voit tilata meiltä perinteisen tai kustomoidun ylioppilaslakin.",
     "sliderTitle1": "Kustomoidut ylioppilaslakit",
@@ -236,7 +238,7 @@
     "termsAndCondition.2": "Yleistä verkkokaupasta",
     "termsAndCondition.3": "Verkkokaupan tuotteita myy Laatulakki Oy y-tunnus 3337953-9. Myymme tuotteita täysi- ikäisille yksityishenkilöille Suomeen ja EU-alueelle. Arvonlisävero sisältyy tuotteiden hintoihin. Pidätämme oikeuden hintojen ja postikulujen muutoksiin.",
     "termsAndCondition.4": "Sopimuksen osapuolet",
-    "termsAndCondition.5": "Nämä sopimusehdot koskevat Laatulakki.fi-verkkokauppaa (Palvelu), jonka toiminnasta vastaa Laatulakki Oy (Palveluntarjoaja), Kontionkatu 5 M, 05460 Hyvinkää, Y-tunnus 3337953-9.",
+    "termsAndCondition.5": "Nämä sopimusehdot koskevat Laatulakki.fi-verkkokauppaa (Palvelu), jonka toiminnasta vastaa Laatulakki Oy (Palveluntarjoaja), Oraskatu 3 D 39, 05880 Hyvinkää, Y-tunnus 3337953-9.",
     "termsAndCondition.6": "Yleistä",
     "termsAndCondition.7": "Käyttämällä laatulakki.fi-verkkokauppaa hyväksyt ja sitoudut noudattamaan näitä ehtoja. Palveluntarjoajalla on oikeus muuttaa näitä sopimusehtoja julkaisemalla päivitetyt ehdot verkkokaupan sivuilla. Ennen tilauksen lähettämistä, tutustu voimassa oleviin ehtoihin.",
     "termsAndCondition.8": "Verkkokaupasta tilaaminen edellyttää, että noudatat verkkokaupan sopimusehtoja, täytät niiden mukaiset vaatimukset ja annat itseäsi koskevat tiedot totuudenmukaisesti ja kokonaisuudessaan. Korjaa itseäsi koskevat virheelliset tiedot viipymättä. Käyttäjä vastaa kaikista tilauksista, jotka on tehty hänen käyttäjätunnuksellaan ja salasanallaan. Käyttäjä vastaa käyttäjätunnuksensa ja salasanansa salassa pitämisestä.",

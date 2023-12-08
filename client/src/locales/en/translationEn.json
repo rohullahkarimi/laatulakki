@@ -1,5 +1,7 @@
 {
     "mandatory": "is a mandatory field",
+    "packagetitle": "The package includes the following products",
+    "packages": "Discount Packages",
     "usedTitle": "Didn't find a suitable used graduation cap?",
     "usedP":"You can order a traditional or customized student cap from us.",
     "sliderTitle1": "Customized Graduation Caps",
@@ -235,7 +237,7 @@
     "termsAndCondition.2": "General online store",
     "termsAndCondition.3": "Online store products are sold by Laatulakki Oy business ID 3337953-9. We sell products to private individuals of legal age in Finland and the EU region. Value added tax is included in the prices of the products. We reserve the right to change prices and postage costs.",
     "termsAndCondition.4": "Parties to the Agreement",
-    "termsAndCondition.5": "Parties of the agreement These terms and conditions apply to the Laatulakki.fi online store (Service), which is operated by Laatulakki Oy (Service provider), Kontionkatu 5 M, 05460 Hyvinkää, business ID 3337953-9.",
+    "termsAndCondition.5": "Parties of the agreement These terms and conditions apply to the Laatulakki.fi online store (Service), which is operated by Laatulakki Oy (Service provider), Oraskatu 3 D 39, 05880 Hyvinkää, business ID 3337953-9.",
     "termsAndCondition.6": "General",
     "termsAndCondition.7": "By using the lautulakki.fi online store, you accept and agree to comply with these terms and conditions. The service provider has the right to change these terms and conditions by publishing the updated terms and conditions on the web store's website. Before sending the order, please familiarize yourself with the current terms and conditions.",
     "termsAndCondition.8": "Ordering from the online store requires that you comply with the terms and conditions of the online store, meet the requirements according to them and provide the information about yourself truthfully and in full. Correct any incorrect information about yourself without delay. The user is responsible for all orders made with his username and password. User is responsible for keeping his username and password secret.",

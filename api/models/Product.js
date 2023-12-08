@@ -17,9 +17,12 @@ const ProductSchema = new mongoose.Schema(
         inStock: {type: Boolean, default: true},
         visibility: {type: Boolean, default: true},
 
+        
         productId: { type: String},
         customizedProduct: {type: Boolean, default: false},
         customizationOptions: { type: Object},
+        productType: {type: String},
+        linkedProducts: {type: Array, required: false}
 
     },
     { timestamps: true}

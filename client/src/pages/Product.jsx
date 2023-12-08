@@ -264,13 +264,143 @@ const UsedLabel = styled.div`
     font-size: 12px;
 `;
 
+// Container for each product
+const ProductContainer = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+`;
+
+const ProductImageContainer = styled.div`
+    width: 100px;
+    height: 100px;
+`;
+// Product image
+const ProductImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex: 1.5;
+  padding: 10px;
+`;
+
+// Product title
+const ProductTitle = styled.h2`
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  flex:2;
+  padding: 0 10px;
+`;
+
+// Product price
+const ProductPrice = styled.p`
+  font-size: 14px;
+  color: #555;
+  flex:1.5;
+  padding: 0 10px;
+`;
+
+// Container for all products
+const ProductsContainer = styled.div`
+  margin: 15px 0;
+`;
+
+
+const PackageProductList = ({ productIds }) => {
+    const { t } = useTranslation();
+    const [products, setProducts] = useState([]);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const productDetails = await Promise.all(
+            productIds.map(async (productId) => {
+              const response = await publicRequest.get(`/products/find/${productId}`); // Replace with your API endpoint
+              return response.data; // Assuming the API returns product details
+            })
+          );
+          setProducts(productDetails);
+        } catch (error) {
+          console.error('Error fetching product details:', error);
+        }
+      };
+      
+      fetchData();
+    }, [productIds]);
+  
+    return (
+      <ProductsContainer>
+        <h5>{t('packagetitle')}</h5>
+        {products.map((product) => (
+          <PackageProduct uniqueKey={product._id} product={product} />
+        ))}
+      </ProductsContainer>
+    );
+};
+
+  
+const PackageProduct = ({uniqueKey, product}) => {
+    console.log(uniqueKey)
+    const { t } = useTranslation();
+    const navigate = useNavigate();
+    const selectedLang = i18n.language
+    const [productInternationalizeDetails, setProductInternationalizeDetails] = useState({
+        title: "",
+        desc: "",
+    })
+
+    const navigateToProductPage = () =>{
+        const productTitleForUrl = product.title[0].fi.replace(/\s+/g, '-').toLowerCase();
+        navigate(`/product/${productTitleForUrl}/${product._id}`)
+    }
+
+    useEffect(() =>{
+        const handleProductSet = (data) => {
+            let title = ""
+            let desc = ""
+        
+            if(selectedLang === "se"){
+                title = data.title[0].se
+                desc = data.desc[0].se
+            }else if(selectedLang === "en"){
+                title = data.title[0].en
+                desc = data.desc[0].en
+            }else{
+                title = data.title[0].fi
+                desc = data.desc[0].fi
+            }
+            setProductInternationalizeDetails(previousInputs => ({ ...previousInputs, title: title }))
+            setProductInternationalizeDetails(previousInputs => ({ ...previousInputs, desc: desc }))
+        }
+
+        handleProductSet(product);
+    }, [selectedLang, product]);
+
+    
+    return (
+        <ProductContainer key={uniqueKey} onClick={navigateToProductPage}>
+          <ProductImageContainer>
+            <ProductImage src={product.img[0].thumbnail} alt={product.title} />
+          </ProductImageContainer>
+          <ProductTitle>{productInternationalizeDetails.title}</ProductTitle>
+          <ProductPrice>{product.price.toFixed(2)} €</ProductPrice>
+        </ProductContainer>
+    );
+}
+
+
+
 const Product = () => {
   const { t } = useTranslation();
   const selectedLang = i18n.language
   const location = useLocation();
   const id = location.pathname.split("/")[3]
   const navigate = useNavigate()
-  //console.log(id);
+
 
 
   const [modalShow, setModalShow] = useState(false);
@@ -445,7 +575,6 @@ const Product = () => {
     }
 
    
-    
     return (
     <Container>
         <Helmet>
@@ -473,12 +602,15 @@ const Product = () => {
             
                 <Desc>{productInternationalizeDetails.desc}</Desc>
 
-                <DetailsPartContainer>
-                    {productDetails?.length > 0 && <h4>{t('especialInfo')}</h4>}
-                    {productDetails?.map((detailsName, j) => {
-                        return(<DetailsPart key={j}><b>{detailsName.name}</b>: {detailsName.desc}</DetailsPart>)
-                    })}
-                </DetailsPartContainer>
+                {product.productType === "package" 
+                    ? <PackageProductList productIds={product.linkedProducts}/> 
+                    :   <DetailsPartContainer>
+                            {productDetails?.length > 0 && <h4>{t('especialInfo')}</h4>}
+                            {productDetails?.map((detailsName, j) => {
+                                return(<DetailsPart key={j}><b>{detailsName.name}</b>: {detailsName.desc}</DetailsPart>)
+                            })}
+                        </DetailsPartContainer>
+                }
 
               
                 {product.categories?.includes('used') && UsedCapCustomization()}

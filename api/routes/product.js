@@ -111,12 +111,15 @@ router.get("/csv", async (req, res) => {
         products = await Product.find();
      
         // Modify products array to include extracted title and description in "fi" language
+     
+
         const modifiedProducts = products.map(product => {
+            const productTitleForUrl = product.title[0].fi.replace(/\s+/g, '-').toLowerCase();
             return {
                 id: product.id,
                 title: product.title[0].fi,
                 price: product.price+' EUR',
-                link: product.customizedProduct === true ? 'https://www.laatulakki.fi/ylioppilaslakki' :  "https://www.laatulakki.fi/product/"+ product.id,
+                link: product.customizedProduct === true ? 'https://www.laatulakki.fi/ylioppilaslakki' :  `https://www.laatulakki.fi/product/${productTitleForUrl}/${product._id}`,
                 additional_image_link: product.img[1]?.original,
                 image_link: product.img[0]?.original,
                 brand: "LAATULAKKI",
@@ -155,7 +158,7 @@ router.get("/txt", async (req, res) => {
           description: product.desc[0].fi,
           google_product_category: "Electronics > Video > Televisions > Flat Panel Televisions",
           product_type: "Consumer Electronics > TVs > Flat Panel TVs",
-          link: product.customizedProduct === true ? "https://www.laatulakki.fi/ylioppilaslakki" : `https://www.laatulakki.fi/product/${product.id}`,
+          link: product.customizedProduct === true ? "https://www.laatulakki.fi/ylioppilaslakki" : `https://www.laatulakki.fi/product/${productTitleForUrl}/${product._id}`,
           image_link: product.img[0]?.original,
           condition: "new",
           availability: product.visibility ? "in_stock" : "out_of_stock",

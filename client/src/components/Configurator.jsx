@@ -414,8 +414,7 @@ const Configurator = () => {
         }));
     };
 
-    console.log(customization.embroidery.embroideryTextFront.left, customization.embroidery.embroideryTextFront.right)
-   
+
     const handleEmbroideryFrontTextChange = (textType, textValue, textPrice) => {
 
       setCustomization((prevCustomization) => ({
@@ -434,9 +433,7 @@ const Configurator = () => {
       !customization.embroidery.embroideryTextFront.left.trim() &&
       !customization.embroidery.embroideryTextFront.right.trim();
 
-      console.log(typeof customization.embroidery.embroideryTextFront.left, typeof customization.embroidery.embroideryTextFront.right,typeof textValue)
-
-       // Calculate the price based on the length of the text
+      // Calculate the price based on the length of the text
       let textPriceNew = isFrontTextEmpty ? 0 : textPrice;
 
       setPrices((prevPrices) => ({

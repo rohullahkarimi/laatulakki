@@ -195,8 +195,8 @@ const Footer = () => {
         <Left>
             <Title onClick={goToHomePage}>Laatulakki Oy</Title>
             <ContactItem><Store style={{marginRight:"10px"}}/> Y-tunnus: 3337953-9</ContactItem>
-            <ContactItem><Room style={{marginRight:"10px"}}/> Kontionkatu 5 M<br/>
-            05460 Hyvinkää, Finland</ContactItem>
+            <ContactItem><Room style={{marginRight:"10px"}}/> Oraskatu 3 D 39<br/>
+            05880 Hyvinkää, Finland</ContactItem>
             <ContactItem><Phone style={{marginRight:"10px"}}/> +358400269034</ContactItem>
             <ContactItem><MailOutlined style={{marginRight:"10px"}}/> info@laatulakki.fi</ContactItem>
 

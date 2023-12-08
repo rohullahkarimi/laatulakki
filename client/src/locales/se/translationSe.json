@@ -1,5 +1,7 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "packages": "ALE-Paket",
+    "packagetitle": "Paketet innehåller följande produkter",
     "usedTitle": "Hittade du inte en lämplig begagnad examensmössa?",
     "usedP":"Du kan beställa en traditionell eller skräddarsydd studentmössa från oss.",
     "sliderTitle1": "Anpassade studentmössor",
@@ -232,7 +234,7 @@
     "termsAndCondition.2": "Allmän webbutik",
     "termsAndCondition.3": "Netbutiksprodukter säljs av Laatulakki Oy FO-nummer 3337953-9. Vi säljer produkter till privatpersoner i myndig ålder i Finland och EU-regionen. Mervärdesskatt ingår i produkternas priser. Vi förbehåller sig rätten att ändra priser och portokostnader.",
     "termsAndCondition.4": "Avtalets parter",
-    "termsAndCondition.5": "Avtalets parter Dessa villkor gäller för nätbutiken Laatulakki.fi (Service), som drivs av Laatulakki Oy (Tjänsteleverantör), Kontionkatu 5 M, 05460 Hyvinkää, FO-nummer 3337953-9.",
+    "termsAndCondition.5": "Avtalets parter Dessa villkor gäller för nätbutiken Laatulakki.fi (Service), som drivs av Laatulakki Oy (Tjänsteleverantör), Oraskatu 3 D 39, 05880 Hyvinkää, FO-nummer 3337953-9.",
     "termsAndCondition.6": "Allmänt",
     "termsAndCondition.7": "Genom att använda nätbutiken lautulakki.fi accepterar och accepterar du att följa dessa villkor. Tjänsteleverantören har rätt att ändra dessa villkor genom att publicera de uppdaterade villkoren på webben butikens hemsida. Innan du skickar beställningen, vänligen bekanta dig med de aktuella villkoren.",
     "termsAndCondition.8": "Att beställa från nätbutiken kräver att du följer nätbutikens villkor, uppfyller kraven enligt dem och lämnar informationen om dig själv sanningsenligt och fullständigt. Rätta eventuella felaktiga uppgifter om dig själv utan att fördröjning. Användaren ansvarar för alla beställningar som görs med hans användarnamn och lösenord. Användaren ansvarar för att hålla sitt användarnamn och lösenord hemligt.",
