@@ -152,6 +152,8 @@ router.get("/txt", async (req, res) => {
   
       // Iterate through the products and format them for Google Merchant Center TXT
       products.forEach((product) => {
+        const productTitleForUrl = product.title[0].fi.replace(/\s+/g, '-').toLowerCase();
+        
         formattedProducts.push({
           id: product.id,
           title: product.title[0].fi,
