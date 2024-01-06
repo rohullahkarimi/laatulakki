@@ -143,7 +143,7 @@ export default function WidgetLg() {
                   type="text"
                   placeholder="Enter Video Link"
                   id={order._id + "_videoLinkInput"}
-                  value={order.packingVideoLink}
+                  value={packingVideoLink}
                   onChange={(e) => setPackingVideoLink(e.target.value)}
                 />
               ) : (
