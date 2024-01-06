@@ -2,7 +2,7 @@ echo "Switching to branch master"
 git checkout master
 
 echo "Building app..."
-if sudo npm run build:webpack-prod; then
+if sudo npm run build:webpack-stag; then
   echo "Build successful. Removing existing files in 'client' directory..."
   sudo rm -rf /var/www/laatulakki/production/admin_dashboard/*
 
@@ -13,3 +13,4 @@ if sudo npm run build:webpack-prod; then
 else
   echo "Build failed. Deployment aborted."
 fi
+
