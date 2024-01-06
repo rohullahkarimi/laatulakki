@@ -14,6 +14,7 @@ export default function WidgetLg() {
   const [newOrders, setNewOrders] = useState(0);
   const [newOrdersDelivered, setNewOrdersDelivered] = useState(0);
   const [newOrdersRefunded, setNewOrdersRefunded] = useState(0);
+  const [packingVideoLink, setPackingVideoLink] = useState("");
   
   
 
@@ -21,6 +22,7 @@ export default function WidgetLg() {
   
   const sendReminder = async (orderId) => {
     const reminderEmailSent = true
+  
 
     try {
       const res = await userRequest.put("sendMail/sendOrderReminder/" + orderId, { reminderEmailSent: reminderEmailSent });
@@ -142,6 +144,7 @@ export default function WidgetLg() {
                   placeholder="Enter Video Link"
                   id={order._id + "_videoLinkInput"}
                   value={order.packingVideoLink}
+                  onChange={(e) => setPackingVideoLink(e.target.value)}
                 />
               ) : (
                 <input
@@ -152,10 +155,6 @@ export default function WidgetLg() {
               )}
                 <button
                   onClick={(e) => {
-                    const inputElement = document.getElementById(
-                      order._id + "_videoLinkInput"
-                    );
-                    const packingVideoLink = inputElement.value;
                     if (packingVideoLink.trim() !== "") {
                       sendVideoLink(order._id, packingVideoLink);
                       inputElement.value = ""; // Clear the input field after sending
