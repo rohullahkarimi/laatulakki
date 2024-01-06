@@ -154,7 +154,12 @@ export default function WidgetLg() {
                 />
               )}
                 <button
-                  onClick={(e) => {
+                  id={"sendButton_" + order._id} // Set a unique id for each button
+                  onClick={() => {
+                    const inputElement = document.getElementById(
+                      order._id + "_videoLinkInput"
+                    );
+                    const packingVideoLink = inputElement.value;
                     if (packingVideoLink.trim() !== "") {
                       sendVideoLink(order._id, packingVideoLink);
                       inputElement.value = ""; // Clear the input field after sending
