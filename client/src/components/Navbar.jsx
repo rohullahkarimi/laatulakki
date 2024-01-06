@@ -186,6 +186,10 @@ const ItemList = ({ items, navigate }) => {
             height: 2px;
             background-color: #${brandColor}; /* Add a green line under the active menu */
         }
+        @media screen and (min-width: 800px) and (max-width: 1000px) {
+            margin: 5px 5px; 
+            font-size: 13px;
+        }
     `;
 
     return (

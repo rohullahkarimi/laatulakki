@@ -81,6 +81,30 @@ router.put("/sendOrderReminder/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
+// Send order video link 
+router.put("/sendOrderVideoLink/:id", verifyTokenAndAdmin, async (req, res) => {
+  try {
+      const updatedOrder = await Order.findByIdAndUpdate(
+          req.params.id, {
+          $set: req.body
+      },
+          { new: true }
+      );
+
+      var videoEmail = "";
+      if(req.body.videoEmailSent){
+        videoEmail = "videoEmail";
+      }
+      
+      // send mail 
+      sendOrderStatusEmail(req.params.id, videoEmail);
+
+      res.status(200).json(updatedOrder);
+  } catch (err) {
+      res.status(500).json(err)
+  }
+});
+
 // UPDATE ORDER STATUS
 router.put("/updateOrderStatus/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
@@ -124,9 +148,17 @@ function sendOrderStatusEmail(orderId, status) {
       subject = "Tilauksesi on yhä kesken";
       statusText = "Ostoskorisi maksaminen jäi kesken. Tilausta ei ole muodustunut. Voit jatka maksamista alla olevasta painikkeesta";
       break;
+    case "videoEmail":
+      subject = "Pakkausvideo tilauksestasi";
+      statusText = "Katso, kuinka pakkasimme tilauksesi kauniisti. Voit katsoa videon alla olevasta linkistä ja jakaa sen ystäviesi kanssa. Olemme ylpeitä saavutuksestasi! 💫";
+      break;
     default:
       return false;
   }
+
+
+
+
 
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -161,6 +193,7 @@ function sendOrderStatusEmail(orderId, status) {
       transactionId: "https://services.paytrail.com/pay/"+response.transactionId,
       statusText: statusText,
       Delivered: status === "delivered" ? true : false,
+      packingVideoLink: response.packingVideoLink
     }
 
     // get data 

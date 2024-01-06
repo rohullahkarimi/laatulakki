@@ -16,6 +16,7 @@
     "axios": "^0.27.2",
     "date-fns": "^2.29.3",
     "firebase": "^9.9.2",
+    "fs": "^0.0.1-security",
     "jquery": "^3.6.2",
     "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
@@ -41,7 +42,7 @@
     "build:webpack-stag": "webpack --config=webpack.config.js --env build=stag --mode development",
     "build:webpack-prod": "webpack --config=webpack.config.js --env build=prod --mode production",
     "sitemap": "babel-node ./sitemap-builder.js",
-    "dev": "webpack-dev-server --env dev --mode development",
+    "dev": "webpack-dev-server --config=webpack.config.js --env build=dev --mode development",
     "stag": "webpack-dev-server --env stag --mode development",
     "prod": "webpack-dev-server --env prod --mode development"
   },

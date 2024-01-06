@@ -117,6 +117,8 @@ const OrderSchema = new mongoose.Schema(
         paid: { type: Boolean, required: true, default: false},
         emailSent: { type: Boolean, required: true, default: false},
         reminderEmailSent: { type: Boolean, default: false},
+        videoEmailSent: { type: Boolean, default: false},
+        packingVideoLink: { type: String, default: ""},
         transactionId: { type: String, default: ""},
         promoCode: { type: String, default: ""},
         promoPercentage: { type: Number, required: true},

@@ -41,7 +41,7 @@ const Container = styled.div`
 
 
 const Image = styled.img`
-    max-height: 80%;
+    max-height: ${props => (props.used && props.existSizesLength > 0 ? '70%' : '80%')};
     max-width: 90%;
     z-index: 2;
     /* margin-bottom: 20%; */
@@ -55,7 +55,7 @@ const NameContainer = styled.div`
     height: auto;
     background: #ffffff;
     position: absolute;
-    bottom: 6%;
+    bottom: ${props => (props.used && props.existSizesLength > 0 ? '12%' : '6%')};
     text-align: left;
     font-size: 14px;
 `
@@ -64,7 +64,7 @@ const Price = styled.div`
     height: auto;
     background: #ffffff;
     position: absolute;
-    bottom: 0;
+    bottom: ${props => (props.used && props.existSizesLength > 0 ? '6%' : '0')};
     text-align: left;
     font-size: 15px;
 `
@@ -73,7 +73,7 @@ const PriceDiscount = styled.div`
     height: auto;
     background: #ffffff;
     position: absolute;
-    bottom: 0;
+    bottom: ${props => (props.used && props.existSizesLength > 0 ? '6%' : '0')};
     left: 65px;
     font-size: 15px;
 `
@@ -105,6 +105,18 @@ const SoldOutLabel = styled.div`
     z-index: 4;
 `;
 
+
+
+const SizeBox = styled.div`
+    width: 100%;
+    height: auto;
+    background: #ffffff;
+    position: absolute;
+    bottom: 0;
+    text-align: left;
+    font-size: 12px;
+`;
+
 const Product = ({used, item}) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -129,7 +141,9 @@ const Product = ({used, item}) => {
     navigate(`/product/${productTitleForUrl}/${item._id}`)
   }
 
+  const existSizes = item.size.filter(size => size.storage > 0);
 
+  console.log(existSizes)
   return (
     <Container onClick={navigateToProductPage}>
         {used && (
@@ -145,19 +159,32 @@ const Product = ({used, item}) => {
             </SoldOutLabel>
         )}
 
+ 
+     
+
         {item.discount &&<span className="flag-discount-productList">-{item.discount}%</span>}
-        <Image loading="lazy" alt="product image" src={item.img[0].original}/>
+        <Image used={used} existSizesLength={existSizes.length} loading="lazy" alt="product image" src={item.img[0].original}/>
         <Info>
         </Info>
         
-        <NameContainer> 
+        <NameContainer used={used} existSizesLength={existSizes.length} > 
             <Name>{title}</Name>
         </NameContainer> 
         
        
         
-        {item.discount ? <Price>{ (item.price - (item.price * (item.discount / 100)).toFixed(2))} € </Price> : <Price>{item.price.toFixed(2)} €</Price>}
-        {item.discount && <PriceDiscount><s className="originalPriceProductList">{item?.price && item?.price.toFixed(2)} €</s></PriceDiscount>}
+        {item.discount ? <Price used={used} existSizesLength={existSizes.length} >{ (item.price - (item.price * (item.discount / 100)).toFixed(2))} € </Price> : <Price used={used} existSizesLength={existSizes.length} >{item.price.toFixed(2)} €</Price>}
+        {item.discount && <PriceDiscount used={used} existSizesLength={existSizes.length} ><s className="originalPriceProductList" >{item?.price && item?.price.toFixed(2)} €</s></PriceDiscount>}
+            
+        {existSizes.length > 0 && used && (
+            <SizeBox>
+            {existSizes.map((size, index) => (
+                `${size.name} cm${index !== existSizes.length - 1 ? ', ' : ''}` 
+            ))}
+            </SizeBox>
+         )}
+  
+
     </Container>
   )
 }

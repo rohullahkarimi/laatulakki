@@ -67,6 +67,9 @@ module.exports = (env) => {
       fallback: {
         crypto: require.resolve('crypto-browserify'),
         stream: require.resolve('stream-browserify'), // Fixed the quotes here
+        fs: false, // Disable 'fs' module
+        path: false, // Disable 'path' module
+
       },
       extensions: ['.js', '.jsx'], // Add other extensions you might use (e.g., '.mjs')
     },

@@ -516,6 +516,29 @@
                           <p align="center">Tämä viesti on aiheeton jos olet jo ehtinyt tehdä uuden tilauksen.</p>
                         {{/if}}
 
+
+                      
+                        {{#if packingVideoLink}}
+                        <p align="center">Voit katsoa pakkausvideon täältä</p>
+                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                          <tbody>
+                            <tr>
+                              <td align="center">
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                  <tbody>
+                                      <tr>
+                                        <td><a href="{{packingVideoLink}}" target="_blank">Pakkausvideo</a></td>
+                                      </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <hr>
+                        {{/if}}
+
+
                         {{#unless reminderOrNot}}
                           <p align="center">Voit katsoa tai tulostaa kuittisi täältä</p>
                         {{/unless}}
@@ -526,6 +549,9 @@
                               <td align="center">
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
+
+                                    
+                                    
                                     <tr>
 
                                       {{#if reminderOrNot}}
