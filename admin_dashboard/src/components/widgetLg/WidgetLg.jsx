@@ -14,7 +14,6 @@ export default function WidgetLg() {
   const [newOrders, setNewOrders] = useState(0);
   const [newOrdersDelivered, setNewOrdersDelivered] = useState(0);
   const [newOrdersRefunded, setNewOrdersRefunded] = useState(0);
-  const [packingVideoLink, setPackingVideoLink] = useState("");
   
   
 
@@ -139,18 +138,13 @@ export default function WidgetLg() {
 
               <td className="widgetLgPackageVideo">
               {order.packingVideoLink !== "" ? (
-                <input
-                  type="text"
-                  placeholder="Enter Video Link"
-                  id={order._id + "_videoLinkInput"}
-                  value={packingVideoLink}
-                  onChange={(e) => setPackingVideoLink(e.target.value)}
-                />
+                <a href={order.packingVideoLink} target="_blank">view</a>
               ) : (
                 <input
                   type="text"
                   placeholder="Enter Video Link"
                   id={order._id + "_videoLinkInput"}
+                  defaultValue={order.packingVideoLink}
                 />
               )}
                 <button
