@@ -237,7 +237,7 @@ const Navbar = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const items = [
     { text: t('sliderTitle1'), url: '/ylioppilaslakki' },
-    { text: t('highSchoolCap'), url: '/products/ylioppilaslakki' },
+    { text: t('highSchoolCap').charAt(0).toUpperCase() + t('highSchoolCap').slice(1).toLowerCase(), url: '/products/ylioppilaslakki' },
     { text: t('usedGraduationCap'), url: '/marketplace' },
     { text: t('packages'), url:  '/products/paketit' },
     { text: t('lyyratText'), url: '/products/lyyra' },

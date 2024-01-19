@@ -69,7 +69,7 @@ const DeliveryTermsModal = (props) => {
                     
                     <h4>{t("capChoice1a")}</h4>
                     <div>
-                        <Iframe src="https://www.youtube.com/embed/FJJ7N287Mjs" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
+                        <iframe width="320" height="560" src="https://youtube.com/embed/fH-xn70AkIw" title="Pakataan ylioppilaslakki yhdessä 🌹" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                     </div>
 
                     <Desc>{t("capChoice1")}</Desc>
