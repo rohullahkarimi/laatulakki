@@ -84,7 +84,7 @@ const Story = () => {
                             <div className="col-xl-4 col-lg-5">
                             <div className="featured-text text-center text-lg-left">
                                 <h4>{t('footer0').toUpperCase()}</h4>
-                                <p className="text-black-50 mb-0">{t('our_story1')}</p>
+                                <p className="text-black-100 mb-0">{t('our_story1')}</p>
                             </div>
                             </div>
                         </div>
@@ -96,11 +96,11 @@ const Story = () => {
 
                             </div>
                             <div className="col-lg-6 mb-3">
-                            <div className="bg-black text-center h-100 project">
+                            <div className="text-center h-100 project">
                                 <div className="d-flex h-100">
                                 <div className="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 className="text-white">AFGHANISTAN 2013</h4>
-                                    <p className="mb-0 text-white-50">{t('our_story2')}</p>
+                                    <h4 className="text-black">AFGHANISTAN 2013</h4>
+                                    <p className="mb-0 text-black-100">{t('our_story2')}</p>
                                     <hr className="d-none d-lg-block mb-0 ml-0"/>
                                 </div>
                                 </div>
@@ -114,11 +114,11 @@ const Story = () => {
                             <img className="img-fluid" src="https://www.laatulakki.fi/public/images/rohullah_karimi_graduated.jpg" alt=""/>
                             </div>
                             <div className="col-lg-6 mb-3 order-lg-first">
-                            <div className="bg-black text-center h-100 project">
+                            <div className=" text-center h-100 project">
                                 <div className="d-flex h-100">
                                 <div className="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 className="text-white">{t('hope1')}</h4>
-                                    <p className="mb-0 text-white-50">{t('our_story3')} </p>
+                                    <h4 className="text-black">{t('hope1')}</h4>
+                                    <p className="mb-0 text-black-100">{t('our_story3')} </p>
                                     <hr className="d-none d-lg-block mb-0 mr-0"/>
                                 </div>
                                 </div>
@@ -131,11 +131,11 @@ const Story = () => {
                             <iframe width="350" height="759" src="https://www.youtube.com/embed/OIgnSis_tcU" title="Pakataan tilaus yhdessä 🫶Tilausten pakkaaminen on suosikki osani koko prosessista. 😍" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                             </div>
                             <div className="col-lg-6">
-                            <div className="bg-black text-center h-100 project">
+                            <div className=" text-center h-100 project">
                                 <div className="d-flex h-100">
                                 <div className="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 className="text-white">{t('truth')}</h4>
-                                    <p className="mb-0 text-white-50">{t('our_story4')}</p>
+                                    <h4 className="text-black">{t('truth')}</h4>
+                                    <p className="mb-0 text-black-100">{t('our_story4')}</p>
                                     <hr className="d-none d-lg-block mb-0 ml-0"/>
                                 </div>
                                 </div>
