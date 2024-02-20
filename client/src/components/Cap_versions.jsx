@@ -150,15 +150,15 @@ function Ylioppilaslakki(props) {
     black: createCustomMaterial(velvetTexture, 0x000000), // Black default material
     gold: materials.gliter_texture_gold,
     silver: materials['gliter_texture_.001'],
-    rose_gold: createCustomMaterial(velvetTexture, 0xFFC0CB), // Apply color using custom material
+    pink: createCustomMaterial(velvetTexture, 0xF5C6C1), // Apply color using custom material
     dark_blue: createCustomMaterial(velvetTexture, 0x012483), // Apply color using custom material
     yellow: createCustomMaterial(velvetTexture, 0xFEEF01),
     light_blue: createCustomMaterial(velvetTexture, 0xBBDEF0), // Apply color using custom material
   };
 
-  // Function to create custom material
- // Function to create custom material with darkness effect and opacity
-function createCustomMaterial(texture, color, darknessFactor = 0.02, opacity = 0.9) {
+
+// Function to create custom material with darkness effect and opacity
+function createCustomMaterial(texture, color, darknessFactor = 0.001, opacity = 1) {
   const material = new THREE.MeshStandardMaterial({ map: texture });
   material.onBeforeCompile = shader => {
     shader.uniforms.customColor = { value: new THREE.Color(color) };
