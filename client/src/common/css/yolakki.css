@@ -8,6 +8,14 @@ html, body, #root {
   animation: blinker 1s linear infinite;
 }
 
+.centered{
+  display: flex !important;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
 .badgeButtons{
   cursor: pointer;
   box-sizing: border-box;
@@ -118,7 +126,7 @@ canvas{
 .configurator__section__values {
   display: flex;
   flex-direction: row;
-  gap: 35px;
+  gap: 20px;
   align-items: center;
   flex-wrap: wrap;
   padding: 16px 0;
@@ -152,7 +160,7 @@ canvas{
 .item__label {
   text-align: center;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   color: #aaa;
   text-transform: capitalize;
 }

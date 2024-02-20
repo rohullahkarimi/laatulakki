@@ -75,6 +75,7 @@
     "redux-persist": "^6.0.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
+    "sharp": "^0.33.2",
     "slick-carousel": "^1.8.1",
     "stream-browserify": "^3.0.0",
     "styled-components": "^5.3.5",

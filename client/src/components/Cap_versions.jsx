@@ -12,7 +12,8 @@ import {
 } from "@react-three/drei";
 
 import * as THREE from "three";
-import { useThree, extend } from "@react-three/fiber";
+import { TextureLoader } from 'three';
+import { useThree, extend, useLoader } from "@react-three/fiber";
 import { gsap } from "gsap";
 import { Text as Troika } from "troika-three-text";
 import { useCustomization } from "../contexts/Customization";
@@ -39,11 +40,14 @@ function MyErrorBoundary({ error, componentStack }) {
 
 function Ylioppilaslakki(props) {
   const { camera } = useThree();
-  const { nodes, materials } = useGLTF("/public/models/cap_version_11-transformed.glb");
+  const { nodes, materials } = useGLTF("/public/models/cap_version_14-transformed.glb");
+  //const { nodes, materials } = useGLTF("/public/models/cap_version_14.gltf");
   
   const texture = new THREE.TextureLoader().load(
-    "/public/textures/embroidery/embroideryTexture.jpg"
+    "public/textures/embroidery/embroideryTexture.jpg"
   );
+ 
+
   const [isFromBack, setIsFromBack] = useState(false);
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
@@ -131,50 +135,105 @@ function Ylioppilaslakki(props) {
     }
   }, [focus]);
 
+
+
+  //console.log(customization)
+
+  // color less velvet texture
+  const velvetTexture = new TextureLoader().load('/public/textures/velvet/velvet_texture.png');
+  velvetTexture.wrapS = THREE.RepeatWrapping; // Repeat the texture horizontally
+  velvetTexture.repeat.set(3, 1); // Adjust the repeat to fit the ribbon length
+
+
+  // Define the materials
+  const ribbonMaterials = {
+    black: createCustomMaterial(velvetTexture, 0x000000), // Black default material
+    gold: materials.gliter_texture_gold,
+    silver: materials['gliter_texture_.001'],
+    rose_gold: createCustomMaterial(velvetTexture, 0xFFC0CB), // Apply color using custom material
+    dark_blue: createCustomMaterial(velvetTexture, 0x012483), // Apply color using custom material
+    yellow: createCustomMaterial(velvetTexture, 0xFEEF01),
+    light_blue: createCustomMaterial(velvetTexture, 0xBBDEF0), // Apply color using custom material
+  };
+
+  // Function to create custom material
+ // Function to create custom material with darkness effect and opacity
+function createCustomMaterial(texture, color, darknessFactor = 0.02, opacity = 0.9) {
+  const material = new THREE.MeshStandardMaterial({ map: texture });
+  material.onBeforeCompile = shader => {
+    shader.uniforms.customColor = { value: new THREE.Color(color) };
+    shader.uniforms.darknessFactor = { value: darknessFactor };
+    shader.fragmentShader = `
+      uniform vec3 customColor;
+      uniform float darknessFactor;
+      ${shader.fragmentShader.replace(
+        '#include <map_fragment>',
+        `
+          #include <map_fragment>
+          diffuseColor.rgb *= customColor;
+          diffuseColor.rgb -= vec3(darknessFactor); // Add darkness effect
+        `
+      )}
+    `;
+  };
+  material.opacity = opacity;
+  material.transparent = true; // Enable transparency
+  return material;
+}
+
+
+
+ 
+  let chosenMaterial;
+
+ 
+  chosenMaterial = ribbonMaterials[customization.roundRibbonColor];
+ 
+
   return (
     <group {...props} dispose={null}>
    
+      {/* decorative ribbon based on user chosen */}
+      <mesh
+      geometry={nodes.roundRibbonribon_gliter_gold.geometry}
+      material={chosenMaterial}
+      visible={customization.roundRibbonColor ? true : false}
+      />
+      {
+      /*
+      <mesh geometry={nodes.roundRibbonribon_gliter_gold.geometry} material={materials.gliter_texture_gold} />
+      <mesh geometry={nodes.roundRibbonribon_gliter_silver.geometry} material={materials['gliter_texture_.001']} />
+      <mesh geometry={nodes.roundRibbonribon_velvet_GOLD.geometry} material={materials.velvet_texture_GOLD} />
+      <mesh geometry={nodes.roundRibbonribon_velvet_silver.geometry} material={materials.velvet_texture_} />
+        */
+      }
 
+      {/* Cord */}
+      <mesh geometry={nodes.cordblack.geometry} material={materials['line 1.002']} visible={customization.cordColor === "black"}/>
+      <mesh geometry={nodes.cordgold.geometry} material={materials['Tape. gliter gold']} visible={customization.cordColor === "gold"} />
+      <mesh geometry={nodes.cordsilver.geometry} material={materials['line 1.001']} visible={customization.cordColor === "silver"}/>
 
-      {/* decorative ribbon */}
-      <mesh
-        geometry={nodes.gold001.geometry}
-        material={materials.stribe}
-        visible={customization.roundRibbonColor === "gold"}
-      />
-      <mesh
-        geometry={nodes.silver.geometry}
-        material={materials["stribe.001"]}
-        visible={customization.roundRibbonColor === "silver"}
-      />
-
-      {/* cord */}
-      <mesh
-        geometry={nodes.gold.geometry}
-        material={materials.stribe} 
-        visible={customization.cordColor === "gold"}
-      />
-      <mesh
-        geometry={nodes.silver001.geometry}
-        material={materials["line 1.001"]}
-        visible={customization.cordColor === "silver"}
-      />
-      <mesh
-        geometry={nodes.black.geometry}
-        material={materials["line 1.002"]}
-        visible={customization.cordColor === "black"}
-      />
       
       
-      <mesh geometry={nodes.sloejfe.geometry} material={materials.sloejfe_m} />
-      <mesh geometry={nodes.the_top_of_the_cap_.geometry} material={materials['outside white']} />
+      
+      {/* badge */}
+      <mesh geometry={nodes.badgeclassic.geometry} material={materials['Material.005']}   visible={customization.badge === "fi"}/>
+    
+      <mesh geometry={nodes.badgestarcube.geometry} material={materials['diamond.001']} visible={customization.badge === "star"}/>
+      <mesh geometry={nodes.badgestarcube_1.geometry} material={materials.gold} visible={customization.badge === "star"}/>
+
+      <mesh geometry={nodes.badgecrystalcube.geometry} material={materials.gold} visible={customization.badge === "crystal"}/>
+      <mesh geometry={nodes.badgecrystalcube_1.geometry} material={materials['diamond.001']} visible={customization.badge === "crystal"}/>
+     
+
+      {/* embroidery */}
+      <mesh geometry={nodes.embroideryTextleft.geometry} material={materials['Material.002']}  visible={false}/>
+      <mesh geometry={nodes.embroideryTextright.geometry} material={materials['Material.002']} visible={false}/>
+      <mesh geometry={nodes.embroideryTextback.geometry} material={materials['Material.002']} visible={false}/>
 
       <ErrorBoundary FallbackComponent={MyErrorBoundary}>
-        <mesh
-          geometry={nodes.the_middle_part_.geometry}
-          material={materials["outside black"]}
-        >
-          <Decal
+        <mesh geometry={nodes.pantavelvetBlack.geometry} material={materials['outside black']} >
+        <Decal
             position={[-0.19099999999999948, 0.36, 0.640000000000005]}
             rotation={[0, 0, -3.14]}
             scale={1.8}
@@ -287,47 +346,25 @@ function Ylioppilaslakki(props) {
         </mesh>
       </ErrorBoundary>
 
-      <mesh geometry={nodes.the_fornt_part.geometry} material={materials['outide black 1']} />
-      <mesh geometry={nodes.the_white_inside.geometry} material={materials['inside white with fold']} />
 
-      <mesh geometry={nodes.the_leather_part.geometry} material={materials['inside leather']} />
+
+
+     
+
+      {/* Extra stuff */}
+      <mesh geometry={nodes.visorfrontLine.geometry} material={materials['line 2']} />
+      <mesh geometry={nodes.rusetti.geometry} material={materials.sloejfe_m} />
+      <mesh geometry={nodes.visor.geometry} material={materials['outide black 1']} />
+      <mesh geometry={nodes.panta.geometry} material={materials['inside leather']} />
+      <mesh geometry={nodes.pantabottom.geometry} material={materials['inside black']} />
+
       
-      <mesh geometry={nodes.the_top_inside.geometry} material={materials['inside white 1']} />
-      <mesh geometry={nodes.the_line_in_the_bottom.geometry} material={materials['inside black']} />
-      <mesh geometry={nodes.cap_line_1.geometry} material={materials['line 2']} />
-    
 
-      {/* crystal */}
-      <group scale={0.071} visible={customization.badge === "crystal"}>
-          <mesh
-            geometry={nodes.Plane003.geometry}
-            material={materials.gold} 
-          />
-          <mesh
-            geometry={nodes.Plane003_1.geometry}
-            material={materials["diamond.001"]}
-          />
-      </group>
 
-      {/* suomi */}
-      <mesh
-        geometry={nodes.first_002.geometry}
-        material={materials["Material.005"]}
-        visible={customization.badge === "fi"}
-      />
 
-      {/* start */}
-      <mesh
-        geometry={nodes.Diamond001.geometry}
-        material={materials["diamond.001"]}
-        visible={customization.badge === "star"}
-      />
-      <mesh
-        geometry={nodes.Diamond001_1.geometry}
-        material={materials.gold}
-        visible={customization.badge === "star"}
-      />
-
+      <mesh geometry={nodes.blueWhite.geometry} material={materials['inside white 1']} />
+      <mesh geometry={nodes.whiteVelvet.geometry} material={materials['outside white']} />
+      <mesh geometry={nodes.insidewhite.geometry} material={materials['inside white with fold']} />
 
     </group>
   );

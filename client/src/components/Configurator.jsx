@@ -1,6 +1,6 @@
 import React from 'react'; // Make sure you have this import
 import styled from "styled-components";
-import { Add, ImageOutlined, Remove } from "@mui/icons-material"
+import { Add, ImageOutlined, Remove, StarRate } from "@mui/icons-material"
 import "../common/css/yolakki.css";
 import { useCustomization } from "../contexts/Customization";
 import { laptop, mobile, smartPhone } from "../responsive";
@@ -18,6 +18,7 @@ import CapUsageModal from "../components/CapUsageModal"
 import { publicRequest } from '../requestMethods';
 import $ from 'jquery'
 import RealPictureModal from "../components/RealPictureModal"
+import { Grid } from '@mui/material';
 
 ReactPixel.pageView(); // For tracking page view
 
@@ -637,29 +638,44 @@ const Configurator = () => {
         </OptionTitlesContainer>
             <div className="configurator__section__values">
 
-            <div  onClick={() => handleCustomizationChange("roundRibbonColor", "", 0)}>
-                <BlockOutlined sx={{fontSize: "32px"}}/>
-                <div className="item__label">Poista</div>
+            <div className="centered" onClick={() => handleCustomizationChange("roundRibbonColor", "", 0)}>
+              <div style={{ position: 'relative' }}>
+                <BlockOutlined sx={{ fontSize: "32px" }} style={{ zIndex: '0' }}/>
+              </div>
+              <div className="item__label">Poista</div>
             </div>
-
 
           {graduationCapCustomizationOptions.customizationOptions?.roundRibbonColor?.map((item, index) => {
             // Get the badge name based on the selected language (selectedLang)
             const badgeName = item.name[selectedLang][0].name;
 
+            // Check if item.recommend is true
+            const showStar = item.recommend;
+
             return (
             <div
               style={{ display: item.enabled ? 'block' : 'none' }}
               key={index}
-              className={`item ${
+              className={`centered item ${
                 item.name["en"][0].name === customization.roundRibbonColor ? "item--active" : "ss"
               }`}
               onClick={() => handleCustomizationChange("roundRibbonColor", item.name["en"][0].name, item.price)}
             >
-              <div
-                className="item__dot"
-                style={{ backgroundColor: item.color }}
-              />
+              <div style={{ position: 'relative' }}>
+                {showStar && (
+                  <StarRate 
+                    sx={{ fontSize: "16px" }}
+                    onClick={() => handleQuantity("decrease")}
+                    style={{ color: '#bf0b0b', position: 'absolute', top: '-6', left: '-4', zIndex: '1' }} // Adjust position and color
+                  />
+                )}
+
+                <div
+                  className="item__dot"
+                  style={{ backgroundColor: item.color }}
+                />
+              </div>
+
               <div className="item__label">{badgeName}</div>
             </div>
             );
@@ -679,6 +695,9 @@ const Configurator = () => {
             // Get the badge name based on the selected language (selectedLang)
             const badgeName = item.name[selectedLang][0].name;
 
+            // Check if item.recommend is true
+            const showStar = item.recommend;
+
             return (
             <div
               style={{ display: item.enabled ? 'block' : 'none' }}
@@ -688,10 +707,21 @@ const Configurator = () => {
               }`}
               onClick={() => handleCustomizationChange("cordColor", item.name["en"][0].name, item.price)}
             >
-              <div
-                className="item__dot"
-                style={{ backgroundColor: item.color }}
-              />
+
+              <div style={{ position: 'relative' }}>
+                {showStar && (
+                  <StarRate 
+                    sx={{ fontSize: "16px" }}
+                    onClick={() => handleQuantity("decrease")}
+                    style={{ color: '#bf0b0b', position: 'absolute', top: '-6', left: '-4', zIndex: '1' }} // Adjust position and color
+                  />
+                )}
+
+                <div
+                  className="item__dot"
+                  style={{ backgroundColor: item.color }}
+                />
+              </div>
               <div className="item__label">{badgeName}</div>
             </div>
             );
