@@ -5,9 +5,8 @@ import {  SearchOutlined, KeyboardArrowDownOutlined, KeyboardArrowUpOutlined } f
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import { useTranslation } from "react-i18next";
-
 import {Helmet} from "react-helmet";
-import clientSanity from '../components/blog/BlogClient';
+import axios from "axios"
 
 
 function FAQ(props) {
@@ -43,12 +42,12 @@ function FAQ(props) {
             </div>
             <Searchbar onSearchChange={handleSearchChange} />
             <section className='faq'>
-                {searchResults.map(item => {
-                   
+                {searchResults.map((item, index) => {
                     var questionML = item.title;
                     var answerML = item.body;
-                    
-                    return <Question key={item.id} question={questionML} answer={answerML} />
+                    var indexId = `${item.id}_${index}`; // Combining item.id with index for uniqueness
+
+                    return <Question key={indexId} question={questionML} answer={answerML} />;
                 })}
             </section>
         </div>
@@ -99,46 +98,50 @@ const Question = props => {
 const FaqReturn = () => {
 
     const [posts, setPosts] = useState([]);
-    
-    useEffect(() => {
-        clientSanity
-          .fetch(
-            `*[_type == "post"] {
-              title,
-              slug,
-              body,
-              publishedAt,
-              mainImage {
-                asset -> {
-                  _id,
-                  url
-                },
-                alt,
-              }
-            } | order(publishedAt desc)`
-          )
-          .then((data) => setPosts(data))
-          .catch(console.error);
-    }, []);
 
+  
+    useEffect(() =>{
+        const getBlogs = async ()=>{
+          try{
+            const res = await axios.get(
+              process.env.REACT_APP_API_URL+`/blog`
+            );
+            setPosts(res.data);
+          }catch(err){
+            console.log(err)
+          }
+        };
+        getBlogs()
+    },[]);
+
+
+    
     const filteredBlogs = posts
     .filter(blog => blog.title.includes("?"))
     .map(blog => {
-        // Extract plain text from the body
-        const plainTextBody = blog.body.reduce((acc, block) => {
-        if (block._type === "block" && block.children) {
-            acc += block.children.map(child => child.text).join(" ");
+        let plainTextBody = '';
+
+        if (Array.isArray(blog.body)) {
+            plainTextBody = blog.body.reduce((acc, block) => {
+                if (block._type === "block" && block.children) {
+                    acc += block.children.map(child => child.text).join(" ");
+                }
+                return acc;
+            }, "");
+        } else if (typeof blog.body === 'string') {
+            plainTextBody = blog.body;
+        } else {
+            // Handle other data types if necessary
         }
-        return acc;
-        }, "");
+
+        const id = blog.slug && blog.slug.current ? blog.slug.current : '';
 
         return {
-        title: blog.title,
-        id: blog.slug.current,
-        body: plainTextBody
+            title: blog.title,
+            id: id,
+            body: plainTextBody
         };
     });
-
 
     return (
         <div>

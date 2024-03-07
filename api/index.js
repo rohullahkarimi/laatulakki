@@ -12,6 +12,7 @@ const paytrailRoute = require("./routes/paytrail");
 const sendMail = require("./routes/sendMail");
 const promoRoute =  require("./routes/promoCode");
 const settingRoute =  require("./routes/setting");
+const blogRoute =  require("./routes/blog");
 const cors = require("cors");
 
 console.log(`NODE_ENV=${config.NODE_ENV}`);
@@ -43,6 +44,7 @@ app.use("/api/checkout", paytrailRoute);
 app.use("/api/sendMail", sendMail);
 app.use("/api/promocodes", promoRoute);
 app.use("/api/setting", settingRoute);
+app.use("/api/blog", blogRoute);
 
 app.listen((config.PORT), () => {
     console.log("backend server is running!");
