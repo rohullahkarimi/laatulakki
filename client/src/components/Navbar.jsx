@@ -3,14 +3,13 @@ import { MenuOutlined, ShoppingCartOutlined } from '@mui/icons-material';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { Badge } from '@mui/material';
 //import React from 'react'
-import styled from 'styled-components'
-import { mobile, smartPhone, tablet, laptop, largeLaptop, smallLaptop } from "../responsive"
+
 import {useSelector} from "react-redux"
 import {  useNavigate } from "react-router-dom"
 import CartModal from "../components/CartModal"
 import logo from "../images/laatulakki_long_logo.jpg"
 import Dropdown from './Dropdown';
-
+import * as Styled from './styledComponent/navbarStyledComponents';
 
 // multi language
 import '../i18n';
@@ -21,144 +20,9 @@ import i18n from "i18next";
 import { brandColor } from '../theme';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-const Container = styled.div`
-    height: 60px;
-    padding: 0 15%;
-    border-bottom: 1px solid #e9e8e8;
-    position: relative; /* Add this line */
-    z-index: 10; /* Add this line */
-    ${largeLaptop({padding: "0px 10%"})}
-    ${laptop({padding: "0px 5%"})}
-    ${tablet({padding: "0px"})}
-    ${smartPhone({flexDirection: "column", padding: "0px"})}
-    ${mobile({height: "50px"})}
-`
-
-const Wrapper = styled.div`
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    ${mobile({padding: "10px 0px"})}
-`
-
-const Left = styled.div`
-    flex: 1;
-    display: flix;
-    align-items: center;
-    margin-left: 0;
-`;
-
-const Language = styled.select`
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    appearance: none;
-    border-bottom: 2px solid #${brandColor};
-    ${mobile({fontSize: "14px", marginLeft: "10px"})}
+import styled from 'styled-components';
 
 
-`
-const LogoHiderL = styled.div`
-  display: block;
-  ${tablet({display: "none"})}
-`;
-
-const LogoHiderC = styled.div`
-  display: none;
-  ${tablet({display: "block"})}
-`;
-
-
-
-
-const LanguageOption = styled.option`
-`
-
-const Center = styled.div`
-    flex: 1;
-    text-align: center;
-`;
-
-const Logo = styled.img`
-    width: 140px;
-    height: "auto";
-    cursor: pointer;
-    margin: auto;
-    ${smartPhone({width:"120px"})}
-    ${mobile({width:"93px"})}
-`
-
-const AvainlippuContainer = styled.div`
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-    cursor: pointer;
-`
-const Avainlippu = styled.img`
-    width: auto;
-    height: 30px;
-    cursor: pointer;
-    margin: 0;
-    padding: 0 10px;
-    ${tablet({height:"30px", padding: "0 5px"})}
-`
-
-const FinnishService = styled.div`
-    font-size: 18px;
-    font-weight: 600;
-    ${laptop({fontSize:"14px"})}
-    ${tablet({fontSize:"12px"})}
-`
-
-
-
-
-
-
-
-const Right = styled.div`
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    ${mobile({marginRight: "15px"})}
-`;
-
-const MenuItem = styled.div`
-    font-size: 14px;
-    cursor: pointer;
-    margin-left: 10px;
-    ${mobile({fontSize: "12px", marginLeft: "0px"})}
-`;
-
-const LangDiv = styled.div`
-    display: flex;
-`;
-
-
-const Hamburger = styled.div`
-  font-size: 16px;
-  cursor: pointer;
-  display: none; /* Initially hide the hamburger menu on larger screens */
-  ${tablet({ display: "block" })} /* Show it on mobile */
-  ${mobile({ marginLeft: "15px" })} /* Show it on mobile */
-`;
-
-const ItemsListContainerDesktop = styled.div`
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-    background-color: #fff;
-    border-bottom: 1px solid #e9e8e8;
-    padding: 0; /* Reset padding to 0 */
-    margin: 0; /* Reset margin to 0 */
-    ${tablet({ display: "none" })} /* Show it on mobile */
-   
-`;
 
 // ItemList component
 const ItemList = ({ items, navigate }) => {
@@ -277,58 +141,58 @@ const Navbar = () => {
 
   return (
     <>
-    <Container>
-        <Wrapper>
-            <Left>
+    <Styled.Container>
+        <Styled.Wrapper>
+            <Styled.Left>
           
-                <LogoHiderL>
-                    <Logo onClick={goToHomePage} src={logo}/>
-                </LogoHiderL>
+                <Styled.LogoHiderL>
+                    <Styled.Logo onClick={goToHomePage} src={logo}/>
+                </Styled.LogoHiderL>
          
                 {/* Add a hamburger menu */}
-                <Hamburger onClick={toggleDropdown}>
+                <Styled.Hamburger onClick={toggleDropdown}>
                     <MenuOutlined/>
-                </Hamburger>
+                </Styled.Hamburger>
                 <Dropdown isOpen={isDropdownOpen} onClose={closeDropdown} items={items} logoSrc={logo} categoryImageUrl={"/public/images/categories/customized_500x334.jpg"} />
-            </Left>
-            <Center>
-                <LogoHiderL>
-                    <AvainlippuContainer onClick={goToHomePage}>
-                        <Avainlippu src="/public/images/common/avainlippu_1_x100.png"/>
-                        <FinnishService>{t('finnishService')}</FinnishService>
-                    </AvainlippuContainer>
-                </LogoHiderL>
-                <LogoHiderC>
-                    <Logo onClick={goToHomePage} src={logo}/>
-                </LogoHiderC>
-            </Center>
-            <Right>
-                <LangDiv>
-                    <Language name="language" onChange={onChange} defaultValue={selectedLang}>
+            </Styled.Left>
+            <Styled.Center>
+                <Styled.LogoHiderL>
+                    <Styled.AvainlippuContainer onClick={goToHomePage}>
+                        <Styled.Avainlippu src="/public/images/common/avainlippu_1_x100.png"/>
+                        <Styled.FinnishService>{t('finnishService')}</Styled.FinnishService>
+                    </Styled.AvainlippuContainer>
+                </Styled.LogoHiderL>
+                <Styled.LogoHiderC>
+                    <Styled.Logo onClick={goToHomePage} src={logo}/>
+                </Styled.LogoHiderC>
+            </Styled.Center>
+            <Styled.Right>
+                <Styled.LangDiv>
+                    <Styled.Language name="language" onChange={onChange} defaultValue={selectedLang}>
                         {languages.map(({lang, country})=>{
                             const countryName = country.toUpperCase()
                             const langName = lang.toUpperCase()
                             
                             
                             return (
-                                <LanguageOption key={lang} value={lang}>{getUnicodeFlagIcon(countryName)} {langName} </LanguageOption>
+                                <Styled.LanguageOption key={lang} value={lang}>{getUnicodeFlagIcon(countryName)} {langName} </Styled.LanguageOption>
                             )
                         })}
-                    </Language>
-                </LangDiv>
-                <MenuItem onClick={handleEmptyCart}>
+                    </Styled.Language>
+                </Styled.LangDiv>
+                <Styled.MenuItem onClick={handleEmptyCart}>
                     <Badge badgeContent={quantity} color="primary">
                         <ShoppingCartOutlined style={{marginLeft: "10px"}}/>
                     </Badge>
-                </MenuItem>
-            </Right>
-        </Wrapper>
+                </Styled.MenuItem>
+            </Styled.Right>
+        </Styled.Wrapper>
         <CartModal show={modalShow} onHide={() => setModalShow(false)} />
-    </Container>
+    </Styled.Container>
   
-    <ItemsListContainerDesktop>
+    <Styled.ItemsListContainerDesktop>
         <ItemList items={items} navigate={navigate} />
-    </ItemsListContainerDesktop>
+    </Styled.ItemsListContainerDesktop>
 
     </>
     

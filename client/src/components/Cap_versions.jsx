@@ -40,18 +40,18 @@ function MyErrorBoundary({ error, componentStack }) {
 
 function Ylioppilaslakki(props) {
   const { camera } = useThree();
-  const { nodes, materials } = useGLTF("/public/models/cap_version_14-transformed.glb");
-  //const { nodes, materials } = useGLTF("/public/models/cap_version_14.gltf");
-  
+  const { nodes, materials } = useGLTF("/public/models/cap_version_15-transformed.glb");
+  //const { nodes, materials } = useGLTF("/public/models/cap_version_1.gltf");
+  const [isFromBack, setIsFromBack] = useState(false);
+
+
   const texture = new THREE.TextureLoader().load(
-    "public/textures/embroidery/embroideryTexture.jpg"
+    "public/textures/embroidery/emb_texture.jpg"
   );
  
-
-  const [isFromBack, setIsFromBack] = useState(false);
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
-  texture.repeat.set(0.9, 0.33);
+  texture.repeat.set(1, 1); 
   texture.anisotropy = 16;
 
   const { customization } = useCustomization();
@@ -257,39 +257,44 @@ function createCustomMaterial(texture, color, darknessFactor = 0.001, opacity = 
                 <directionalLight intensity={1} position={[0, 0, 1]} />
                 <pointLight position={[0, 0, 1]} />
                 <Environment preset='city' />
-                <troika
-                  rotation={[0, 0, 0.07]}
-                  text={textFrontLeft}
-                  fontSize={15}
-                  size={1}
-                  color={color}
-                  depthOffset={5}
-                  anchorX='right'
-                  font={font}
-                  position={[15, 11, 0]}
-                >
-                  <meshStandardMaterial
-                    roughness={1}
-                    metalness={0.1}
-                    attach='material'
-                    map={texture}
-                  />
-                  
-                </troika>
+
+                   {/* embroidery front left */}
+                  <troika
+                    rotation={[0, 0, 0.07]}
+                    text={textFrontLeft}
+                    fontSize={15}
+                    size={1}
+                    color={color}
+                    depthOffset={45}
+                    depthFactor={0.4} // Adjust the depth factor for thicker text
+                    anchorX='right'
+                    font={font}
+                    position={[15, 11, 15]}
+                  >
+                    <meshStandardMaterial
+                      roughness={1}
+                      metalness={0.3}
+                      attach='material'
+                      map={texture}
+                    />
+                    
+                  </troika>
+
+                {/* embroidery front right */}
                 <troika
                   rotation={[0, 0, -0.06]}
                   text={textFrontRight}
                   fontSize={15}
                   size={1}
                   color={color}
-                  depthOffset={5}
+                  depthOffset={45}
                   anchor='center'
                   font={font}
-                  position={[66.39999999999979, 11, 0]}
+                  position={[66.39999999999979, 11, 15]}
                 >
                   <meshStandardMaterial
                     roughness={1}
-                    metalness={0.1}
+                    metalness={0.3}
                     attach='material'
                     map={texture}
                   />
@@ -322,24 +327,25 @@ function createCustomMaterial(texture, color, darknessFactor = 0.001, opacity = 
                 <directionalLight intensity={1} position={[0, 0, 1]} />
                 <pointLight position={[0, 0, 1]} />
                 <Environment preset='city' />
-                <troika
-                  rotation={[0, 0, 0]}
-                  text={textBack}
-                  fontSize={15}
-                  size={1}
-                  color={color}
-                  depthOffset={5}
-                  anchorX='center'
-                  font={font}
-                  position={[-76.7, -35, 0]}
-                >
-                  <meshStandardMaterial
-                    roughness={0.01}
-                    attach='material'
-                    metalness={0.01}
-                    map={texture}
-                  />
-                </troika>
+                  {/* embroidery back */}
+                  <troika
+                    rotation={[0, 0, 0]}
+                    text={textBack}
+                    fontSize={15}
+                    size={1}
+                    color={color}
+                    depthOffset={45}
+                    anchorX='center'
+                    font={font}
+                    position={[-76.7, -35, 10]}
+                  >
+                    <meshStandardMaterial
+                      roughness={0.9}
+                      metalness={0.1}
+                      attach='material'
+                      map={texture}
+                    />
+                  </troika>
               </RenderTexture>
             </meshPhysicalMaterial>
           </Decal>

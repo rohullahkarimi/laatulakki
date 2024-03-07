@@ -344,7 +344,7 @@ const PackageProductList = ({ productIds }) => {
 
   
 const PackageProduct = ({uniqueKey, product}) => {
-    console.log(uniqueKey)
+    //console.log(uniqueKey)
     const { t } = useTranslation();
     const navigate = useNavigate();
     const selectedLang = i18n.language

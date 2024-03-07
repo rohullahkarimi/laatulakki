@@ -28,7 +28,7 @@ const BillingAddressForm = ({navigation}) => {
 
 
   const handleCustomerInformationSubmit = (data) => {
-    console.log(data)
+    //console.log(data)
     dispatch(saveCustomerInformation(data));
     navigation.next()
   }

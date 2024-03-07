@@ -1,5 +1,6 @@
 {
     "mandatory": "är ett obligatoriskt fält",
+    "alreadyUsed": "Rabattkoden har redan använts",
     "packages": "ALE-Paket",
     "packagetitle": "Paketet innehåller följande produkter",
     "usedTitle": "Hittade du inte en lämplig begagnad examensmössa?",

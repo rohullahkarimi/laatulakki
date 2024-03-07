@@ -1,4 +1,5 @@
 const Order = require("../models/Order");
+const PromoCode = require('../models/PromoCode');
 const { verifyTokenAndAdmin, verifyToken, verifyTokenAndAuthorization } = require("./verifyToken");
 const router = require("express").Router();
 const axios = require('axios');
@@ -116,12 +117,22 @@ router.post("/", async (req, res)=>{
 
 const paidOrderFor100Discount = async (getSavedOrderId) => {
     try {
-        await Order.findByIdAndUpdate(
+        const order = await Order.findByIdAndUpdate(
             getSavedOrderId, 
             { paid: true }, 
             { new: true } 
         );
 
+        // Get the promo code used in the order
+        const promoCodeUsed = order.promoCode;
+
+        // Update the corresponding promo code document to oneTimeUse: true
+        await PromoCode.findOneAndUpdate(
+            { code: promoCodeUsed },
+            { oneTimeUse: true }
+        );
+
+          
         // send mail 
         sendOrderEmail(getSavedOrderId);
 
@@ -131,6 +142,8 @@ const paidOrderFor100Discount = async (getSavedOrderId) => {
         res.status(500).json(err)
     }
 }
+
+
 
 // save transaction ID
 const saveTransactionId = async (getSavedOrderId, savedOrder, clientLanguage) => {

@@ -331,13 +331,16 @@ const Cart = () => {
         if (promoCode === promotions[i].code) {
           // check if not expire 
           var ExpireDate =  promotions[i].expire;
+          var oneTimeUse =  promotions[i].oneTimeUse;
           var CurrentDate = new Date();
           ExpireDate = new Date(ExpireDate);
           
-          if(CurrentDate > ExpireDate){
-            alert(t('promoExpired'));
+          if(oneTimeUse){
+            alert(t('alreadyUsed'));
             return false;
           }
+
+
 
           var allowOnTopOfDiscount = promotions[i].allowOnTopOfDiscount;
           console.log(allowOnTopOfDiscount)

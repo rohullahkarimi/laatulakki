@@ -1,5 +1,6 @@
 {
     "mandatory": "is a mandatory field",
+    "alreadyUsed": "The discount code has already been used",
     "packagetitle": "The package includes the following products",
     "packages": "Discount Packages",
     "usedTitle": "Didn't find a suitable used graduation cap?",

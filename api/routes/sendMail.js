@@ -146,7 +146,7 @@ function sendOrderStatusEmail(orderId, status) {
       break;
     case "reminder":
       subject = "Tilauksesi on yhä kesken";
-      statusText = "Ostoskorisi maksaminen jäi kesken. Tilausta ei ole muodustunut. Voit jatka maksamista alla olevasta painikkeesta";
+      statusText = "Ostoskorisi maksaminen jäi kesken. Tilausta ei ole muodostunut. Voit jatkaa maksamista alla olevasta painikkeesta";
       break;
     case "videoEmail":
       subject = "Pakkausvideo tilauksestasi";

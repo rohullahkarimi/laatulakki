@@ -143,7 +143,7 @@ const Product = ({used, item}) => {
 
   const existSizes = item.size.filter(size => size.storage > 0);
 
-  console.log(existSizes)
+  //console.log(existSizes)
   return (
     <Container onClick={navigateToProductPage}>
         {used && (

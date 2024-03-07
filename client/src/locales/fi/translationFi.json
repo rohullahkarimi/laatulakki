@@ -1,5 +1,6 @@
 {   
     "mandatory": "on pakollinen kenttä",
+    "alreadyUsed": "Alennuskoodi on jo käytetty",
     "packages": "ALE paketit",
     "packagetitle": "Pakettiin sisältyy seuraavat tuotteet",
     "usedTitle": "Etkö löytänyt sopivaa käytettyä ylioppilaslakkia?",

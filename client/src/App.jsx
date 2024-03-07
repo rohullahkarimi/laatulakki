@@ -43,6 +43,7 @@ import ReactGA from "react-ga4";
 import { useEffect } from "react";
 import ReactPixel from 'react-facebook-pixel';
 
+
 // facebook pixel
 const advancedMatching = { em: 'info@laatulakki.fi' }; // optional, more info: https://developers.facebook.com/docs/facebook-pixel/advanced/advanced-matching
 const options = {
@@ -208,6 +209,7 @@ const App = () => {
         <Route path="/ylioppilaslakki" element={<Ylioppilaslakki/>} />
         <Route path="/marketplace" element={<Marketplace/>} />
         <Route path="/marketplace/sell" element={<MarketplaceSell/>} />
+    
   
       </Routes>
 
