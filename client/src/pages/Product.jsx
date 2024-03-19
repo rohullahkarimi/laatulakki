@@ -618,7 +618,7 @@ const Product = () => {
 
                 {instructionElements}
 
-                {product.discount && <Price>{ product?.price - (product?.price * (product.discount / 100)).toFixed(2)} € </Price> }
+                {product.discount && <Price>{ (product?.price - (product?.price * (product.discount / 100)).toFixed(2)).toFixed(2)} € </Price> }
 
                 {product.discount ? <Price><s className="originalPrice">{product?.price && product?.price.toFixed(2)} €</s><IncludeTax>{t('includeTax')}</IncludeTax></Price> : <Price>{product?.price && product?.price.toFixed(2)} € <IncludeTax>{t('includeTax')}</IncludeTax></Price>}
             

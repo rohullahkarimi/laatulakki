@@ -3,7 +3,7 @@ import React from "react";
 import styled from 'styled-components'
 import { mobile, smartPhone, tablet, laptop, largeLaptop } from "../responsive"
 //import {  useHistory } from "react-router-dom"
-import logo from "../images/laatulakki_long_logo.jpg"
+import logo from "../images/laatulakki_long_logo_2024.png"
 import {ShoppingCartIcon } from "@heroicons/react/24/outline";
 
 // theme
@@ -22,11 +22,13 @@ const Container = styled.div`
 `
 
 const Wrapper = styled.div`
-    padding: 10px 20px;
+    padding: 12px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    ${mobile({padding: "10px 0px"})}
+    ${laptop({padding: "13px 10px"})}
+    ${smartPhone({padding: "18px 10px"})}
+    ${mobile({padding: "13px 0px"})}
 `
 
 const Left = styled.div`

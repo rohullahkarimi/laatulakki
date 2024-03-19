@@ -173,7 +173,7 @@ const Product = ({used, item}) => {
         
        
         
-        {item.discount ? <Price used={used} existSizesLength={existSizes.length} >{ (item.price - (item.price * (item.discount / 100)).toFixed(2))} € </Price> : <Price used={used} existSizesLength={existSizes.length} >{item.price.toFixed(2)} €</Price>}
+        {item.discount ? <Price used={used} existSizesLength={existSizes.length} >{ (item.price - (item.price * (item.discount / 100)).toFixed(2)).toFixed(2)} € </Price> : <Price used={used} existSizesLength={existSizes.length} >{item.price.toFixed(2)} €</Price>}
         {item.discount && <PriceDiscount used={used} existSizesLength={existSizes.length} ><s className="originalPriceProductList" >{item?.price && item?.price.toFixed(2)} €</s></PriceDiscount>}
             
         {existSizes.length > 0 && used && (

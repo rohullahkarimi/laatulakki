@@ -7,7 +7,7 @@ import { Badge } from '@mui/material';
 import {useSelector} from "react-redux"
 import {  useNavigate } from "react-router-dom"
 import CartModal from "../components/CartModal"
-import logo from "../images/laatulakki_long_logo.jpg"
+import logo from "../images/laatulakki_long_logo_2024.png"
 import Dropdown from './Dropdown';
 import * as Styled from './styledComponent/navbarStyledComponents';
 
