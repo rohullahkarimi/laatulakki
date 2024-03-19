@@ -262,7 +262,7 @@ const CartProduct = (props) => {
           </CustomizedOptionsDiv>
           {product.discount &&<ProductDiscount><b>{t("discount")}:</b> -{product.discount} %</ProductDiscount>}
           <CustomizedOptionsDiv>
-            <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } € 
+            <b>{t("pricePerPiece")}:</b> {product.discount ? (product.price - (product.price * (product.discount / 100)).toFixed(2)).toFixed(2) : product.price.toFixed(2) } € 
           </CustomizedOptionsDiv>
   
         {product.customizedProduct && (
