@@ -280,7 +280,7 @@ const Receipt = () => {
     // if product has discount
     var unitPrice;
     if(item.discount){
-        var afterDiscountPrice = item.price - (item.price * (item.discount / 100)).toFixed(2);
+        var afterDiscountPrice = (item.price - (item.price * (item.discount / 100)).toFixed(2)).toFixed(2);
         unitPrice = afterDiscountPrice;
     }else{
         unitPrice = item.price;
@@ -465,7 +465,7 @@ const Receipt = () => {
                           <ProductPriceText><b>{t("discount")}:</b> -{product.discount} %</ProductPriceText>
                         }
                         <ProductPriceText>
-                            <b>{t("pricePerPiece")}:</b> {product.discount ? product.price - (product?.price * (product.discount / 100)).toFixed(2) : product.price.toFixed(2) } €   
+                            <b>{t("pricePerPiece")}:</b> {product.discount ? (product.price - (product?.price * (product.discount / 100)).toFixed(2)).toFixed(2) : product.price.toFixed(2) } €   
                         </ProductPriceText>
                         </Details>
                     </ProductDetail>
@@ -505,7 +505,7 @@ const Receipt = () => {
 
                     <PriceDetail>
                         <ProductPrice>
-                          {product.discount ? (product.price - (product?.price * (product.discount / 100)).toFixed(2)) * product.quantity :  (product.price * product.quantity).toFixed(2)} €
+                          {product.discount ? (product.price - (product?.price * (product.discount / 100)).toFixed(2)).toFixed(2) * product.quantity :  (product.price * product.quantity).toFixed(2)} €
                         </ProductPrice>
                     </PriceDetail>
                 </Product>
