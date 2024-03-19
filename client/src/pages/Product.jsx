@@ -335,8 +335,8 @@ const PackageProductList = ({ productIds }) => {
     return (
       <ProductsContainer>
         <h5>{t('packagetitle')}</h5>
-        {products.map((product) => (
-          <PackageProduct uniqueKey={product._id} product={product} />
+        {products.map((product, index) => (
+          <PackageProduct key={index} uniqueKey={product._id} product={product} />
         ))}
       </ProductsContainer>
     );
