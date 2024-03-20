@@ -84,7 +84,7 @@ module.exports = function() {
             // if product has discount
             var unitPrice;
             if(item.discount){
-                var afterDiscountPrice = item.price - (item.price * (item.discount / 100)).toFixed(2);
+                var afterDiscountPrice = (item.price - (item.price * (item.discount / 100)).toFixed(2)).toFixed(2);
                 unitPrice = afterDiscountPrice;
             }else{
                 unitPrice = item.price.toFixed(2);
