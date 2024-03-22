@@ -15,7 +15,7 @@ const DropdownContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Align items to the left */
-  z-index: 1001;
+  z-index: 1003;
 `;
 
 const DropdownContent = styled.div`
@@ -155,9 +155,11 @@ const Dropdown = ({ isOpen, onClose, items, logoSrc, categoryTitle, categoryImag
         </CategoryContainer>
         <DropdownList>
           {items.map((item, index) => (
-            <DropdownItem key={index}>
-              <DropdownItemA href={item.url}>{item.text}</DropdownItemA>
-            </DropdownItem>
+            <DropdownItemA key={index} href={item.url}>
+              <DropdownItem>
+                <DropdownItemA href={item.url}>{item.text}</DropdownItemA>
+              </DropdownItem>
+            </DropdownItemA>
           ))}
         </DropdownList>
       </DropdownContent>

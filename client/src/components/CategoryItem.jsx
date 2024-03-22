@@ -71,6 +71,17 @@ const CategoryItem = () => {
   // className="hide_in_mobile"
   return (
     <>
+
+    <Container>
+            <Link to={`/products/ylioppilaslakki`}>
+                <Image src="/public/images/packages/package3/800/Eksklusiivinen_ensemble.jpg"/>
+                <Info>
+                    <Title>{t("packages").toUpperCase()}</Title>
+                    <Button>{t("buy_now").toUpperCase()}</Button>
+                </Info>
+            </Link>
+    </Container>
+
     <Container>
         <Link to={`/ylioppilaslakki`}>
             <Image src="/public/images/categories/customized.jpg"/>
@@ -79,17 +90,6 @@ const CategoryItem = () => {
                 <Button buttonColor="white">{t("buy_now").toUpperCase()}</Button>
             </Info>
         </Link>
-    </Container>
-
-    
-    <Container>
-            <Link to={`/products/ylioppilaslakki`}>
-                <Image src="/public/images/graduation_cap/v23/800/ylioppilaslakki_12.jpg"/>
-                <Info>
-                    <Title>{t("highSchoolCap").toUpperCase()}</Title>
-                    <Button>{t("buy_now").toUpperCase()}</Button>
-                </Info>
-            </Link>
     </Container>
 
     <Container>
