@@ -23,7 +23,7 @@ import { ErrorBoundary } from "react-error-boundary";
 extend({ Troika });
 
 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-const dimension = isIOS ? 700 : 1500;
+const dimension = isIOS ? 400 : 1500;
 
 // Define an error boundary component
 function MyErrorBoundary({ error, componentStack }) {
