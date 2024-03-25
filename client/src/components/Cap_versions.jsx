@@ -46,7 +46,7 @@ function Ylioppilaslakki(props) {
 
 
   const texture = new THREE.TextureLoader().load(
-    "public/textures/embroidery/emb_texture.jpg"
+    "public/textures/embroidery/emb_texture_small.jpg"
   );
  
   texture.wrapS = THREE.RepeatWrapping;
